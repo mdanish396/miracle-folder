@@ -5,7 +5,7 @@
     <q-header class="q-pa-md navigation-bar" elevated :class="{ visible: scrolled, transparent: !scrolled }">
       <q-toolbar class="toolbar">
         <!-- Left-aligned: Logo and Title -->
-        <router-link to="/" class="logo-title-group" @click="handleLogoClick">
+        <router-link to="/" class="logo-title-group" href="/" @click="handleLogoClick">
           <img src="src/assets/logo.png" alt="Logo" class="logo" />
           <q-toolbar-title class="toolbar-title">
             MIRACLE LAND
@@ -15,23 +15,22 @@
       <!-- Right-aligned: Navigation Buttons for larger screens -->
       <q-space v-if="!drawerVisible" />
       <div class="nav-buttons q-mr-md" v-if="!isSmallScreen">
-        <q-card class="nav-button flat-card" clickable @click="$router.push('/about-miracle')">
+        <q-card class="nav-button flat-card" clickable @click="$router.push('/about-us')">
           <q-card-section class="nav-card-section">About Miracle</q-card-section>
   </q-card>
-  <q-card class="nav-button flat-card" @mouseover="showDropdown" @mouseleave="hideDropdown">
-  <q-card-section class="nav-card-section">Development</q-card-section>
-  <q-menu :offset="getOffset()">
+  <q-card class="nav-button flat-card" flat bordered @mouseover="showDropdown" @mouseleave="hideDropdown">
+    <q-card-section class="nav-card-section">Development</q-card-section>
+    <q-menu fit anchor="bottom start" self="top start">
     <q-list>
       <q-item clickable to="/current-development">
-        <q-item-section class="dropdown"> Current Development</q-item-section>
+        <q-item-section>Current Development</q-item-section>
       </q-item>
       <q-item clickable to="/past-development">
-        <q-item-section class="dropdown">Past Development</q-item-section>
+        <q-item-section>Past Development</q-item-section>
       </q-item>
     </q-list>
   </q-menu>
-</q-card>
-
+  </q-card>
   <q-card class="nav-button flat-card" clickable @click="$router.push('/for-sale')">
     <q-card-section class="nav-card-section">For Sale</q-card-section>
   </q-card>
@@ -60,35 +59,36 @@
   </q-header>
 
   <!-- Drawer for small screens -->
-  <q-drawer v-model="drawerVisible" side="right" overlay bordered class="full-height-drawer">
-    <q-list padding>
-      <q-item clickable to="/about-miracle" class="drawer-item">
+  <q-drawer v-model="drawerVisible" side="right" overlay>
+    <q-list>
+      <q-item clickable to="/about-us">
         <q-item-section>About Miracle</q-item-section>
       </q-item>
-      <q-expansion-item label="Development" class="drawer-item-expand">
-        <q-item clickable to="/current-development" class="drawer-item-child">
-          <q-item-section>Current Development</q-item-section>
+      <q-expansion-item label="DEVELOPMENT">
+        <q-item clickable to="/current-development">
+          <q-item-section>  Current Development</q-item-section>
         </q-item>
-        <q-item clickable to="/past-development" class="drawer-item-child">
-          <q-item-section>Past Development</q-item-section>
+        <q-item clickable to="/past-development">
+          <q-item-section>  Past Development</q-item-section>
         </q-item>
       </q-expansion-item>
-      <q-item clickable to="/for-sale" class="drawer-item">
+      <q-item clickable to="/for-sale">
         <q-item-section>For Sale</q-item-section>
       </q-item>
-      <q-item clickable to="/for-lease" class="drawer-item">
+      <q-item clickable to="/for-lease">
         <q-item-section>For Lease</q-item-section>
       </q-item>
-      <q-item clickable to="/awards" class="drawer-item">
+      <q-item clickable to="/awards">
         <q-item-section>Awards</q-item-section>
       </q-item>
-      <q-item clickable to="/investor-media" class="drawer-item">
+      <q-item clickable to="/investor-media">
         <q-item-section>Investor & Media</q-item-section>
       </q-item>
     </q-list>
   </q-drawer>
-    <q-page-container>
-      <q-page :style="{ backgroundColor: '#ffffed' }">
+
+  <q-page-container>
+      <q-page>
         <router-view /> <!-- This is where the content of your pages will be inserted -->
       </q-page>
     </q-page-container>
@@ -165,7 +165,6 @@ const $q = useQuasar() // Get the $q object
 const scrolled = ref(false)
 const dropdownVisible = ref(false)
 const drawerVisible = ref(false)
-const screenBelow1105px = ref(false) // Add this line
 
 const isSmallScreen = computed(() => {
   return $q.screen.lt.md // Adjust the breakpoint as needed
@@ -181,20 +180,13 @@ const handleScroll = () => {
 // Call handleScroll on the window's scroll event
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
-  handleResize() // Initial check on mount
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-const handleResize = () => {
-  screenBelow1105px.value = window.innerWidth < 1105
-}
-
-window.addEventListener('resize', handleResize)
-
-const handleLogoClick = (event) => {
+const handleLogoClick = () => {
   if (this.$route.path === '/') {
     // Refresh the current page (IndexPage.vue)
     window.location.reload()
@@ -226,14 +218,6 @@ const hideDropdown = () => {
 
 const toggleDrawer = () => {
   drawerVisible.value = !drawerVisible.value
-}
-
-const getOffset = () => {
-  if (screenBelow1105px.value) {
-    return [31, 23] // Offset for screens below 1105px
-  } else {
-    return [50, 23] // No offset for screens above 1105px
-  }
 }
 
 </script>
@@ -285,7 +269,7 @@ const getOffset = () => {
 /* Navigation Buttons Group */
 .nav-buttons {
   display: flex;
-  gap: 25px; /* Space between buttons */
+  gap: 15px; /* Space between buttons */
 }
 
 /* Styling for the navigation card */
@@ -299,7 +283,7 @@ const getOffset = () => {
   padding: 0;
   font-size: 1rem; /* Adjust font size */
   font-weight: 500; /* Adjust font weight */
-  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   transition: color 0.3s ease-in-out;
 }
 
@@ -311,14 +295,10 @@ const getOffset = () => {
 }
 
 .q-menu {
-  width: 15%; /* Ensures the menu's width fits the parent */
+  min-width: 100%; /* Ensures the menu's width fits the parent */
 }
 .q-item {
   white-space: nowrap; /* Prevents the menu items from wrapping */
-}
-
-.dropdown:hover {
-color:#00B398;
 }
 
 /* Navigation Bar */
@@ -328,7 +308,7 @@ color:#00B398;
   left: 0;
   right: 0;
   color: #ffffff;
-  z-index: 1200;
+  z-index: 1400;
   padding: 10px 20px;
   box-shadow: 0px 2px 10px rgb(255, 254, 254); /* Soft shadow for elevation */
   transition: opacity 0.4s ease-in-out, background-color 0.4s ease-in-out; /* Smooth transition */
@@ -353,52 +333,6 @@ color:#00B398;
   pointer-events: auto; /* Enable clicks when visible */
 }
 
-.full-height-drawer {
-  height: calc(100vh - 60px); /* Adjust 60px to match your navbar height */
-  position: fixed; /* Fix the drawer to the viewport */
-  top: 60px; /* Position the drawer below the navbar */
-  z-index: 100; /* Ensure the drawer is on top of other elements */
-}
-
-/* Style for drawer items */
-.drawer-item {
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  padding: 10px 15px;
-  border-bottom: 1px solid #eee;
-}
-
-.drawer-item:last-child {
-  border-bottom: none;
-}
-
-.drawer-item:hover {
-  background-color: #f5f5f5;
-}
-
-.drawer-item-expand {
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  padding: 10px 15px;
-  border-bottom: 1px solid #eee;
-}
-
-/* Style for drawer item children */
-.drawer-item-child {
-  padding: 10px 15px;
-  border-bottom: 1px solid #eee;
-  font-family: 'Arial', sans-serif;
-  font-size: 14px;
-}
-
-.drawer-item:hover {
-  color: #00B398; /* Change the text color on hover */
-}
-
-.drawer-item-child:hover {
-  color: #00B398; /* Change the text color on hover */
-}
-
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
   /* Adjust toolbar for tablet screens */
@@ -412,6 +346,13 @@ color:#00B398;
 }
 
 @media (max-width: 768px) {
+  /* Hero Section */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: -70px;
+}
 
   /* Adjust toolbar for smartphone screens */
   .navigation-bar {
@@ -438,6 +379,13 @@ color:#00B398;
 }
 
 @media (max-width: 480px) {
+    /* Hero Section */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: -128px;
+}
 
   /* Further adjustments for very small screens */
   .toolbar-title {

@@ -133,7 +133,7 @@ export default {
           name: 'The Connaught One',
           location: 'Greater Kuala Lumpur',
           price: '350,900',
-          image: 'src/assets/house1.jpg',
+          image: 'src/assets/currentproject/house1.jpg',
           description: 'Service Apartment with excellent facilities and a scenic view.'
         },
         {
@@ -141,7 +141,7 @@ export default {
           name: 'KAIA Heights Equine',
           location: 'Greater Kuala Lumpur',
           price: '567,800',
-          image: 'src/assets/house2.jpg',
+          image: 'src/assets/currentproject/house2.jpg',
           description: 'Condominium offering modern living spaces.'
         },
         {
@@ -149,7 +149,7 @@ export default {
           name: 'Residensi ZIG',
           location: 'Greater Kuala Lumpur',
           price: '355,900',
-          image: 'src/assets/house3.jpg',
+          image: 'src/assets/currentproject/house3.jpg',
           description: 'Affordable service apartments in a serene location.'
         }
       ]

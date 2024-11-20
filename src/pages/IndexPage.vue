@@ -37,35 +37,42 @@
       </div>
     </div>
 
-          <!-- Current Development Projects Section -->
-  <div class="projects-section">
-    <h2 class="section-title">Current Development Projects</h2>
-    <div class="projects-container">
-      <!-- Scrollable Project Card -->
-      <div class="project-card" v-for="project in projects" :key="project.id">
-        <img :src="project.image" :alt="project.name" class="project-image" />
-        <div class="project-info">
-              <h3>{{ project.name }}</h3>
-              <p>{{ project.location }}</p>
-              <p>From RM {{ project.price }}</p>
-            </div>
-        <!-- Hover Project Card Information -->
+    <ProjectData ref="projectData" />
+    <!-- Current Development Projects Section -->
+    <div class="projects-section">
+      <h2 class="section-title">Current Development Projects</h2>
+      <div class="projects-container" :class="{ 'grid-layout': showAllProjects }" :style="{ gridTemplateColumns: `repeat(${columns}, 1fr)` }">
+        <!-- Scrollable Project Card -->
+        <div class="project-card" v-for="project in displayedProjects" :key="project.id">
+          <img :src="project.image" :alt="project.name" class="project-image" />
+          <div class="project-info">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.location }}</p>
+            <p>From RM {{ project.price }}</p>
+          </div>
+          <!-- Hover Project Card Information -->
           <div class="project-hover-overlay">
             <span :class="['status', project.status === 'Sold' ? 'sold' : 'sale']">{{ project.status }}</span>
             <p>{{ project.description }}</p>
-              <div class="project-details">
-                <span><i class="fas fa-bed"></i> {{ project.bedrooms }}</span>
-                <span><i class="fas fa-bath"></i> {{ project.bathrooms }}</span>
-                <span><i class="fas fa-expand-arrows-alt"></i> {{ project.size }} m²</span>
-              </div>
-        <div class="actions">
-          <q-btn flat label="Open Details" class="action-btn" />
+            <div class="project-details">
+              <span><i class="fas fa-bed"></i> {{ project.bedrooms }}</span>
+              <span><i class="fas fa-bath"></i> {{ project.bathrooms }}</span>
+              <span><i class="fas fa-expand-arrows-alt"></i> {{ project.size }} m²</span>
+            </div>
+            <div class="actions">
+              <q-btn flat label="Open Details" class="action-btn" @click="viewProject(project.id)" />
+            </div>
+          </div>
         </div>
       </div>
+      <div v-if="!showAllProjects">
+        <q-btn flat label="Show More Projects" class="view-all-btn" @click="showMoreProjects" />
+      </div>
+      <div v-if="showAllProjects">
+        <q-btn flat label="Show Less Projects" class="view-all-btn" @click="showLessProjects" />
+        <q-btn flat label="Show More Projects" class="view-all-btn" v-if="displayedProjects.length < projects.length" @click="showMoreProjects" />
+      </div>
     </div>
-  </div>
-  <q-btn flat label="View All Projects" class="view-all-btn" />
-</div>
 
     <!-- Partners' Logos Section -->
     <div class="partners-section">
@@ -91,7 +98,7 @@
           Our company is privately owned and has delivered over 100 projects
           valued at over RM5 billion. We aim to create dynamic places where people live, work, and thrive.
         </p>
-        <q-btn flat label="ABOUT US" class="btn-story" to="/about-us"/>
+        <q-btn flat label="ABOUT US" class="btn-story" to="/about-miracle"/>
       </div>
       <div class="image-container">
         <!-- Duplicate Gray-toned Image -->
@@ -111,79 +118,28 @@
 </template>
 
 <script>
+import ProjectData from 'src/components/ProjectData.vue'
 export default {
+  components: {
+    ProjectData
+  },
+
   data () {
     return {
       showLoader: true,
 
-      projects: [
-        {
-          id: 1,
-          name: 'The Connaught One',
-          location: 'Greater Kuala Lumpur',
-          price: '350,900',
-          image: 'src/assets/house1.jpg',
-          description: 'Service Apartment with excellent facilities and a scenic view.',
-          status: 'Sale',
-          bedrooms: 4,
-          bathrooms: 10,
-          size: 360
-        },
-        {
-          id: 2,
-          name: 'KAIA Heights Equine',
-          location: 'Greater Kuala Lumpur',
-          price: '567,800',
-          image: 'src/assets/house2.jpg',
-          description: 'Condominium offering modern living spaces.',
-          status: 'Sold',
-          bedrooms: 4,
-          bathrooms: 10,
-          size: 360
-        },
-        {
-          id: 3,
-          name: 'Residensi ZIG',
-          location: 'Greater Kuala Lumpur',
-          price: '355,900',
-          image: 'src/assets/house3.jpg',
-          description: 'Affordable service apartments in a serene location.',
-          status: 'Sale',
-          bedrooms: 4,
-          bathrooms: 10,
-          size: 360
-        },
-        {
-          id: 4,
-          name: 'KAIA Heights Equine',
-          location: 'Greater Kuala Lumpur',
-          price: '567,800',
-          image: 'src/assets/house2.jpg',
-          description: 'Condominium offering modern living spaces.',
-          status: 'Sold',
-          bedrooms: 4,
-          bathrooms: 10,
-          size: 360
-        },
-        {
-          id: 5,
-          name: 'The Connaught One',
-          location: 'Greater Kuala Lumpur',
-          price: '350,900',
-          image: 'src/assets/house1.jpg',
-          description: 'Service Apartment with excellent facilities and a scenic view.',
-          status: 'Sale',
-          bedrooms: 4,
-          bathrooms: 10,
-          size: 360
-        }
-      ]
+      columns: 2, // Initial number of columns
+      showAllProjects: false,
+      displayedProjects: [],
+      projects: [] // Add this line
     }
   },
   mounted () {
     setTimeout(() => {
       this.showLoader = false
     }, 3500)
+    this.projects = this.$refs.projectData.projects // Get projects after ProjectData mounts
+    this.displayedProjects = this.projects // Display all projects initially
   },
 
   computed: {
@@ -194,7 +150,16 @@ export default {
 
   methods: {
     viewProject (projectId) {
-      console.log('Navigating to project', projectId)
+      this.$router.push(`/projects/${projectId}`)
+    },
+
+    showMoreProjects () {
+      this.columns += 2
+      this.showAllProjects = true
+    },
+    showLessProjects () {
+      this.columns -= 2
+      this.showAllProjects = false
     }
   }
 }
@@ -214,7 +179,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000000;
+  background-color: #3d1c1c;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -247,7 +212,7 @@ export default {
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 101vh;
+  height: 100vh;
   overflow: hidden;
   margin-top: -70px;
 }
@@ -257,20 +222,25 @@ export default {
   object-fit: cover; /* Ensures the video covers the entire hero section */
 }
 
+@font-face {
+  font-family: 'Empire';
+  src: url('src/assets/fonts/Empire.ttf') format('truetype');
+}
+
 /* Text Overlay in Video */
 .video-text-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: rgb(238, 238, 238);
   text-align: center;
+  font-family: 'Empire', serif;
   z-index: 1000;
 }
 
 .video-text-overlay h1 {
-  font-size: 3rem; /* Adjust as needed */
-  font-weight: bold;
+  font-size: 4rem; /* Adjust as needed */
 }
 
 /* Scroll Indicator */
@@ -299,170 +269,179 @@ export default {
   height: auto;
 }
 
-/*Project Section*/
-.projects-section {
-  padding: 20px 20px;
-  background-color: #ffffed;
-  text-align: center;
-}
+  /*Project Section*/
+  .projects-section {
+    padding: 20px 20px;
+    text-align: center;
+  }
 
-.section-title {
-  font-family: 'Georgia', serif;
-  font-size: 2.5rem;
-  color: #000000;
-  margin-bottom: 50px;
-}
+  .section-title {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    color: #000000;
+    margin-bottom: 50px;
+  }
 
-.projects-container {
-  display: flex;
+  .projects-container {
+  display: flex; /* Default display is flex for horizontal scroll */
   gap: 20px;
-  overflow-x: auto;
+  overflow-x: auto; /* Enable horizontal scroll */
   padding-bottom: 20px;
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
 }
 
-.project-card {
-  position: relative;
-  min-width: 280px;
-  max-width: 300px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  scroll-snap-align: start;
-  transition: transform 0.3s ease;
+.projects-container.grid-layout {
+  display: grid; /* Apply grid layout when showAllProjects is true */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  overflow-x: auto; /* Disable horizontal scroll for grid */
+  padding-bottom: 20px;
+  scrollbar-width: none;
+  scroll-snap-type: none;
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-}
+  .project-card {
+    position: relative;
+    min-width: 280px;
+    max-width: 300px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+  }
 
-.project-image {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-}
+  .project-card:hover {
+    transform: translateY(-5px);
+  }
 
-.project-info {
-  padding: 25px;
-  text-align: left;
-}
+  .project-image {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+  }
 
-.project-info h3 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-}
+  .project-info {
+    padding: 25px;
+    text-align: left;
+  }
 
-.project-info p {
-  margin: 2px 0;
-  color: #666;
-}
+  .project-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
 
-/* Hover Overlay */
-.project-hover-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
+  .project-info p {
+    margin: 2px 0;
+    color: #666;
+  }
 
-.project-card:hover .project-hover-overlay {
-  opacity: 1;
-}
+  /* Hover Overlay */
+  .project-hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
-/* Conditional Status Badge */
-.status {
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
+  .project-card:hover .project-hover-overlay {
+    opacity: 1;
+  }
 
-.sold {
-  background: #e53935; /* Red for Sold */
-}
+  /* Conditional Status Badge */
+  .status {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
 
-.sale {
-  background: #4caf50; /* Green for Sale */
-}
+  .sold {
+    background: #e53935; /* Red for Sold */
+  }
 
-.description {
-  font-size: 0.9rem;
-  margin-bottom: 10px;
-  text-align: center;
-}
+  .sale {
+    background: #4caf50; /* Green for Sale */
+  }
 
-.project-details {
-  display: flex;
-  gap: 15px;
-  font-size: 0.9rem;
-  margin-bottom: 10px;
-}
+  .description {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-align: center;
+  }
 
-.price {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
+  .project-details {
+    display: flex;
+    gap: 15px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
 
-.actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
+  .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
 
-.action-btn {
-  background-color: transparent;
-  border: 1px solid white;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  font-weight: bold;
-}
+  .actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
 
-.icon-btn {
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
+  .action-btn {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 
-.icon-btn:hover {
-  transform: scale(1.1);
-}
+  .icon-btn {
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
 
-/* view all button */
-.view-all-btn{
-  background-color: transparent;
-  border: 2px solid #02947e;
-  color: #000000;
-  font-weight: bold;
-  padding: 10px 20px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  border-radius: 0;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
+  .icon-btn:hover {
+    transform: scale(1.1);
+  }
 
-.view-all-btn:hover {
-  background-color: #00B398;
-  color: white;
-  transform: translateY(-3px);
-}
+  /* view all button */
+  .view-all-btn{
+    background-color: transparent;
+    border: 2px solid #02947e;
+    color: #000000;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 0;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+
+  .view-all-btn:hover {
+    background-color: #00B398;
+    color: white;
+    transform: translateY(-3px);
+  }
 
 /* Partners' Logos Section */
 .partners-section {
@@ -470,7 +449,6 @@ export default {
   text-align: center;
   opacity: 0;
   animation: fadeInUp 1s ease forwards;
-  background-color:   #ffffED;
   max-width: 1350px;
 }
 
@@ -514,7 +492,6 @@ export default {
 
 /* About Us Section */
 .about-us-section {
-  background-color: #ffffed;
   padding: 80px 40px;
 }
 
