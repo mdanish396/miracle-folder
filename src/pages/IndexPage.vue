@@ -1,7 +1,7 @@
 <template>
   <transition name="fade" mode="out-in">
     <q-page :key="$route.fullPath">
-      <!-- Star tup Animation Overlay -->
+      <!-- Startup Animation Overlay -->
         <div v-if="showLoader" class="startup-overlay">
           <div>
         <img src="src/assets/logo4.png" class="startup-image">
@@ -35,6 +35,8 @@
           Your browser does not support the video tag.
         </video>
       </div>
+              <!-- Vertical Branding -->
+              <div class="vertical-branding">MIRACLE LAND</div>
     </div>
 
     <ProjectData ref="projectData" />
@@ -99,7 +101,7 @@
           valued at over RM5 billion. We aim to create dynamic places where people live, work, and thrive.
         </p>
         <q-btn flat label="ABOUT US" class="btn-story" to="/about-miracle"/>
-      </div>
+    </div>
       <div class="image-container">
         <!-- Duplicate Gray-toned Image -->
         <div class="gray-image-layer">
@@ -243,6 +245,20 @@ export default {
   font-size: 4rem; /* Adjust as needed */
 }
 
+.vertical-branding {
+  position: absolute;
+  top: 55%;
+  right: 50px;
+  transform: translateY(-50%);
+  writing-mode: vertical-lr;
+  text-transform: uppercase;
+  font-size: 64px;
+  color: rgba(255, 255, 255, 0.1);
+  font-weight: bold;
+  z-index: 2;
+  white-space: nowrap;
+}
+
 /* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
@@ -280,6 +296,7 @@ export default {
     font-size: 2.5rem;
     color: #000000;
     margin-bottom: 50px;
+    text-align: center;
   }
 
   .projects-container {
@@ -527,6 +544,11 @@ export default {
 
 /* Further adjust for tablet and smartphone */
 @media (max-width: 768px) {
+
+  .video-text-overlay h1{
+    font-size: 50px;
+  }
+
   .text-content h2 {
     padding-left: 20px;
     font-size: 2rem; /* Reduce font size */
@@ -553,6 +575,11 @@ export default {
 
   .logo-container {
     padding-left: 20px;
+  }
+
+  .vertical-branding {
+    font-size: 45px;
+    margin-right: -40px;
   }
   }
 
@@ -650,4 +677,10 @@ export default {
   opacity: 0.5; /* Semi-transparent effect */
 }
 
+@media (min-width: 1024px) {
+
+.btn-story {
+  margin-left:220px;
+}
+}
 </style>

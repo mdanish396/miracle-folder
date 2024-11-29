@@ -6,7 +6,7 @@
       <q-toolbar class="toolbar">
         <!-- Left-aligned: Logo and Title -->
         <router-link to="/" class="logo-title-group" @click="handleLogoClick">
-          <img src="src/assets/logo-96X96.png" alt="Logo" class="logo" />
+          <img src="src/assets/logo.png" alt="Logo" class="logo" />
           <q-toolbar-title class="toolbar-title">
             MIRACLE LAND
           </q-toolbar-title>
@@ -18,23 +18,19 @@
         <q-card class="nav-button flat-card" clickable @click="$router.push('/about-miracle')">
           <q-card-section class="nav-card-section">About Miracle</q-card-section>
   </q-card>
-  <q-card
-          class="nav-button flat-card">
-          <q-card-section class="nav-card-section" @mouseover="showDropdown"
-          @mouseleave="hideDropdown">Development</q-card-section>
-          <q-menu @mouseover="showDropdown"
-          @mouseleave="hideDropdown" v-model="dropdownVisible" anchor="bottom left" self="top left" fit>
-            <q-list>
-              <q-item clickable @click="$router.push('/current-development')">
-                <q-item-section>
-                Current Development</q-item-section>
-              </q-item>
-              <q-item clickable @click="$router.push('/past-development')">
-                <q-item-section>Past Development</q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-card>
+  <q-card class="nav-button flat-card" @mouseover="showDropdown" @mouseleave="hideDropdown">
+  <q-card-section class="nav-card-section">Development</q-card-section>
+  <q-menu :offset="getOffset()">
+    <q-list>
+      <q-item clickable to="/current-development">
+        <q-item-section class="dropdown"> Current Development</q-item-section>
+      </q-item>
+      <q-item clickable to="/past-development">
+        <q-item-section class="dropdown">Past Development</q-item-section>
+      </q-item>
+    </q-list>
+  </q-menu>
+</q-card>
 
   <q-card class="nav-button flat-card" clickable @click="$router.push('/for-sale')">
     <q-card-section class="nav-card-section">For Sale</q-card-section>
@@ -53,6 +49,8 @@
       <!-- Drawer toggle button for small screens -->
       <q-btn
         flat
+        dense
+        round
         icon="menu"
         class="q-ml-md"
         @click="toggleDrawer"
@@ -62,16 +60,9 @@
   </q-header>
 
   <!-- Drawer for small screens -->
-  <q-drawer v-model="drawerVisible" side="right"
-        :width="300"
-        :breakpoint="300"
-        overlay
-        bordered
-        class="full-height-drawer"
-        v-if="isSmallScreen">
-      <q-scroll-area class="fit">
-    <q-list>
-      <q-item clickable to="/about-miracle" class="drawer-item" v-ripple>
+  <q-drawer v-model="drawerVisible" side="right" overlay bordered class="full-height-drawer">
+    <q-list padding>
+      <q-item clickable to="/about-miracle" class="drawer-item">
         <q-item-section>About Miracle</q-item-section>
       </q-item>
       <q-expansion-item label="Development" class="drawer-item-expand">
@@ -95,10 +86,9 @@
         <q-item-section>Investor & Media</q-item-section>
       </q-item>
     </q-list>
-  </q-scroll-area>
   </q-drawer>
     <q-page-container>
-      <q-page :style="{ backgroundColor: '#ffffed', }">
+      <q-page :style="{ backgroundColor: '#ffffed' }">
         <router-view /> <!-- This is where the content of your pages will be inserted -->
       </q-page>
     </q-page-container>
@@ -109,12 +99,12 @@
     <!-- Left Section -->
     <div class="footer-left">
       <div class="logo-container">
-        <img src="src/assets/logo-32X32.png" alt="Company Logo" class="footer-logo">
+        <img src="src/assets/logo.png" alt="Company Logo" class="footer-logo">
         <span class="footer-logo-text">MIRACLE LAND</span>
       </div>
       <div class="footer-address">
         <p>No. 1, Tingkat Basement, Jalan Dagang 2,<br>
-          Kg Bukit Angin, 28000 <br>Temerloh, Pahang.</p>
+        Kg Bukit Angin, 28000 Temerloh, Pahang.</p>
       </div>
       <p class="footer-copyright">
         © 2025 Miracle Land Holdings Berhad (1111981-P). All rights reserved.
@@ -124,10 +114,10 @@
     <!-- Right Section -->
     <div class="footer-right">
       <div class="footer-navigation">
-        <a href="#contact-us" class="footer-link">Contact Us</a>
+        <a href="#" class="footer-link">Contact Us</a>
         <a href="#" class="footer-link">Careers</a>
-        <p class="footer-time">Mon - Fri, 9AM - 7PM
-        | Sat, 9AM - 6PM</p>
+        <p class="footer-time">Mon - Fri, 9AM - 7PM <br>
+        Sat, 9AM - 6PM</p>
       </div>
       <div class="social-icons">
         <button class="social-btn facebook" aria-label="Facebook" @click="openFacebook">
@@ -221,10 +211,17 @@ const toggleDrawer = () => {
   drawerVisible.value = !drawerVisible.value
 }
 
+const getOffset = () => {
+  if (screenBelow1105px.value) {
+    return [31, 23] // Offset for screens below 1105px
+  } else {
+    return [50, 23] // No offset for screens above 1105px
+  }
+}
+
 </script>
 
 <style>
-@import 'src/css/global.css';
 /* Logo */
 .logo {
   height: 40px;
@@ -260,7 +257,6 @@ const toggleDrawer = () => {
 .toolbar-title {
   font-family: 'Times New Roman', Times, serif;
   transition: color 0.4s ease-in-out;
-  padding-top: 10px;
 }
 .navigation-bar.transparent .toolbar-title {
   color: white;
@@ -283,7 +279,7 @@ const toggleDrawer = () => {
 }
 
 .nav-card-section {
-  padding: 5px;
+  padding: 0;
   font-size: 1rem; /* Adjust font size */
   font-weight: 500; /* Adjust font weight */
   font-family: Inter, "Helvetica Neue", Arial, sans-serif;
@@ -302,10 +298,6 @@ const toggleDrawer = () => {
 }
 .q-item {
   white-space: nowrap; /* Prevents the menu items from wrapping */
-}
-
-.dropdown {
-  padding: 5px;
 }
 
 .dropdown:hover {
@@ -344,11 +336,19 @@ color:#00B398;
   pointer-events: auto; /* Enable clicks when visible */
 }
 
+.full-height-drawer {
+  height: calc(100vh - 60px); /* Adjust 60px to match your navbar height */
+  position: fixed; /* Fix the drawer to the viewport */
+  top: 60px; /* Position the drawer below the navbar */
+  z-index: 100; /* Ensure the drawer is on top of other elements */
+}
+
 /* Style for drawer items */
 .drawer-item {
   font-family: 'Arial', sans-serif;
   font-size: 16px;
   padding: 10px 15px;
+  border-bottom: 1px solid #eee;
 }
 
 .drawer-item:last-child {
@@ -362,16 +362,14 @@ color:#00B398;
 .drawer-item-expand {
   font-family: 'Arial', sans-serif;
   font-size: 16px;
-  padding: 0px 0px;
-}
-
-.drawer-item-child:hover {
-  color: #00B398; /* Change the text color on hover */
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
 }
 
 /* Style for drawer item children */
 .drawer-item-child {
-  padding: 0px 25px;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
   font-family: 'Arial', sans-serif;
   font-size: 14px;
 }
@@ -446,9 +444,8 @@ color:#00B398;
 .footer {
   background-color: #58595B; /* Dark gray background */
   color: #fff; /* White text */
-  padding: 15px 120px; /* Smaller footer padding */
-  padding-top: 38px;
-  padding-right: 115px;
+  padding: 15px 30px; /* Smaller footer padding */
+  margin-top: 20px;
   font-family: Arial, sans-serif; /* Set default font */
   position: relative; /* Set position for nested elements */
 }
@@ -464,38 +461,38 @@ color:#00B398;
 .logo-container {
   display: flex;
   align-items: center;
-  margin-bottom: -15px;
-  padding-top: 0px;
+  margin-top: 15px;
   gap: 8px; /* Smaller spacing between logo and text */
 }
 
 .footer-logo {
-  width: 25px; /* Smaller logo size */
+  width: 40px; /* Smaller logo size */
   filter: brightness(0) invert(1); /* White logo */
-  margin-top: -10px;
 }
 
 .footer-logo-text {
-  font-size: 1x; /* Reduced text size */
+  font-size: 1rem; /* Reduced text size */
   font-family: 'Times New Roman', Times, serif;
   color: #fff;
-  padding-top: 0px;
 }
 
 /* Footer Links */
 .footer-address {
-  margin-top: 30px;
-  line-height: 1.2; /* Compact line height */
-  font-size: 12px; /* Smaller address text */
+  margin-top: 10px;
+  line-height: 1.4; /* Compact line height */
+  font-size: 0.75rem; /* Smaller address text */
 }
 
 /* Copyright at the Bottom */
 .footer-copyright {
-  font-size: 12px; /* Smaller copyright text */
-  color: #fff; /* Light gray for less emphasis */
+  font-size: 0.65rem; /* Smaller copyright text */
+  color: #bbb; /* Light gray for less emphasis */
   position: absolute;
+  bottom: 10px; /* Place at the very bottom edge */
+  left: 30px; /* Align with left padding */
+  right: 30px; /* Maintain same right padding */
   text-align: left; /* Center-align text across the footer */
-  margin-top: -10px;
+  margin-bottom: -5px;
 }
 
 /* Right Section */
@@ -504,39 +501,21 @@ color:#00B398;
   flex: 1;
 }
 
-.footer-navigation {
-    display: flex;
-    justify-content: right;
-    flex-wrap: wrap;
-    margin-top: -10px;
-    gap: 20px;
-  }
-
-  @font-face {
-  font-family: 'Modista';
-  src: url('src\assets\fonts\Modista-9ME6y.otf') format('opentype');
-  font-weight: 400;
-}
-
 .footer-link {
   color: #fff; /* White links */
-  font-size: 16px; /* Smaller link size */
+  font-size: 1rem; /* Smaller link size */
   margin-right: 20px;
   gap: 40px;
   text-decoration: none;
   transition: color 0.3s ease;
-  font-family: 'Modista', sans-serif;
-
 }
 
 .footer-time {
   color: #fff; /* White links */
-  font-size: 16px; /* Smaller link size */
+  font-size: 1rem; /* Smaller link size */
   margin-right: 20px;
   gap: 40px;
   text-decoration: none;
-  font-family: 'Modista', sans-serif;
-
 }
 
 .footer-link:hover {
@@ -548,14 +527,14 @@ color:#00B398;
   display: flex;
   gap: 15px; /* Smaller spacing between icons */
   justify-content: flex-end;
-  margin-top: 5px;
+  margin-top: 15px;
   margin-right: 20px;
 }
 
 .social-btn {
-  width: 24px; /* Smaller button size */
-  height: 24px;
-  border: none; /* White border for outlined effect */
+  width: 28px; /* Smaller button size */
+  height: 28px;
+  border: 1px solid #fff; /* White border for outlined effect */
   background: transparent; /* Transparent background */
   color: #fff; /* Icon/text color */
   border-radius: 4px; /* Slightly rounded corners */
@@ -574,9 +553,7 @@ color:#00B398;
 }
 
 .tiktok:hover {
-  background-color: #fff; /* White background on hover */
-  color: #58595B; /* Dark gray text on hover */
-  transform: scale(1.1);
+    filter: invert(1);
 }
 
 .social-btn i {
@@ -584,42 +561,11 @@ color:#00B398;
 }
 
 /* Responsive Design */
-@media (min-width: 769px) {
-  .footer-address br:first-child {
-    display: none;
-  }
-}
-
 @media (max-width: 768px) {
-  .footer {
-    height: 40vh;
-  }
-
   .footer-content {
     flex-direction: column;
     text-align: center;
     align-items: center;
-  }
-
-  .logo-container {
-    margin-left: -7px;
-    margin-top: -20px;
-  }
-
-  .footer-logo {
-    width: 40px;
-  }
-
-  .footer-logo-text {
-    font-size: 24px;
-  }
-
-  .footer-address {
-    font-size: 12px;
-  }
-
-  .footer-address br:last-child {
-    display: none;
   }
 
   .footer-right {
@@ -628,35 +574,25 @@ color:#00B398;
   }
 
   .footer-copyright {
-    margin-left: -100px;
-    text-align: left;
-    margin-top: 87px;
-    font-size: 9px;
+    text-align: center;
+    margin-bottom: -5px;
   }
 
   .footer-navigation {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    flex-direction: column;
-    gap: 4px; /* Smaller gap */
-    padding-left: 20px;
-    margin-top: -30px;
+    gap: 8px; /* Smaller gap */
   }
 
   .logo-container {
     justify-content: center;
   }
 
-  .footer-time {
-    display: none;
-  }
-
   .social-icons {
-    display: flex;
     justify-content: center;
-    margin-top: 10px;
-    margin-left: 20px;
+    margin-top: 0px;
+    margin-bottom: 20px;
   }
 }
 
