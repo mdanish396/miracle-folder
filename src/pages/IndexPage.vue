@@ -223,6 +223,23 @@ export default {
   height: 100%;
   object-fit: cover; /* Ensures the video covers the entire hero section */
 }
+@media (min-width: 1110px) {
+  .hero-section {
+    margin-top: -70px;
+}
+}
+@media (max-width: 1106px) {
+  .hero-section {
+    height: 102vh;
+    margin-top: -85px;
+}
+}
+@media (max-width: 1005px) {
+  .hero-section {
+    height: 101vh;
+    margin-top: -70px;
+}
+}
 
 @font-face {
   font-family: 'Empire';

@@ -1,33 +1,34 @@
 <template>
   <q-page class="flex flex-center">
+    <!-- Hero Section -->
     <div class="award-hero">
-    <div class="awards-container">
-      <h1>Awards and Recognition</h1>
-      <p>We are proud to have received various awards over the years for our outstanding work and dedication to excellence.</p>
-    </div>
+      <div class="awards-container">
+        <h1>Awards and Recognition</h1>
+        <p>
+          We are proud to have received various awards over the years for our outstanding work and dedication to excellence.
+        </p>
+      </div>
     </div>
 
-      <!-- Awards List -->
-       <section class="award-section">
-      <div class="award-list">
-        <div class="award-item">
-          <img src="src/assets/award1.png" alt="Award 1" />
-          <h2>Best Property Developer</h2>
-          <p>Received in 2024 for excellence in property development.</p>
+    <!-- Awards Section -->
+    <section class="award-section">
+      <div v-for="year in years" :key="year.year" class="year-section">
+        <h2 class="year-title">{{ year.year }}</h2>
+        <div class="award-list">
+          <div class="award-item" v-for="award in awardsItems[year.year]" :key="award.id">
+            <img :src="award.image" :alt="award.title" />
+            <h2>{{ award.title }}</h2>
+            <p>{{ award.description }}</p>
+            <small>{{ award.date }}</small>
+          </div>
         </div>
-        <div class="award-item">
-          <img src="src/assets/award2.png" alt="Award 2" />
-          <h2>Top Innovator in Real Estate</h2>
-          <p>Honored in 2023 for innovation in sustainable building practices.</p>
-        </div>
-        <!-- Add more awards as needed -->
       </div>
     </section>
   </q-page>
 </template>
 
 <script setup>
-// This is a setup script for AwardsPage.vue
+import { years, awardsItems } from 'src/components/AwardsData.vue'
 </script>
 
 <style scoped>
@@ -35,7 +36,6 @@
   padding: 60px;
   text-align: center;
   font-family: 'GeographWebMedium', sans-serif;
-
 }
 
 .awards-container h1 {
@@ -54,7 +54,7 @@
 
 .award-hero {
   position: relative;
-  height: 47vh; /* Full-screen height */
+  height: 43vh; /* Full-screen height */
   overflow: hidden;
   margin-top: -70px;
   background-color: #006039;
@@ -62,10 +62,33 @@
   color: #f4f4f4;
 }
 
+/* Responsive Design */
+@media (min-width: 1110px) {
+  .award.hero {
+    margin-top: -70px;
+}
+}
+@media (max-width: 1106px) {
+  .award-hero {
+    height: 44vh;
+    margin-top: -85px;
+}
+}
 .award-section {
-  position: relative;
   margin-top: 20px;
-  padding: auto;
+  padding: 0 20px;
+}
+
+.year-section {
+  margin-bottom: 40px;
+}
+
+.year-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .award-list {
@@ -73,7 +96,6 @@
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-  margin-bottom: 20px;
 }
 
 .award-item {
@@ -100,15 +122,21 @@
   color: #666;
 }
 
+.award-item small {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #999;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-
   .awards-container {
     margin-top: 10px;
   }
-  .awards-container h1{
+  .awards-container h1 {
     font-size: 32px;
-}
+  }
 
   .awards-container p {
     font-size: 14px;
@@ -117,6 +145,9 @@
 
   .award-list {
     padding-top: 20px;
+  }
+  .year-title {
+    font-size: 1.5rem;
   }
 }
 </style>

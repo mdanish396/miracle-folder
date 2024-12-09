@@ -19,34 +19,165 @@
           <q-card-section class="nav-card-section">About Miracle</q-card-section>
   </q-card>
   <q-card
-          class="nav-button flat-card">
-          <q-card-section class="nav-card-section" @mouseover="showDropdown"
-          @mouseleave="hideDropdown">Development</q-card-section>
-          <q-menu @mouseover="showDropdown"
-          @mouseleave="hideDropdown" v-model="dropdownVisible" anchor="bottom left" self="top left" fit>
-            <q-list>
-              <q-item clickable @click="$router.push('/current-development')">
-                <q-item-section>
-                Current Development</q-item-section>
-              </q-item>
-              <q-item clickable @click="$router.push('/past-development')">
-                <q-item-section>Past Development</q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-card>
-
-  <q-card class="nav-button flat-card" clickable @click="$router.push('/for-sale')">
-    <q-card-section class="nav-card-section">For Sale</q-card-section>
+    class="nav-button flat-card"
+    @mouseover="showDropdown('development')"
+    @mouseleave="hideDropdown('development')"
+  >
+    <q-card-section class="nav-card-section">
+      Development
+      <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
+    </q-card-section>
+    <q-menu
+      v-if="activeDropdown === 'development'"
+      anchor="bottom middle"
+      self="top middle"
+      fit
+      @mouseover="showDropdown('development')"
+      @mouseleave="hideDropdown('development')"
+    >
+      <q-list>
+        <q-item clickable @click="$router.push('/current-development')" class="menu-section">
+          <q-item-section >Current Development</q-item-section>
+        </q-item>
+        <q-item clickable @click="$router.push('/past-development')" class="menu-section">
+          <q-item-section >Past Development</q-item-section>
+        </q-item>
+      </q-list>
+    </q-menu>
   </q-card>
-  <q-card class="nav-button flat-card" clickable @click="$router.push('/for-lease')">
-    <q-card-section class="nav-card-section">For Lease</q-card-section>
+
+  <q-card
+    class="nav-button flat-card"
+    @mouseover="showDropdown('sale')"
+    @mouseleave="hideDropdown('sale')"
+    >
+    <q-card-section class="nav-card-section">For Sale
+      <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
+    </q-card-section>
+    <q-menu
+      v-if="activeDropdown === 'sale'"
+      anchor="bottom middle"
+      self="top middle"
+      fit
+      @mouseover="showDropdown('sale')"
+      @mouseleave="hideDropdown('sale')"
+      class="dropdown-container"
+    >
+    <div class="dropdown-content">
+        <!-- district list -->
+        <div class="district-list">
+            <h6>Pahang</h6>
+            <ul>
+              <li
+              v-for="(district, index) in districts"
+              :key="index"
+              @mouseover="setSelectedDistrict(district.name)"
+              @click="setSelectedDistrict(district.name)"
+              class="district-item"
+              default-opened
+            >
+            {{ district.name }}
+            </li>
+            </ul>
+          </div>
+
+        <!-- Images Grid -->
+        <div class="image-grid">
+          <div class="grid-item" v-for="(project, index) in filteredProjects" :key="index">
+            <div class="image-container">
+              <img :src="project.image" alt="Project Image" />
+              <div class="overlay">
+                <p>{{ project.name }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </q-menu>
+  </q-card>
+
+  <q-card class="nav-button flat-card"
+  @mouseover="showDropdown('lease')"
+  @mouseleave="hideDropdown('lease')"
+    >
+    <q-card-section class="nav-card-section">For Lease
+      <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
+    </q-card-section>
+    <q-menu
+      v-if="activeDropdown === 'lease'"
+      anchor="bottom middle"
+      self="top middle"
+      @mouseover="showDropdown('lease')"
+      @mouseleave="hideDropdown('lease')"
+      class="dropdown-container"
+    >
+    <div class="dropdown-content">
+        <!-- district list -->
+        <div class="district-list">
+            <h6>Pahang</h6>
+            <ul>
+              <li
+              v-for="(district, index) in districts"
+              :key="index"
+              @mouseover="setSelectedDistrict(district.name)"
+              @click="setSelectedDistrict(district.name)"
+              class="district-item"
+            >
+            {{ district.name }}
+            </li>
+            </ul>
+          </div>
+
+        <!-- Images Grid -->
+        <div class="image-grid">
+          <div class="grid-item" v-for="(lease, index) in filteredLeases" :key="index">
+            <div class="image-container">
+              <img :src="lease.image" alt="Lease Image" />
+              <div class="overlay">
+                <p>{{ lease.name }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </q-menu>
   </q-card>
   <q-card class="nav-button flat-card" clickable @click="$router.push('/awards')">
     <q-card-section class="nav-card-section">Awards</q-card-section>
   </q-card>
-  <q-card class="nav-button flat-card" clickable @click="$router.push('/investor-media')">
-    <q-card-section class="nav-card-section">Investor & Media</q-card-section>
+
+  <q-card
+    class="nav-button flat-card"
+    @mouseover="showDropdown('investor')"
+    @mouseleave="hideDropdown('investor')"
+  >
+    <q-card-section class="nav-card-section">
+      Investor & Media
+      <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
+    </q-card-section>
+    <q-menu
+      v-if="activeDropdown === 'investor'"
+      anchor="bottom left"
+      self="top left"
+      fit
+      @mouseover="showDropdown('investor')"
+      @mouseleave="hideDropdown('investor')"
+    >
+      <q-list>
+        <q-item clickable @click="$router.push('/investor-centre')" class="menu-section">
+          <q-item-section>Investor Centre</q-item-section>
+        </q-item>
+        <q-item clickable @click="$router.push('/announcement')" class="menu-section">
+          <q-item-section>Announcements</q-item-section>
+        </q-item>
+        <q-item clickable @click="$router.push('/reports')" class="menu-section">
+          <q-item-section>Reports</q-item-section>
+        </q-item>
+        <q-item clickable @click="$router.push('/news')" class="menu-section">
+          <q-item-section>News</q-item-section>
+        </q-item>
+      </q-list>
+    </q-menu>
   </q-card>
 </div>
 
@@ -63,7 +194,7 @@
 
   <!-- Drawer for small screens -->
   <q-drawer v-model="drawerVisible" side="right"
-        :width="300"
+        :width="350"
         :breakpoint="300"
         overlay
         bordered
@@ -74,7 +205,11 @@
       <q-item clickable to="/about-miracle" class="drawer-item" v-ripple>
         <q-item-section>About Miracle</q-item-section>
       </q-item>
-      <q-expansion-item label="Development" class="drawer-item-expand">
+      <q-expansion-item
+      group="somegroup"
+        default-opened
+      label="Development"
+      class="drawer-item-expand">
         <q-item clickable to="/current-development" class="drawer-item-child">
           <q-item-section>Current Development</q-item-section>
         </q-item>
@@ -82,18 +217,116 @@
           <q-item-section>Past Development</q-item-section>
         </q-item>
       </q-expansion-item>
-      <q-item clickable to="/for-sale" class="drawer-item">
-        <q-item-section>For Sale</q-item-section>
-      </q-item>
-      <q-item clickable to="/for-lease" class="drawer-item">
-        <q-item-section>For Lease</q-item-section>
-      </q-item>
+      <q-expansion-item
+      group="somegroup"
+      label="For Sale"
+      class="drawer-item-expand">
+        <q-item class="drawer-item-child-1">
+          <q-item-section>Pahang</q-item-section>
+        </q-item>
+<q-expansion-item
+group="somegroup1"
+label="Jengka"
+class="drawer-item-expand-2">
+        <q-item clickable to="/reports" class="drawer-item-child-2">
+          <q-item-section>16 Sierra, Puchong</q-item-section>
+        </q-item>
+        <q-item clickable to="/reports" class="drawer-item-child-2">
+          <q-item-section>Bandar Puteri Puchong & Puchong Jaya</q-item-section>
+        </q-item>
+        <q-item clickable to="/reports" class="drawer-item-child-2">
+          <q-item-section>Bandar Puteri Bangi</q-item-section>
+        </q-item>
+        <q-item clickable to="/news" class="drawer-item-child-2">
+          <q-item-section>Senna Puteri, Salak Tinggi</q-item-section>
+        </q-item>
+        <q-item clickable to="/reports" class="drawer-item-child-2">
+          <q-item-section>Banting</q-item-section>
+        </q-item>
+        <q-item clickable to="/news" class="drawer-item-child-2">
+          <q-item-section>PJ Midtown</q-item-section>
+        </q-item>
+        <q-item clickable to="/news" class="drawer-item-child-2">
+          <q-item-section>Warisan Puteri, Sepang</q-item-section>
+        </q-item>
+      </q-expansion-item>
+      <q-expansion-item
+      group="somegroup1"
+      label="Maran"
+      class="drawer-item-expand-2">
+        <q-item clickable to="/reports" class="drawer-item-child-2">
+          <q-item-section>Maran Housing</q-item-section>
+        </q-item>
+      </q-expansion-item>
+      <q-expansion-item
+      group="somegroup1"
+      label="Mentakab"
+      class="drawer-item-expand-2">
+        <q-item clickable to="/reports" class="drawer-item-child-2">
+          <q-item-section>Mentakab Project A</q-item-section>
+        </q-item>
+        <q-item clickable to="/reports" class="drawer-item-child-2">
+          <q-item-section>Mentakab Project B</q-item-section>
+        </q-item>
+      </q-expansion-item>
+      <q-expansion-item
+      group="somegroup1"
+      label="Kuantan"
+      class="drawer-item-expand-2">
+        <q-item clickable to="/reports" class="drawer-item-child-2">
+          <q-item-section>Kuantan Housing</q-item-section>
+        </q-item>
+      </q-expansion-item>
+      <q-expansion-item
+      group="somegroup1"
+      label="Temerloh"
+      class="drawer-item-expand-2">
+        <q-item clickable to="/reports" class="drawer-item-child-2">
+          <q-item-section>Temerloh Housing</q-item-section>
+        </q-item>
+      </q-expansion-item>
+      </q-expansion-item>
+      <q-expansion-item
+      group="somegroup"
+      label="For Lease"
+      class="drawer-item-expand">
+      <q-expansion-item
+      group="somegroup1"
+      label="Jengka"
+      class="drawer-item-expand-2">
+        <q-item clickable to="/reports" class="drawer-item-child-2">
+          <q-item-section>43 gireeess</q-item-section>
+        </q-item>
+      </q-expansion-item>
+      <q-expansion-item
+      group="somegroup1"
+      label="Maran"
+      class="drawer-item-expand-2">
+        <q-item clickable to="/reports" class="drawer-item-child-2">
+          <q-item-section>1 gireeess</q-item-section>
+        </q-item>
+      </q-expansion-item>
+      </q-expansion-item>
       <q-item clickable to="/awards" class="drawer-item">
         <q-item-section>Awards</q-item-section>
       </q-item>
-      <q-item clickable to="/investor-media" class="drawer-item">
-        <q-item-section>Investor & Media</q-item-section>
-      </q-item>
+      <q-expansion-item
+      group="somegroup"
+      label="Investor & Media"
+      class="drawer-item-expand">
+        <q-item clickable to="/investor-centre" class="drawer-item-child">
+          <q-item-section>Investor Centre</q-item-section>
+        </q-item>
+        <q-item clickable to="/announcement" class="drawer-item-child">
+          <q-item-section>Announcements</q-item-section>
+        </q-item>
+        <q-item clickable to="/reports" class="drawer-item-child">
+          <q-item-section>Reports</q-item-section>
+        </q-item>
+        <q-item clickable to="/news" class="drawer-item-child">
+          <q-item-section>News</q-item-section>
+        </q-item>
+      </q-expansion-item>
     </q-list>
   </q-scroll-area>
   </q-drawer>
@@ -124,8 +357,8 @@
     <!-- Right Section -->
     <div class="footer-right">
       <div class="footer-navigation">
-        <a href="#contact-us" class="footer-link">Contact Us</a>
-        <a href="#" class="footer-link">Careers</a>
+        <a @click="navigateToContactUs" class="footer-link" href="#">Contact Us</a>
+        <router-link to="/career" class="footer-link">Careers</router-link>
         <p class="footer-time">Mon - Fri, 9AM - 7PM
         | Sat, 9AM - 6PM</p>
       </div>
@@ -153,18 +386,67 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useQuasar } from 'quasar'
+import { useRouter } from 'vue-router'
+
+const districts = [
+  { name: 'Jengka', state: 'Pahang' },
+  { name: 'Maran', state: 'Pahang' },
+  { name: 'Mentakab', state: 'Pahang' },
+  { name: 'Kuantan', state: 'Pahang' },
+  { name: 'Temerloh', state: 'Pahang' }
+]
+
+const projects = [
+  { name: '16 Sierra, Puchong', image: 'src/assets/building.png', district: 'Jengka', state: 'Pahang' },
+  { name: 'Bandar Puteri Puchong & Puchong Jaya', image: 'src/assets/currentproject/house1.jpg', district: 'Jengka', state: 'Pahang' },
+  { name: 'Bandar Puteri Bangi', image: 'https://via.placeholder.com/150', district: 'Jengka' },
+  { name: 'Senna Puteri, Salak Tinggi', image: 'https://via.placeholder.com/150', district: 'Jengka', state: 'Pahang' },
+  { name: 'Banting', image: 'https://via.placeholder.com/150', district: 'Jengka', state: 'Pahang' },
+  { name: 'PJ Midtown', image: 'https://via.placeholder.com/150', district: 'Jengka', state: 'Pahang' },
+  { name: 'Warisan Puteri, Sepang', image: 'https://via.placeholder.com/150', district: 'Jengka', state: 'Pahang' },
+  { name: 'Maran Housing', image: 'https://via.placeholder.com/150', district: 'Maran', state: 'Pahang' },
+  { name: 'Mentakab Project A', image: 'https://via.placeholder.com/150', district: 'Mentakab', state: 'Pahang' },
+  { name: 'Mentakab Project B', image: 'https://via.placeholder.com/150', district: 'Mentakab', state: 'Pahang' },
+  { name: 'Kuantan Housing', image: 'https://via.placeholder.com/150', district: 'Kuantan', state: 'Pahang' },
+  { name: 'Temerloh Housing', image: 'https://via.placeholder.com/150', district: 'Temerloh', state: 'Pahang' }
+]
+
+const leases = [
+  { name: '43 gireeess', image: 'src/assets/currentproject/house1.jpg', district: 'Jengka' },
+  { name: '1 gireeess', image: 'src/assets/building.png', district: 'Maran' }
+]
+
+// Selected state
+const selectedDistrict = ref('Jengka')
+
+// Computed projects based on selected district
+const filteredProjects = computed(() =>
+  projects.filter((project) => project.district === selectedDistrict.value)
+)
+
+const setSelectedDistrict = (district) => {
+  selectedDistrict.value = district
+}
+
+const filteredLeases = computed(() =>
+  leases.filter((lease) => lease.district === selectedDistrict.value)
+)
 
 const $q = useQuasar() // Get the $q object
+const router = useRouter()
 
+// States
 const scrolled = ref(false)
-const dropdownVisible = ref(false)
+const activeDropdown = ref(null)
 const drawerVisible = ref(false)
-const screenBelow1105px = ref(false) // Add this line
+const screenBelow1105px = ref(false) // Screen width state
 
+// Computed property for small screens
 const isSmallScreen = computed(() => {
   return $q.screen.lt.md // Adjust the breakpoint as needed
 })
 
+// Scroll handler
 const handleScroll = () => {
   const scrollPosition = window.scrollY
   const windowHeight = window.innerHeight
@@ -172,55 +454,69 @@ const handleScroll = () => {
   scrolled.value = scrollPosition > windowHeight * 0.35
 }
 
-// Call handleScroll on the window's scroll event
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-  handleResize() // Initial check on mount
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
-
+// Resize handler
 const handleResize = () => {
   screenBelow1105px.value = window.innerWidth < 1105
 }
 
-window.addEventListener('resize', handleResize)
+// Dropdown hover logic
+let hoverTimeout = null
 
-const handleLogoClick = (event) => {
-  // Redirect to IndexPage.vue
-  this.$router.push('/')
+const showDropdown = (key) => {
+  clearTimeout(hoverTimeout) // Cancel any pending hide
+  activeDropdown.value = key // Set the active dropdown to the given key
 }
 
+const hideDropdown = (key) => {
+  hoverTimeout = setTimeout(() => {
+    if (activeDropdown.value === key) {
+      activeDropdown.value = null // Clear the active dropdown
+    }
+  }, 150) // Small delay to allow smooth transitions
+}
+
+// Drawer toggle
+const toggleDrawer = () => {
+  drawerVisible.value = !drawerVisible.value
+}
+
+// Logo click handler
+const handleLogoClick = () => {
+  this.$router.push('/') // Redirect to IndexPage.vue
+}
+
+const navigateToContactUs = () => {
+  router.push({ name: 'AboutMiracle', query: { section: 'contact-us' } })
+}
+
+// Social media handlers
 const openFacebook = () => {
   window.open('https://www.facebook.com/dynaton.property', '_blank')
 }
 
 const openInstagram = () => {
-  window.open('https://www.facebook.com/dynaton.property', '_blank')
+  window.open('https://www.instagram.com/dynaton.property', '_blank')
 }
 
 const openYoutube = () => {
-  window.open('https://www.facebook.com/dynaton.property', '_blank')
+  window.open('https://www.youtube.com/channel/dynaton.property', '_blank')
 }
 
 const openTiktok = () => {
-  window.open('https://www.facebook.com/dynaton.property', '_blank')
+  window.open('https://www.tiktok.com/@dynaton.property', '_blank')
 }
 
-const showDropdown = () => {
-  dropdownVisible.value = true
-}
+// Mount/unmount lifecycle hooks
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+  window.addEventListener('resize', handleResize)
+  handleResize() // Initial check on mount
+})
 
-const hideDropdown = () => {
-  dropdownVisible.value = false
-}
-
-const toggleDrawer = () => {
-  drawerVisible.value = !drawerVisible.value
-}
-
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('resize', handleResize)
+})
 </script>
 
 <style>
@@ -297,11 +593,115 @@ const toggleDrawer = () => {
   cursor: pointer;
 }
 
+.q-menu-enter-active,
+.q-menu-leave-active {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.dropdown-arrow {
+  margin-left: 5px;
+}
+
 .q-menu {
-  width: 15%; /* Ensures the menu's width fits the parent */
+  transition: opacity 0.6s ease, transform 0.3s ease;
 }
 .q-item {
   white-space: nowrap; /* Prevents the menu items from wrapping */
+}
+
+.menu-section:hover{
+  color: #00B398;
+}
+
+.dropdown-container {
+  width: 800px;
+  padding: 20px 0;
+  padding-bottom: 40px;
+}
+
+.dropdown-content {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.district-list {
+  width: 30%;
+  border-right: 1px solid #ddd;
+  padding-right: 10px;
+}
+
+.district-list h6 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: -15px;
+}
+
+.district-list ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.district-item {
+  padding: 5px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.district-item:hover {
+  background-color: #f0f0f0;
+  box-shadow: none;
+  color:#00B398;
+}
+
+.image-grid {
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding-left: 10px;
+  height:300px;
+  overflow-y: auto;
+}
+
+.grid-item {
+position: relative;
+}
+
+.image-container {
+  position: relative;
+  width: 100%; /* Allows it to adapt to the column width */
+  aspect-ratio: 1; /* Keeps a square aspect ratio */
+  overflow: hidden; /* Ensures the image doesn't overflow the container */
+  border-radius: 2px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.image-container img:hover {
+    transform: scale(1.3);
+  }
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+  color: #fff;
+  padding-top: 15px;
+  margin-bottom: -5px;
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.overlay p {
+  margin-bottom: 7px;
 }
 
 .dropdown {
@@ -344,11 +744,17 @@ color:#00B398;
   pointer-events: auto; /* Enable clicks when visible */
 }
 
+.full-height-drawer {
+  padding-top: 10px;
+}
+
 /* Style for drawer items */
 .drawer-item {
   font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  padding: 10px 15px;
+  font-size: 15px;
+  padding: 0px 15px;
+  font-weight: bold;
+  margin-bottom: -10px;
 }
 
 .drawer-item:last-child {
@@ -361,8 +767,10 @@ color:#00B398;
 
 .drawer-item-expand {
   font-family: 'Arial', sans-serif;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: bold;
   padding: 0px 0px;
+  margin-bottom: -10px;
 }
 
 .drawer-item-child:hover {
@@ -373,14 +781,46 @@ color:#00B398;
 .drawer-item-child {
   padding: 0px 25px;
   font-family: 'Arial', sans-serif;
-  font-size: 14px;
+  font-size: 13.5px;
+  font-weight: bold;
+  color: #3d3c3c;
+  margin-top: -10px;
 }
 
 .drawer-item:hover {
   color: #00B398; /* Change the text color on hover */
 }
 
-.drawer-item-child:hover {
+.drawer-item-child-1 {
+  padding: 0px 25px;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  cursor:default;
+  margin-bottom: -10px;
+  margin-top: -10px;
+  color: #3d3c3c;
+}
+
+.drawer-item-expand-2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  padding-left: 20px;
+  margin-bottom: -10px;
+  color: #494c52;
+}
+
+.drawer-item-child-2 {
+  padding: 0px 30px;
+  font-family: 'Arial', sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  color: #58595B;
+}
+
+.drawer-item-child-2:hover {
   color: #00B398; /* Change the text color on hover */
 }
 
@@ -584,15 +1024,40 @@ color:#00B398;
 }
 
 /* Responsive Design */
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   .footer-address br:first-child {
     display: none;
   }
 }
 
+/* Responsive Adjustments */
+@media (max-width: 1116px) {
+  /* Adjust toolbar for tablet screens */
+  .footer-copyright {
+    margin-top: 10px;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  /* Adjust toolbar for tablet screens */
+  .footer-address br:last-child {
+    display: none;
+  }
+  .footer-time {
+    display: none;
+  }
+  .footer-copyright {
+    margin-top: -10px;
+  }
+  .social-icons {
+    margin-top: 25px;
+  }
+}
+
 @media (max-width: 768px) {
   .footer {
-    height: 40vh;
+    height: 33vh;
   }
 
   .footer-content {
@@ -628,7 +1093,7 @@ color:#00B398;
   }
 
   .footer-copyright {
-    margin-left: -100px;
+    right: 40%;
     text-align: left;
     margin-top: 87px;
     font-size: 9px;
