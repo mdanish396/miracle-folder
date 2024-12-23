@@ -1,35 +1,29 @@
 <template>
-  <q-page>
-    <div class="news-details" v-if="newsItem">
+  <q-page class="project-details-page">
+    <div class="project-details">
       <q-card class="q-my-md">
         <!-- Main Content -->
-        <div class="news-header">
+        <div class="project-section">
           <!-- Date Section -->
-          <div class="date-box">
-            <div class="date-day">{{ newsItem.day }}</div>
-            <div class="date-month">{{ newsItem.month }}</div>
-            <div class="date-year">{{ newsItem.year }}</div>
+          <div class="top-box">
+            <img src="src\assets\building.png" alt="top-image">
           </div>
+
           <!-- News Title -->
           <div class="news-title">
             <h1 class="text-h4">{{ newsItem.title }}</h1>
           </div>
         </div>
 
-        <div class="image-title-container">
-          <img v-if="newsItem.imagetitle" :src="newsItem.imagetitle" class="title-image" />
-          <p v-if="newsItem.descriptionimagetitle" class="title-image-description">{{ newsItem.descriptionimagetitle }}</p>
-        </div>
-
         <!-- News Content -->
         <div class="news-content">
-          <div v-for="(paragraph, index) in newsItem.content" :key="index">
-            <div v-if="newsItem.images && newsItem.images[index]" class="images-content">
-            <img :src="newsItem.images[index].url" class="content-image" />
-            <p v-if="newsItem.images[index].description" class="image-description">{{ newsItem.images[index].description }}</p>
-          </div>
-            <p class="text-body2">{{ paragraph }}</p>
-          </div>
+          <p
+            v-for="(paragraph, index) in newsItem.content"
+            :key="index"
+            class="text-body2"
+          >
+            {{ paragraph }}
+          </p>
         </div>
 
         <!-- Share Section -->
@@ -60,14 +54,14 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
 import { ref } from 'vue'
-import { newsItems } from 'src/components/NewsData.vue'
+import { projectsItems } from 'src/components/NewsData.vue'
 
 const router = useRouter()
 const route = useRoute()
 
 // Fetch the news item based on the route parameter
 const newsSlug = route.params.slug
-const newsItem = ref(newsItems.value.find(item => item.slug === newsSlug))
+const newsItem = ref(projectsItems.value.find(item => item.slug === newsSlug))
 
 const newsUrl = window.location.href
 
@@ -98,20 +92,20 @@ const goBack = () => {
 </script>
 
 <style scoped>
-.news-details {
+.project-details {
   font-family: 'Roboto', sans-serif;
   padding: 20px;
 }
 
 /* Flexbox for Title and Date */
-.news-header {
+.project-section {
   display: flex;
   align-items: center;
   gap: 20px;
   padding: 20px;
 }
 
-.date-box {
+.top-box {
   background: #006039;
   color: white;
   padding: 10px;
@@ -130,24 +124,6 @@ const goBack = () => {
   padding-left: 20px;
 }
 
-.image-title-container {
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.title-image {
-  width: 60%;
-  height: auto;
-}
-
-.title-image-description {
-  font-size: 14px;
-  color: #555;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
 .text-h4 {
   font-size: 35px;
   font-weight: bold;
@@ -158,54 +134,6 @@ const goBack = () => {
 .news-content {
   padding: 20px;
   padding-left: 110px;
-}
-
-.content-section {
-  margin-bottom: 20px;
-}
-
-.images-content {
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-left: -110px;
-  padding: 20px 0;
-}
-
-.content-image {
-  width: 50%;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.image-description {
-  font-size: 14px;
-  color: #555;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-@media (max-width: 768px) {
-
-.title-image {
-  width: 90%;
-}
-
-.news-content {
-  padding-left: 20px;
-}
-
-.content-image {
-  width: 80%;
-}
-
-.images-content {
-  margin-left: 0px;
-}
-
-.share-section {
-  margin-left: -80px;
-}
 }
 
 .text-body2 {

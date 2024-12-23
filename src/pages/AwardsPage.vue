@@ -150,4 +150,14 @@ import { years, awardsItems } from 'src/components/AwardsData.vue'
     font-size: 1.5rem;
   }
 }
+
+@media (max-width: 480px) {
+  .awards-container h1 {
+    font-size: 28px;
+  }
+
+  .awards-container p {
+    font-size: 13px;
+  }
+}
 </style>

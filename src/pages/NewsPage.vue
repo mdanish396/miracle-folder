@@ -76,13 +76,14 @@ const navigateToNewsDetails = (slug) => {
 }
 
 .news-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 5px;
+  grid-template-columns: repeat(2, 1fr);
   padding: 20px;
-  padding-right: 70px;
-  padding-left: 150px;
-  margin-top: 10px;
+padding-right: 70px;
+padding-left: 150px;
+margin-top: 10px;
+padding-bottom: 100px;
 }
 
 .news-item {
@@ -109,13 +110,31 @@ const navigateToNewsDetails = (slug) => {
 }
 
 @media (max-width: 768px) {
-.title-IM h1 {
+  .news-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .title-IM h1 {
   font-size: 40px;
 }
 
   .title-IM p {
   font-size: 14px;
 }
+}
+
+@media (max-width: 480px) {
+  .news-list {
+    padding-left: 80px;
+  }
+
+  .title-IM h1 {
+    font-size: 28px;
+  }
+
+  .title-IM p {
+    font-size: 13px;
+  }
 }
 
 .q-icon {

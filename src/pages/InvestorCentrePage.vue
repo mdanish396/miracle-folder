@@ -74,35 +74,48 @@ const openInvestor = (link) => {
 
 .title-IM p {
   margin-top: -50px;
-}
-
-@media (max-width: 768px){
-
-.title-IM h1 {
-  font-size: 40px;
-}
-
-.title-IM p {
-  font-size: 13px;
-}
+  font-size: 17px;
 }
 
 .investor-centre {
-  padding: 20px;
-  padding-right: 70px;
-  padding-left: 150px;
-  margin-top: 10px;
+padding: 20px;
+padding-right: 70px;
+padding-left: 150px;
+margin-top: 10px;
+padding-bottom: 100px;
 }
 
 .investor-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 5px;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .investor-item {
   display: flex;
   align-items: center;
+}
+
+@media (max-width: 768px){
+
+.investor-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-IM h1 {
+font-size: 40px;
+}
+
+.title-IM p {
+font-size: 13px;
+}
+}
+
+@media (max-width: 480px) {
+.investor-centre{
+  padding-left: 80px;
+}
 }
 
 .investor-btn {

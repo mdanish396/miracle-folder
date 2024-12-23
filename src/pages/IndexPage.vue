@@ -39,11 +39,12 @@
               <div class="vertical-branding">MIRACLE LAND</div>
     </div>
 
-    <ProjectData ref="projectData" />
     <!-- Current Development Projects Section -->
     <div class="projects-section">
       <h2 class="section-title">Current Development Projects</h2>
-      <div class="projects-container" :class="{ 'grid-layout': showAllProjects }" :style="{ gridTemplateColumns: `repeat(${columns}, 1fr)` }">
+      <div class="projects-container"
+      :class="{ 'grid-layout': showAllProjects }"
+      :style="{ gridTemplateColumns: `repeat(${columns}, 1fr)` }">
         <!-- Scrollable Project Card -->
         <div class="project-card" v-for="project in displayedProjects" :key="project.id">
           <img :src="project.image" :alt="project.name" class="project-image" />
@@ -54,7 +55,7 @@
           </div>
           <!-- Hover Project Card Information -->
           <div class="project-hover-overlay">
-            <span :class="['status', project.status === 'Sold' ? 'sold' : 'sale']">{{ project.status }}</span>
+            <span class="status-sale">{{ project.status }}</span>
             <p>{{ project.description }}</p>
             <div class="project-details">
               <span><i class="fas fa-bed"></i> {{ project.bedrooms }}</span>
@@ -72,7 +73,6 @@
       </div>
       <div v-if="showAllProjects">
         <q-btn flat label="Show Less Projects" class="view-all-btn" @click="showLessProjects" />
-        <q-btn flat label="Show More Projects" class="view-all-btn" v-if="displayedProjects.length < projects.length" @click="showMoreProjects" />
       </div>
     </div>
 
@@ -119,56 +119,46 @@
 </transition>
 </template>
 
-<script>
-import ProjectData from 'src/components/ProjectData.vue'
-export default {
-  components: {
-    ProjectData
-  },
+<script setup>
+import { ref, onMounted, computed } from 'vue'
+import { projectItems } from 'src/components/ProjectData.vue'
 
-  data () {
-    return {
-      showLoader: true,
+const showLoader = ref(true)
+const columns = ref(2)
+const showAllProjects = ref(false)
+const displayedProjects = ref([])
+const projects = ref([])
 
-      columns: 2, // Initial number of columns
-      showAllProjects: false,
-      displayedProjects: [],
-      projects: [] // Add this line
-    }
-  },
-  mounted () {
-    setTimeout(() => {
-      this.showLoader = false
-    }, 3500)
-    this.projects = this.$refs.projectData.projects // Get projects after ProjectData mounts
-    this.displayedProjects = this.projects // Display all projects initially
-  },
+const saleProjects = computed(() =>
+  projectItems.value.filter((project) => project.status === 'Sale')
+)
 
-  computed: {
-    isSmallScreen () {
-      return this.$q.screen.lt.md // Adjust the breakpoint as needed
-    }
-  },
-
-  methods: {
-    viewProject (projectId) {
-      this.$router.push(`/projects/${projectId}`)
-    },
-
-    showMoreProjects () {
-      this.columns += 2
-      this.showAllProjects = true
-    },
-    showLessProjects () {
-      this.columns -= 2
-      this.showAllProjects = false
-    }
+onMounted(() => {
+  setTimeout(() => {
+    showLoader.value = false
+  }, 3500)
+  if (saleProjects.value) {
+    projects.value = saleProjects.value // Get projects after ProjectData mounts
+    displayedProjects.value = projects.value // Display all projects initially
   }
+})
+
+const viewProject = (projectId) => {
+  window.location.href(`/projects/${projectId}`)
+}
+
+const showMoreProjects = () => {
+  columns.value += 2
+  showAllProjects.value = true
+}
+const showLessProjects = () => {
+  columns.value -= 2
+  showAllProjects.value = false
 }
 </script>
 
 <style scoped>
-.fade-enter-active, .fade-leave-active {
+.fade-ent er-active, .fade-leave-active {
   transition: opacity 0.5s ease;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
@@ -241,6 +231,13 @@ export default {
 }
 }
 
+@media (max-width: 480px) {
+  .hero-section {
+    height: 102vh;
+    margin-top: -70px;
+}
+}
+
 @font-face {
   font-family: 'Empire';
   src: url('src/assets/fonts/Empire.ttf') format('truetype');
@@ -256,6 +253,7 @@ export default {
   text-align: center;
   font-family: 'Empire', serif;
   z-index: 1000;
+  cursor: default;
 }
 
 .video-text-overlay h1 {
@@ -274,6 +272,7 @@ export default {
   font-weight: bold;
   z-index: 2;
   white-space: nowrap;
+  cursor: default;
 }
 
 /* Scroll Indicator */
@@ -395,19 +394,12 @@ export default {
   }
 
   /* Conditional Status Badge */
-  .status {
+  .status-sale {
     font-weight: bold;
     padding: 4px 8px;
     border-radius: 4px;
     margin-bottom: 10px;
     text-transform: uppercase;
-  }
-
-  .sold {
-    background: #e53935; /* Red for Sold */
-  }
-
-  .sale {
     background: #4caf50; /* Green for Sale */
   }
 
@@ -549,6 +541,10 @@ export default {
     padding-right: 0px;
     padding-bottom: 20px;
   }
+  .about-us-section {
+  margin-bottom: -90px;
+  margin-top: 20px;
+  }
 
   .image-container {
     width: 90%; /* Scale image down */
@@ -672,12 +668,28 @@ export default {
   flex: 1;
   display: flex;
   justify-content: center;
+  margin-bottom: -60px;
+}
+
+@media (min-width: 1025px) {
+.about-us-section {
+  margin-bottom: -90px;
+  margin-top: 50px;
+}
+.text-content {
+  padding-top: 20px;
+  margin-bottom: 170px;
+}
+
+.image-container {
+  margin-bottom:-40px;
+}
 }
 
 /* Main Image */
 .building-image {
-  max-width: 100%;
-  height: auto;
+  max-width: 90%;
+  height: 65%;
   border-radius: 2px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
   z-index: 1;

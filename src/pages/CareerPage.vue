@@ -1,10 +1,14 @@
 <template>
   <q-page>
     <!-- Hero Image (Full Width) -->
-    <q-img class="hero-section"
+     <div class="hero-section">
+      <div class="hero-image">
+    <img
       src="src/assets/career1.png"
-      alt="Hero Image"
-    ></q-img>
+      alt="Hero Image"/>
+      <div class="gradient-overlay"></div>
+    </div>
+     </div>
 
     <!-- Why Join Us Section -->
     <div class="career-section">
@@ -71,11 +75,26 @@
 
 <style scoped>
 .hero-section {
-  width: 100%;
-  height: 47vh;
+  position: relative;
+  height: 47vh; /* Full-screen height */
   overflow: hidden;
   margin-top: -70px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 70vh;
   object-fit: cover;
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
 }
 
 .career-section {
@@ -173,6 +192,18 @@ ul {
   transform: translateY(-3px);
 }
 
+@media (min-width: 1110px) {
+  .hero-section {
+    margin-top: -70px;
+}
+}
+@media (max-width: 1106px) {
+  .hero-section {
+    height: 48vh;
+    margin-top: -85px;
+}
+}
+
 /* Adjust layout for smaller screens */
 @media (max-width: 1024px) {
   .content-container {
@@ -266,7 +297,6 @@ ul {
 @media (max-width: 480px) {
   /* Phone Adjustments */
   .career-section {
-    margin: 16px 0;
     padding: 8px;
   }
 

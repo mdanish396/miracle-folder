@@ -129,6 +129,20 @@ const downloadReport = (file) => {
 }
 }
 
+@media (max-width: 480px) {
+  .reports {
+    padding-left: 80px;
+  }
+
+  .title-IM h1 {
+    font-size: 28px;
+  }
+
+  .title-IM p {
+    font-size: 13px;
+  }
+}
+
 .report-btn {
   display: flex;
   align-items: center;

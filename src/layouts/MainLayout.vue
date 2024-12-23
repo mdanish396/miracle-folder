@@ -2,11 +2,11 @@
   <q-layout view="lHh Lpr lFf">
     <!-- Conditionally render header based on the route -->
     <!-- Top Bar as Overlay -->
-    <q-header class="q-pa-md navigation-bar" elevated :class="{ visible: scrolled, transparent: !scrolled }">
+    <q-header class="q-pa-md navigation-bar" reveal elevated :class="{ visible: scrolled, transparent: !scrolled }">
       <q-toolbar class="toolbar">
         <!-- Left-aligned: Logo and Title -->
         <router-link to="/" class="logo-title-group" @click="handleLogoClick">
-          <img src="src/assets/logo-96X96.png" alt="Logo" class="logo" />
+          <img src="src/assets/icons/logo-96X96.png" alt="Logo" class="logo" />
           <q-toolbar-title class="toolbar-title">
             MIRACLE LAND
           </q-toolbar-title>
@@ -19,31 +19,8 @@
           <q-card-section class="nav-card-section">About Miracle</q-card-section>
   </q-card>
   <q-card
-    class="nav-button flat-card"
-    @mouseover="showDropdown('development')"
-    @mouseleave="hideDropdown('development')"
-  >
-    <q-card-section class="nav-card-section">
-      Development
-      <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
-    </q-card-section>
-    <q-menu
-      v-if="activeDropdown === 'development'"
-      anchor="bottom middle"
-      self="top middle"
-      fit
-      @mouseover="showDropdown('development')"
-      @mouseleave="hideDropdown('development')"
-    >
-      <q-list>
-        <q-item clickable @click="$router.push('/current-development')" class="menu-section">
-          <q-item-section >Current Development</q-item-section>
-        </q-item>
-        <q-item clickable @click="$router.push('/past-development')" class="menu-section">
-          <q-item-section >Past Development</q-item-section>
-        </q-item>
-      </q-list>
-    </q-menu>
+    class="nav-button flat-card" clickable @click="$router.push('/development')">
+    <q-card-section class="nav-card-section">Development</q-card-section>
   </q-card>
 
   <q-card
@@ -205,18 +182,9 @@
       <q-item clickable to="/about-miracle" class="drawer-item" v-ripple>
         <q-item-section>About Miracle</q-item-section>
       </q-item>
-      <q-expansion-item
-      group="somegroup"
-        default-opened
-      label="Development"
-      class="drawer-item-expand">
-        <q-item clickable to="/current-development" class="drawer-item-child">
-          <q-item-section>Current Development</q-item-section>
+        <q-item clickable to="/property-details" class="drawer-item" v-ripple>
+          <q-item-section>Development</q-item-section>
         </q-item>
-        <q-item clickable to="/past-development" class="drawer-item-child">
-          <q-item-section>Past Development</q-item-section>
-        </q-item>
-      </q-expansion-item>
       <q-expansion-item
       group="somegroup"
       label="For Sale"
@@ -342,25 +310,21 @@ class="drawer-item-expand-2">
     <!-- Left Section -->
     <div class="footer-left">
       <div class="logo-container">
-        <img src="src/assets/logo-32X32.png" alt="Company Logo" class="footer-logo">
+        <img src="src/assets/icons/logo-32X32.png" alt="Company Logo" class="footer-logo">
         <span class="footer-logo-text">MIRACLE LAND</span>
       </div>
       <div class="footer-address">
         <p>No. 1, Tingkat Basement, Jalan Dagang 2,<br>
           Kg Bukit Angin, 28000 <br>Temerloh, Pahang.</p>
       </div>
-      <p class="footer-copyright">
-        © 2025 Miracle Land Holdings Berhad (1111981-P). All rights reserved.
-      </p>
     </div>
 
     <!-- Right Section -->
     <div class="footer-right">
       <div class="footer-navigation">
-        <a @click="navigateToContactUs" class="footer-link" href="#">Contact Us</a>
+        <a @click.prevent="navigateToContactUs" class="footer-link" href="#">Contact Us</a>
         <router-link to="/career" class="footer-link">Careers</router-link>
-        <p class="footer-time">Mon - Fri, 9AM - 7PM
-        | Sat, 9AM - 6PM</p>
+        <p class="footer-time">Mon - Sat, 9AM - 5PM</p>
       </div>
       <div class="social-icons">
         <button class="social-btn facebook" aria-label="Facebook" @click="openFacebook">
@@ -376,6 +340,10 @@ class="drawer-item-expand-2">
     <img class="tiktok" src="src\assets\tiktok1.png" alt="Tiktok">
   </button>
       </div>
+    </div>
+    <div class="footer-copyright">
+        <p>© 2025 Miracle Land Holdings Berhad (1111981-P). All rights reserved.
+      </p>
     </div>
   </div>
 </footer>
@@ -486,7 +454,7 @@ const handleLogoClick = () => {
 }
 
 const navigateToContactUs = () => {
-  router.push({ name: 'AboutMiracle', query: { section: 'contact-us' } })
+  router.push({ path: '/about-miracle', hash: '#section-contact' })
 }
 
 // Social media handlers
@@ -825,10 +793,16 @@ color:#00B398;
 }
 
 /* Responsive Adjustments */
-@media (max-width: 1024px) {
+@media (max-width: 1090px) {
   /* Adjust toolbar for tablet screens */
+  .logo {
+  height: 35px;
+  margin-top: -5px;
+}
+
   .toolbar-title {
     font-size: 1.2rem; /* Slightly reduce title font size */
+    margin-top: -5px;
   }
 
   .nav-buttons {
@@ -886,9 +860,9 @@ color:#00B398;
 .footer {
   background-color: #58595B; /* Dark gray background */
   color: #fff; /* White text */
-  padding: 15px 120px; /* Smaller footer padding */
-  padding-top: 38px;
-  padding-right: 115px;
+  padding: 0 120px; /* Smaller footer padding */
+  padding-top: 8px;
+  padding-bottom: 30px;
   font-family: Arial, sans-serif; /* Set default font */
   position: relative; /* Set position for nested elements */
 }
@@ -912,14 +886,15 @@ color:#00B398;
 .footer-logo {
   width: 25px; /* Smaller logo size */
   filter: brightness(0) invert(1); /* White logo */
-  margin-top: -10px;
+  margin-top: 30px;
 }
 
 .footer-logo-text {
-  font-size: 1x; /* Reduced text size */
+  font-size: 20px; /* Reduced text size */
   font-family: 'Times New Roman', Times, serif;
   color: #fff;
   padding-top: 0px;
+  margin-top: 38px;
 }
 
 /* Footer Links */
@@ -935,7 +910,7 @@ color:#00B398;
   color: #fff; /* Light gray for less emphasis */
   position: absolute;
   text-align: left; /* Center-align text across the footer */
-  margin-top: -10px;
+  margin-top: 120px;
 }
 
 /* Right Section */
@@ -948,7 +923,7 @@ color:#00B398;
     display: flex;
     justify-content: right;
     flex-wrap: wrap;
-    margin-top: -10px;
+    margin-top: 42px;
     gap: 20px;
   }
 
@@ -1031,34 +1006,19 @@ color:#00B398;
 }
 
 /* Responsive Adjustments */
-@media (max-width: 1116px) {
-  /* Adjust toolbar for tablet screens */
-  .footer-copyright {
-    margin-top: 10px;
-  }
-}
-
-/* Responsive Adjustments */
 @media (max-width: 1024px) {
   /* Adjust toolbar for tablet screens */
   .footer-address br:last-child {
     display: none;
   }
+
   .footer-time {
     display: none;
   }
-  .footer-copyright {
-    margin-top: -10px;
-  }
-  .social-icons {
-    margin-top: 25px;
-  }
+
 }
 
 @media (max-width: 768px) {
-  .footer {
-    height: 33vh;
-  }
 
   .footer-content {
     flex-direction: column;
@@ -1094,8 +1054,8 @@ color:#00B398;
 
   .footer-copyright {
     right: 40%;
+    bottom: 0%;
     text-align: left;
-    margin-top: 87px;
     font-size: 9px;
   }
 
@@ -1121,7 +1081,44 @@ color:#00B398;
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .footer-logo {
+    margin-left: -8px;
+  }
+
+  .footer-content {
+    margin-left: -10px;
+    margin-right: -17px;
+  }
+
+  .footer-address {
+    margin-left: -8px;
+  }
+
+  .footer-logo {
+    width: 38px;
+  }
+
+  .footer-logo-text {
+    font-size: 22px;
+  }
+
+  .footer-navigation {
+    margin-left: -8px;
+  }
+
+  .social-icons {
+    margin-left: 18px;
+  }
+
+  .footer-copyright {
+    right: 35%;
   }
 }
 

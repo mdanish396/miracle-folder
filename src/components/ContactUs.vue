@@ -35,7 +35,7 @@ Kampung Bukit Angin, 28000 Temerloh, Pahang<br>
   </div>
 </template>
 
-<script>
+<script >
 export default {
   name: 'ContactUs'
 }

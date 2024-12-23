@@ -36,7 +36,7 @@ const pastProjects = ref([
     title: 'Sunset Heights',
     description: 'A residential complex offering luxury living with stunning views of the city skyline.',
     image: '/path/to/sunset_heights.jpg',
-    link: '/path/to/sunset_heights_details'
+    link: '/place-development'
   },
   {
     id: 2,
@@ -63,6 +63,10 @@ const openProjectDetails = (link) => {
 .hero-section {
   text-align: center;
   padding: 40px 0;
+}
+
+.hero-section h1 {
+  font-size: 48px;
 }
 
 .completed-projects {
