@@ -12,292 +12,303 @@
           </q-toolbar-title>
         </router-link>
 
-      <!-- Right-aligned: Navigation Buttons for larger screens -->
-      <q-space v-if="!drawerVisible" />
-      <div class="nav-buttons q-mr-md" v-if="!isSmallScreen">
-        <q-card class="nav-button flat-card" clickable @click="$router.push('/about-miracle')">
-          <q-card-section class="nav-card-section">About Miracle</q-card-section>
-  </q-card>
-  <q-card
-    class="nav-button flat-card" clickable @click="$router.push('/development')">
-    <q-card-section class="nav-card-section">Development</q-card-section>
-  </q-card>
+        <!-- Right-aligned: Navigation Buttons for larger screens -->
+        <q-space v-if="!drawerVisible" />
+        <div class="nav-buttons q-mr-md" v-if="!isSmallScreen">
+          <q-card class="nav-button flat-card" clickable @click="$router.push('/about-miracle')">
+            <q-card-section class="nav-card-section">About Miracle</q-card-section>
+          </q-card>
+          <q-card
+            class="nav-button flat-card" clickable @click="$router.push('/development')">
+            <q-card-section class="nav-card-section">Development</q-card-section>
+          </q-card>
 
-  <q-card
-    class="nav-button flat-card"
-    @mouseover="showDropdown('sale')"
-    @mouseleave="hideDropdown('sale')"
-    >
-    <q-card-section class="nav-card-section">For Sale
-      <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
-    </q-card-section>
-    <q-menu
-      v-if="activeDropdown === 'sale'"
-      anchor="bottom middle"
-      self="top middle"
-      fit
-      @mouseover="showDropdown('sale')"
-      @mouseleave="hideDropdown('sale')"
-      class="dropdown-container"
-    >
-    <div class="dropdown-content">
-        <!-- district list -->
-        <div class="district-list">
-            <h6>Pahang</h6>
-            <ul>
-              <li
-              v-for="(district, index) in districts"
-              :key="index"
-              @mouseover="setSelectedDistrict(district.name)"
-              @click="setSelectedDistrict(district.name)"
-              class="district-item"
-              default-opened
+          <q-card
+          class="nav-button flat-card"
+          @mouseover="showDropdown('sale')"
+          @mouseleave="hideDropdown('sale')"
+          >
+            <q-card-section class="nav-card-section">For Sale
+              <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
+            </q-card-section>
+            <q-menu
+            v-if="activeDropdown === 'sale'"
+            anchor="bottom middle"
+            self="top middle"
+            fit
+            @mouseover="showDropdown('sale')"
+            @mouseleave="hideDropdown('sale')"
+            class="dropdown-container"
             >
-            {{ district.name }}
-            </li>
-            </ul>
-          </div>
+              <div class="dropdown-content">
+                <!-- district list -->
+                <div class="district-list">
+                  <h6>Pahang</h6>
+                  <ul>
+                    <li
+                    v-for="(district, index) in districts"
+                    :key="index"
+                    @mouseover="setSelectedDistrict(district.name)"
+                    @click="setSelectedDistrict(district.name)"
+                    class="district-item"
+                    default-opened
+                    >
+                      {{ district.name }}
+                    </li>
+                  </ul>
+                </div>
 
-        <!-- Images Grid -->
-        <div class="image-grid">
-          <div class="grid-item" v-for="(project, index) in filteredProjects" :key="index">
-            <div class="image-container">
-              <img :src="project.image" alt="Project Image" />
-              <div class="overlay">
-                <p>{{ project.name }}</p>
+                <!-- Images Grid -->
+                <div class="image-grid">
+                  <div class="grid-item" v-for="(project, index) in filteredProjects" :key="index">
+                    <div class="image-container">
+                      <img :src="project.image" alt="Project Image" />
+                      <div class="overlay">
+                        <p>{{ project.name }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </q-menu>
-  </q-card>
+            </q-menu>
+          </q-card>
 
-  <q-card class="nav-button flat-card"
-  @mouseover="showDropdown('lease')"
-  @mouseleave="hideDropdown('lease')"
-    >
-    <q-card-section class="nav-card-section">For Lease
-      <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
-    </q-card-section>
-    <q-menu
-      v-if="activeDropdown === 'lease'"
-      anchor="bottom middle"
-      self="top middle"
-      @mouseover="showDropdown('lease')"
-      @mouseleave="hideDropdown('lease')"
-      class="dropdown-container"
-    >
-    <div class="dropdown-content">
-        <!-- district list -->
-        <div class="district-list">
-            <h6>Pahang</h6>
-            <ul>
-              <li
-              v-for="(district, index) in districts"
-              :key="index"
-              @mouseover="setSelectedDistrict(district.name)"
-              @click="setSelectedDistrict(district.name)"
-              class="district-item"
+          <q-card class="nav-button flat-card"
+          @mouseover="showDropdown('lease')"
+          @mouseleave="hideDropdown('lease')"
+          >
+            <q-card-section class="nav-card-section">For Lease
+              <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
+            </q-card-section>
+            <q-menu
+            v-if="activeDropdown === 'lease'"
+            anchor="bottom middle"
+            self="top middle"
+            @mouseover="showDropdown('lease')"
+            @mouseleave="hideDropdown('lease')"
+            class="dropdown-container"
             >
-            {{ district.name }}
-            </li>
-            </ul>
-          </div>
+              <div class="dropdown-content">
+                <!-- district list -->
+                <div class="district-list">
+                  <h6>Pahang</h6>
+                  <ul>
+                    <li
+                    v-for="(district, index) in districts"
+                    :key="index"
+                    @mouseover="setSelectedDistrict(district.name)"
+                    @click="setSelectedDistrict(district.name)"
+                    class="district-item"
+                    >
+                      {{ district.name }}
+                    </li>
+                  </ul>
+                </div>
 
-        <!-- Images Grid -->
-        <div class="image-grid">
-          <div class="grid-item" v-for="(lease, index) in filteredLeases" :key="index">
-            <div class="image-container">
-              <img :src="lease.image" alt="Lease Image" />
-              <div class="overlay">
-                <p>{{ lease.name }}</p>
+                <!-- Images Grid -->
+                <div class="image-grid">
+                  <div class="grid-item" v-for="(lease, index) in filteredLeases" :key="index">
+                    <div class="image-container">
+                      <img :src="lease.image" alt="Lease Image" />
+                      <div class="overlay">
+                        <p>{{ lease.name }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </q-menu>
+          </q-card>
+          <q-card class="nav-button flat-card" clickable @click="$router.push('/awards')">
+            <q-card-section class="nav-card-section">Awards</q-card-section>
+          </q-card>
+
+          <q-card
+          class="nav-button flat-card"
+          @mouseover="showDropdown('investor')"
+          @mouseleave="hideDropdown('investor')"
+          >
+            <q-card-section class="nav-card-section">
+              Investor & Media
+              <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
+            </q-card-section>
+            <q-menu
+            v-if="activeDropdown === 'investor'"
+            anchor="bottom left"
+            self="top left"
+            fit
+            @mouseover="showDropdown('investor')"
+            @mouseleave="hideDropdown('investor')"
+            >
+              <q-list>
+                <q-item clickable @click="$router.push('/investor-centre')" class="menu-section">
+                  <q-item-section>Investor Centre</q-item-section>
+                </q-item>
+                <q-item clickable @click="$router.push('/announcement')" class="menu-section">
+                  <q-item-section>Announcements</q-item-section>
+                </q-item>
+                <q-item clickable @click="$router.push('/reports')" class="menu-section">
+                  <q-item-section>Reports</q-item-section>
+                </q-item>
+                <q-item clickable @click="$router.push('/news')" class="menu-section">
+                  <q-item-section>News</q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-card>
         </div>
-      </div>
-    </q-menu>
-  </q-card>
-  <q-card class="nav-button flat-card" clickable @click="$router.push('/awards')">
-    <q-card-section class="nav-card-section">Awards</q-card-section>
-  </q-card>
 
-  <q-card
-    class="nav-button flat-card"
-    @mouseover="showDropdown('investor')"
-    @mouseleave="hideDropdown('investor')"
-  >
-    <q-card-section class="nav-card-section">
-      Investor & Media
-      <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
-    </q-card-section>
-    <q-menu
-      v-if="activeDropdown === 'investor'"
-      anchor="bottom left"
-      self="top left"
-      fit
-      @mouseover="showDropdown('investor')"
-      @mouseleave="hideDropdown('investor')"
-    >
-      <q-list>
-        <q-item clickable @click="$router.push('/investor-centre')" class="menu-section">
-          <q-item-section>Investor Centre</q-item-section>
-        </q-item>
-        <q-item clickable @click="$router.push('/announcement')" class="menu-section">
-          <q-item-section>Announcements</q-item-section>
-        </q-item>
-        <q-item clickable @click="$router.push('/reports')" class="menu-section">
-          <q-item-section>Reports</q-item-section>
-        </q-item>
-        <q-item clickable @click="$router.push('/news')" class="menu-section">
-          <q-item-section>News</q-item-section>
-        </q-item>
-      </q-list>
-    </q-menu>
-  </q-card>
-</div>
-
-      <!-- Drawer toggle button for small screens -->
-      <q-btn
+        <!-- Drawer toggle button for small screens -->
+        <q-btn
         flat
         icon="menu"
         class="q-ml-md"
         @click="toggleDrawer"
         v-if="isSmallScreen"
-      />
-    </q-toolbar>
-  </q-header>
+        />
+      </q-toolbar>
+    </q-header>
 
-  <!-- Drawer for small screens -->
-  <q-drawer v-model="drawerVisible" side="right"
-        :width="350"
-        :breakpoint="300"
-        overlay
-        bordered
-        class="full-height-drawer"
-        v-if="isSmallScreen">
+    <!-- Drawer for small screens -->
+    <q-drawer v-model="drawerVisible" side="right"
+    :width="350"
+    :breakpoint="300"
+    overlay
+    bordered
+    class="full-height-drawer"
+    v-if="isSmallScreen"
+    >
       <q-scroll-area class="fit">
-    <q-list>
-      <q-item clickable to="/about-miracle" class="drawer-item" v-ripple>
-        <q-item-section>About Miracle</q-item-section>
-      </q-item>
-        <q-item clickable to="/property-details" class="drawer-item" v-ripple>
-          <q-item-section>Development</q-item-section>
-        </q-item>
-      <q-expansion-item
-      group="somegroup"
-      label="For Sale"
-      class="drawer-item-expand">
-        <q-item class="drawer-item-child-1">
-          <q-item-section>Pahang</q-item-section>
-        </q-item>
-<q-expansion-item
-group="somegroup1"
-label="Jengka"
-class="drawer-item-expand-2">
-        <q-item clickable to="/reports" class="drawer-item-child-2">
-          <q-item-section>16 Sierra, Puchong</q-item-section>
-        </q-item>
-        <q-item clickable to="/reports" class="drawer-item-child-2">
-          <q-item-section>Bandar Puteri Puchong & Puchong Jaya</q-item-section>
-        </q-item>
-        <q-item clickable to="/reports" class="drawer-item-child-2">
-          <q-item-section>Bandar Puteri Bangi</q-item-section>
-        </q-item>
-        <q-item clickable to="/news" class="drawer-item-child-2">
-          <q-item-section>Senna Puteri, Salak Tinggi</q-item-section>
-        </q-item>
-        <q-item clickable to="/reports" class="drawer-item-child-2">
-          <q-item-section>Banting</q-item-section>
-        </q-item>
-        <q-item clickable to="/news" class="drawer-item-child-2">
-          <q-item-section>PJ Midtown</q-item-section>
-        </q-item>
-        <q-item clickable to="/news" class="drawer-item-child-2">
-          <q-item-section>Warisan Puteri, Sepang</q-item-section>
-        </q-item>
-      </q-expansion-item>
-      <q-expansion-item
-      group="somegroup1"
-      label="Maran"
-      class="drawer-item-expand-2">
-        <q-item clickable to="/reports" class="drawer-item-child-2">
-          <q-item-section>Maran Housing</q-item-section>
-        </q-item>
-      </q-expansion-item>
-      <q-expansion-item
-      group="somegroup1"
-      label="Mentakab"
-      class="drawer-item-expand-2">
-        <q-item clickable to="/reports" class="drawer-item-child-2">
-          <q-item-section>Mentakab Project A</q-item-section>
-        </q-item>
-        <q-item clickable to="/reports" class="drawer-item-child-2">
-          <q-item-section>Mentakab Project B</q-item-section>
-        </q-item>
-      </q-expansion-item>
-      <q-expansion-item
-      group="somegroup1"
-      label="Kuantan"
-      class="drawer-item-expand-2">
-        <q-item clickable to="/reports" class="drawer-item-child-2">
-          <q-item-section>Kuantan Housing</q-item-section>
-        </q-item>
-      </q-expansion-item>
-      <q-expansion-item
-      group="somegroup1"
-      label="Temerloh"
-      class="drawer-item-expand-2">
-        <q-item clickable to="/reports" class="drawer-item-child-2">
-          <q-item-section>Temerloh Housing</q-item-section>
-        </q-item>
-      </q-expansion-item>
-      </q-expansion-item>
-      <q-expansion-item
-      group="somegroup"
-      label="For Lease"
-      class="drawer-item-expand">
-      <q-expansion-item
-      group="somegroup1"
-      label="Jengka"
-      class="drawer-item-expand-2">
-        <q-item clickable to="/reports" class="drawer-item-child-2">
-          <q-item-section>43 gireeess</q-item-section>
-        </q-item>
-      </q-expansion-item>
-      <q-expansion-item
-      group="somegroup1"
-      label="Maran"
-      class="drawer-item-expand-2">
-        <q-item clickable to="/reports" class="drawer-item-child-2">
-          <q-item-section>1 gireeess</q-item-section>
-        </q-item>
-      </q-expansion-item>
-      </q-expansion-item>
-      <q-item clickable to="/awards" class="drawer-item">
-        <q-item-section>Awards</q-item-section>
-      </q-item>
-      <q-expansion-item
-      group="somegroup"
-      label="Investor & Media"
-      class="drawer-item-expand">
-        <q-item clickable to="/investor-centre" class="drawer-item-child">
-          <q-item-section>Investor Centre</q-item-section>
-        </q-item>
-        <q-item clickable to="/announcement" class="drawer-item-child">
-          <q-item-section>Announcements</q-item-section>
-        </q-item>
-        <q-item clickable to="/reports" class="drawer-item-child">
-          <q-item-section>Reports</q-item-section>
-        </q-item>
-        <q-item clickable to="/news" class="drawer-item-child">
-          <q-item-section>News</q-item-section>
-        </q-item>
-      </q-expansion-item>
-    </q-list>
-  </q-scroll-area>
-  </q-drawer>
+        <q-list>
+          <q-item clickable to="/about-miracle" class="drawer-item" v-ripple>
+            <q-item-section>About Miracle</q-item-section>
+          </q-item>
+          <q-item clickable to="/development" class="drawer-item" v-ripple>
+            <q-item-section>Development</q-item-section>
+          </q-item>
+          <q-expansion-item
+          group="somegroup"
+          label="For Sale"
+          class="drawer-item-expand"
+          >
+            <q-item class="drawer-item-child-1">
+              <q-item-section>Pahang</q-item-section>
+            </q-item>
+            <q-expansion-item
+            group="somegroup1"
+            label="Jengka"
+            class="drawer-item-expand-2"
+            >
+              <q-item clickable to="/reports" class="drawer-item-child-2">
+                <q-item-section>16 Sierra, Puchong</q-item-section>
+              </q-item>
+              <q-item clickable to="/reports" class="drawer-item-child-2">
+                <q-item-section>Bandar Puteri Puchong & Puchong Jaya</q-item-section>
+              </q-item>
+              <q-item clickable to="/reports" class="drawer-item-child-2">
+                <q-item-section>Bandar Puteri Bangi</q-item-section>
+              </q-item>
+              <q-item clickable to="/news" class="drawer-item-child-2">
+                <q-item-section>Senna Puteri, Salak Tinggi</q-item-section>
+              </q-item>
+              <q-item clickable to="/reports" class="drawer-item-child-2">
+                <q-item-section>Banting</q-item-section>
+              </q-item>
+              <q-item clickable to="/news" class="drawer-item-child-2">
+                <q-item-section>PJ Midtown</q-item-section>
+              </q-item>
+              <q-item clickable to="/news" class="drawer-item-child-2">
+                <q-item-section>Warisan Puteri, Sepang</q-item-section>
+              </q-item>
+            </q-expansion-item>
+            <q-expansion-item
+            group="somegroup1"
+            label="Maran"
+            class="drawer-item-expand-2"
+            >
+              <q-item clickable to="/reports" class="drawer-item-child-2">
+                <q-item-section>Maran Housing</q-item-section>
+              </q-item>
+            </q-expansion-item>
+            <q-expansion-item
+            group="somegroup1"
+            label="Mentakab"
+            class="drawer-item-expand-2"
+            >
+              <q-item clickable to="/reports" class="drawer-item-child-2">
+                <q-item-section>Mentakab Project A</q-item-section>
+              </q-item>
+              <q-item clickable to="/reports" class="drawer-item-child-2">
+                <q-item-section>Mentakab Project B</q-item-section>
+              </q-item>
+            </q-expansion-item>
+            <q-expansion-item
+            group="somegroup1"
+            label="Kuantan"
+            class="drawer-item-expand-2"
+            >
+              <q-item clickable to="/reports" class="drawer-item-child-2">
+                <q-item-section>Kuantan Housing</q-item-section>
+              </q-item>
+            </q-expansion-item>
+            <q-expansion-item
+            group="somegroup1"
+            label="Temerloh"
+            class="drawer-item-expand-2"
+            >
+              <q-item clickable to="/reports" class="drawer-item-child-2">
+                <q-item-section>Temerloh Housing</q-item-section>
+              </q-item>
+            </q-expansion-item>
+          </q-expansion-item>
+          <q-expansion-item
+          group="somegroup"
+          label="For Lease"
+          class="drawer-item-expand"
+          >
+            <q-expansion-item
+            group="somegroup1"
+            label="Jengka"
+            class="drawer-item-expand-2"
+            >
+              <q-item clickable to="/reports" class="drawer-item-child-2">
+                <q-item-section>43 gireeess</q-item-section>
+              </q-item>
+            </q-expansion-item>
+            <q-expansion-item
+            group="somegroup1"
+            label="Maran"
+            class="drawer-item-expand-2"
+            >
+              <q-item clickable to="/reports" class="drawer-item-child-2">
+                <q-item-section>1 gireeess</q-item-section>
+              </q-item>
+            </q-expansion-item>
+          </q-expansion-item>
+          <q-item clickable to="/awards" class="drawer-item">
+            <q-item-section>Awards</q-item-section>
+          </q-item>
+          <q-expansion-item
+          group="somegroup"
+          label="Investor & Media"
+          class="drawer-item-expand"
+          >
+            <q-item clickable to="/investor-centre" class="drawer-item-child">
+              <q-item-section>Investor Centre</q-item-section>
+            </q-item>
+            <q-item clickable to="/announcement" class="drawer-item-child">
+              <q-item-section>Announcements</q-item-section>
+            </q-item>
+            <q-item clickable to="/reports" class="drawer-item-child">
+              <q-item-section>Reports</q-item-section>
+            </q-item>
+            <q-item clickable to="/news" class="drawer-item-child">
+              <q-item-section>News</q-item-section>
+            </q-item>
+          </q-expansion-item>
+        </q-list>
+      </q-scroll-area>
+    </q-drawer>
     <q-page-container>
       <q-page :style="{ backgroundColor: '#ffffed', }">
         <router-view /> <!-- This is where the content of your pages will be inserted -->
@@ -305,49 +316,48 @@ class="drawer-item-expand-2">
     </q-page-container>
 
     <footer class="footer">
-  <!-- Footer Content -->
-  <div class="footer-content">
-    <!-- Left Section -->
-    <div class="footer-left">
-      <div class="logo-container">
-        <img src="src/assets/icons/logo-32X32.png" alt="Company Logo" class="footer-logo">
-        <span class="footer-logo-text">MIRACLE LAND</span>
-      </div>
-      <div class="footer-address">
-        <p>No. 1, Tingkat Basement, Jalan Dagang 2,<br>
-          Kg Bukit Angin, 28000 <br>Temerloh, Pahang.</p>
-      </div>
-    </div>
+      <!-- Footer Content -->
+      <div class="footer-content">
+        <!-- Left Section -->
+        <div class="footer-left">
+          <div class="logo-container">
+            <img src="src/assets/icons/logo-32X32.png" alt="Company Logo" class="footer-logo">
+            <span class="footer-logo-text">MIRACLE LAND</span>
+          </div>
+          <div class="footer-address">
+            <p>No. 1, Tingkat Basement, Jalan Dagang 2,<br>
+            Kg Bukit Angin, 28000 <br>Temerloh, Pahang.</p>
+          </div>
+        </div>
 
-    <!-- Right Section -->
-    <div class="footer-right">
-      <div class="footer-navigation">
-        <a @click.prevent="navigateToContactUs" class="footer-link" href="#">Contact Us</a>
-        <router-link to="/career" class="footer-link">Careers</router-link>
-        <p class="footer-time">Mon - Sat, 9AM - 5PM</p>
+        <!-- Right Section -->
+        <div class="footer-right">
+          <div class="footer-navigation">
+            <a @click.prevent="navigateToContactUs" class="footer-link" href="#">Contact Us</a>
+            <router-link to="/career" class="footer-link">Careers</router-link>
+            <p class="footer-time">Mon - Sat, 9AM - 5PM</p>
+          </div>
+          <div class="social-icons">
+            <button class="social-btn facebook" aria-label="Facebook" @click="openFacebook">
+              <i class="mdi mdi-facebook"></i>
+            </button>
+            <button class="social-btn youtube" aria-label="YouTube" @click="openYoutube">
+              <i class="mdi mdi-youtube"></i>
+            </button>
+            <button class="social-btn instagram" aria-label="Instagram" @click="openInstagram">
+              <i class="mdi mdi-instagram"></i>
+            </button>
+            <button class="social-btn tiktok" aria-label="TikTok" @click="openTiktok">
+              <img class="tiktok" src="src\assets\tiktok1.png" alt="Tiktok">
+            </button>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <p>© 2025 Miracle Land Holdings Berhad (1111981-P). All rights reserved.
+          </p>
+        </div>
       </div>
-      <div class="social-icons">
-        <button class="social-btn facebook" aria-label="Facebook" @click="openFacebook">
-    <i class="mdi mdi-facebook"></i>
-  </button>
-  <button class="social-btn youtube" aria-label="YouTube" @click="openYoutube">
-    <i class="mdi mdi-youtube"></i>
-  </button>
-  <button class="social-btn instagram" aria-label="Instagram" @click="openInstagram">
-    <i class="mdi mdi-instagram"></i>
-  </button>
-  <button class="social-btn tiktok" aria-label="TikTok" @click="openTiktok">
-    <img class="tiktok" src="src\assets\tiktok1.png" alt="Tiktok">
-  </button>
-      </div>
-    </div>
-    <div class="footer-copyright">
-        <p>© 2025 Miracle Land Holdings Berhad (1111981-P). All rights reserved.
-      </p>
-    </div>
-  </div>
-</footer>
-
+    </footer>
   </q-layout>
 </template>
 

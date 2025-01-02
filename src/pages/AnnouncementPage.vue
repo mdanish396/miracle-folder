@@ -3,16 +3,15 @@
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="title-IM">
-      <h1>Announcements</h1>
-      <p>Read the latest announcements from our company</p>
-    </div>
+        <h1>Announcements</h1>
+        <p>Read the latest announcements from our company</p>
+      </div>
     </section>
 
-    <AnnouncementData v-slot="{ announcementsItems }">
-        <!-- Announcements Section -->
-        <section class="announcements">
-      <div class="announcement-list">
-        <div class="announcement-item" v-for="announcement in announcementsItems" :key="announcement.id">
+    <!-- Announcements Section -->
+    <section class="announcements">
+      <div v-for="announcement in announcementsItems" :key="announcement.id" class="announcement-list">
+        <div class="announcement-item">
           <q-card @click="openAnnouncement(announcement.link)" class="announcement-btn" flat>
             <q-icon name="notifications" color="secondary"/>
             {{ announcement.title }}
@@ -20,12 +19,11 @@
         </div>
       </div>
     </section>
-    </AnnouncementData>
   </q-page>
-    </template>
+</template>
 
 <script setup>
-import AnnouncementData from 'src/components/AnnouncementData.vue'
+import { announcementsItems } from 'src/components/AnnouncementData.vue'
 
 const openAnnouncement = (link) => {
   window.open(link, '_blank')

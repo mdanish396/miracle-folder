@@ -2,78 +2,46 @@
   <q-page>
     <!-- Overview Section -->
     <div class="hero-section">
-    <div class="overview-section">
-      <!-- banner image -->
-      <img class="overview-image" src='src/assets/building.png'>
-      <div class="gradient-overlay"></div>
-    </div>
+      <div class="overview-section">
+        <!-- banner image -->
+        <img class="overview-image" src='src/assets/building.png'>
+        <div class="gradient-overlay"></div>
+      </div>
 
       <!-- Information overlay -->
-       <div class="information-overlay">
-      <div class="info-overlay" v-for="development in developments" :key="development.id">
-        <div class="place-logo-section">
-        <div class="logo-circle">
-          <h4 class="logo-title">{{ development.frontname }}</h4>
-          <h4 class="logo-subtitle">{{ development.endname }}</h4>
+      <div class="information-overlay">
+        <div class="info-overlay" v-for="development in developments" :key="development.id">
+          <div class="place-logo-section">
+              <h4 class="logo-title">{{ development.name }}</h4>
+          </div>
+          <div class="info-details">
+            <div class="info-item-1">
+            </div>
+            <div class="info-item">
+              <h4>Type</h4>
+              <p>{{ development.type }}</p>
+            </div>
+            <div class="divider"></div>
+            <div class="info-item">
+              <h4>Location</h4>
+              <p>{{ development.location }}</p>
+            </div>
+            <div class="divider"></div>
+            <div class="info-item">
+              <h4>Size</h4>
+              <p>{{ development.size }}</p>
+            </div>
+            <div class="info-item-1">
+            </div>
+          </div>
         </div>
       </div>
-        <div class="info-details">
-          <div class="info-item-1">
-        </div>
-        <div class="info-item">
-          <h4>Type</h4>
-          <p>{{ development.type }}</p>
-        </div>
-        <div class="divider"></div>
-        <div class="info-item">
-          <h4>Location</h4>
-          <p>{{ development.location }}</p>
-        </div>
-        <div class="divider"></div>
-        <div class="info-item">
-          <h4>Size</h4>
-          <p>{{ development.size }}</p>
-        </div>
-        <div class="info-item-1">
-        </div>
     </div>
-    </div>
-        </div>
-      </div>
 
     <!-- Intro text -->
-     <div class="intro-section">
-     <div class="text-content" v-for="development in developments" :key="development.id">
-      <h1 class="main-heading">{{ development.topic }}</h1>
-     <div class="line-holder">
-      <div class="line">
-        <div class="line-1">
-          <div class="line-2"></div>
-      </div>
-    </div>
-     </div>
-      <p class="sub-heading">{{ development.description }}</p>
-     </div>
-
-    <!-- Highlight section -->
-     <div class="card-section">
-      <div class="card-grid">
-      <div class="card" v-for="image in developmentImages" :key="image.id">
-        <img :src="image.image" class="card-image"/>
-        <div class="card-title">
-          <p>{{ image.description }}</p>
-        </div>
-      </div>
-    </div>
-     </div>
-    </div>
-
-    <div class="rectangle-section">
-    </div>
-
-    <!-- Our Product Section-->
-     <div class="products-section">
-        <h2>Our Products</h2>
+    <div class="intro-section">
+      <div class="text-content" v-for="development in developments" :key="development.id">
+        <h1 class="main-heading">{{ development.topic }}</h1>
         <div class="line-holder">
           <div class="line">
             <div class="line-1">
@@ -81,87 +49,116 @@
             </div>
           </div>
         </div>
-        <div class="products-grid">
-          <div class="product-card" v-for="product in visibleProducts" :key="product.id">
-            <img :src="product.image" alt="Product Image" class="product-image"/>
+        <p class="sub-heading">{{ development.description }}</p>
+      </div>
+
+      <!-- Highlight section -->
+      <div class="card-section">
+        <div class="card-grid">
+          <div class="card" v-for="image in developmentImages" :key="image.id">
+            <img :src="image.image" class="card-image"/>
+            <div class="card-title">
+              <p>{{ image.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rectangle-section">
+    </div>
+
+    <!-- Our Product Section-->
+    <div class="products-section">
+      <h2>Our Products</h2>
+      <div class="line-holder">
+        <div class="line">
+          <div class="line-1">
+            <div class="line-2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="products-grid">
+        <div class="product-card" v-for="product in visibleProducts" :key="product.id">
+          <img :src="product.image" alt="Product Image" class="product-image"/>
+          <q-separator/>
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <div class="product-location">
+              <i class="fas fa-map-marker-alt icon">
+              </i>
+              <span class="text-product-location">
+                {{ product.location }}
+              </span>
+            </div>
             <q-separator/>
-            <div class="product-info">
-              <h3>{{ product.name }}</h3>
-              <div class="product-location">
-                <i class="fas fa-map-marker-alt icon">
-                  </i>
-                  <span class="text-product-location">
-                    {{ product.location }}
-                  </span>
-              </div>
-              <q-separator/>
-              <q-toolbar class="product-toolbar">
-                <div class="product-item">
+            <q-toolbar class="product-toolbar">
+              <div class="product-item">
                 <h4>Type</h4>
                 <p>{{ product.type }}</p>
               </div>
 
               <q-separator vertical/>
-
               <div class="product-item-1">
                 <h4>From</h4>
                 <p>{{ product.price }}</p>
               </div>
-              </q-toolbar>
+            </q-toolbar>
 
-              <q-separator/>
-                <div class="product-feature-list">
-                  <div
-                  v-for="feature in product.features"
-                  :key="feature"
-                  class="product-feature-item"
-                  >
-                    <i class="fas fa-check-circle icon">
-                      </i>
-                      <span class="product-feature">
-                      {{ feature }}
-                      </span>
-                  </div>
-                </div>
-                  <q-space/>
-                  <q-separator/>
-                  <div class="btn-more">
-                    <q-btn flat label="Learn More" class="learn-more-btn" />
-                  </div>
+            <q-separator/>
+            <div class="product-feature-list">
+              <div
+              v-for="feature in product.features"
+              :key="feature"
+              class="product-feature-item"
+              >
+                <i class="fas fa-check-circle icon">
+                </i>
+                <span class="product-feature">
+                  {{ feature }}
+                </span>
+              </div>
+            </div>
+
+            <q-space/>
+            <q-separator/>
+            <div class="btn-more">
+              <q-btn flat label="Learn More" class="learn-more-btn" />
             </div>
           </div>
         </div>
-        <div class="btn-more-1" v-if="products.length > visibleCount">
-          <q-btn
-          flat
-          label="Load More"
-          class="learn-more-btn"
-          @click="loadMore"
-          />
-        </div>
       </div>
+      <div class="btn-more-1" v-if="products.length > visibleCount">
+        <q-btn
+        flat
+        label="Load More"
+        class="learn-more-btn"
+        @click="loadMore"
+        />
+      </div>
+    </div>
 
     <div class="rectangle-section-1">
     </div>
 
-     <!-- Gallery section-->
-      <div class="gallery-section">
-        <h2>Gallery</h2>
-        <div class="line-holder">
-      <div class="line">
-        <div class="line-1">
-          <div class="line-2"></div>
-      </div>
-    </div>
-     </div>
-        <div class="gallery-grid">
-          <img v-for="image in galleryImages" :key="image" :src="image" alt="Gallery Image" />
+    <!-- Gallery section-->
+    <div class="gallery-section">
+      <h2>Gallery</h2>
+      <div class="line-holder">
+        <div class="line">
+          <div class="line-1">
+            <div class="line-2"></div>
+          </div>
         </div>
       </div>
+      <div class="gallery-grid">
+        <img v-for="image in galleryImages" :key="image" :src="image" alt="Gallery Image" />
+      </div>
+    </div>
 
-      <!-- Location section -->
-       <div class="location-section">
-        <div class="location-title">
+    <!-- Location section -->
+    <div class="location-section">
+      <div class="location-title">
         <h2>Location</h2>
         <div class="line-holder">
           <div class="line">
@@ -171,152 +168,153 @@
           </div>
         </div>
       </div>
-        <div class="location-container">
+      <div class="location-container">
         <div class="location-map">
           <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on"
-  style="border:0;"
-  allowfullscreen=""
-  loading="lazy"
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
-
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
         </div>
+
         <div class="amenities">
           <q-list>
-          <q-item class="amenities-section">
-          <q-item-section>Nearby Amenities</q-item-section>
-        </q-item>
-        <q-separator color="white"/>
-        <q-expansion-item
-  expand-icon-class="text-white"
-  group="somegroup"
-  default-opened
-  class="amenities-expand"
->
-  <template v-slot:header>
-    <q-item-section avatar>
-      <i class="fas fa-graduation-cap" style="color: white; font-size: 18px;"></i>
-    </q-item-section>
-    <q-item-section>
-      <span class="text-white">Education</span>
-    </q-item-section>
-  </template>
+            <q-item class="amenities-section">
+              <q-item-section>Nearby Amenities</q-item-section>
+            </q-item>
+            <q-separator color="white"/>
+            <q-expansion-item
+            expand-icon-class="text-white"
+            group="somegroup"
+            default-opened
+            class="amenities-expand"
+            >
+              <template v-slot:header>
+                <q-item-section avatar>
+                  <i class="fas fa-graduation-cap" style="color: white; font-size: 18px;"></i>
+                </q-item-section>
+                <q-item-section>
+                  <span class="text-white">Education</span>
+                </q-item-section>
+              </template>
 
-  <!-- Content inside the expansion item -->
-  <div class="q-pa-md">
-    <q-item class="amenities-child">
-      <q-item-section class="amenities-location">SK <q-space class="amenities-km"/> 3.4 km </q-item-section>
-    </q-item>
-    <q-item class="amenities-child">
-      <q-item-section class="amenities-location">SMK <q-space class="amenities-km"/> 3.4 km</q-item-section>
-    </q-item>
-  </div>
-</q-expansion-item>
+              <!-- Content inside the expansion item -->
+              <div class="q-pa-md">
+                <q-item class="amenities-child">
+                  <q-item-section class="amenities-location">SK <q-space class="amenities-km"/> 3.4 km </q-item-section>
+                </q-item>
+                <q-item class="amenities-child">
+                  <q-item-section class="amenities-location">SMK <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                </q-item>
+              </div>
+            </q-expansion-item>
 
-      <q-separator color="white"/>
-      <q-expansion-item
-      expand-icon-class="text-white"
-      group="somegroup"
-      class="amenities-expand">
+            <q-separator color="white"/>
+            <q-expansion-item
+            expand-icon-class="text-white"
+            group="somegroup"
+            class="amenities-expand"
+            >
+              <template v-slot:header>
+                <q-item-section avatar>
+                  <i class="fas fa-medkit" style="color: white; font-size: 18px;"></i>
+                </q-item-section>
+                <q-item-section>
+                  <span class="text-white">Healthcare</span>
+                </q-item-section>
+              </template>
+              <!-- Content inside the expansion item -->
+              <div class="q-pa-md">
+                  <q-item class="amenities-child">
+                    <q-item-section class="amenities-location">Hospital <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                  </q-item>
+                  <q-item class="amenities-child">
+                    <q-item-section class="amenities-location">Clinic <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                  </q-item>
+              </div>
+            </q-expansion-item>
 
-      <template v-slot:header>
-    <q-item-section avatar>
-      <i class="fas fa-medkit" style="color: white; font-size: 18px;"></i>
-    </q-item-section>
-    <q-item-section>
-      <span class="text-white">Healthcare</span>
-    </q-item-section>
-  </template>
-    <!-- Content inside the expansion item -->
-    <div class="q-pa-md">
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Hospital <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Clinic <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-    </div>
-      </q-expansion-item>
+            <q-separator color="white"/>
+            <q-expansion-item
+            expand-icon-class="text-white"
+            group="somegroup"
+            class="amenities-expand"
+            >
+              <template v-slot:header>
+                <q-item-section avatar>
+                  <i class="fas fa-film" style="color: white; font-size: 18px;"></i>
+                </q-item-section>
+                <q-item-section>
+                  <span class="text-white">Entertainment</span>
+                </q-item-section>
+              </template>
+              <!-- Content inside the expansion item -->
+              <div class="q-pa-md">
+                  <q-item class="amenities-child">
+                    <q-item-section class="amenities-location">Cinema <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                  </q-item>
+              </div>
+            </q-expansion-item>
 
-      <q-separator color="white"/>
-      <q-expansion-item
-      expand-icon-class="text-white"
-      group="somegroup"
-      class="amenities-expand">
+            <q-separator color="white"/>
+            <q-expansion-item
+            expand-icon-class="text-white"
+            group="somegroup"
+            class="amenities-expand"
+            >
+              <template v-slot:header>
+                <q-item-section avatar>
+                  <i class="fas fa-bicycle" style="color: white; font-size: 18px;"></i>
+                </q-item-section>
+                <q-item-section>
+                  <span class="text-white">Recreation</span>
+                </q-item-section>
+              </template>
+              <!-- Content inside the expansion item -->
+              <div class="q-pa-md">
+                <q-item class="amenities-child">
+                  <q-item-section class="amenities-location">Football Field <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                </q-item>
+                <q-item class="amenities-child">
+                  <q-item-section class="amenities-location">Playground <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                </q-item>
+                <q-item class="amenities-child">
+                  <q-item-section class="amenities-location">Playstore <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                </q-item>
+              </div>
+            </q-expansion-item>
 
-      <template v-slot:header>
-    <q-item-section avatar>
-      <i class="fas fa-film" style="color: white; font-size: 18px;"></i>
-    </q-item-section>
-    <q-item-section>
-      <span class="text-white">Entertainment</span>
-    </q-item-section>
-  </template>
-    <!-- Content inside the expansion item -->
-    <div class="q-pa-md">
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Cinema <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-    </div>
-      </q-expansion-item>
-
-      <q-separator color="white"/>
-      <q-expansion-item
-      expand-icon-class="text-white"
-      group="somegroup"
-      class="amenities-expand">
-
-      <template v-slot:header>
-    <q-item-section avatar>
-      <i class="fas fa-bicycle" style="color: white; font-size: 18px;"></i>
-    </q-item-section>
-    <q-item-section>
-      <span class="text-white">Recreation</span>
-    </q-item-section>
-  </template>
-    <!-- Content inside the expansion item -->
-    <div class="q-pa-md">
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Football Field <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Playground <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Playstore <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-        </div>
-      </q-expansion-item>
-
-      <q-separator color="white"/>
-      <q-expansion-item
-      expand-icon-class="text-white"
-      group="somegroup"
-      class="amenities-expand">
-
-      <template v-slot:header>
-    <q-item-section avatar>
-      <i class="fas fa-shopping-bag" style="color: white; font-size: 18px;"></i>
-    </q-item-section>
-    <q-item-section>
-      <span class="text-white">Shopping</span>
-    </q-item-section>
-  </template>
-    <!-- Content inside the expansion item -->
-    <div class="q-pa-md">
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Mall <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">TF Mall <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-    </div>
-      </q-expansion-item>
-      </q-list>
-        </div>
+            <q-separator color="white"/>
+            <q-expansion-item
+            expand-icon-class="text-white"
+            group="somegroup"
+            class="amenities-expand"
+            >
+              <template v-slot:header>
+                <q-item-section avatar>
+                  <i class="fas fa-shopping-bag" style="color: white; font-size: 18px;"></i>
+                </q-item-section>
+                <q-item-section>
+                  <span class="text-white">Shopping</span>
+                </q-item-section>
+              </template>
+              <!-- Content inside the expansion item -->
+              <div class="q-pa-md">
+                <q-item class="amenities-child">
+                  <q-item-section class="amenities-location">Mall <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                </q-item>
+                <q-item class="amenities-child">
+                  <q-item-section class="amenities-location">TF Mall <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                </q-item>
+              </div>
+            </q-expansion-item>
+          </q-list>
         </div>
       </div>
+    </div>
   </q-page>
 </template>
 
@@ -326,8 +324,7 @@ import { ref, computed } from 'vue'
 const developments = ref([
   {
     id: 1,
-    frontname: 'Miracle',
-    endname: 'LAND',
+    name: 'Miracle Land',
     type: 'Township',
     location: 'Kampala',
     size: '810 acres',
@@ -450,7 +447,7 @@ const galleryImages = ref([
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 2;
 }
 
@@ -473,39 +470,17 @@ const galleryImages = ref([
 
 .place-logo-section {
   position: absolute;
-  top: -32px;
-  left: 13.5%;
+  top: -180px;
+  left: 50%;
   transform: translateX(-50%);
 }
 
-.logo-circle {
-  background-color: white;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  text-align: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
 .logo-title {
-    font-size: 16px;
-    color: #1e1e1e;
-    margin-bottom: -15px;
+    font-size: 36px;
+    color: #fff;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-  }
-
-  .logo-subtitle {
-    font-size: 18px;
-    color: #1e1e1e;
-    margin-top: 1px;
-    margin-bottom: 13px;
-    letter-spacing: 2px;
   }
 
 .info-details {
@@ -589,11 +564,6 @@ const galleryImages = ref([
     left: 55.5%;
   }
 
-.place-logo-section {
-  top: -30px;
-  left: -3%;
-}
-
 .info-item-1{
   padding-right: 0px;
 }
@@ -640,8 +610,7 @@ const galleryImages = ref([
   }
 
 .place-logo-section {
-  top: -80px;
-  left: 49.5%;
+  top: -100px;
 }
 
 .logo-circle {
@@ -746,8 +715,8 @@ const galleryImages = ref([
 }
 
 .card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  grid-template-columns: (3, 1fr);
   gap: 30px;
   padding:0 20px;
 }
@@ -799,9 +768,8 @@ const galleryImages = ref([
     padding: 0;
   }
 
-.card img {
-  width: 100%;
-  height: 120px;
+.card-grid .card:nth-child(3) {
+  display: none;
 }
 
 .card-title {
@@ -819,15 +787,16 @@ const galleryImages = ref([
 .card-grid {
   padding: 0;
   gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
-.card img {
-width: 90%;
-height: 100px;
+.card-grid .card:nth-child(2) {
+  display: none;
 }
 
 .card-title {
-font-size: 14px;
+font-size: 16px;
 line-height: 20px;
 }
 }

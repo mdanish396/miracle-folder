@@ -1,65 +1,66 @@
 <template>
-  <q-page>
-    <div class="property-page">
+  <q-page class="property-details-page">
+    <div class="property-hero">
       <!-- Loop through each property -->
       <div v-for="property in properties" :key="property.id" class="property-section">
 
         <div class="before-hero-section">
-      </div>
+        </div>
         <!-- Hero Section -->
         <div class="hero-section">
           <img :src="property.image" alt="Property Image" class="hero-image" />
           <div class="property-section">
-          <div class="property-grid">
-          <div class="property-card">
-            <div class="property-info">
-            <h3 class="property-name">{{ property.name }}</h3>
-            <div class="property-location">
-                <i class="fas fa-map-marker-alt icon">
-                  </i>
-                  <span class="text-property-location">
+            <div class="property-grid">
+              <div class="property-card">
+                <div class="property-info">
+                  <h3 class="property-name">{{ property.name }}</h3>
+                  <div class="property-location">
+                    <i class="fas fa-map-marker-alt icon">
+                    </i>
+                    <span class="text-property-location">
                     {{ property.location }}
-                  </span>
-              </div>
-              <q-separator/>
-              <q-toolbar class="property-toolbar">
-                <div class="property-item">
-                <h4>Type</h4>
-                <p class="truncated-text">{{ property.type }}
-                  <q-tooltip v-if="!screenBelow540px">
-          {{ property.type }}
-        </q-tooltip>
-                </p>
-              </div>
+                    </span>
+                  </div>
+                  <q-separator/>
+                  <q-toolbar class="property-toolbar">
+                  <div class="property-item">
+                    <h4>Type</h4>
+                    <p class="truncated-text">{{ property.type }}
+                    <q-tooltip v-if="!screenBelow540px">
+                    {{ property.type }}
+                    </q-tooltip>
+                    </p>
+                  </div>
 
-              <div class="property-item">
-                <h4>From</h4>
-                <p>{{ property.price }}</p>
-              </div>
+                  <div class="property-item">
+                    <h4>From</h4>
+                    <p>{{ property.price }}</p>
+                  </div>
 
-              <div class="property-item">
-                <h4>Status</h4>
-                <p>{{ property.status }}</p>
-              </div>
-              </q-toolbar>
-              <q-separator/>
-                <div class="property-feature-list">
-                  <div
-                  v-for="feature in property.features"
-                  :key="feature"
-                  class="property-feature-item"
-                  >
-                    <i class="fas fa-check-circle icon-1">
+                  <div class="property-item">
+                    <h4>Status</h4>
+                    <p>{{ property.status }}</p>
+                  </div>
+                  </q-toolbar>
+                  <q-separator/>
+                  <div class="property-feature-list">
+                    <div
+                    v-for="feature in property.features"
+                    :key="feature"
+                    class="property-feature-item"
+                    >
+                      <i class="fas fa-check-circle icon-1">
                       </i>
                       <span class="property-feature">
                       {{ feature }}
                       </span>
+                    </div>
                   </div>
-                </div>
-                <div class="property-button">
+                  <div class="property-button">
                     <q-btn
                     stack
                     flat
+                    @click="scrollToFloorplan"
                     class="property-btn">
                     <img src="src/assets/floor.svg" class="icon-2">
                     <span class="text-btn">FLOOR PLANS</span>
@@ -68,309 +69,340 @@
                     <q-btn
                     stack
                     flat
+                    @click="scrollToGallery"
                     class="property-btn">
                     <img src="src/assets/gallery.svg" class="icon-2">
                     <span class="text-btn">GALLERY</span>
                     </q-btn>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  </div>
 
         <!-- Description -->
         <div class="description-section">
           <h2>{{ property.name }}</h2>
           <p>{{ property.description }}</p>
+          <div class="description-icon">
+          </div>
         </div>
 
         <!-- Gallery Section -->
-        <div class="gallery-section">
+        <div class="gallery-section" id="section-gallery">
           <h2>Gallery</h2>
           <div class="gallery-grid">
+            <!-- Left image -->
             <div class="gallery-item"
-              v-for="(image, idx) in galleryHouses[properties[0].name][0].gallery"
+              v-if="galleryHouses[properties[0].name][0].gallery[0]"
               :key="idx">
               <img
-              :src="image"
+              :src="galleryHouses[properties[0].name][0].gallery[0]"
+              @click="openPopup(0)"
               loading="lazy"
-              alt="Gallery Image"
+              alt="Left Image"
               />
               <div class="gallery-overlay">
-                <button class="visit-gallery-btn" @click="openPopup(idx)">Visit Gallery</button>
+              </div>
+            </div>
+            <!-- Center Image -->
+            <div class="gallery-item"
+              v-if="galleryHouses[properties[0].name][0].gallery[1]"
+              :key="idx">
+              <img
+              :src="galleryHouses[properties[0].name][0].gallery[1]"
+              @click="openPopup(1)"
+              loading="lazy"
+              alt="Center Image"
+              />
+              <div class="gallery-overlay">
+                <button class="visit-gallery-btn" @click="openPopup(1)">Visit Gallery</button>
+              </div>
+            </div>
+            <!-- Right Image -->
+            <div class="gallery-item"
+              v-if="galleryHouses[properties[0].name][0].gallery[2]"
+              :key="idx">
+              <img
+              :src="galleryHouses[properties[0].name][0].gallery[2]"
+              @click="openPopup(2)"
+              loading="lazy"
+              alt="Left Image"
+              />
+              <div class="gallery-overlay">
               </div>
             </div>
           </div>
 
-        <div v-if="isPopupOpen" class="gallery-popup">
-      <div class="gallery-popup-content">
-        <!-- Close Button -->
-        <button class="popup-close" @click="closePopup">&#9747;</button>
+          <div v-if="isPopupOpen" class="gallery-popup">
+            <div class="gallery-popup-content">
+              <!-- Close Button -->
+              <button class="popup-close" @click="closePopup">&#9747;</button>
 
-        <!-- Image Display -->
-        <img :src="galleryHouses[properties[0].name][0].gallery[currentImage]" alt="Popup Image" loading="lazy" class="gallery-popup-image" />
+              <!-- Image Display -->
+              <img :src="galleryHouses[properties[0].name][0].gallery[currentImage]" alt="Popup Image" loading="lazy" class="gallery-popup-image" />
 
-        <!-- Previous Button -->
-        <button class="popup-prev" @click="prevImage">&#8592;</button>
+              <!-- Previous Button -->
+              <button class="popup-prev" @click="prevImage">&#8592;</button>
 
-        <!-- Next Button -->
-        <button class="popup-next" @click="nextImage">&#8594;</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Floor Plan Section -->
-  <div class="floorplan-section">
-    <h2 class="floorplan-title">Floorplan</h2>
-    <div class="floorplan-container">
-      <!-- Header Section -->
-      <div class="floorplan-header">
-        <div class="plan-select">
-          <select v-model="selectedPlan" class="custom-select">
-      <option
-        v-for="(plans, planType) in floorplan[property.name][0]"
-        :key="planType"
-        :value="planType"
-      >{{ planType }}
-      </option>
-      </select>
-        </div>
-        <div class="plan-price">
-          Price From <span class="price">{{ property.price }}</span>
-        </div>
-      </div>
-
-      <!-- Details Section -->
-      <div class="floorplan-details">
-        <div
-          v-for="(plans, planType) in floorplan[property.name][0]"
-          :key="planType"
-        >
-          <div v-if="selectedPlan === planType" class="details-floorplan">
-            <div class="details-grid-items">
-            <div class="details-grid">
-            <!-- Bedrooms -->
-            <div class="details-item">
-              <img src="src/assets/bed.png" alt="Area" class="icon-3" />
-            <p>{{ plans[0].bedroom }} Bedrooms</p>
-            </div>
-            <!-- Bathrooms -->
-            <div class="details-item">
-              <img src="src/assets/bathroom.svg" alt="Area" class="icon-3" />
-              <p>{{ plans[0].bathroom }} Bathrooms</p>
-            </div>
-            <!-- Area -->
-            <div class="details-item">
-              <img src="src/assets/area.svg" alt="Area" class="icon-3" />
-              <p>{{ plans[0].area }}</p>
-            </div>
+              <!-- Next Button -->
+              <button class="popup-next" @click="nextImage">&#8594;</button>
+           </div>
           </div>
-
-      <!-- Buttons Section -->
-      <div class="floorplan-buttons">
-        <button @click="downloadBrochure(plans[0].brochure)" class="btn download-btn">
-          <img src="src/assets/brochure.svg" alt="Download" />
-          Download Brochure
-        </button>
-        <button @click="openImage(plans[0].plan)" class="btn view-btn">
-          <img src="src/assets/area.svg" alt="View" />
-          View Floorplan
-        </button>
-      </div>
-    </div>
         </div>
-      </div>
-    </div>
-    </div>
-  </div>
-  <!-- Popup for floorplan image -->
-   <div class="popup" v-if="showPopup">
-    <div class="popup-content">
-      <div class="popup-header">
-        <h2 class="popup-title">{{ selectedPlan }}</h2>
-        <div class="zoom-control">
-          <button @click="zoomIn" class="close-btn"> <i class="fa fa-search-plus"></i></button>
-          <button @click="zoomOut" class="close-btn"> <i class="fa fa-search-minus"></i></button>
-          <button class="close-btn" @click="ClosePopup"><i class="fa fa-times-circle"></i></button>
-        </div>
-      </div>
 
-      <div class="popup-image-container"
-      :class="{ grabbing: isDragging }"
-      @mousedown="startDragging"
-      @mousemove="dragImage"
-      @mouseup="stopDragging"
-      @mouseleave="stopDragging">
-        <img
-        :src="selectedPlanImage"
-        alt="Floorplan"
-        class="popup-image"
-        :style="{transform: `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`, }"
-        />
-      </div>
-    </div>
-   </div>
+        <!-- Floor Plan Section -->
+        <div class="floorplan-section" id="section-floorplan">
+          <h2 class="floorplan-title">Floorplan</h2>
+          <div class="floorplan-container">
+            <!-- Header Section -->
+            <div class="floorplan-header">
+              <div class="plan-select">
+                <select v-model="selectedPlan" class="custom-select">
+                   <option
+                   v-for="(plans, planType) in floorplan[property.name][0]"
+                  :key="planType"
+                  :value="planType"
+                >{{ planType }}
+                  </option>
+                </select>
+              </div>
+              <div class="plan-price">
+                Price From <span class="price">{{ property.price }}</span>
+              </div>
+            </div>
 
-      <!-- Location section -->
-      <div class="location-section">
-        <div class="location-title">
-        <h2>Location</h2>
-        <div class="line-holder">
-          <div class="line">
-            <div class="line-1">
-              <div class="line-2"></div>
+            <!-- Floorplan Details Section -->
+            <div class="floorplan-details">
+              <div
+                v-for="(plans, planType) in floorplan[property.name][0]"
+                :key="planType"
+              >
+                <div v-if="selectedPlan === planType" class="details-floorplan">
+                  <div class="details-grid-items">
+                    <div class="details-grid">
+                      <!-- Bedrooms -->
+                      <div class="details-item">
+                        <img src="src/assets/bed.png" alt="Area" class="icon-3" />
+                        <p>{{ plans[0].bedroom }} Bedrooms</p>
+                      </div>
+                      <!-- Bathrooms -->
+                      <div class="details-item">
+                        <img src="src/assets/bathroom.svg" alt="Area" class="icon-3" />
+                        <p>{{ plans[0].bathroom }} Bathrooms</p>
+                      </div>
+                      <!-- Area -->
+                      <div class="details-item">
+                        <img src="src/assets/area.svg" alt="Area" class="icon-3" />
+                        <p>{{ plans[0].area }}</p>
+                      </div>
+                    </div>
+
+                    <!-- Buttons Section -->
+                    <div class="floorplan-buttons">
+                      <button @click="downloadBrochure(plans[0].brochure)" class="btn download-btn">
+                        <img src="src/assets/brochure.svg" alt="Download" />
+                        Download Brochure
+                      </button>
+                      <button @click="openImage(plans[0].plan)" class="btn view-btn">
+                        <img src="src/assets/area.svg" alt="View" />
+                        View Floorplan
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-        <div class="location-container">
-        <div class="location-map">
-          <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on"
-  style="border:0;"
-  allowfullscreen=""
-  loading="lazy"
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
 
+        <!-- Popup for floorplan image -->
+        <div class="popup" v-if="showPopup">
+          <div class="popup-content">
+            <div class="popup-header">
+              <h2 class="popup-title">{{ selectedPlan }}</h2>
+              <div class="zoom-control">
+                <button @click="zoomIn" class="close-btn"> <i class="fa fa-search-plus"></i></button>
+                <button @click="zoomOut" class="close-btn"> <i class="fa fa-search-minus"></i></button>
+                <button class="close-btn" @click="ClosePopup"><i class="fa fa-times-circle"></i></button>
+              </div>
+            </div>
+
+            <div class="popup-image-container"
+            :class="{ grabbing: isDragging }"
+            @mousedown="startDragging"
+            @mousemove="dragImage"
+            @mouseup="stopDragging"
+            @mouseleave="stopDragging"
+            >
+              <img
+              :src="selectedPlanImage"
+              alt="Floorplan"
+              class="popup-image"
+              :style="{transform: `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`, }"
+              />
+            </div>
+          </div>
         </div>
-        <div class="amenities">
-          <q-list>
-          <q-item class="amenities-section">
-          <q-item-section>Nearby Amenities</q-item-section>
-        </q-item>
-        <q-separator color="white"/>
-        <q-expansion-item
-  expand-icon-class="text-white"
-  group="somegroup"
-  default-opened
-  class="amenities-expand"
->
-  <template v-slot:header>
-    <q-item-section avatar>
-      <i class="fas fa-graduation-cap" style="color: white; font-size: 18px;"></i>
-    </q-item-section>
-    <q-item-section>
-      <span class="text-white">Education</span>
-    </q-item-section>
-  </template>
 
-  <!-- Content inside the expansion item -->
-  <div class="q-pa-md">
-    <q-item class="amenities-child">
-      <q-item-section class="amenities-location">SK <q-space class="amenities-km"/> 3.4 km </q-item-section>
-    </q-item>
-    <q-item class="amenities-child">
-      <q-item-section class="amenities-location">SMK <q-space class="amenities-km"/> 3.4 km</q-item-section>
-    </q-item>
-  </div>
-</q-expansion-item>
+        <!-- Location section -->
+        <div class="location-section">
+          <div class="location-title">
+            <h2>Location</h2>
+            <div class="line-holder">
+              <div class="line">
+                <div class="line-1">
+                  <div class="line-2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="location-container">
+            <div class="location-map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <div class="amenities">
+              <q-list>
+                <q-item class="amenities-section">
+                  <q-item-section>Nearby Amenities</q-item-section>
+                </q-item>
+                <q-separator color="white"/>
+                <q-expansion-item
+                expand-icon-class="text-white"
+                group="somegroup"
+                default-opened
+                class="amenities-expand"
+                >
+                  <template v-slot:header>
+                    <q-item-section avatar>
+                      <i class="fas fa-graduation-cap" style="color: white; font-size: 18px;"></i>
+                    </q-item-section>
+                    <q-item-section>
+                      <span class="text-white">Education</span>
+                    </q-item-section>
+                  </template>
 
-      <q-separator color="white"/>
-      <q-expansion-item
-      expand-icon-class="text-white"
-      group="somegroup"
-      class="amenities-expand">
+                  <!-- Content inside the expansion item -->
+                  <div class="q-pa-md">
+                    <q-item class="amenities-child">
+                      <q-item-section class="amenities-location">SK <q-space class="amenities-km"/> 3.4 km </q-item-section>
+                    </q-item>
+                    <q-item class="amenities-child">
+                      <q-item-section class="amenities-location">SMK <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                    </q-item>
+                  </div>
+                </q-expansion-item>
 
-      <template v-slot:header>
-    <q-item-section avatar>
-      <i class="fas fa-medkit" style="color: white; font-size: 18px;"></i>
-    </q-item-section>
-    <q-item-section>
-      <span class="text-white">Healthcare</span>
-    </q-item-section>
-  </template>
-    <!-- Content inside the expansion item -->
-    <div class="q-pa-md">
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Hospital <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Clinic <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-    </div>
-      </q-expansion-item>
+                <q-separator color="white"/>
+                <q-expansion-item
+                expand-icon-class="text-white"
+                group="somegroup"
+                class="amenities-expand"
+                >
+                  <template v-slot:header>
+                    <q-item-section avatar>
+                      <i class="fas fa-medkit" style="color: white; font-size: 18px;"></i>
+                    </q-item-section>
+                    <q-item-section>
+                      <span class="text-white">Healthcare</span>
+                    </q-item-section>
+                  </template>
+                  <!-- Content inside the expansion item -->
+                  <div class="q-pa-md">
+                      <q-item class="amenities-child">
+                        <q-item-section class="amenities-location">Hospital <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                      </q-item>
+                      <q-item class="amenities-child">
+                        <q-item-section class="amenities-location">Clinic <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                      </q-item>
+                  </div>
+                </q-expansion-item>
 
-      <q-separator color="white"/>
-      <q-expansion-item
-      expand-icon-class="text-white"
-      group="somegroup"
-      class="amenities-expand">
+                <q-separator color="white"/>
+                <q-expansion-item
+                expand-icon-class="text-white"
+                group="somegroup"
+                class="amenities-expand"
+                >
+                  <template v-slot:header>
+                    <q-item-section avatar>
+                      <i class="fas fa-film" style="color: white; font-size: 18px;"></i>
+                    </q-item-section>
+                    <q-item-section>
+                      <span class="text-white">Entertainment</span>
+                    </q-item-section>
+                  </template>
+                  <!-- Content inside the expansion item -->
+                  <div class="q-pa-md">
+                      <q-item class="amenities-child">
+                        <q-item-section class="amenities-location">Cinema <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                      </q-item>
+                  </div>
+                </q-expansion-item>
 
-      <template v-slot:header>
-    <q-item-section avatar>
-      <i class="fas fa-film" style="color: white; font-size: 18px;"></i>
-    </q-item-section>
-    <q-item-section>
-      <span class="text-white">Entertainment</span>
-    </q-item-section>
-  </template>
-    <!-- Content inside the expansion item -->
-    <div class="q-pa-md">
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Cinema <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-    </div>
-      </q-expansion-item>
+                <q-separator color="white"/>
+                <q-expansion-item
+                expand-icon-class="text-white"
+                group="somegroup"
+                class="amenities-expand"
+                >
+                  <template v-slot:header>
+                    <q-item-section avatar>
+                      <i class="fas fa-bicycle" style="color: white; font-size: 18px;"></i>
+                    </q-item-section>
+                    <q-item-section>
+                      <span class="text-white">Recreation</span>
+                    </q-item-section>
+                  </template>
+                  <!-- Content inside the expansion item -->
+                  <div class="q-pa-md">
+                      <q-item class="amenities-child">
+                        <q-item-section class="amenities-location">Football Field <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                      </q-item>
+                      <q-item class="amenities-child">
+                        <q-item-section class="amenities-location">Playground <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                      </q-item>
+                      <q-item class="amenities-child">
+                        <q-item-section class="amenities-location">Playstore <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                      </q-item>
+                    </div>
+                </q-expansion-item>
 
-      <q-separator color="white"/>
-      <q-expansion-item
-      expand-icon-class="text-white"
-      group="somegroup"
-      class="amenities-expand">
-
-      <template v-slot:header>
-    <q-item-section avatar>
-      <i class="fas fa-bicycle" style="color: white; font-size: 18px;"></i>
-    </q-item-section>
-    <q-item-section>
-      <span class="text-white">Recreation</span>
-    </q-item-section>
-  </template>
-    <!-- Content inside the expansion item -->
-    <div class="q-pa-md">
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Football Field <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Playground <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Playstore <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
+                <q-separator color="white"/>
+                <q-expansion-item
+                expand-icon-class="text-white"
+                group="somegroup"
+                class="amenities-expand"
+                >
+                  <template v-slot:header>
+                    <q-item-section avatar>
+                      <i class="fas fa-shopping-bag" style="color: white; font-size: 18px;"></i>
+                    </q-item-section>
+                    <q-item-section>
+                      <span class="text-white">Shopping</span>
+                    </q-item-section>
+                  </template>
+                  <!-- Content inside the expansion item -->
+                  <div class="q-pa-md">
+                      <q-item class="amenities-child">
+                        <q-item-section class="amenities-location">Mall <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                      </q-item>
+                      <q-item class="amenities-child">
+                        <q-item-section class="amenities-location">TF Mall <q-space class="amenities-km"/> 3.4 km</q-item-section>
+                      </q-item>
+                  </div>
+                </q-expansion-item>
+              </q-list>
+            </div>
+          </div>
         </div>
-      </q-expansion-item>
-
-      <q-separator color="white"/>
-      <q-expansion-item
-      expand-icon-class="text-white"
-      group="somegroup"
-      class="amenities-expand">
-
-      <template v-slot:header>
-    <q-item-section avatar>
-      <i class="fas fa-shopping-bag" style="color: white; font-size: 18px;"></i>
-    </q-item-section>
-    <q-item-section>
-      <span class="text-white">Shopping</span>
-    </q-item-section>
-  </template>
-    <!-- Content inside the expansion item -->
-    <div class="q-pa-md">
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">Mall <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-        <q-item class="amenities-child">
-          <q-item-section class="amenities-location">TF Mall <q-space class="amenities-km"/> 3.4 km</q-item-section>
-        </q-item>
-    </div>
-      </q-expansion-item>
-      </q-list>
-        </div>
-        </div>
-      </div>
-
       </div>
     </div>
   </q-page>
@@ -378,43 +410,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-const properties = [
-  {
-    id: 1,
-    name: 'Monarc Homes',
-    location: 'Kalimantan, Mana',
-    type: '2-Storey Terrace & Semi-D',
-    price: 'RM500,000',
-    status: 'Current',
-    image: 'src/assets/currentproject/house1.jpg',
-    features: ['Exclusive Amenities', 'Spacious Homes', 'Green Spaces'],
-    description: `The Camellia, your home at Wetlands Estates, the
-    private enclave in Gamuda Cove.he Camellia, your home at Wetlands Estates, the
-    private enclave in Gamuda Cove.`,
-    gallery: ['src/assets/currentproject/house1.jpg',
-      'src/assets/award1.png',
-      'src/assets/currentproject/house3.jpg']
-  }
-]
-
-const floorplan = {
-  'Monarc Homes': [
-    {
-      '2 Storey Semi-D A': [{ area: '1,800 sqft', bedroom: 4, bathroom: 3, plan: 'src/assets/currentproject/house1.jpg', brochure: 'src/assets/reports/BILL GATES AND MICROSOFT.pdf' }],
-      '2 Storey Semi-D B': [{ area: '2,800 sqft', bedroom: 5, bathroom: 4, plan: 'src/assets/currentproject/house3.jpg', brochure: 'src/assets/reports/BILL GATES AND MICROSOFT.pdf' }]
-    }
-  ]
-}
-
-const galleryHouses = {
-  'Monarc Homes': [
-    {
-      gallery: ['src/assets/currentproject/house1.jpg',
-        'src/assets/currentproject/house2.jpg',
-        'src/assets/currentproject/house3.jpg']
-    }
-  ]
-}
+import { properties, floorplan, galleryHouses } from 'src/components/PropertiesData.vue'
 
 // Extract options for dropdown based on selected property
 const selectedPlan = ref('') // Default selected plan
@@ -457,6 +453,22 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListenerEventListener('keydown', handleKeydown)
 })
+
+const scrollToGallery = () => {
+  const gallerySection = document.getElementById('section-gallery')
+
+  if (gallerySection) {
+    gallerySection.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
+const scrollToFloorplan = () => {
+  const floorplanSection = document.getElementById('section-floorplan')
+
+  if (floorplanSection) {
+    floorplanSection.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 
 const downloadBrochure = (brochure) => {
   if (brochure) {
@@ -528,10 +540,12 @@ const stopDragging = () => {
 const openPopup = (index) => {
   currentImage.value = index
   isPopupOpen.value = true
+  document.body.style.overflow = 'hidden'
 }
 
 const closePopup = () => {
   isPopupOpen.value = false
+  document.body.style.overflow = 'auto'
 }
 
 const prevImage = () => {
@@ -547,7 +561,7 @@ const nextImage = () => {
 </script>
 
 <style scoped>
-.property-page {
+.property-hero{
   font-family: Arial, sans-serif;
   color: #333;
   padding: 30px 40px;
@@ -852,15 +866,15 @@ const nextImage = () => {
     margin-right: -20px;
 
   }
-}
+}.gallery-section
 
-.gallery-section {
+ {
   padding: 20px;
   text-align: center;
 }
 
 .gallery-section h2 {
-  padding-top: 50px;
+  padding-top: 10px;
   font-size: 48px;
   line-height: 48px;
   font-weight: bold;
@@ -869,18 +883,17 @@ const nextImage = () => {
 
 .gallery-grid {
   display: flex;
-  gap: 20px;
   padding-bottom: 20px;
-  padding-top: 80px;
+  padding-top: 30px;
   justify-content: center;
+  align-items: center;
   position: relative;
 }
 
 .gallery-item {
   position: relative;
-  width: 600px;
-  height: 400px;
   overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 .gallery-item img {
@@ -888,6 +901,26 @@ const nextImage = () => {
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+}
+
+.gallery-grid .gallery-item:nth-child(1) {
+  flex: 1;
+  max-width: 25%;
+  height: 500px;
+  clip-path: inset(0 10% 0 0);
+}
+
+.gallery-grid .gallery-item:nth-child(2) {
+  flex: 2;
+  max-width: 50%;
+  height: 500px;
+}
+
+.gallery-grid .gallery-item:nth-child(3) {
+  flex: 1;
+  width: 25%;
+  height: 500px;
+  clip-path: inset(0 0 0 10%);
 }
 
 .gallery-item:hover img {
@@ -917,7 +950,7 @@ const nextImage = () => {
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 24px;
   transition: background-color 0.3s ease;
 }
 
@@ -926,7 +959,25 @@ const nextImage = () => {
   color: white;
 }
 
-@media (max-width: 520px) {}
+@media (max-width: 900px) {
+  .gallery-grid .gallery-item:nth-child(1) {
+    display: none;
+}
+
+.gallery-grid .gallery-item:nth-child(2) {
+  max-width: 100%;
+}
+
+.gallery-grid .gallery-item:nth-child(3) {
+  display: none;
+}
+}
+
+@media (max-width: 600px) {
+  .gallery-grid .gallery-item:nth-child(2) {
+  height: 300px;
+}
+}
 
 .gallery-popup {
   position: fixed;
@@ -938,6 +989,7 @@ const nextImage = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 }
 
 .gallery-popup-content {
@@ -989,6 +1041,7 @@ const nextImage = () => {
   padding: 20px 5%;
   font-family: Arial, sans-serif;
   text-align: center;
+  background-color:white;
 }
 
 .floorplan-title {

@@ -101,7 +101,7 @@
               {{ pastdevelopments.shortdescription }}
             </div>
             <div class="actions">
-              <q-btn flat label="Open Details" class="action-btn" @click="navigateToPastDevelopmentDetails(pastdevelopments.slug)" />
+              <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(pastdevelopments.slug)" />
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { developments } from 'src/components/CurrentDevelopmentData.vue'
-import { pastdevelopments } from 'src/components/PastDevelopmentData.vue'
+import { pastdevelopments } from 'src/components/PastDevelopmentDetails.vue'
 
 const allDevelopments = ref(developments)
 const allPastDevelopments = ref(pastdevelopments)
@@ -164,10 +164,6 @@ const router = useRouter()
 // Function to open the link
 const navigateToDevelopmentDetails = (slug) => {
   router.push({ path: `/development-details/${slug}` })
-}
-
-const navigateToPastDevelopmentDetails = (slug) => {
-  router.push({ path: `/past-development/${slug}` })
 }
 
 </script>

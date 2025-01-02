@@ -9,14 +9,14 @@
     </section>
 
     <!-- News Section -->
-      <section class="news-list">
-        <div v-for="news in newsItems" :key="news.slug" class="news-item">
-            <q-card @click="navigateToNewsDetails(news.slug)" class="news-btn" flat>
-              <q-icon name="article" color="secondary" />
-              {{ news.title }}
-            </q-card>
-          </div>
-      </section>
+    <section class="news-list">
+      <div v-for="news in newsItems" :key="news.slug" class="news-item">
+        <q-card @click="navigateToNewsDetails(news.slug)" class="news-btn" flat>
+          <q-icon name="article" color="secondary" />
+            {{ news.title }}
+        </q-card>
+      </div>
+    </section>
   </q-page>
 </template>
 

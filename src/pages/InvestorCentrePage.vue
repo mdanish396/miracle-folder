@@ -4,14 +4,12 @@
     <section class="hero-section">
       <div class="title-IM">
         <h1>Investor Centre</h1>
-      <p>Discover investor-related resources and presentations.</p>
-    </div>
+        <p>Discover investor-related resources and presentations.</p>
+      </div>
     </section>
 
-    <InvestorData v-slot="{ investorsItems }">
     <!-- Investor Centre Section -->
     <section class="investor-centre">
-
       <div class="investor-list">
         <div class="investor-item" v-for="investor in investorsItems" :key="investor.id">
           <q-card @click="openInvestor(investor.link)" class="investor-btn" flat>
@@ -21,12 +19,11 @@
         </div>
       </div>
     </section>
-    </InvestorData>
   </q-page>
-    </template>
+</template>
 
 <script setup>
-import InvestorData from 'src/components/InvestorData.vue'
+import { investorsItems } from 'src/components/InvestorData.vue'
 
 const openInvestor = (link) => {
   window.open(link, '_blank')

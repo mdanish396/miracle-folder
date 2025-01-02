@@ -10,9 +10,9 @@
       <!-- Overlay Text -->
       <div class="image-text-overlay">
         <div class="section-title">
-    <span class="line"></span>
-    ABOUT MIRACLE
-  </div>
+          <span class="line"></span>
+          ABOUT MIRACLE
+        </div>
         <h1 class="main-title">The Miracle Story</h1>
         <p class="established-text">Established in 2014</p>
       </div>
@@ -98,39 +98,39 @@
     </section>
 
     <div class="contact-us" id="section-contact">
-    <div class="contact-container">
-    <div class="contact-wrapper">
-    <!-- Left Section -->
-    <div class="contact-left">
-      <h2>Contact Us</h2>
-      <address>
-        No. 1, Tingkat Basement, Jalan Dagang 2,<br>
-Kampung Bukit Angin, 28000 Temerloh, Pahang<br>
-09-296 0000
-      </address>
-      <p>Please leave your details to receive more information about our developments or projects.</p>
-    </div>
+      <div class="contact-container">
+        <div class="contact-wrapper">
+          <!-- Left Section -->
+          <div class="contact-left">
+            <h2>Contact Us</h2>
+            <address>
+              No. 1, Tingkat Basement, Jalan Dagang 2,<br>
+              Kampung Bukit Angin, 28000 Temerloh, Pahang<br>
+              09-296 0000
+            </address>
+            <p>Please leave your details to receive more information about our developments or projects.</p>
+          </div>
 
-    <!-- Right Section -->
-    <div class="contact-right">
-      <form class="contact-form">
-        <input type="text" placeholder="Name*" required>
-        <input type="email" placeholder="Email*" required>
-        <input type="tel" placeholder="Telephone*" required>
-        <select>
-          <option disabled selected>Nature of enquiry</option>
-          <option>Consultation</option>
-          <option>Contractor</option>
-          <option>Business</option>
-          <option>General</option>
-        </select>
-        <textarea placeholder="Questions/Comments*" required></textarea>
-        <button type="submit" class="submit-btn">SEND</button>
-      </form>
+          <!-- Right Section -->
+          <div class="contact-right">
+            <form class="contact-form">
+              <input type="text" placeholder="Name*" required>
+              <input type="email" placeholder="Email*" required>
+              <input type="tel" placeholder="Telephone*" required>
+              <select>
+                <option disabled selected>Nature of enquiry</option>
+                <option>Consultation</option>
+                <option>Contractor</option>
+                <option>Business</option>
+                <option>General</option>
+              </select>
+              <textarea placeholder="Questions/Comments*" required></textarea>
+              <button type="submit" class="submit-btn">SEND</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-    </div>
-  </div>
   </q-page>
 </template>
 

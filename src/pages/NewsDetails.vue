@@ -25,9 +25,9 @@
         <div class="news-content">
           <div v-for="(paragraph, index) in newsItem.content" :key="index">
             <div v-if="newsItem.images && newsItem.images[index]" class="images-content">
-            <img :src="newsItem.images[index].url" class="content-image" />
-            <p v-if="newsItem.images[index].description" class="image-description">{{ newsItem.images[index].description }}</p>
-          </div>
+              <img :src="newsItem.images[index].url" class="content-image" />
+              <p v-if="newsItem.images[index].description" class="image-description">{{ newsItem.images[index].description }}</p>
+            </div>
             <p class="text-body2">{{ paragraph }}</p>
           </div>
         </div>

@@ -1,43 +1,43 @@
 <template>
   <q-page>
     <!-- Hero Image (Full Width) -->
-     <div class="hero-section">
+    <div class="hero-section">
       <div class="hero-image">
-    <img
-      src="src/assets/career1.png"
-      alt="Hero Image"/>
-      <div class="gradient-overlay"></div>
+        <img
+        src="src/assets/career1.png"
+        alt="Hero Image"/>
+        <div class="gradient-overlay"></div>
+      </div>
     </div>
-     </div>
 
     <!-- Why Join Us Section -->
     <div class="career-section">
-    <div class="content-container">
-      <div class="text-content-1">
-        <h2>Why Join Us</h2>
+      <div class="content-container">
+        <div class="text-content-1">
+          <h2>Why Join Us</h2>
           <ul>
             <li><strong>Flat structure:</strong> Hierarchy is not our focus; we value contributions from all levels.</li>
             <li><strong>Fast career progression:</strong> We ensure you have the tools and opportunities to grow.</li>
             <li><strong>Vibrant Work Culture:</strong> We celebrate collaboration and diversity.</li>
             <li><strong>Realistic bosses:</strong> Our leaders are supportive and result-oriented.</li>
           </ul>
-    </div>
-      <div class="image-container">
-        <!-- Image -->
-        <img src="src/assets/career3.jpg" alt="Why Join Us" class="career-image" />
+        </div>
+        <div class="image-container">
+          <!-- Image -->
+          <img src="src/assets/career3.jpg" alt="Why Join Us" class="career-image" />
+        </div>
       </div>
     </div>
-  </div>
 
     <!-- Why Teamwork Matters Section -->
     <div class="career-section">
-    <div class="content-container">
-      <div class="image-container">
-        <!-- Image -->
-        <img src="src/assets/career3.jpg" alt="Why Join Us" class="career-image" />
-      </div>
-      <div class="text-content-2">
-        <h2>Why Teamwork Matters</h2>
+      <div class="content-container">
+        <div class="image-container">
+          <!-- Image -->
+          <img src="src/assets/career3.jpg" alt="Why Join Us" class="career-image" />
+        </div>
+        <div class="text-content-2">
+          <h2>Why Teamwork Matters</h2>
           <p>
             Teamwork is essential for success in today’s professional world. Collaboration fosters productivity, strengthens
             relationships, and enhances problem-solving skills.
@@ -45,27 +45,26 @@
           <p>
             The ability to effectively work as a team is key to achieving shared goals and individual growth.
           </p>
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
 
     <!-- Our People Section -->
     <div class="career-section">
-    <div class="content-container">
-      <div class="text-content-1">
-        <h2>Our People</h2>
+      <div class="content-container">
+        <div class="text-content-1">
+          <h2>Our People</h2>
           <p>
             Our people are the heart of our business. Whatever you need, we’re here to help.
           </p>
-    </div>
-          <div class="image-container">
-        <!-- Image -->
-        <img src="src/assets/career2.png" alt="Why Join Us" class="career-image" />
+        </div>
+        <div class="image-container">
+          <!-- Image -->
+          <img src="src/assets/career2.png" alt="Why Join Us" class="career-image" />
+        </div>
       </div>
+      <q-btn flat label="Career Opportunities" class="btn-story" to="/about-miracle"/>
     </div>
-    <q-btn flat label="Career Opportunities" class="btn-story" to="/about-miracle"/>
-  </div>
-
   </q-page>
 </template>
 

@@ -2,121 +2,121 @@
   <transition name="fade" mode="out-in">
     <q-page :key="$route.fullPath">
       <!-- Startup Animation Overlay -->
-        <div v-if="showLoader" class="startup-overlay">
-          <div>
-        <img src="src/assets/logo4.png" class="startup-image">
-      </div>
+      <div v-if="showLoader" class="startup-overlay">
+        <div>
+          <img src="src/assets/logo4.png" class="startup-image">
+        </div>
         <h4>MIRACLE LAND</h4>
-    </div>
+      </div>
 
-    <!-- Hero Section -->
-    <div class="hero-section">
-      <video
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <video
         autoplay
         loop
         muted
         class="hero-video"
         playsinline
         preload="auto"
-      >
-        <source src="src/assets/landscape3.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      <!-- Text Overlay in Video (centered) -->
-      <div class="video-text-overlay">
-        <h1>MIRACLE FOR YOU FOREVER</h1>
-      </div>
-
-      <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
-      <div class="scroll-indicator">
-        <video autoplay loop muted class="mouse-animation" playsinline>
-          <source src="src/assets/mouse.webm" type="video/webm" />
+        >
+          <source src="src/assets/landscape3.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-      </div>
-              <!-- Vertical Branding -->
-              <div class="vertical-branding">MIRACLE LAND</div>
-    </div>
 
-    <!-- Current Development Projects Section -->
-    <div class="projects-section">
-      <h2 class="section-title">Current Development Projects</h2>
-      <div class="projects-container"
-      :class="{ 'grid-layout': showAllProjects }"
-      :style="{ gridTemplateColumns: `repeat(${columns}, 1fr)` }">
-        <!-- Scrollable Project Card -->
-        <div class="project-card" v-for="project in displayedProjects" :key="project.id">
-          <img :src="project.image" :alt="project.name" class="project-image" />
-          <div class="project-info">
-            <h3>{{ project.name }}</h3>
-            <p>{{ project.location }}</p>
-            <p>From RM {{ project.price }}</p>
-          </div>
-          <!-- Hover Project Card Information -->
-          <div class="project-hover-overlay">
-            <span class="status-sale">{{ project.status }}</span>
-            <p>{{ project.description }}</p>
-            <div class="project-details">
-              <span><i class="fas fa-bed"></i> {{ project.bedrooms }}</span>
-              <span><i class="fas fa-bath"></i> {{ project.bathrooms }}</span>
-              <span><i class="fas fa-expand-arrows-alt"></i> {{ project.size }} m²</span>
+        <!-- Text Overlay in Video (centered) -->
+        <div class="video-text-overlay">
+          <h1>MIRACLE FOR YOU FOREVER</h1>
+        </div>
+
+        <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
+        <div class="scroll-indicator">
+          <video autoplay loop muted class="mouse-animation" playsinline>
+            <source src="src/assets/mouse.webm" type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <!-- Vertical Branding -->
+        <div class="vertical-branding">MIRACLE LAND</div>
+      </div>
+
+      <!-- Current Development Projects Section -->
+      <div class="projects-section">
+        <h2 class="section-title">Current Development Projects</h2>
+        <div class="projects-container"
+        :class="{ 'grid-layout': showAllProjects }"
+        :style="{ gridTemplateColumns: `repeat(${columns}, 1fr)` }"
+        >
+          <!-- Scrollable Project Card -->
+          <div class="project-card" v-for="project in displayedProjects" :key="project.id">
+            <img :src="project.image" :alt="project.name" class="project-image" />
+            <div class="project-info">
+              <h3>{{ project.name }}</h3>
+              <p>{{ project.location }}</p>
+              <p>From RM {{ project.price }}</p>
             </div>
-            <div class="actions">
-              <q-btn flat label="Open Details" class="action-btn" @click="viewProject(project.id)" />
+            <!-- Hover Project Card Information -->
+            <div class="project-hover-overlay">
+              <span class="status-sale">{{ project.status }}</span>
+              <p>{{ project.description }}</p>
+              <div class="project-details">
+                <span><i class="fas fa-bed"></i> {{ project.bedrooms }}</span>
+                <span><i class="fas fa-bath"></i> {{ project.bathrooms }}</span>
+                <span><i class="fas fa-expand-arrows-alt"></i> {{ project.size }} m²</span>
+              </div>
+              <div class="actions">
+                <q-btn flat label="Open Details" class="action-btn" @click="viewProject(project.id)" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-if="!showAllProjects">
+          <q-btn flat label="Show More Projects" class="view-all-btn" @click="showMoreProjects" />
+        </div>
+        <div v-if="showAllProjects">
+          <q-btn flat label="Show Less Projects" class="view-all-btn" @click="showLessProjects" />
+        </div>
+      </div>
+
+      <!-- Partners' Logos Section -->
+      <div class="partners-section">
+        <h3>Our Partners</h3>
+        <div class="logo-container">
+          <img src="src/assets/logo1.png" alt="Partner 1" class="partner-logo" />
+          <img src="src/assets/logo1.png" alt="Partner 2" class="partner-logo" />
+          <img src="src/assets/logo1.png" alt="Partner 3" class="partner-logo" />
+        </div>
+      </div>
+
+      <!-- About Us Section -->
+      <div data-aos="fade-up">
+        <div class="about-us-section">
+          <div class="content-container">
+            <div class="text-content">
+              <h2>Leaders In Development</h2>
+              <p>
+                Miracle Land has a 20+ year track record of developing innovative,
+                landmark residential, commercial, and retail projects that span Malaysia's cities and beyond.
+              </p>
+              <p>
+                Our company is privately owned and has delivered over 100 projects
+                valued at over RM5 billion. We aim to create dynamic places where people live, work, and thrive.
+              </p>
+              <q-btn flat label="ABOUT US" class="btn-story" to="/about-miracle"/>
+            </div>
+            <div class="image-container">
+                <!-- Duplicate Gray-toned Image -->
+              <div class="gray-image-layer">
+                <img src="src/assets/building.png" alt="Building" class="building-image gray-tone" />
+              </div>
+
+                <!-- Main Image Layer -->
+              <img src="src/assets/building.png" alt="Building" class="building-image" />
             </div>
           </div>
         </div>
       </div>
-      <div v-if="!showAllProjects">
-        <q-btn flat label="Show More Projects" class="view-all-btn" @click="showMoreProjects" />
-      </div>
-      <div v-if="showAllProjects">
-        <q-btn flat label="Show Less Projects" class="view-all-btn" @click="showLessProjects" />
-      </div>
-    </div>
-
-    <!-- Partners' Logos Section -->
-    <div class="partners-section">
-      <h3>Our Partners</h3>
-      <div class="logo-container">
-        <img src="src/assets/logo1.png" alt="Partner 1" class="partner-logo" />
-        <img src="src/assets/logo1.png" alt="Partner 2" class="partner-logo" />
-        <img src="src/assets/logo1.png" alt="Partner 3" class="partner-logo" />
-      </div>
-    </div>
-
-  <!-- About Us Section -->
-  <div data-aos="fade-up">
-  <div class="about-us-section">
-    <div class="content-container">
-      <div class="text-content">
-        <h2>Leaders In Development</h2>
-        <p>
-          Miracle Land has a 20+ year track record of developing innovative,
-          landmark residential, commercial, and retail projects that span Malaysia's cities and beyond.
-        </p>
-        <p>
-          Our company is privately owned and has delivered over 100 projects
-          valued at over RM5 billion. We aim to create dynamic places where people live, work, and thrive.
-        </p>
-        <q-btn flat label="ABOUT US" class="btn-story" to="/about-miracle"/>
-    </div>
-      <div class="image-container">
-        <!-- Duplicate Gray-toned Image -->
-        <div class="gray-image-layer">
-          <img src="src/assets/building.png" alt="Building" class="building-image gray-tone" />
-        </div>
-
-        <!-- Main Image Layer -->
-        <img src="src/assets/building.png" alt="Building" class="building-image" />
-      </div>
-    </div>
-  </div>
-  </div>
-
-  </q-page>
-</transition>
+    </q-page>
+  </transition>
 </template>
 
 <script setup>
@@ -158,7 +158,7 @@ const showLessProjects = () => {
 </script>
 
 <style scoped>
-.fade-ent er-active, .fade-leave-active {
+.fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s ease;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {

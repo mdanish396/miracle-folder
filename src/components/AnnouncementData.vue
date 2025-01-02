@@ -1,12 +1,13 @@
 <template>
-  <slot :announcementsItems="announcementsItems" />
+  <div>
+
+  </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script>
 
 // Data for the news items
-const announcementsItems = ref([
+export const announcementsItems = [
   {
     id: 1,
     title: 'Company Update - March 2024',
@@ -17,5 +18,5 @@ const announcementsItems = ref([
     title: 'Shareholder Meeting Announcement',
     link: '/path/to/shareholder_meeting_announcement.pdf'
   }
-])
+]
 </script>

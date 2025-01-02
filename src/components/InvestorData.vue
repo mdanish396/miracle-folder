@@ -1,12 +1,13 @@
 <template>
-  <slot :investorsItems="investorsItems" />
+  <div>
+
+  </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script>
 
 // Data for the news items
-const investorsItems = ref([
+export const investorsItems = [
   {
     id: 1,
     title: 'Investor Presentation Q1',
@@ -17,5 +18,5 @@ const investorsItems = ref([
     title: 'Annual Shareholders Report',
     link: '/path/to/annual_shareholders_report.pdf'
   }
-])
+]
 </script>
