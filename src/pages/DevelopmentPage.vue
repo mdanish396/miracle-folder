@@ -176,7 +176,7 @@ const router = useRouter()
 
 // Function to open the link
 const navigateToDevelopmentDetails = (slug) => {
-  router.push({ path: `/development-details/${slug}` })
+  router.push({ path: `/for-sale/${slug}` })
 }
 
 const navigateToPastDevelopmentDetails = (slug) => {

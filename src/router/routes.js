@@ -16,7 +16,7 @@ const routes = [
       { path: '/news-details/:slug', name: 'NewsDetails', component: () => import('src/pages/NewsDetails.vue') },
       { path: '/project-details', component: () => import('src/pages/ProjectDetails.vue') },
       { path: '/development', component: () => import('src/pages/DevelopmentPage.vue') },
-      { path: '/development-details/:slug', name: 'DevelopmentDetails', component: () => import('src/pages/DevelopmentDetails.vue') },
+      { path: '/for-sale/:slug', name: 'ForSale', component: () => import('src/pages/ForSale.vue') },
       { path: '/past-development/:slug', name: 'PastDevelopmentDetails', component: () => import('src/pages/PastDevelopmentDetails.vue') },
       { path: '/property/:slug', name: 'PropertyDetails', component: () => import('src/pages/PropertyDetails.vue') }
     ]

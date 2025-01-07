@@ -207,7 +207,7 @@
             >
               <q-item
               v-for="(project, index) in filteredProjects" :key="index"
-              clickable :to="`/development-details/${project.slug}`"
+              clickable :to="`/for-sale/${project.slug}`"
               class="drawer-item-child-2">
                 <q-item-section>{{ project.name }}</q-item-section>
               </q-item>
@@ -353,7 +353,7 @@ const setSelectedDistrict = (district) => {
 }
 
 const navigateToSlug = (slug) => {
-  router.push(`/development-details/${slug}`).catch(() => {})
+  router.push(`/for-sale/${slug}`).catch(() => {})
 }
 
 const filteredLeases = computed(() =>

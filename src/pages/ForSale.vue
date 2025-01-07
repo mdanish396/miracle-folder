@@ -175,13 +175,28 @@
           </div>
         </div>
 
-        <!-- Right Image -->
+        <!-- Center Image -->
         <div class="gallery-item"
           v-if="development.galleryImages[2]"
           :key="idx">
           <img
             :src="development.galleryImages[2]"
             @click="openPopup(2)"
+            loading="lazy"
+            alt="Center Image"
+          />
+          <div class="gallery-overlay">
+            <button class="visit-gallery-btn" @click="openPopup(1)">Visit Gallery</button>
+          </div>
+        </div>
+
+        <!-- Right Image -->
+        <div class="gallery-item"
+          v-if="development.galleryImages[3]"
+          :key="idx">
+          <img
+            :src="development.galleryImages[3]"
+            @click="openPopup(3)"
             loading="lazy"
             alt="Left Image"
           />
@@ -965,7 +980,7 @@ line-height: 20px;
 }
 
 .gallery-section {
-  padding: 20px;
+  padding: 0px;
   margin-top: -400px;
   text-align: center;
 }
@@ -982,6 +997,7 @@ line-height: 20px;
   display: flex;
   padding-bottom: 20px;
   padding-top: 30px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -1002,22 +1018,28 @@ line-height: 20px;
 
 .gallery-grid .gallery-item:nth-child(1) {
   flex: 1;
-  max-width: 25%;
-  height: 500px;
-  clip-path: inset(0 10% 0 0);
+  max-width: 35%;
+  height: 550px;
+  clip-path: inset(0 0 0 0);
 }
 
 .gallery-grid .gallery-item:nth-child(2) {
   flex: 2;
   max-width: 50%;
-  height: 500px;
+  height: 550px;
 }
 
 .gallery-grid .gallery-item:nth-child(3) {
+  flex: 2;
+  max-width: 50%;
+  height: 550px;
+}
+
+.gallery-grid .gallery-item:nth-child(4) {
   flex: 1;
   width: 25%;
-  height: 500px;
-  clip-path: inset(0 0 0 10%);
+  height: 550px;
+  clip-path: inset(0 0 0 0);
 }
 
 .gallery-item:hover img {
