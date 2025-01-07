@@ -2,90 +2,89 @@
   <q-page class="property-details-page">
     <div class="property-hero">
       <!-- Loop through each property -->
-      <div v-for="property in properties" :key="property.id" class="property-section">
+      <div class="property-section">
 
-        <div class="before-hero-section">
-        </div>
+        <div class="before-hero-section"></div>
+
         <!-- Hero Section -->
-        <div class="hero-section">
-          <img :src="property.image" alt="Property Image" class="hero-image" />
-          <div class="property-section">
-            <div class="property-grid">
-              <div class="property-card">
-                <div class="property-info">
-                  <h3 class="property-name">{{ property.name }}</h3>
-                  <div class="property-location">
-                    <i class="fas fa-map-marker-alt icon">
-                    </i>
-                    <span class="text-property-location">
-                    {{ property.location }}
-                    </span>
-                  </div>
-                  <q-separator/>
-                  <q-toolbar class="property-toolbar">
-                  <div class="property-item">
-                    <h4>Type</h4>
-                    <p class="truncated-text">{{ property.type }}
-                    <q-tooltip v-if="!screenBelow540px">
-                    {{ property.type }}
-                    </q-tooltip>
-                    </p>
-                  </div>
-
-                  <div class="property-item">
-                    <h4>From</h4>
-                    <p>{{ property.price }}</p>
-                  </div>
-
-                  <div class="property-item">
-                    <h4>Status</h4>
-                    <p>{{ property.status }}</p>
-                  </div>
-                  </q-toolbar>
-                  <q-separator/>
-                  <div class="property-feature-list">
-                    <div
-                    v-for="feature in property.features"
-                    :key="feature"
-                    class="property-feature-item"
-                    >
-                      <i class="fas fa-check-circle icon-1">
-                      </i>
-                      <span class="property-feature">
-                      {{ feature }}
+        <div v-if="property">
+          <div class="hero-section">
+            <img :src="property.image" alt="Property Image" class="hero-image" />
+            <div class="property-section">
+              <div class="property-grid">
+                <div class="property-card">
+                  <div class="property-info">
+                    <h3 class="property-name">{{ property.name }}</h3>
+                    <div class="property-location">
+                      <i class="fas fa-map-marker-alt icon"></i>
+                      <span class="text-property-location">
+                        {{ property.location }}
                       </span>
                     </div>
-                  </div>
-                  <div class="property-button">
-                    <q-btn
-                    stack
-                    flat
-                    @click="scrollToFloorplan"
-                    class="property-btn">
-                    <img src="src/assets/floor.svg" class="icon-2">
-                    <span class="text-btn">FLOOR PLANS</span>
-                    </q-btn>
+                    <q-separator/>
+                    <q-toolbar class="property-toolbar">
+                      <div class="property-item">
+                        <h4>Type</h4>
+                        <p class="truncated-text">{{ property.type }}
+                          <q-tooltip v-if="!screenBelow540px">
+                            {{ property.type }}
+                          </q-tooltip>
+                        </p>
+                      </div>
 
-                    <q-btn
-                    stack
-                    flat
-                    @click="scrollToGallery"
-                    class="property-btn">
-                    <img src="src/assets/gallery.svg" class="icon-2">
-                    <span class="text-btn">GALLERY</span>
-                    </q-btn>
+                      <div class="property-item">
+                        <h4>From</h4>
+                        <p>{{ property.price }}</p>
+                      </div>
+
+                      <div class="property-item">
+                        <h4>Status</h4>
+                        <p>{{ property.status }}</p>
+                      </div>
+                    </q-toolbar>
+                    <q-separator/>
+                    <div class="property-feature-list">
+                      <div
+                      v-for="feature in property.features"
+                      :key="feature"
+                      class="property-feature-item"
+                      >
+                        <i class="fas fa-check-circle icon-1"></i>
+                        <span class="property-feature">
+                          {{ feature }}
+                        </span>
+                      </div>
+                    </div>
+                    <div class="property-button">
+                      <q-btn
+                        stack
+                        flat
+                        @click="scrollToFloorplan"
+                        class="property-btn">
+                        <img src="src/assets/floor.svg" class="icon-2">
+                        <span class="text-btn">FLOOR PLANS</span>
+                      </q-btn>
+
+                      <q-btn
+                        stack
+                        flat
+                        @click="scrollToGallery"
+                        class="property-btn">
+                        <img src="src/assets/gallery.svg" class="icon-2">
+                        <span class="text-btn">GALLERY</span>
+                      </q-btn>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Description -->
-        <div class="description-section">
-          <h2>{{ property.name }}</h2>
-          <p>{{ property.description }}</p>
-          <div class="description-icon">
+          <!-- Description -->
+          <div class="description-section">
+            <h2>{{ property.name }}</h2>
+            <p>{{ property.description }}</p>
+            <div class="description-icon"></div>
           </div>
         </div>
 
@@ -410,6 +409,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { properties, floorplan, galleryHouses } from 'src/components/PropertiesData.vue'
 
 // Extract options for dropdown based on selected property
@@ -425,6 +425,10 @@ const lastMouseX = ref(0)
 const lastMouseY = ref(0)
 const isPopupOpen = ref(false)
 const currentImage = ref(0)
+const route = useRoute()
+
+const propertySlug = route.params.slug
+const property = ref(properties.value.find(item => item.slug === propertySlug))
 
 // Function to update screen size state
 const checkScreenSize = () => {
@@ -451,7 +455,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  window.removeEventListenerEventListener('keydown', handleKeydown)
+  window.removeEventListener('keydown', handleKeydown)
 })
 
 const scrollToGallery = () => {

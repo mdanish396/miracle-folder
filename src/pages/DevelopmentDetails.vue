@@ -105,12 +105,10 @@
             <q-separator/>
             <div class="product-feature-list">
               <div
-              v-for="feature in property.features"
-              :key="feature"
-              class="product-feature-item"
-              >
-                <i class="fas fa-check-circle icon">
-                </i>
+                v-for="feature in property.features"
+                :key="feature"
+                class="product-feature-item">
+                <i class="fas fa-check-circle icon"></i>
                 <span class="product-feature">
                   {{ feature }}
                 </span>
@@ -276,23 +274,29 @@
 <script setup>
 import { developments } from 'src/components/CurrentDevelopmentData.vue'
 import { ref, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 import { properties } from 'src/components/Properties/PropertiesData.vue'
 import { nearbyAmenities } from 'src/components/AmenitiesData.vue'
 
 const route = useRoute()
 const developmentSlug = route.params.slug
-const development = ref(developments.find(item => item.slug === developmentSlug))
+const development = ref(developments.find(item => item.slug === developmentSlug) || null)
 const visibleCount = ref(3)
 const isPopupOpen = ref(false)
 const currentImage = ref(0)
+
+onBeforeRouteUpdate((to, from, next) => {
+  const newSlug = to.params.slug
+  development.value = developments.find(item => item.slug === newSlug) || null
+  next()
+})
 
 const visibleProperties = computed(() => {
   return filteredProperties.value.slice(0, visibleCount.value)
 })
 
 const filteredProperties = computed(() => {
-  return properties[development.value.location] || []
+  return properties[development.value.name] || []
 })
 
 const router = useRouter()
@@ -331,7 +335,7 @@ const nextImage = () => {
 
 const filteredAmenities = computed(() => {
   // Get the location of the current development
-  const location = development.value?.location
+  const location = development.value?.name
 
   // Return amenities for the location if it exists or an empty array otherwise
   return nearbyAmenities[location]?.amenities || {}

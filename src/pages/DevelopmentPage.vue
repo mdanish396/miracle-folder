@@ -1,11 +1,24 @@
 <template>
   <q-page>
-    <section class="hero-section">
-      <div class="title">
-        <h1>Development</h1>
-        <p>Stay updated with the latest company news.</p>
+    <div class="development-section">
+      <div class="content-container">
+        <!-- Text Content Section -->
+        <div class="text-content">
+          <div class="line-holder">
+            <div class="line">
+              <div class="line-1"></div>
+            </div>
+          </div>
+          <h2 class="text-above">Our</h2>
+          <h2 class="text-below">Development</h2>
+        </div>
+
+        <!-- Image Section -->
+        <div class="development-image-container">
+          <img src="src/assets/currentproject/house1.jpg" class="top-image" />
+        </div>
       </div>
-    </section>
+    </div>
 
     <!-- Current Developments Section -->
     <div class="developments-section">
@@ -175,66 +188,165 @@ const navigateToPastDevelopmentDetails = (slug) => {
 <style scoped>
 
 /*Project Section*/
-.hero-section {
-  padding: 20px;
-  height: 43vh;
-  text-align: center;
-  background-color: #006039;
-  margin-top: -70px;
-  color: white;
-}
-
-/* Responsive Design */
-@media (min-width: 1110px) {
-  .hero-section {
-    margin-top: -70px;
-}
-}
-@media (max-width: 1106px) {
-  .hero-section {
-    height: 44vh;
-    margin-top: -85px;
-}
-}
-
 @font-face {
-  font-family: 'GeographWebMedium';
-  src: url('src/assets/fonts/geograph/geographwebmedium.ttf') format('truetype');
+  font-family: 'TitilliumWebRegular';
+  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 
-.title {
-  font-family: 'GeographWebMedium', sans-serif;
+@font-face {
+  font-family: 'RecklessNeueMedium';
+  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
 }
 
-.title h1 {
-  margin-top: 80px;
-  font-size: 50px;
+.development-section {
+  background-color: #0d182b;
+  display: flex;
+  height: 71vh;
+  justify-content: center;
+  align-items: center;
 }
 
-.title p {
-  margin-top: -50px;
-  font-size: 17px;
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-
-  .title h1 {
-  font-size: 40px;
+.text-content {
+  flex: 1;
+  padding-left: 120px;
 }
 
-  .title p {
-  font-size: 14px;
+.line-holder {
+  position: static;
+  margin-top: -20px;
+  padding-bottom: 30px;
+}
+
+.line {
+  display: flex;
+  width: 12px; /* Thickness of the line */
+  height: 4px; /* Height of the line */
+  background-color: #d9d323; /* Gold accent */
+  padding-inline: 40px;
+
+}
+
+.line-1 {
+  display: inline-block;
+  height: 2px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-top: 1px; /* Space between the line and text */
+  padding-inline-end: 140px;
+  margin-inline-start: 40px;
+}
+
+.text-above,
+.text-below {
+  font-family: 'RecklessNeueMedium';
+  font-size: 48px;
+  margin: 0;
+}
+
+.text-above {
+  color: #fff;
+}
+
+.text-below {
+  color: #d9d323;
+}
+
+/* Image Section */
+.development-image-container {
+  flex: 1; /* Adjusts the width for the image section to make it more than half the screen width */
+  display:flex;
+  justify-content: flex-end;
+  align-items:flex-end;
+}
+
+.top-image {
+  width: 700px;
+  height: 71vh;
+  object-fit: cover;
+}
+
+@media (max-width: 1124px) {
+  .top-image {
+  width: 600px;
 }
 }
 
-@media (max-width: 480px) {
-  .title h1 {
-    font-size: 28px;
+@media (max-width: 1024px) {
+
+.text-above,
+.text-below {
+  font-size: 30px;
+}
+
+.line {
+padding-inline: 20px;
+}
+
+.line-1 {
+  padding-inline-end: 100px;
+  margin-inline-start: 20px;
+}
+
+.top-image {
+  width: 500px;
+}
+}
+
+@media (max-width: 820px) {
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .title p {
-    font-size: 13px;
+  .development-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -455px;
+  }
+
+  .text-content {
+    padding-left: 0px;
+    padding-top: 185px;
+  }
+
+  .text-above,
+  .text-below {
+  font-size: 30px;
+}
+
+.line-holder {
+  display: none;
+}
+
+.top-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  }
+}
+@media (max-width: 520px) {
+
+  .development-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -445px;
+  }
+
+  .text-content {
+    padding-left: 0px;
+    padding-top: 138px;
   }
 }
 

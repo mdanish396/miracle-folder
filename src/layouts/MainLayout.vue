@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <!-- Conditionally render header based on the route -->
     <!-- Top Bar as Overlay -->
-    <q-header class="q-pa-md navigation-bar" reveal elevated :class="{ visible: scrolled, transparent: !scrolled }">
+    <q-header class="q-pa-md navigation-bar">
       <q-toolbar class="toolbar">
         <!-- Left-aligned: Logo and Title -->
         <router-link to="/" class="logo-title-group" @click="handleLogoClick">
@@ -42,18 +42,18 @@
             >
               <div class="dropdown-content">
                 <!-- district list -->
-                <div class="district-list">
-                  <h6>Pahang</h6>
+                <div v-for="(districts, state) in groupedDevelopments" :key="state" class="district-list">
+                  <h6>{{ state }}</h6>
                   <ul>
                     <li
                     v-for="(district, index) in districts"
                     :key="index"
-                    @mouseover="setSelectedDistrict(district.name)"
-                    @click="setSelectedDistrict(district.name)"
+                    @mouseover="setSelectedDistrict(district)"
+                    @click="setSelectedDistrict(district)"
                     class="district-item"
                     default-opened
                     >
-                      {{ district.name }}
+                      {{ district }}
                     </li>
                   </ul>
                 </div>
@@ -61,7 +61,8 @@
                 <!-- Images Grid -->
                 <div class="image-grid">
                   <div class="grid-item" v-for="(project, index) in filteredProjects" :key="index">
-                    <div class="image-container">
+                    <div class="image-container"
+                    @click="navigateToSlug(project.slug)">
                       <img :src="project.image" alt="Project Image" />
                       <div class="overlay">
                         <p>{{ project.name }}</p>
@@ -163,6 +164,7 @@
         flat
         icon="menu"
         class="q-ml-md"
+        style="color: black;"
         @click="toggleDrawer"
         v-if="isSmallScreen"
         />
@@ -190,74 +192,24 @@
           group="somegroup"
           label="For Sale"
           class="drawer-item-expand"
+          v-for="(districts, state) in groupedDevelopments" :key="state"
           >
             <q-item class="drawer-item-child-1">
-              <q-item-section>Pahang</q-item-section>
+              <q-item-section>{{ state }}</q-item-section>
             </q-item>
             <q-expansion-item
             group="somegroup1"
-            label="Jengka"
             class="drawer-item-expand-2"
+            v-for="(district, index) in districts"
+                    :key="index"
+                    @click="setSelectedDistrict(district)"
+                    :label="district"
             >
-              <q-item clickable to="/reports" class="drawer-item-child-2">
-                <q-item-section>16 Sierra, Puchong</q-item-section>
-              </q-item>
-              <q-item clickable to="/reports" class="drawer-item-child-2">
-                <q-item-section>Bandar Puteri Puchong & Puchong Jaya</q-item-section>
-              </q-item>
-              <q-item clickable to="/reports" class="drawer-item-child-2">
-                <q-item-section>Bandar Puteri Bangi</q-item-section>
-              </q-item>
-              <q-item clickable to="/news" class="drawer-item-child-2">
-                <q-item-section>Senna Puteri, Salak Tinggi</q-item-section>
-              </q-item>
-              <q-item clickable to="/reports" class="drawer-item-child-2">
-                <q-item-section>Banting</q-item-section>
-              </q-item>
-              <q-item clickable to="/news" class="drawer-item-child-2">
-                <q-item-section>PJ Midtown</q-item-section>
-              </q-item>
-              <q-item clickable to="/news" class="drawer-item-child-2">
-                <q-item-section>Warisan Puteri, Sepang</q-item-section>
-              </q-item>
-            </q-expansion-item>
-            <q-expansion-item
-            group="somegroup1"
-            label="Maran"
-            class="drawer-item-expand-2"
-            >
-              <q-item clickable to="/reports" class="drawer-item-child-2">
-                <q-item-section>Maran Housing</q-item-section>
-              </q-item>
-            </q-expansion-item>
-            <q-expansion-item
-            group="somegroup1"
-            label="Mentakab"
-            class="drawer-item-expand-2"
-            >
-              <q-item clickable to="/reports" class="drawer-item-child-2">
-                <q-item-section>Mentakab Project A</q-item-section>
-              </q-item>
-              <q-item clickable to="/reports" class="drawer-item-child-2">
-                <q-item-section>Mentakab Project B</q-item-section>
-              </q-item>
-            </q-expansion-item>
-            <q-expansion-item
-            group="somegroup1"
-            label="Kuantan"
-            class="drawer-item-expand-2"
-            >
-              <q-item clickable to="/reports" class="drawer-item-child-2">
-                <q-item-section>Kuantan Housing</q-item-section>
-              </q-item>
-            </q-expansion-item>
-            <q-expansion-item
-            group="somegroup1"
-            label="Temerloh"
-            class="drawer-item-expand-2"
-            >
-              <q-item clickable to="/reports" class="drawer-item-child-2">
-                <q-item-section>Temerloh Housing</q-item-section>
+              <q-item
+              v-for="(project, index) in filteredProjects" :key="index"
+              clickable :to="`/development-details/${project.slug}`"
+              class="drawer-item-child-2">
+                <q-item-section>{{ project.name }}</q-item-section>
               </q-item>
             </q-expansion-item>
           </q-expansion-item>
@@ -365,45 +317,43 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
-
-const districts = [
-  { name: 'Jengka', state: 'Pahang' },
-  { name: 'Maran', state: 'Pahang' },
-  { name: 'Mentakab', state: 'Pahang' },
-  { name: 'Kuantan', state: 'Pahang' },
-  { name: 'Temerloh', state: 'Pahang' }
-]
-
-const projects = [
-  { name: '16 Sierra, Puchong', image: 'src/assets/building.png', district: 'Jengka', state: 'Pahang' },
-  { name: 'Bandar Puteri Puchong & Puchong Jaya', image: 'src/assets/currentproject/house1.jpg', district: 'Jengka', state: 'Pahang' },
-  { name: 'Bandar Puteri Bangi', image: 'https://via.placeholder.com/150', district: 'Jengka' },
-  { name: 'Senna Puteri, Salak Tinggi', image: 'https://via.placeholder.com/150', district: 'Jengka', state: 'Pahang' },
-  { name: 'Banting', image: 'https://via.placeholder.com/150', district: 'Jengka', state: 'Pahang' },
-  { name: 'PJ Midtown', image: 'https://via.placeholder.com/150', district: 'Jengka', state: 'Pahang' },
-  { name: 'Warisan Puteri, Sepang', image: 'https://via.placeholder.com/150', district: 'Jengka', state: 'Pahang' },
-  { name: 'Maran Housing', image: 'https://via.placeholder.com/150', district: 'Maran', state: 'Pahang' },
-  { name: 'Mentakab Project A', image: 'https://via.placeholder.com/150', district: 'Mentakab', state: 'Pahang' },
-  { name: 'Mentakab Project B', image: 'https://via.placeholder.com/150', district: 'Mentakab', state: 'Pahang' },
-  { name: 'Kuantan Housing', image: 'https://via.placeholder.com/150', district: 'Kuantan', state: 'Pahang' },
-  { name: 'Temerloh Housing', image: 'https://via.placeholder.com/150', district: 'Temerloh', state: 'Pahang' }
-]
+import { developments } from 'src/components/CurrentDevelopmentData.vue'
+import { districts } from 'src/components/DropdownProjectSaleData.vue'
 
 const leases = [
   { name: '43 gireeess', image: 'src/assets/currentproject/house1.jpg', district: 'Jengka' },
   { name: '1 gireeess', image: 'src/assets/building.png', district: 'Maran' }
 ]
 
-// Selected state
-const selectedDistrict = ref('Jengka')
+const displayedDevelopments = ref(developments)
+const selectedDistrict = ref('')
+
+const groupedDevelopments = computed(() => {
+  return developments.reduce((acc, dev) => {
+    if (!acc[dev.state]) {
+      acc[dev.state] = []
+    }
+    if (!acc[dev.state].includes(dev.districts)) {
+      acc[dev.state].push(dev.districts)
+    }
+    return acc
+  }, {})
+})
 
 // Computed projects based on selected district
-const filteredProjects = computed(() =>
-  projects.filter((project) => project.district === selectedDistrict.value)
+const filteredProjects = computed(() => {
+  return displayedDevelopments.value.filter(
+    (dev) => dev.districts === selectedDistrict.value
+  )
+}
 )
 
 const setSelectedDistrict = (district) => {
   selectedDistrict.value = district
+}
+
+const navigateToSlug = (slug) => {
+  router.push(`/development-details/${slug}`).catch(() => {})
 }
 
 const filteredLeases = computed(() =>
@@ -413,8 +363,6 @@ const filteredLeases = computed(() =>
 const $q = useQuasar() // Get the $q object
 const router = useRouter()
 
-// States
-const scrolled = ref(false)
 const activeDropdown = ref(null)
 const drawerVisible = ref(false)
 const screenBelow1105px = ref(false) // Screen width state
@@ -423,14 +371,6 @@ const screenBelow1105px = ref(false) // Screen width state
 const isSmallScreen = computed(() => {
   return $q.screen.lt.md // Adjust the breakpoint as needed
 })
-
-// Scroll handler
-const handleScroll = () => {
-  const scrollPosition = window.scrollY
-  const windowHeight = window.innerHeight
-
-  scrolled.value = scrollPosition > windowHeight * 0.35
-}
 
 // Resize handler
 const handleResize = () => {
@@ -486,13 +426,11 @@ const openTiktok = () => {
 
 // Mount/unmount lifecycle hooks
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
   window.addEventListener('resize', handleResize)
   handleResize() // Initial check on mount
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
   window.removeEventListener('resize', handleResize)
 })
 </script>
@@ -504,14 +442,6 @@ onUnmounted(() => {
   height: 40px;
   margin-right: -5px;
   transition: filter 0.4s ease-in-out;
-}
-
-/* Transition for logo: change logo color when scrolled */
-.navigation-bar.transparent .logo {
-  filter: brightness(0) invert(1); /* White logo when transparent bar */
-}
-.navigation-bar.visible .logo {
-  filter: brightness(1); /* Normal logo when white bar */
 }
 
 /* Flexbox layout for the toolbar */
@@ -535,14 +465,8 @@ onUnmounted(() => {
   font-family: 'Times New Roman', Times, serif;
   transition: color 0.4s ease-in-out;
   padding-top: 10px;
-}
-.navigation-bar.transparent .toolbar-title {
-  color: white;
-}
-.navigation-bar.visible .toolbar-title {
   color: black;
 }
-
 /* Navigation Buttons Group */
 .nav-buttons {
   display: flex;
@@ -562,6 +486,7 @@ onUnmounted(() => {
   font-weight: 500; /* Adjust font weight */
   font-family: Inter, "Helvetica Neue", Arial, sans-serif;
   transition: color 0.3s ease-in-out;
+  color: #000;
 }
 
 /* Hover effect for the navigation card */
@@ -653,6 +578,7 @@ position: relative;
   aspect-ratio: 1; /* Keeps a square aspect ratio */
   overflow: hidden; /* Ensures the image doesn't overflow the container */
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .image-container img {
@@ -663,7 +589,7 @@ position: relative;
 }
 
 .image-container img:hover {
-    transform: scale(1.3);
+    transform: scale(1.2);
   }
 
 .overlay {
@@ -699,27 +625,13 @@ color:#00B398;
   color: #ffffff;
   z-index: 1200;
   padding: 10px 20px;
-  box-shadow: 0px 2px 10px rgb(255, 254, 254); /* Soft shadow for elevation */
+  background-color: #fff;
+  box-shadow: 0px 1px 8px rgb(139, 139, 139); /* Soft shadow for elevation */
   transition: opacity 0.4s ease-in-out, background-color 0.4s ease-in-out; /* Smooth transition */
+  border: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-/* Transparent bar when not scrolled */
-.navigation-bar.transparent {
-  background-color: transparent;
-  color: white;
-  pointer-events: auto;
-  opacity: 1;
-}
-
-/* Show the navigation bar with white background when scrolled */
-.navigation-bar.visible {
-  background-color: white;
-  color: black;
-  opacity: 1;
-  pointer-events: auto; /* Enable clicks when visible */
 }
 
 .full-height-drawer {

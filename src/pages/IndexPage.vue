@@ -136,7 +136,7 @@ const saleProjects = computed(() =>
 onMounted(() => {
   setTimeout(() => {
     showLoader.value = false
-  }, 3500)
+  }, 2500)
   if (saleProjects.value) {
     projects.value = saleProjects.value // Get projects after ProjectData mounts
     displayedProjects.value = projects.value // Display all projects initially

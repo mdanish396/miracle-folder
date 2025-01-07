@@ -1,31 +1,29 @@
 <template>
   <q-page>
-    <div class="hero-section">
-      <!-- Background Image -->
-      <div class="hero-image">
-        <img src="src/assets/aboutus.jpg" alt="Hero Background" />
-        <div class="gradient-overlay"></div>
-      </div>
-
-      <!-- Overlay Text -->
-      <div class="image-text-overlay">
-        <div class="section-title">
-          <span class="line"></span>
-          ABOUT MIRACLE
+    <div class="about-section">
+      <div class="content-container">
+        <!-- Text Content Section -->
+        <div class="text-content">
+          <div class="line-holder">
+            <div class="line">
+              <div class="line-1"></div>
+            </div>
+          </div>
+          <h2 class="text-above">About</h2>
+          <h2 class="text-below">Miracle Land</h2>
         </div>
-        <h1 class="main-title">The Miracle Story</h1>
-        <p class="established-text">Established in 2014</p>
-      </div>
 
-      <!-- Vertical Branding -->
-      <div class="vertical-branding">MIRACLE LAND</div>
+        <!-- Image Section -->
+        <div class="about-image-container">
+          <img src="src/assets/currentproject/house1.jpg" class="about-image" />
+        </div>
+      </div>
     </div>
 
     <!-- Company Background Section -->
     <section class="company-background">
       <div class="container">
-        <div class="content-wrapper">
-          <i class="fas fa-building icon"></i>          <h2>Company Background</h2>
+          <h2>Company Background</h2>
           <p>
             MLHB was incorporated in October 2014 as the holding company of various
             subsidiaries for upcoming development projects of the group. The company
@@ -34,23 +32,21 @@
             integrated developments.
           </p>
           <p>
-            The group’s initial focus would be on the high potential areas across
-            Pahang and eventually progressing to the other parts of the country. The
-            group has secured several development projects and it is actively seeking
-            out to acquire new land banks to ensure continuing growth.
+            The group’s initial focus would be on the high potential areas across Pahang
+            and eventually progressing to the other parts of the country. The group has
+            secured several development projects and it is actively seeking out to acquire
+            new land banks to ensure continuing growth.
           </p>
           <p>
-            MLHB’s core team has substantial experience in the property development
-            industry which had completed to date numerous development projects covering
-            Residential and Commercial as well as Light Industrial, under Dynaton Group
-            - a series of ISO accredited property development and construction companies.
+            MLHB’s core team has substantial experience in the property development industry
+            which had completed to date numerous development projects covering Residential and
+            Commercial as well as Light Industrial, under Dynaton Group - a series of ISO
+            accredited property development and construction companies.
           </p>
           <p>
-            With a team of experienced and dedicated workforce, MLHB is confident to
-            further grow its capabilities while generating sustainable value for its
-            stakeholders.
+            With a team of experienced and dedicated workforce, MLHB is confident to further
+            grow its capabilities while generating sustainable value for its stakeholders.
           </p>
-        </div>
       </div>
     </section>
 
@@ -58,11 +54,13 @@
     <section class="vision-section">
       <div class="container">
         <div class="content-wrapper">
-          <i class="fas fa-lightbulb icon"></i>
-          <h2>Our Vision</h2>
-          <p>
-            To be one of the most trusted and leading developers in the country, renowned for quality, innovation, and reliability.
-          </p>
+          <div class="vision-text">
+            <h2>Vision</h2>
+            <p>
+              To be one of the most trusted and<br/>
+              leading developer in the country.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -70,29 +68,50 @@
     <!-- Mission Section -->
     <section class="mission-section">
       <div class="container">
-        <div class="content-wrapper">
-          <i class="fas fa-bullseye icon"></i>
-          <h2>Our Mission</h2>
+          <h2>Mission</h2>
+        <div class="mission-wrapper">
           <ul>
             <li>
-              <strong>Exceptional Planning and Design:</strong> To strive for excellence in planning and design, ensuring every project is a masterpiece.
+              <i class="fas fa-check-circle icon"></i>
+              <span>
+                To strive for best planning and design for all our development projects ensuring each and every one is a masterpiece.
+              </span>
             </li>
             <li>
-              <strong>Customer Satisfaction:</strong> To provide peace of mind with quality materials, superior workmanship, and timely completion.
+              <i class="fas fa-check-circle icon"></i>
+              <span>
+                To give customer peace of mind by ensuring quality material and workmanship and completion on time.
+              </span>
             </li>
             <li>
-              <strong>Community Development:</strong> To enhance the social and economic well-being of local communities through impactful projects.
+              <i class="fas fa-check-circle icon"></i>
+              <span>
+                To enhance the social and economic aspect of local community through our development projects.
+              </span>
             </li>
             <li>
-              <strong>Sustainable Land Utilization:</strong> To maximize land value while maintaining a sustainable living environment.
+              <i class="fas fa-check-circle icon"></i>
+              <span>
+                To maximize the value of each project land while maintaining the conducive living environment.
+              </span>
             </li>
             <li>
-              <strong>Stakeholder Value:</strong> To deliver sustainable returns to shareholders.
+              <i class="fas fa-check-circle icon"></i>
+              <span>
+                To deliver sustainable return to our shareholders.
+              </span>
             </li>
             <li>
-              <strong>Employee Growth:</strong> To foster the development and reward the dedication of our employees.
+              <i class="fas fa-check-circle icon"></i>
+              <span>
+                To develop and reward our employees.
+              </span>
             </li>
           </ul>
+
+          <div class="mission-image-container">
+            <img src="src/assets/currentproject/house1.jpg" class="mission-image" />
+          </div>
         </div>
       </div>
     </section>
@@ -118,11 +137,12 @@
               <input type="email" placeholder="Email*" required>
               <input type="tel" placeholder="Telephone*" required>
               <select>
-                <option disabled selected>Nature of enquiry</option>
-                <option>Consultation</option>
-                <option>Contractor</option>
-                <option>Business</option>
+                <option disabled selected>Select enquiry type</option>
                 <option>General</option>
+                <option>Interested Project</option>
+                <option>Consultation</option>
+                <option>Business</option>
+                <option>Contractor</option>
               </select>
               <textarea placeholder="Questions/Comments*" required></textarea>
               <button type="submit" class="submit-btn">SEND</button>
@@ -146,201 +166,305 @@
 }
 
 @font-face {
-  font-family: 'GeographWebRegular';
-  src: url('src/assets/fonts/geograph/geographwebregular.ttf') format('truetype');
+  font-family: 'TitilliumWebRegular';
+  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
-  font-family: 'OaricBold';
-  src: url('src/assets/fonts/Oaric-Bold.ttf') format('truetype');
+  font-family: 'RecklessNeueMedium';
+  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
 }
 
-/* Hero Section */
-.hero-section {
-  position: relative;
-  height: 47vh; /* Full-screen height */
-  overflow: hidden;
-  margin-top: -70px;
+.about-section {
+  background-color: #0d182b;
+  display: flex;
+  height: 71vh;
+  justify-content: center;
+  align-items: center;
 }
 
-.hero-image img {
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  height: 100vh;
+}
+
+.text-content {
+  flex: 1;
+  padding-left: 120px;
+}
+
+.line-holder {
+  position: static;
+  margin-top: -20px;
+  padding-bottom: 30px;
+}
+
+.line {
+  display: flex;
+  width: 12px; /* Thickness of the line */
+  height: 4px; /* Height of the line */
+  background-color: #d9d323; /* Gold accent */
+  padding-inline: 40px;
+
+}
+
+.line-1 {
+  display: inline-block;
+  height: 2px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-top: 1px; /* Space between the line and text */
+  padding-inline-end: 140px;
+  margin-inline-start: 40px;
+}
+
+.text-above,
+.text-below {
+  font-family: 'RecklessNeueMedium';
+  font-size: 48px;
+  margin: 0;
+}
+
+.text-above {
+  color: #fff;
+}
+
+.text-below {
+  color: #d9d323;
+}
+
+/* Image Section */
+.about-image-container {
+  flex: 1; /* Adjusts the width for the image section to make it more than half the screen width */
+  display:flex;
+  justify-content: flex-end;
+  align-items:flex-end;
+}
+
+.about-image {
+  width: 700px;
+  height: 71vh;
   object-fit: cover;
 }
 
-.gradient-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+@media (max-width: 1124px) {
+  .about-image {
+  width: 600px;
+}
+}
+
+@media (max-width: 1024px) {
+
+.text-above,
+.text-below {
+  font-size: 30px;
+}
+
+.line {
+padding-inline: 20px;
+}
+
+.line-1 {
+  padding-inline-end: 100px;
+  margin-inline-start: 20px;
+}
+
+.about-image {
+  width: 500px;
+}
+}
+
+@media (max-width: 820px) {
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -455px;
+  }
+
+  .text-content {
+    padding-left: 0px;
+    padding-top: 185px;
+  }
+
+  .text-above,
+  .text-below {
+  font-size: 30px;
+}
+
+.line-holder {
+  display: none;
+}
+
+.about-image {
   width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
-  z-index: 2;
+  max-width: 500px;
+  height: auto;
+  }
+}
+@media (max-width: 520px) {
+
+  .about-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -445px;
+  }
+
+  .text-content {
+    padding-left: 0px;
+    padding-top: 138px;
+  }
+}
+/* Company Background Section */
+.company-background {
+  background: #fff;
+  padding: 40px 20px;
+  padding-bottom: 80px;
+  text-align: center;
 }
 
-.image-text-overlay {
-  padding-top: 80px;
-  position: absolute;
-  top: 50%;
-  left: 50px;
-  transform: translateY(-50%);
-  text-align: left;
-  font-family: 'GeographWebMedium', sans-serif;
-  color: white;
-  z-index: 3;
+.company-background h2 {
+  font-family: 'RecklessNeueMedium';
+  font-size: 48px;
+  margin-bottom: 50px;
+  color: rgb(0, 26, 43);
 }
 
-@media (min-width: 1110px) {
-  .hero-section {
-    margin-top: -70px;
-}
-}
-@media (max-width: 1106px) {
-  .hero-section {
-    height: 48vh;
-    margin-top: -85px;
-}
-}
-
-/* Styling for the section title with a vertical line */
-.section-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'OaricBold', sans-serif;
-  font-size: 16px;
-  color: #00B398;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: -10px;
-  margin-right: 330px;
-}
-
-.section-title .line {
-  display: inline-block;
-  width: 4px; /* Thickness of the line */
-  height: 24px; /* Height of the line */
-  background-color: #00B398; /* Gold accent */
-  margin-right: 8px; /* Space between the line and text */
-}
-
-.image-text-overlay .main-title {
-  font-size: 40px;
-  font-weight: 900;
-  line-height: 1.2;
-  margin-bottom: 10px;
-}
-
-.image-text-overlay .established-text {
-  font-size: 15px;
-  font-family: 'GeographWebRegular', sans-serif;
-  color: #ddd;
-}
-
-.vertical-branding {
-  position: absolute;
-  top: 55%;
-  right: 50px;
-  transform: translateY(-50%);
-  writing-mode: vertical-lr;
-  text-transform: uppercase;
-  font-size: 27px;
-  color: rgba(255, 255, 255, 0.1);
-  font-weight: bold;
-  z-index: 2;
-  white-space: nowrap;
-  margin-top: 20px;
+.company-background p {
+  font-family: 'TitilliumWeb-Regular';
+  font-size: 19px;
+  line-height: 35px;
+  margin-bottom: 20px;
+  text-align: justify;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 @media (max-width: 768px) {
-
-.section-title {
-  margin-right: 240px;
-  font-size: 15px;
+  .company-background h2 {
+  font-size: 40px;
 }
 
-.image-text-overlay .main-title {
-  font-size: 35px;
+.company-background p {
+  font-size: 18px;
+  line-height: 30px;
+}
 }
 
-.image-text-overlay .established-text {
-  font-size: 15px;
+@media (max-width: 520px) {
+  .company-background h2 {
+  font-size: 30px;
 }
 
-.vertical-branding {
-    font-size: 28px; /* Adjust size for smaller screens */
-    right: 20px; /* Adjust position */
-    margin-top: 20px;
-  }
+.company-background p {
+  font-size: 18px;
+  line-height: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
 }
 
 .content-wrapper {
   padding: 20px;
-  background: white;
+  padding-left: 120px;
+  padding-right: 120px;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 12px;
+  width:max-content;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
 }
 
-.content-wrapper .icon {
-  font-size: 50px;
-  color: #007acc;
-  margin-bottom: 20px;
-}
-
-/* Company Background Section */
-.company-background {
-  background: linear-gradient(135deg, #ffed, rgb(243, 243, 193));
-  padding: 60px 20px;
-}
-
-.company-background h2 {
-  font-family: "OaricBold", sans-serif;
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #007acc;
-}
-
-.company-background p {
-  color: #555;
-  font-size: 16px;
-  line-height: 1.8;
-  margin-bottom: 20px;
-}
-
 /* Vision Section */
 .vision-section {
-  background: linear-gradient(135deg, #00B398, #01c5ae);
-  color: #333;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), /* Gradient overlay */
+    url('src/assets/career3.jpg'); /* Background image */
+  background-size: cover; /* Ensure the image covers the section */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent image repetition */  color: #333;
   padding: 60px 20px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
-.vision-section h2 {
-  font-family: "OaricBold", sans-serif;
-  font-size: 28px;
+.vision-text {
+  margin-top: -30px;
+}
+
+.vision-text h2 {
+  font-family: 'RecklessNeueMedium';
+  font-size: 48px;
   margin-bottom: 20px;
 }
 
-.vision-section p {
+.vision-text p {
+  font-family: 'TitilliumWeb-Regular';
+  font-size: 19px;
+  line-height: 27px;
+}
+
+@media (max-width: 768px) {
+  .vision-text h2 {
+    font-size: 40px;
+}
+
+.vision-text p {
   font-size: 18px;
-  line-height: 1.8;
+}
+}
+
+@media (max-width: 520px) {
+  .vision-text h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.vision-text p {
+  font-size: 18px;
+}
 }
 
 /* Mission Section */
 .mission-section {
-  background: linear-gradient(135deg, #ffed, rgb(243, 243, 193));
-  padding: 60px 20px;
-  margin-bottom:-20px;
+  background: #ebe4d8;
+  padding: 40px 20px;
+  padding-bottom: 80px;
+  text-align: center;
+}
+
+.icon {
+  font-size: 20px;
+  color: #08463c;
+  margin-right: 10px;
 }
 
 .mission-section h2 {
-  font-family: "OaricBold", sans-serif;
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #333;
+  font-family: 'RecklessNeueMedium';
+  font-size: 48px;
+  margin-bottom: 50px;
+  color: #000;
+}
+
+.mission-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .mission-section ul {
@@ -349,14 +473,24 @@
 }
 
 .mission-section li {
+  font-family: 'TitilliumWeb-Regular';
   margin-bottom: 20px;
-  font-size: 16px;
-  line-height: 1.8;
-  color: #555;
+  font-size: 19px;
+  line-height: 35px;
+  text-align: justify;
+  padding-right: 140px;
+  padding-left: 100px;
 }
 
-.mission-section strong {
-  color: #007acc;
+.mission-image-container {
+  flex: 1; /* Adjusts the width for the image section to make it more than half the screen width */
+  display:flex;
+  padding-right: 90px;
+}
+
+.mission-image {
+  width: 500px;
+  height: 500px;
 }
 
 /* Responsive Design */
@@ -370,7 +504,7 @@
   }
 
   .icon {
-    font-size: 40px;
+    font-size: 18px;
   }
 
   h2 {
@@ -391,12 +525,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 4px solid #00B398;
 }
 
 .contact-wrapper {
   display: flex;
   flex-direction: column;
+  font-family: 'TitilliumWeb-Regular';
   padding: 20px;
   background: linear-gradient(135deg, #ffed, rgb(243, 243, 193));
   border-radius: 12px;
@@ -419,24 +553,26 @@
   width: 100%;
 }
 
+.contact-left {
+  padding-left: 30px;
+}
+
 .contact-left h2 {
+  font-family: 'RecklessNeueMedium';
   font-size: 2rem;
   margin-bottom: 15px;
+}
+
+.contact-left p {
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .contact-left address {
   font-style: normal;
   margin-bottom: 15px;
-  line-height: 1.6;
-}
-
-.contact-left a {
-  color: #00B398;
-  text-decoration: none;
-}
-
-.contact-left a:hover {
-  text-decoration: underline;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 /* Right Section */
@@ -475,17 +611,12 @@
 
 .submit-btn {
   padding: 10px 20px;
-  background-color: transparent;
+  background-color: #d9d323;
   color: #000;
-  border: 2px solid #02947e;
+  border: 2px solid #555;
   cursor: pointer;
   font-weight: bold;
   text-transform: uppercase;
-}
-
-.submit-btn:hover {
-  background-color: #00B398;
-  color: white;
 }
 
 @media screen and (min-width: 768px){
