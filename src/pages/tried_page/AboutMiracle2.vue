@@ -1,4 +1,4 @@
-<template>
+<template
   <q-page>
     <div class="hero-section">
       <img src="src/assets/aboutus.jpg" alt="Hero Image" class="hero-image" />
