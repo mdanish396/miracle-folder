@@ -24,7 +24,7 @@ export const properties = {
     location: 'Kalimantan, Mana',
     housetype: '2-Storey Terrace & Semi-D',
     status: 'Current',
-    price: 'RM500,000',
+    price: 'RM 500,000',
     image: 'https://picsum.photos/200/300',
     features: ['Exclusive Amenities', 'Spacious Homes'],
     description: `Miracle Gardens is an 810-acre township
@@ -55,7 +55,7 @@ export const properties = {
     location: 'Mert, Temerloh',
     housetype: 'Bungalow',
     status: 'Current',
-    price: 'RM500,000',
+    price: 'RM 500,000',
     image: 'https://picsum.photos/200/300',
     features: ['Exclusive Amenities', 'Spacious Homes'],
     description: `Miracle Gardens is an 810-acre township
@@ -86,7 +86,7 @@ export const properties = {
     slug: generateSlug('The ZIG One'),
     housetype: 'Bungalow',
     status: 'Current',
-    price: '600,900',
+    price: 'RM 600,900',
     image: 'https://picsum.photos/200/300',
     features: ['Luxury Living', 'Green Spaces'],
     description: `Miracle Gardens is an 810-acre township
@@ -116,7 +116,7 @@ export const properties = {
     location: 'Greater Kuala Lumpur',
     housetype: '2 Storey Terrace',
     status: 'Current',
-    price: '600,900',
+    price: 'RM 600,900',
     image: 'https://picsum.photos/200/300',
     features: ['Luxury Living', 'Green Spaces'],
     description: `Miracle Gardens is an 810-acre township
@@ -146,7 +146,7 @@ export const properties = {
     location: 'Greater Kuala Lumpur',
     housetype: 'Double Storey',
     status: 'Current',
-    price: '600,900',
+    price: 'RM 600,900',
     image: 'https://picsum.photos/200/300',
     features: ['Luxury Living', 'Green Spaces'],
     description: `Miracle Gardens is an 810-acre township
@@ -176,7 +176,7 @@ export const properties = {
     location: 'Greater Kuala Lumpur',
     housetype: '2 Storey Terrace',
     status: 'Current',
-    price: '500,900',
+    price: 'RM 500,900',
     image: 'https://picsum.photos/200/300',
     features: ['Luxury Living', 'Green Spaces'],
     description: `Miracle Gardens is an 810-acre township

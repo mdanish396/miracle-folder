@@ -267,6 +267,7 @@
                   <span class="text-white">{{ capitalizeFirstLetter(category) }}</span>
                 </q-item-section>
               </template>
+              <q-separator color="white"/>
 
               <!-- Content inside the expansion item -->
               <div class="q-pa-md">
@@ -278,6 +279,7 @@
                   <q-item-section class="amenities-location">{{ location.name }}<q-space class="amenities-km"/> {{ location.distance }} </q-item-section>
                 </q-item>
               </div>
+              <q-separator color="white"/>
             </q-expansion-item>
           </q-list>
         </div>
@@ -478,7 +480,8 @@ const capitalizeFirstLetter = (string) => {
 
 .intro-section {
   text-align: center;
-  padding: 20px 20px;
+  padding: 0px 20px;
+  margin-top: -10px;
 }
 
 .main-heading {
@@ -496,15 +499,14 @@ const capitalizeFirstLetter = (string) => {
 
 .main-heading {
   font-size: 52px;
-  line-height: 70px;
+  line-height: 60px;
+  margin-bottom: 40px;
 }
 
 .sub-heading {
   font-size: 18px;
   padding-left: 110px;
   padding-right: 110px;
-  padding-top: 20px;
-  padding-bottom: 100px;
 }
 
 .rectangle-section {
@@ -524,7 +526,6 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .main-heading {
-  padding-top: 20px;
   font-size: 42px;
   line-height: 50px;
 }
@@ -600,6 +601,11 @@ const capitalizeFirstLetter = (string) => {
   line-height: 32px;
 }
 
+.sub-heading {
+  margin-left: -40px;
+  margin-right: -40px;
+}
+
 .rectangle-section {
   margin-top: -150px;
 }
@@ -613,13 +619,13 @@ const capitalizeFirstLetter = (string) => {
 
 .line-holder {
   position: static;
-  margin-top: -20px;
+  margin-top: -30px;
 }
 
 .line {
   display: inline-block;
   width: 12px; /* Thickness of the line */
-  height: 6px; /* Height of the line */
+  height: 3px; /* Height of the line */
   background-color: #08463c; /* Gold accent */
   padding-inline: 40px;
 
@@ -628,7 +634,7 @@ const capitalizeFirstLetter = (string) => {
 .line-1 {
   display: inline-block;
   width: 50px; /* Thickness of the line */
-  height: 4px; /* Height of the line */
+  height: 1px; /* Height of the line */
   background-color: #a7a4a4; /* Gold accent */
   margin-top: 1px; /* Space between the line and text */
   padding-inline-end: 200px;
@@ -638,7 +644,7 @@ const capitalizeFirstLetter = (string) => {
 .line-2 {
   display: inline-block;
   width: 220px; /* Thickness of the line */
-  height: 4px; /* Height of the line */
+  height: 1px; /* Height of the line */
   background-color: #a7a4a4; /* Gold accent */
   margin-bottom: 20px; /* Space between the line and text */
   padding-inline-start: -100px;
@@ -652,15 +658,14 @@ const capitalizeFirstLetter = (string) => {
   line-height: 27px;
   padding-left: 250px;
   padding-right: 250px;
-  padding-bottom: 100px;
+  padding-bottom: 60px;
   color: #1e1e1e;
   margin: 0 auto;
-  margin-top: 30px;
 }
 
 .rectangle-section {
-  height: 250px;
-  margin-top: -220px;
+  height: 230px;
+  margin-top: -200px;
 }
 }
 
@@ -684,13 +689,13 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .card img {
-  width: 100%;
+  width: 360px;
   height: 200px;
   border-bottom: 3px solid #759403;
 }
 
 .card-title {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: bold;
   line-height: 29px;
   color: rgb(235, 235, 235);
@@ -701,10 +706,15 @@ const capitalizeFirstLetter = (string) => {
   transform: translateY(-5px);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1184px) {
+
+  .sub-heading {
+  padding-left: 80px;
+  padding-right: 80px;
+}
 
 .card img {
-  width: 100%;
+  width: 280px;
   height: 160px;
 }
 
@@ -712,12 +722,17 @@ const capitalizeFirstLetter = (string) => {
   font-size: 16px;
   line-height: 24px;
 }
+
+.rectangle-section {
+  height: 180px;
+  margin-top: -170px;
+}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1015px) {
 
   .card-section {
-    padding: 0 10px;
+    padding: 40px 10px;
   }
 
   .card-grid {
@@ -734,10 +749,11 @@ const capitalizeFirstLetter = (string) => {
 }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 695px) {
 
-.card-section {
-  padding: 0 5px;
+  .rectangle-section {
+  height: 160px;
+  margin-top: -170px;
 }
 
 .card-grid {
@@ -753,6 +769,11 @@ const capitalizeFirstLetter = (string) => {
 
 .card {
   width: 90%;
+}
+
+.card img {
+  width: 320px;
+  height: 160px;
 }
 
 .card-title {
@@ -771,6 +792,7 @@ line-height: 20px;
 .products-section {
   text-align: center;
   padding: 20px;
+  padding-top: 10px;
 }
 
 .products-section h2 {
@@ -782,17 +804,21 @@ line-height: 20px;
 }
 
 .products-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
+  row-gap: 60px;
   padding: 0 40px;
-  margin-top: 50px;
+  padding-top: 10px;
 }
 
 .product-card {
   border: 1px solid #ddd;
   text-align: center;
+  align-items: center;
   overflow: hidden;
+  width: 340px;
   background-color: white;
 }
 
@@ -834,7 +860,7 @@ line-height: 20px;
 .product-toolbar {
   display: flex; /* Ensures elements are placed in a row */
   align-items: center; /* Centers content vertically */
-  padding: 0 20px; /* Optional: Adjust padding to create space around */
+  padding: 0 10px; /* Optional: Adjust padding to create space around */
 }
 
 .product-item,
@@ -895,7 +921,7 @@ line-height: 20px;
 }
 
 .btn-more-1 {
-  padding-top: 60px;
+  padding-top: 50px;
 }
 
 .learn-more-btn {
@@ -904,6 +930,8 @@ line-height: 20px;
   color: #000000;
   font-weight: bold;
   padding: 10px 20px;
+  margin-top: -10px;
+  margin-bottom: -10px;
   border-radius: 0;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
@@ -942,22 +970,10 @@ line-height: 20px;
 
 }
 
-@media (max-width: 620px) {
-.products-grid {
-    grid-template-columns: 1fr; /* 1 column */
-    gap: 20px;
-    padding: 0 10px;
-  }
-}
-
 /* Extra small screens (480px and below) */
 @media (max-width: 480px) {
   .products-section h2 {
     font-size: 32px;
-  }
-
-  .products-grid {
-    gap: 15px;
   }
 
   .product-image {
@@ -995,8 +1011,8 @@ line-height: 20px;
 
 .gallery-grid {
   display: flex;
-  padding-bottom: 20px;
-  padding-top: 30px;
+  padding-bottom: 120px;
+  padding-top: 10px;
   gap: 10px;
   justify-content: center;
   align-items: center;
@@ -1084,11 +1100,20 @@ line-height: 20px;
 }
 
 .gallery-grid .gallery-item:nth-child(2) {
-  max-width: 100%;
+  max-width: 550px;
 }
 
 .gallery-grid .gallery-item:nth-child(3) {
   display: none;
+}
+
+.gallery-grid .gallery-item:nth-child(4) {
+  display: none;
+}
+
+.gallery-grid {
+  padding-left: 70px;
+  padding-right: 70px;
 }
 }
 
@@ -1102,8 +1127,9 @@ line-height: 20px;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  padding-top: 76px;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
@@ -1118,8 +1144,8 @@ line-height: 20px;
 }
 
 .gallery-popup img {
-  width: 100%;
-  height: auto;
+  width: 800px;
+  height: 500px;
 }
 
 .popup-close, .popup-prev, .popup-next {
@@ -1159,6 +1185,7 @@ line-height: 20px;
 .location-section {
   padding: 20px;
   padding-bottom: 70px;
+  background-color: #e3ddd3;
 }
 
 .location-title {
@@ -1166,7 +1193,7 @@ line-height: 20px;
 }
 
 .location-section h2 {
-  padding-top: 50px;
+  padding-top: 40px;
   font-size: 48px;
   line-height: 48px;
   font-weight: bold;
@@ -1176,15 +1203,15 @@ line-height: 20px;
 .location-container {
   display: flex;
   flex-direction: row; /* Arrange items in a row */
-  padding-top: 80px;
+  padding-top: 10px;
   padding-bottom: 40px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 80px;
+  padding-right: 80px;
 }
 
   .location-map iframe {
     width: 100%; /* Ensure map adjusts within its parent container */
-    height: 400px; /* Adjust height for better visibility */
+    height: 550px; /* Adjust height for better visibility */
   }
 
   .location-map {
@@ -1198,11 +1225,12 @@ line-height: 20px;
     overflow-y: auto; /* Disable horizontal scroll for grid */
     scrollbar-width: 1px;
     scroll-snap-type: none;
-    height: 400px;
+    height: 550px;
   }
 
   .amenities-section {
     padding: 20px 15px;
+    text-align: center;
     font-size: 24px;
     line-height: 32px;
     font-weight: bold;
@@ -1224,6 +1252,7 @@ line-height: 20px;
   .amenities-location {
     display: flex;
     flex-direction: row;
+
   }
 
   .amenities-km {
@@ -1289,7 +1318,7 @@ line-height: 20px;
 
   .location-container {
   padding-left: 20px;
-  padding-right: 20PX;
+  padding-right: 20px;
   }
 
 }
