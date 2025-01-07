@@ -31,7 +31,9 @@ export const developments = [
     features: ['Exclusive Amenities', 'Spacious Homes', 'Green Spaces'],
     shortdescription: 'home to your nature',
     description: `The Camellia, your home at Wetlands Estates, the
-    private enclave in Gamuda Cove.`,
+    private enclave in Gamuda Cove. The Camellia, your home at Wetlands
+    Estates, the private enclave in Gamuda Cove. The Camellia, your home at
+    Wetlands Estates, the private enclave in Gamuda Cove.`,
     size: '810 acres',
     topic: 'In a Garden Where Happiness Lives',
     fulldescription: `Miracle Gardens is an 810-acre township
