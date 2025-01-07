@@ -136,7 +136,7 @@ const saleProjects = computed(() =>
 onMounted(() => {
   setTimeout(() => {
     showLoader.value = false
-  }, 2500)
+  }, 3500)
   if (saleProjects.value) {
     projects.value = saleProjects.value // Get projects after ProjectData mounts
     displayedProjects.value = projects.value // Display all projects initially
@@ -176,7 +176,7 @@ const showLessProjects = () => {
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  animation: slideUpOverlay 1.5s ease-in-out forwards 2s; /* Slide up after 2 seconds */
+  animation: slideUpOverlay 1.5s ease-in-out forwards 0.4s; /* Slide up after 2 seconds */
 }
 
 /* Logo Starter */
