@@ -519,7 +519,7 @@ padding-inline: 20px;
 
 /* Contact Us Section */
 .contact-us {
-  background-color: peachpuff;
+  background-color: #fff;
   color: #000;
   padding: 40px;
   display: flex;
@@ -532,9 +532,6 @@ padding-inline: 20px;
   flex-direction: column;
   font-family: 'TitilliumWeb-Regular';
   padding: 20px;
-  background: linear-gradient(135deg, #ffed, rgb(243, 243, 193));
-  border-radius: 12px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
 }
@@ -577,9 +574,7 @@ padding-inline: 20px;
 
 /* Right Section */
 .contact-right {
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
   padding: 20px;
-  border-radius: 10px;
 }
 
 .contact-form {
@@ -593,7 +588,7 @@ padding-inline: 20px;
 .contact-form select {
   width: 100%;
   padding: 10px;
-  border: none;
+  border: 1px solid #5555555e;
   border-radius: 5px;
   background-color: #fff;
   color: #000;
@@ -611,9 +606,9 @@ padding-inline: 20px;
 
 .submit-btn {
   padding: 10px 20px;
-  background-color: #d9d323;
-  color: #000;
-  border: 2px solid #555;
+  background-color: #555;
+  color: #fff;
+  border: none;
   cursor: pointer;
   font-weight: bold;
   text-transform: uppercase;
