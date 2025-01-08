@@ -352,10 +352,10 @@ const nextImage = () => {
 
 const filteredAmenities = computed(() => {
   // Get the location of the current development
-  const location = development.value?.name
+  const name = development.value?.name
 
   // Return amenities for the location if it exists or an empty array otherwise
-  return nearbyAmenities[location]?.amenities || {}
+  return nearbyAmenities[name]?.amenities || {}
 })
 
 const getCategoryIcon = (category) => {
