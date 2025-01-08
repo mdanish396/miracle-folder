@@ -3,252 +3,273 @@
     <div class="property-hero">
       <div v-if="property">
         <div class="before-hero-section"></div>
-          <div class="hero-section">
-            <img :src="property.image" alt="Property Image" class="hero-image" />
-            <div class="property-section">
-              <div class="property-grid">
-                <div class="property-card">
-                  <div class="property-info">
-                    <h3 class="property-name">{{ property.name }}</h3>
-                    <div class="property-location">
-                      <i class="fas fa-map-marker-alt icon"></i>
-                      <span class="text-property-location">
-                        {{ property.location }}
+        <div class="hero-section">
+          <img :src="property.image" alt="Property Image" class="hero-image" />
+          <div class="property-section">
+            <div class="property-grid">
+              <div class="property-card">
+                <div class="property-info">
+                  <h3 class="property-name">{{ property.name }}</h3>
+                  <div class="property-location">
+                    <i class="fas fa-map-marker-alt icon"></i>
+                    <span class="text-property-location">
+                      {{ property.location }}
+                    </span>
+                  </div>
+                  <q-separator/>
+                  <q-toolbar class="property-toolbar">
+                    <div class="property-item">
+                      <h4>Type</h4>
+                      <p class="truncated-text">{{ property.housetype }}
+                        <q-tooltip v-if="!screenBelow540px">
+                          {{ property.housetype }}
+                        </q-tooltip>
+                      </p>
+                    </div>
+
+                    <div class="property-item">
+                      <h4>From</h4>
+                      <p>{{ property.price }}</p>
+                    </div>
+
+                    <div class="property-item">
+                      <h4>Status</h4>
+                      <p>{{ property.status }}</p>
+                    </div>
+                  </q-toolbar>
+                  <q-separator/>
+                  <div class="property-feature-list">
+                    <div
+                      v-for="feature in property.features"
+                      :key="feature"
+                      class="property-feature-item">
+                      <i class="fas fa-check-circle icon-1"></i>
+                      <span class="property-feature">
+                        {{ feature }}
                       </span>
                     </div>
-                    <q-separator/>
-                    <q-toolbar class="property-toolbar">
-                      <div class="property-item">
-                        <h4>Type</h4>
-                        <p class="truncated-text">{{ property.housetype }}
-                          <q-tooltip v-if="!screenBelow540px">
-                            {{ property.housetype }}
-                          </q-tooltip>
-                        </p>
-                      </div>
+                  </div>
 
-                      <div class="property-item">
-                        <h4>From</h4>
-                        <p>{{ property.price }}</p>
-                      </div>
+                  <div class="property-button">
+                    <q-btn
+                      stack
+                      flat
+                      @click="scrollToFloorplan"
+                      class="property-btn">
+                      <img src="src/assets/floor.svg" class="icon-2">
+                      <span class="text-btn">FLOOR PLANS</span>
+                    </q-btn>
 
-                      <div class="property-item">
-                        <h4>Status</h4>
-                        <p>{{ property.status }}</p>
-                      </div>
-                    </q-toolbar>
-                    <q-separator/>
-                    <div class="property-feature-list">
-                      <div
-                        v-for="feature in property.features"
-                        :key="feature"
-                        class="property-feature-item">
-                        <i class="fas fa-check-circle icon-1"></i>
-                        <span class="property-feature">
-                          {{ feature }}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div class="property-button">
-                      <q-btn
-                        stack
-                        flat
-                        @click="scrollToFloorplan"
-                        class="property-btn">
-                        <img src="src/assets/floor.svg" class="icon-2">
-                        <span class="text-btn">FLOOR PLANS</span>
-                      </q-btn>
-
-                      <q-btn
-                        stack
-                        flat
-                        @click="scrollToGallery"
-                        class="property-btn">
-                        <img src="src/assets/gallery.svg" class="icon-2">
-                        <span class="text-btn">GALLERY</span>
-                      </q-btn>
-                    </div>
-                    <div class="register-button">
-                      <q-btn flat @click="scrollToRegister" class="register-btn">
+                    <q-btn
+                      stack
+                      flat
+                      @click="scrollToGallery"
+                      class="property-btn">
+                      <img src="src/assets/gallery.svg" class="icon-2">
+                      <span class="text-btn">GALLERY</span>
+                    </q-btn>
+                  </div>
+                  <div class="register-button">
+                    <q-btn flat @click="scrollToRegister" class="register-btn">
                       <span class="register-text-btn">Register Now</span>
-                      </q-btn>
-                    </div>
+                    </q-btn>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="description-section">
-          <h2>{{ property.name }}</h2>
-          <p>{{ property.description }}</p>
-          <div class="description-icon"></div>
+      <div class="description-section">
+        <h2>{{ property.name }}</h2>
+        <p>{{ property.description }}</p>
+        <div class="description-icon"></div>
+      </div>
+
+      <!-- Gallery Section -->
+      <div class="gallery-section" id="section-gallery">
+        <h2>Gallery</h2>
+        <div class="line-holder">
+          <div class="line">
+            <div class="line-1">
+              <div class="line-2"></div>
+            </div>
+          </div>
         </div>
+        <div class="gallery-grid">
 
-        <!-- Gallery Section -->
-        <div class="gallery-section" id="section-gallery">
-          <h2>Gallery</h2>
-          <div class="gallery-grid">
-
-            <!-- Left image -->
-            <div
-              v-if="property.gallery[0]"
-              :key="0"
-              class="gallery-item">
-              <img
+          <!-- Left image -->
+          <div
+            v-if="property.gallery[0]"
+            :key="0"
+            class="gallery-item">
+            <img
               :src="property.gallery[0]"
               @click="openPopup(0)"
               loading="lazy"
               alt="Left Image"/>
-              <div class="gallery-overlay"></div>
-            </div>
+            <div class="gallery-overlay"></div>
+          </div>
 
-            <!-- Center Image -->
-            <div
-              v-if="property.gallery[1]"
-              :key="1"
-              class="gallery-item">
-              <img
+          <!-- Center Image -->
+          <div
+            v-if="property.gallery[1]"
+            :key="1"
+            class="gallery-item">
+            <img
               :src="property.gallery[1]"
               @click="openPopup(1)"
               loading="lazy"
               alt="Center Image"/>
-              <div class="gallery-overlay">
-                <button class="visit-gallery-btn" @click="openPopup(1)">Visit Gallery</button>
-              </div>
+            <div class="gallery-overlay">
+              <button class="visit-gallery-btn" @click="openPopup(1)">Visit Gallery</button>
             </div>
+          </div>
 
-            <!-- Right Image -->
-            <div
-              v-if="property.gallery[2]"
-              :key="2"
-              class="gallery-item">
-              <img
+          <!-- Right Image -->
+          <div
+            v-if="property.gallery[2]"
+            :key="2"
+            class="gallery-item">
+            <img
               :src="property.gallery[2]"
               @click="openPopup(2)"
               loading="lazy"
               alt="Right Image"/>
-              <div class="gallery-overlay"></div>
-            </div>
+            <div class="gallery-overlay"></div>
           </div>
+        </div>
 
-          <div v-if="isPopupOpen" class="gallery-popup">
-            <div class="gallery-popup-content">
-              <!-- Close Button -->
-              <button class="popup-close" @click="closePopup">&#9747;</button>
+        <div v-if="isPopupOpen" class="gallery-popup">
+          <div class="gallery-popup-content">
+            <!-- Close Button -->
+            <button class="popup-close" @click="closePopup">&#9747;</button>
 
-              <!-- Image Display -->
-              <img :src="property.gallery[currentImage]" alt="Popup Image" loading="lazy" class="gallery-popup-image" />
+            <!-- Image Display -->
+            <img :src="property.gallery[currentImage]" alt="Popup Image" loading="lazy" class="gallery-popup-image" />
 
-              <!-- Previous Button -->
-              <button class="popup-prev" @click="prevImage">&#8592;</button>
+             <!-- Previous Button -->
+            <button class="popup-prev" @click="prevImage">&#8592;</button>
 
-              <!-- Next Button -->
-              <button class="popup-next" @click="nextImage">&#8594;</button>
-           </div>
+            <!-- Next Button -->
+            <button class="popup-next" @click="nextImage">&#8594;</button>
+         </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floor Plan Section -->
+    <div class="floorplan-section" id="section-floorplan">
+      <h2 class="floorplan-title">Floorplan</h2>
+      <div class="line-holder">
+        <div class="line">
+          <div class="line-1">
+            <div class="line-2"></div>
           </div>
         </div>
       </div>
-
-      <!-- Floor Plan Section -->
-      <div class="floorplan-section" id="section-floorplan">
-        <h2 class="floorplan-title">Floorplan</h2>
-        <div class="floorplan-container">
-          <!-- Header Section -->
-          <div class="floorplan-header">
-            <div class="plan-select">
-              <select v-model="selectedPlan" class="custom-select">
-                <option
-                  v-for="(plans, planType) in currentFloorplans"
-                  :key="planType"
-                  :value="planType">
-                    {{ planType }}
-                </option>
-              </select>
-            </div>
-            <div class="plan-price">
-              Price From <span class="price">{{ property.price }}</span>
-            </div>
+      <div class="floorplan-container">
+        <!-- Header Section -->
+        <div class="floorplan-header">
+          <div class="plan-select">
+            <select v-model="selectedPlan" class="custom-select">
+              <option
+                v-for="(plans, planType) in currentFloorplans"
+                :key="planType"
+                :value="planType">
+                {{ planType }}
+              </option>
+            </select>
           </div>
+          <div class="plan-price">
+            Price From <span class="price">{{ property.price }}</span>
+          </div>
+        </div>
 
-          <!-- Floorplan Details Section -->
-          <div class="floorplan-details">
-            <div
-              v-for="(plans, planType) in currentFloorplans"
-              :key="planType">
-              <div v-if="selectedPlan === planType" class="details-floorplan">
-                <div class="details-grid-items">
-                  <div class="details-grid">
-                    <!-- Bedrooms -->
-                    <div class="details-item">
-                      <img src="src/assets/bed.png" alt="Area" class="icon-3" />
-                      <p>{{ plans[0].bedroom }} Bedrooms</p>
-                    </div>
-                    <!-- Bathrooms -->
-                    <div class="details-item">
-                      <img src="src/assets/bathroom.svg" alt="Area" class="icon-3" />
-                      <p>{{ plans[0].bathroom }} Bathrooms</p>
-                    </div>
-                    <!-- Area -->
-                    <div class="details-item">
-                      <img src="src/assets/area.svg" alt="Area" class="icon-3" />
-                      <p>{{ plans[0].area }}</p>
-                    </div>
+        <!-- Floorplan Details Section -->
+        <div class="floorplan-details">
+          <div
+            v-for="(plans, planType) in currentFloorplans"
+            :key="planType">
+            <div v-if="selectedPlan === planType" class="details-floorplan">
+              <div class="details-grid-items">
+                <div class="details-grid">
+                  <!-- Bedrooms -->
+                  <div class="details-item">
+                    <img src="src/assets/bed.png" alt="Area" class="icon-3" />
+                    <p>{{ plans[0].bedroom }} Bedrooms</p>
                   </div>
+                  <!-- Bathrooms -->
+                  <div class="details-item">
+                    <img src="src/assets/bathroom.svg" alt="Area" class="icon-3" />
+                    <p>{{ plans[0].bathroom }} Bathrooms</p>
+                  </div>
+                  <!-- Area -->
+                  <div class="details-item">
+                    <img src="src/assets/area.svg" alt="Area" class="icon-3" />
+                    <p>{{ plans[0].area }}</p>
+                  </div>
+                </div>
 
-                  <!-- Buttons Section -->
-                  <div class="floorplan-buttons">
-                    <button @click="downloadBrochure(plans[0].brochure)" class="btn download-btn">
-                      <img src="src/assets/brochure.svg" alt="Download" />
-                      Download Brochure
-                    </button>
-                    <button @click="openImage(plans[0].plan)" class="btn view-btn">
-                      <img src="src/assets/area.svg" alt="View" />
-                      View Floorplan
-                    </button>
-                  </div>
+                <!-- Buttons Section -->
+                <div class="floorplan-buttons">
+                  <button @click="downloadBrochure(plans[0].brochure)" class="btn download-btn">
+                    <img src="src/assets/brochure.svg" alt="Download" />
+                    Download Brochure
+                  </button>
+                  <button @click="openImage(plans[0].plan)" class="btn view-btn">
+                    <img src="src/assets/area.svg" alt="View" />
+                    View Floorplan
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Popup for floorplan image -->
-      <div class="popup" v-if="showPopup">
-        <div class="popup-content">
-          <div class="popup-header">
-            <h2 class="popup-title">{{ selectedPlan }}</h2>
-            <div class="zoom-control">
-              <button @click="zoomIn" class="close-btn"> <i class="fa fa-search-plus"></i></button>
-              <button @click="zoomOut" class="close-btn"> <i class="fa fa-search-minus"></i></button>
-              <button class="close-btn" @click="ClosePopup"><i class="fa fa-times-circle"></i></button>
-            </div>
+    <!-- Popup for floorplan image -->
+    <div class="popup" v-if="showPopup">
+      <div class="popup-content">
+        <div class="popup-header">
+          <h2 class="popup-title">{{ selectedPlan }}</h2>
+          <div class="zoom-control">
+            <button @click="zoomIn" class="close-btn"> <i class="fa fa-search-plus"></i></button>
+            <button @click="zoomOut" class="close-btn"> <i class="fa fa-search-minus"></i></button>
+            <button class="close-btn" @click="ClosePopup"><i class="fa fa-times-circle"></i></button>
           </div>
+        </div>
 
-          <div class="popup-image-container"
-            :class="{ grabbing: isDragging }"
-            @mousedown="startDragging"
-            @mousemove="dragImage"
-            @mouseup="stopDragging"
-            @mouseleave="stopDragging">
-              <img
-              :src="selectedPlanImage"
-              alt="Floorplan"
-              class="popup-image"
-              :style="{transform: `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`, }"/>
+        <div class="popup-image-container"
+          :class="{ grabbing: isDragging }"
+          @mousedown="startDragging"
+          @mousemove="dragImage"
+          @mouseup="stopDragging"
+          @mouseleave="stopDragging">
+          <img
+            :src="selectedPlanImage"
+            alt="Floorplan"
+            class="popup-image"
+            :style="{transform: `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`, }"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="location-section">
+      <div class="location-title">
+        <h2>Location</h2>
+        <div class="line-holder">
+          <div class="line">
+            <div class="line-1">
+              <div class="line-2"></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="location-section">
-        <div class="location-title">
-          <h2>Location</h2>
-        </div>
-
-        <div class="location-container">
+      <div class="location-container">
         <div class="location-map" v-if="property">
           <iframe
             :src="property.map"
@@ -266,12 +287,11 @@
             <q-separator color="white"/>
 
             <q-expansion-item
-            v-for="(locations, category) in computedNearbyAmenities"
-            :key="category"
-            expand-icon-class="text-white"
-            group="somegroup"
-            class="amenities-expand"
-            >
+              v-for="(locations, category) in computedNearbyAmenities"
+              :key="category"
+              expand-icon-class="text-white"
+              group="somegroup"
+              class="amenities-expand">
               <template v-slot:header>
                 <q-item-section avatar>
                   <i :class="getCategoryIcon(category)" style="color: white; font-size: 18px;"></i>
@@ -284,10 +304,9 @@
               <!-- Content inside the expansion item -->
               <div class="q-pa-md">
                 <q-item
-                v-for="(location, idx) in locations"
-                :key="idx"
-                class="amenities-child"
-              >
+                  v-for="(location, idx) in locations"
+                  :key="idx"
+                  class="amenities-child">
                   <q-item-section class="amenities-location">{{ location.name }}<q-space class="amenities-km"/> {{ location.distance }} </q-item-section>
                 </q-item>
               </div>
@@ -295,7 +314,77 @@
           </q-list>
         </div>
       </div>
+    </div>
+
+    <div class="register" id="section-register">
+      <div class="register-container">
+        <div class="register-wrapper">
+          <!-- Left Section -->
+          <div class="register-left">
+            <h2 class="register-title">Contact Details</h2>
+            <div class="register-line-holder">
+              <div class="register-line">
+                <div class="register-line-1">
+                </div>
+              </div>
+            </div>
+            <h5 class="address-title">Address</h5>
+            <address>
+              No. 1, Tingkat Basement, Jalan Dagang 2,<br>
+              Kampung Bukit Angin, 28000 Temerloh, Pahang<br>
+            </address>
+
+            <div class="map-button">
+              <button @click="downloadBrochure(plans[0].brochure)" class="btn view-full-map-btn">
+                    <img src="src/assets/brochure.svg" alt="Download" />
+                    View Full Map
+                  </button>
+            </div>
+            <h5 class="contact-title">Contact Number</h5>
+            <div>
+              <i class="fa fa-phone phone-icon"></i>
+                <span class="contact-no">
+                  09-296 0000
+                </span>
+            </div>
+            <h5 class="business-title">Business Hours</h5>
+            <div>
+              <i class="fas fa-business-time calendar-icon"></i>
+                <span class="business-hours">
+                  Mon - Sat, 9AM - 5PM
+                </span>
+            </div>
+          </div>
+
+          <!-- Right Section -->
+          <div class="register-right">
+            <h2>Got A Question?</h2>
+            <div class="register-line-holder">
+              <div class="register-line">
+                <div class="register-line-1">
+                </div>
+              </div>
+            </div>
+            <p>Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
+            <form class="register-form">
+              <input type="text" placeholder="Name*" required>
+              <input type="email" placeholder="Email*" required>
+              <input type="tel" placeholder="Telephone*" required>
+              <select>
+                <option disabled selected>Select enquiry type</option>
+                <option>General</option>
+                <option>Interested Project</option>
+                <option>Consultation</option>
+                <option>Business</option>
+                <option>Contractor</option>
+              </select>
+              <textarea placeholder="Questions/Comments*" required></textarea>
+              <button type="submit" class="submit-btn">SEND</button>
+            </form>
+          </div>
+        </div>
       </div>
+    </div>
   </q-page>
 </template>
 
@@ -488,12 +577,40 @@ const capitalizeFirstLetter = (string) => {
 </script>
 
 <style scoped>
+
+@font-face {
+  font-family: 'TitilliumWebRegular';
+  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'TitilliumWebSemiBold';
+  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'RecklessNeueMedium';
+  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TitilliumWebBold';
+  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TitilliumWebBoldItalic';
+  src: url('src/assets/fonts/TitilliumWeb-BoldItalic.ttf') format('truetype');
+}
+
 .property-hero{
   font-family: Arial, sans-serif;
   color: #333;
   padding: 30px 0px;
   margin-top: -80px;
-  padding: 20px 20px;
+  padding: 20px 80px;
   overflow-x: hidden;
 }
 
@@ -502,16 +619,15 @@ const capitalizeFirstLetter = (string) => {
   display: flex;
   height: 65vh;
   background-color: #08463c;
-  margin-top: -80px;
-  margin-left: -40px;
-  margin-right: -40px;
+  margin-left: -80px;
+  margin-right: -80px;
 }
 
 .hero-section {
   position: relative;
   width: 100%;
-  height: 80vh;
-  margin-top: -260px;
+  height: 81vh;
+  margin-top: -375px;
   display: flex;
   flex-direction: row;
   background-color: white;
@@ -520,15 +636,16 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .hero-image {
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+  padding-bottom: 20px;
   width: 50%;
   height: 77vh;
   border-radius: 2px;
 }
 
 .property-section{
-  padding: 20px 50px;
+  padding: 0px 50px;
   overflow-x: hidden;
 }
 
@@ -548,8 +665,7 @@ const capitalizeFirstLetter = (string) => {
 
 .property-info h3 {
   font-size: 26px;
-  line-height: 24px;
-  font-weight: bold;
+  font-family: 'TitilliumWebSemiBold';
   color: #1e1e1e;
   text-align: left;
   padding-left: 20px;
@@ -558,7 +674,7 @@ const capitalizeFirstLetter = (string) => {
 .property-location {
   text-align: left;
   padding-left: 20px;
-  margin-top: -10px;
+  margin-top: -20px;
   margin-bottom: 20px;
 }
 
@@ -569,8 +685,8 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .text-property-location {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 17px;
+  font-family: 'TitilliumWebRegular';
   color: #424040;
 }
 
@@ -590,6 +706,7 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .property-item h4 {
+  font-family: 'TitilliumWebRegular';
   font-size: 18px;
   line-height: 27px;
   color: rgb(109, 114, 120);
@@ -598,6 +715,7 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .property-item p {
+  font-family: 'TitilliumWebSemiBold';
   font-size: 17px;
   line-height: 26px;
   font-weight: bold;
@@ -631,9 +749,11 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .property-feature {
+  font-family: 'TitilliumWebRegular';
   font-size: 15px;
   line-height: 23px;
   margin-left: 10px;
+  color: #000;
 }
 
 .property-button {
@@ -650,6 +770,7 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .text-btn {
+  font-family: 'TitilliumWebSemiBold';
   font-size: 14px;
   line-height: 21px;
   padding-top: 10px;
@@ -659,7 +780,6 @@ const capitalizeFirstLetter = (string) => {
   background-color: transparent;
   border: 2px solid #08463c;
   color: #000000;
-  font-weight: bold;
   padding: 10px 20px;
   border-radius: 0;
   width: 150px;
@@ -679,6 +799,7 @@ const capitalizeFirstLetter = (string) => {
 .register-button {
   padding-top: 20px;
 }
+
 .register-btn {
   background-color: transparent;
   border: 2px solid #08463c;
@@ -699,6 +820,8 @@ const capitalizeFirstLetter = (string) => {
 
 .register-text-btn {
   font-size: 14px;
+  font-family: 'TitilliumWebSemiBold';
+
 }
 
 .q-tooltip {
@@ -713,7 +836,7 @@ const capitalizeFirstLetter = (string) => {
 
 }
 
-@media (max-width: 1094px) {
+@media (max-width: 1104px) {
   .hero-section {
     flex-direction: column;
     height: auto;
@@ -769,7 +892,7 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .description-section {
-  margin: 60px 40px;
+  margin: 30px 40px;
   text-align: center;
   padding-top: 20px;
 }
@@ -777,15 +900,16 @@ const capitalizeFirstLetter = (string) => {
 .description-section h2{
   font-size: 48px;
   line-height: 56px;
-  font-weight: bold;
+  font-family: 'TitilliumWebBold';
   color: #777777;
   text-transform: uppercase;
 }
 
 .description-section p{
+  font-family: 'TitilliumWebRegular';
   font-size: 18px;
   line-height: 27px;
-  padding: 0 150px;
+  padding: 10px 150px;
 }
 
 @media (max-width: 1024px) {
@@ -821,25 +945,60 @@ const capitalizeFirstLetter = (string) => {
     margin-right: -20px;
 
   }
-}.gallery-section
+}
 
- {
-  padding: 20px;
+.line-holder {
+  position: static;
+  margin-top: -30px;
+}
+
+.line {
+  display: inline-block;
+  width: 12px; /* Thickness of the line */
+  height: 3px; /* Height of the line */
+  background-color: #08463c; /* Gold accent */
+  padding-inline: 40px;
+
+}
+
+.line-1 {
+  display: inline-block;
+  width: 50px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-top: 1px; /* Space between the line and text */
+  padding-inline-end: 200px;
+  margin-inline-start: 40px;
+}
+
+.line-2 {
+  display: inline-block;
+  width: 220px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-bottom: 20px; /* Space between the line and text */
+  padding-inline-start: -100px;
+  margin-inline-start: -380px;
+}
+
+.gallery-section {
+  padding: 0px;
+  padding-top: 20px;
   text-align: center;
 }
 
 .gallery-section h2 {
-  padding-top: 10px;
+  font-family: 'RecklessNeueMedium';
   font-size: 48px;
   line-height: 48px;
-  font-weight: bold;
   color: #1e1e1e;
 }
 
 .gallery-grid {
   display: flex;
   padding-bottom: 20px;
-  padding-top: 30px;
+  padding-top: 10px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -860,22 +1019,22 @@ const capitalizeFirstLetter = (string) => {
 
 .gallery-grid .gallery-item:nth-child(1) {
   flex: 1;
-  max-width: 25%;
-  height: 500px;
-  clip-path: inset(0 10% 0 0);
+  max-width: 35%;
+  height: 550px;
+  clip-path: inset(0 0 0 0);
 }
 
 .gallery-grid .gallery-item:nth-child(2) {
   flex: 2;
   max-width: 50%;
-  height: 500px;
+  height: 550px;
 }
 
 .gallery-grid .gallery-item:nth-child(3) {
   flex: 1;
-  width: 25%;
-  height: 500px;
-  clip-path: inset(0 0 0 10%);
+  width: 35%;
+  height: 550px;
+  clip-path: inset(0 0 0 0);
 }
 
 .gallery-item:hover img {
@@ -992,25 +1151,25 @@ const capitalizeFirstLetter = (string) => {
   transform: translateY(-50%) scale(1.2);
 }
 
+ /*Floorplan Section */
 .floorplan-section {
-  padding: 20px 5%;
-  font-family: Arial, sans-serif;
+  margin-top: 60px;
+  padding: 20px 200px;
   text-align: center;
-  background-color:#0a5b4d;
+  background-color:#fff;
 }
 
 .floorplan-title {
-  padding-top: 50px;
+  font-family: 'RecklessNeueMedium';
+  padding-top: 40px;
   font-size: 48px;
   line-height: 48px;
-  font-weight: bold;
-  color: #fff;
 }
 
 .floorplan-container {
   background-color: white;
   border: 1px solid #ddd;
-  padding: 20px 5%;
+  padding-bottom: 20px;
 }
 
 .floorplan-header {
@@ -1023,6 +1182,7 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .plan-select {
+  font-family: 'TitilliumWebRegular';
   padding: 5px;
   font-size: 17px;
   color: white;
@@ -1055,6 +1215,7 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .plan-price {
+  font-family: 'TitilliumWebRegular';
   white-space: nowrap;
   padding: 10px;
   font-size: 17px;
@@ -1088,6 +1249,7 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .details-item p {
+  font-family: 'TitilliumWebRegular';
   font-size: 17px;
   line-height: 27px;
   color: #000000;
@@ -1114,8 +1276,8 @@ const capitalizeFirstLetter = (string) => {
   background: #fff;
   width: 200px;
   cursor: pointer;
+  font-family: 'TitilliumWebBold';
   font-size: 14px;
-  font-weight: bold;
   white-space: nowrap;
 }
 
@@ -1145,7 +1307,17 @@ const capitalizeFirstLetter = (string) => {
   filter: invert(1);
 }
 
+@media (max-width: 1000px) {
+  .floorplan-section {
+  padding: 20px 110px;
+}
+}
+
 @media (max-width: 768px) {
+  .floorplan-section {
+  padding: 20px 5%;
+}
+
   .floorplan-header {
     flex-direction: column;
     align-items: center;
@@ -1172,11 +1344,6 @@ const capitalizeFirstLetter = (string) => {
 }
 
 @media (max-width: 580px) {
-
-  .floorplan-section {
-  padding: 20px 0%;
-  margin: 0 -15px;
-}
 
   .details-grid {
     gap: 0px;
@@ -1269,8 +1436,7 @@ const capitalizeFirstLetter = (string) => {
 
 .location-section {
   padding: 20px;
-  padding-bottom: 70px;
-  background-color: #e3ddd3;
+  padding-bottom: 20px;
 }
 
 .location-title {
@@ -1278,10 +1444,10 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .location-section h2 {
-  padding-top: 40px;
+  font-family: 'RecklessNeueMedium';
+  padding-top: 20px;
   font-size: 48px;
   line-height: 48px;
-  font-weight: bold;
   color: #1e1e1e;
 }
 
@@ -1316,6 +1482,7 @@ const capitalizeFirstLetter = (string) => {
   .amenities-section {
     padding: 20px 15px;
     text-align: center;
+    font-family: 'TitilliumWebSemiBold';
     font-size: 24px;
     line-height: 32px;
     font-weight: bold;
@@ -1324,6 +1491,7 @@ const capitalizeFirstLetter = (string) => {
 
   .amenities-expand {
     font-size: 16px;
+    font-family: 'TitilliumWebSemiBold';
     color: antiquewhite;
     line-height: 24px;
   }
@@ -1331,6 +1499,7 @@ const capitalizeFirstLetter = (string) => {
   .amenities-child {
     font-size: 16px;
     line-height: 24px;
+    font-family: 'TitilliumWebSemiRegular';
     cursor: default;
   }
 
@@ -1433,4 +1602,228 @@ const capitalizeFirstLetter = (string) => {
   margin-inline-start: -200px;
 }}
 
+/* Contact Us Section */
+.register {
+  color: #000;
+  padding: 40px 100px;
+  padding-top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-line-holder {
+  position: static;
+  margin-top: -20px;
+}
+
+.register-line {
+  display: inline-block;
+  width: 12px; /* Thickness of the line */
+  height: 3px; /* Height of the line */
+  background-color: #08463c; /* Gold accent */
+  padding-inline: 45px;
+
+}
+
+.register-line-1 {
+  display: inline-block;
+  width: 170px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-bottom: 13px; /* Space between the line and text */
+  margin-inline-start: 45px;
+}
+
+.register-wrapper {
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.register-left, .register-right {
+  flex: 1;
+  width: 100%;
+}
+
+.register-left {
+  padding: 0px 10px;
+  padding-left: 30px;
+}
+
+.register-left .register-title {
+  font-family: 'RecklessNeueMedium';
+  margin-bottom: 35px;
+  white-space: nowrap;
+  font-size: 36px;
+}
+
+.address-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+.register-left p {
+  font-family: 'TitilliumWebRegular';
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.register-left address {
+  font-family: 'TitilliumWebRegular';
+  font-style: normal;
+  margin-bottom: 0px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.map-button {
+  padding-top: 20px;
+}
+
+.view-full-map-btn {
+  border: 2px solid #08463c;
+  color: #08463c;
+}
+
+.view-full-map-btn:hover img {
+  filter: invert(1);
+}
+
+.contact-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.phone-icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.contact-no {
+  font-family: 'TitilliumWebRegular';
+  font-style: normal;
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.business-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.calendar-icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.business-hours {
+  font-family: 'TitilliumWebRegular';
+  font-style: normal;
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+/* Right Section */
+.register-right {
+  padding: 20px;
+  width: 600px;
+}
+
+.register-right h2 {
+  font-family: 'RecklessNeueMedium';
+  font-size: 36px;
+  line-height: 40px;
+}
+
+.register-right p {
+  font-family: 'TitilliumWebRegular';
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.register-form input,
+.register-form textarea,
+.register-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #5555555e;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000;
+}
+
+.register-form textarea {
+  resize: none;
+  height: 100px;
+}
+
+.register-form select {
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.submit-btn {
+  padding: 10px 20px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+@media screen and (min-width: 768px){
+  .register-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+  }
+
+  .register-container {
+    gap: 40px;
+  }
+
+  .register-right {
+    width: 450px;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .register-wrapper {
+    gap: 150px;
+  }
+
+  .register-left h2{
+    font-size: 3rem;
+  }
+}
 </style>
