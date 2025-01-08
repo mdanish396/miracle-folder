@@ -1749,7 +1749,6 @@ const capitalizeFirstLetter = (string) => {
 /* Right Section */
 .register-right {
   padding: 20px;
-  width: 600px;
 }
 
 .register-right h2 {
@@ -1801,7 +1800,7 @@ const capitalizeFirstLetter = (string) => {
   text-transform: uppercase;
 }
 
-@media screen and (min-width: 768px){
+@media (min-width: 900px){
   .register-wrapper {
     flex-direction: row;
     justify-content: space-between;
@@ -1817,7 +1816,18 @@ const capitalizeFirstLetter = (string) => {
   }
 }
 
-@media screen and (min-width: 1024px){
+@media (max-width: 786px){
+
+  .register {
+  padding: 40px 40px;
+}
+
+.register-left address br:first-child {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px){
   .register-wrapper {
     gap: 150px;
   }
