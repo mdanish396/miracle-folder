@@ -244,7 +244,7 @@
 }
 
 .about-image {
-  width: 700px;
+  width: 850px;
   height: 71vh;
   object-fit: cover;
 }
@@ -637,6 +637,10 @@ padding-inline: 20px;
 @media screen and (min-width: 1024px){
   .contact-wrapper {
     gap: 150px;
+  }
+
+  .register-right {
+    padding-right: -40px;
   }
 
   .contact-left h2{
