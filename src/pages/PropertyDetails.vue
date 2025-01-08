@@ -3,70 +3,77 @@
     <div class="property-hero">
       <div v-if="property">
         <div class="before-hero-section"></div>
-        <div class="hero-section">
-          <img :src="property.image" alt="Property Image" class="hero-image" />
-          <div class="property-section">
-            <div class="property-grid">
-              <div class="property-card">
-                <div class="property-info">
-                  <h3 class="property-name">{{ property.name }}</h3>
-                  <div class="property-location">
-                    <i class="fas fa-map-marker-alt icon"></i>
-                    <span class="text-property-location">
-                      {{ property.location }}
-                    </span>
-                  </div>
-                  <q-separator/>
-                  <q-toolbar class="property-toolbar">
-                    <div class="property-item">
-                      <h4>Type</h4>
-                      <p class="truncated-text">{{ property.housetype }}
-                        <q-tooltip v-if="!screenBelow540px">
-                          {{ property.housetype }}
-                        </q-tooltip>
-                      </p>
-                    </div>
-
-                    <div class="property-item">
-                      <h4>From</h4>
-                      <p>{{ property.price }}</p>
-                    </div>
-
-                    <div class="property-item">
-                      <h4>Status</h4>
-                      <p>{{ property.status }}</p>
-                    </div>
-                  </q-toolbar>
-                  <q-separator/>
-                  <div class="property-feature-list">
-                    <div
-                      v-for="feature in property.features"
-                      :key="feature"
-                      class="property-feature-item">
-                      <i class="fas fa-check-circle icon-1"></i>
-                      <span class="property-feature">
-                        {{ feature }}
+          <div class="hero-section">
+            <img :src="property.image" alt="Property Image" class="hero-image" />
+            <div class="property-section">
+              <div class="property-grid">
+                <div class="property-card">
+                  <div class="property-info">
+                    <h3 class="property-name">{{ property.name }}</h3>
+                    <div class="property-location">
+                      <i class="fas fa-map-marker-alt icon"></i>
+                      <span class="text-property-location">
+                        {{ property.location }}
                       </span>
                     </div>
-                  </div>
-                  <div class="property-button">
-                    <q-btn
-                      stack
-                      flat
-                      @click="scrollToFloorplan"
-                      class="property-btn">
-                      <img src="src/assets/floor.svg" class="icon-2">
-                      <span class="text-btn">FLOOR PLANS</span>
-                    </q-btn>
+                    <q-separator/>
+                    <q-toolbar class="property-toolbar">
+                      <div class="property-item">
+                        <h4>Type</h4>
+                        <p class="truncated-text">{{ property.housetype }}
+                          <q-tooltip v-if="!screenBelow540px">
+                            {{ property.housetype }}
+                          </q-tooltip>
+                        </p>
+                      </div>
 
-                    <q-btn
-                      stack
-                      flat
-                      @click="scrollToGallery"
-                      class="property-btn">
-                      <img src="src/assets/gallery.svg" class="icon-2">
-                      <span class="text-btn">GALLERY</span>
-                    </q-btn>
+                      <div class="property-item">
+                        <h4>From</h4>
+                        <p>{{ property.price }}</p>
+                      </div>
+
+                      <div class="property-item">
+                        <h4>Status</h4>
+                        <p>{{ property.status }}</p>
+                      </div>
+                    </q-toolbar>
+                    <q-separator/>
+                    <div class="property-feature-list">
+                      <div
+                        v-for="feature in property.features"
+                        :key="feature"
+                        class="property-feature-item">
+                        <i class="fas fa-check-circle icon-1"></i>
+                        <span class="property-feature">
+                          {{ feature }}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="property-button">
+                      <q-btn
+                        stack
+                        flat
+                        @click="scrollToFloorplan"
+                        class="property-btn">
+                        <img src="src/assets/floor.svg" class="icon-2">
+                        <span class="text-btn">FLOOR PLANS</span>
+                      </q-btn>
+
+                      <q-btn
+                        stack
+                        flat
+                        @click="scrollToGallery"
+                        class="property-btn">
+                        <img src="src/assets/gallery.svg" class="icon-2">
+                        <span class="text-btn">GALLERY</span>
+                      </q-btn>
+                    </div>
+                    <div class="register-button">
+                      <q-btn flat @click="scrollToRegister" class="register-btn">
+                      <span class="register-text-btn">Register Now</span>
+                      </q-btn>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -289,7 +296,6 @@
         </div>
       </div>
       </div>
-    </div>
   </q-page>
 </template>
 
@@ -359,6 +365,14 @@ const scrollToFloorplan = () => {
 
   if (floorplanSection) {
     floorplanSection.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
+const scrollToRegister = () => {
+  const registerSection = document.getElementById('section-register')
+
+  if (registerSection) {
+    registerSection.scrollIntoView({ behavior: 'smooth' })
   }
 }
 
@@ -479,6 +493,7 @@ const capitalizeFirstLetter = (string) => {
   color: #333;
   padding: 30px 0px;
   margin-top: -80px;
+  padding: 20px 20px;
   overflow-x: hidden;
 }
 
@@ -513,7 +528,7 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .property-section{
-  padding: 30px 0px;
+  padding: 20px 50px;
   overflow-x: hidden;
 }
 
@@ -661,11 +676,36 @@ const capitalizeFirstLetter = (string) => {
   filter: invert(1); /* Invert the icon color when button is hovered */
 }
 
+.register-button {
+  padding-top: 20px;
+}
+.register-btn {
+  background-color: transparent;
+  border: 2px solid #08463c;
+  color: #000000;
+  font-weight: bold;
+  padding: 0px 20px;
+  border-radius: 0;
+  width: 150px;
+  height: 50px;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #08463c;
+  color: white;
+}
+
+.register-text-btn {
+  font-size: 14px;
+}
+
 .q-tooltip {
   display: inline-block;
 }
 
-@media (max-width: 1122px) {
+@media (max-width: 1252px) {
 
   .property-toolbar {
     gap: 30px;
@@ -673,14 +713,7 @@ const capitalizeFirstLetter = (string) => {
 
 }
 
-@media (max-width: 1024px) {
-  .property-toolbar {
-    gap: 25px;
-  }
-
-}
-
-@media (max-width: 944px) {
+@media (max-width: 1094px) {
   .hero-section {
     flex-direction: column;
     height: auto;
@@ -703,7 +736,7 @@ const capitalizeFirstLetter = (string) => {
 
 }
 
-@media (max-width: 540px) {
+@media (max-width: 560px) {
 
   .before-hero-section {
   height: 120vh;
@@ -711,6 +744,10 @@ const capitalizeFirstLetter = (string) => {
 
 .hero-section {
   margin-top: -640px;
+}
+
+.property-section{
+  padding: 20px 10px;
 }
 
   .property-toolbar {
