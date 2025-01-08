@@ -251,7 +251,7 @@
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
-        <div class="amenities" v-if="Object.keys(amenities).length > 0">
+        <div class="amenities" v-if="computedNearbyAmenities">
           <q-list>
             <q-item class="amenities-section">
               <q-item-section>Nearby Amenities</q-item-section>
@@ -259,7 +259,7 @@
             <q-separator color="white"/>
 
             <q-expansion-item
-            v-for="(locations, category) in amenities"
+            v-for="(locations, category) in computedNearbyAmenities"
             :key="category"
             expand-icon-class="text-white"
             group="somegroup"
@@ -299,7 +299,6 @@ import { useRoute } from 'vue-router'
 import { properties } from 'src/components/Properties/PropertiesData.vue'
 import { floorplan } from 'src/components/Properties/PropertiesFloorplan.vue'
 import { nearbyAmenities } from 'src/components/AmenitiesData.vue'
-import { developments } from 'src/components/CurrentDevelopmentData.vue'
 
 // Assuming you have a store or an API to fetch properties
 const route = useRoute()
@@ -452,14 +451,10 @@ const nextImage = () => {
   currentImage.value = (currentImage.value + 1) % gallery.length
 }
 
-const amenities = computed(() => {
-  // Get the location of the current development
-  const location = developments.value?.name
-
-  // Return amenities for the location if it exists or an empty array otherwise
-  return nearbyAmenities[location]?.amenities || {}
+const computedNearbyAmenities = computed(() => {
+  const name = property.value?.place
+  return nearbyAmenities[name]?.amenities || {}
 })
-
 const getCategoryIcon = (category) => {
   const icons = {
     education: 'fas fa-graduation-cap',
@@ -482,7 +477,7 @@ const capitalizeFirstLetter = (string) => {
 .property-hero{
   font-family: Arial, sans-serif;
   color: #333;
-  padding: 30px 40px;
+  padding: 30px 0px;
   margin-top: -80px;
   overflow-x: hidden;
 }
@@ -515,6 +510,11 @@ const capitalizeFirstLetter = (string) => {
   width: 50%;
   height: 77vh;
   border-radius: 2px;
+}
+
+.property-section{
+  padding: 30px 0px;
+  overflow-x: hidden;
 }
 
 .property-grid {
@@ -1233,6 +1233,7 @@ const capitalizeFirstLetter = (string) => {
 .location-section {
   padding: 20px;
   padding-bottom: 70px;
+  background-color: #e3ddd3;
 }
 
 .location-title {
@@ -1240,7 +1241,7 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .location-section h2 {
-  padding-top: 50px;
+  padding-top: 40px;
   font-size: 48px;
   line-height: 48px;
   font-weight: bold;
@@ -1250,15 +1251,15 @@ const capitalizeFirstLetter = (string) => {
 .location-container {
   display: flex;
   flex-direction: row; /* Arrange items in a row */
-  padding-top: 80px;
+  padding-top: 10px;
   padding-bottom: 40px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 80px;
+  padding-right: 80px;
 }
 
   .location-map iframe {
     width: 100%; /* Ensure map adjusts within its parent container */
-    height: 400px; /* Adjust height for better visibility */
+    height: 550px; /* Adjust height for better visibility */
   }
 
   .location-map {
@@ -1272,11 +1273,12 @@ const capitalizeFirstLetter = (string) => {
     overflow-y: auto; /* Disable horizontal scroll for grid */
     scrollbar-width: 1px;
     scroll-snap-type: none;
-    height: 400px;
+    height: 550px;
   }
 
   .amenities-section {
     padding: 20px 15px;
+    text-align: center;
     font-size: 24px;
     line-height: 32px;
     font-weight: bold;
@@ -1298,6 +1300,7 @@ const capitalizeFirstLetter = (string) => {
   .amenities-location {
     display: flex;
     flex-direction: row;
+
   }
 
   .amenities-km {
@@ -1306,14 +1309,12 @@ const capitalizeFirstLetter = (string) => {
   }
 
 /* For screens larger than 768px */
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
 
   .location-container {
   display: flex;
   flex-direction: column; /* Arrange items in a row */
   padding-top: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
   padding-bottom: 40px;
 }
 
@@ -1344,22 +1345,55 @@ const capitalizeFirstLetter = (string) => {
   font-size: 40px;
 }
 
+.line {
+  padding-inline: 20px;
+
+}
+
+.line-1 {
+  padding-inline-end: 180px;
+  margin-inline-start: 20px;
+}
+
+.line-2 {
+  width: 180px;
+  margin-inline-start: -260px;
+}
+
 .amenities-section {
     font-size: 20px;
   }
 
   .location-container {
-    padding-left: 0px;
-  margin-left: -20px;
-  margin-right: -20px;
-  padding-right: 0px;
-}
+  padding-left: 20px;
+  padding-right: 20px;
+  }
+
 }
 
 @media (max-width: 540px) {
 
+  .gallery-section h2 {
+    font-size: 32px;
+  }
+
   .location-section h2 {
   font-size: 32px;
 }
+
+.line {
+  padding-inline: 15px;
+
 }
+
+.line-1 {
+  padding-inline-end: 140px;
+  margin-inline-start: 15px;
+}
+
+.line-2 {
+  width: 140px;
+  margin-inline-start: -200px;
+}}
+
 </style>
