@@ -20,7 +20,7 @@
           </q-card>
           <q-card
             class="nav-button flat-card" clickable @click="$router.push('/development')">
-            <q-card-section class="nav-card-section">Development</q-card-section>
+            <q-card-section class="nav-card-section">Developments</q-card-section>
           </q-card>
 
           <q-card
@@ -186,7 +186,7 @@
             <q-item-section>About Miracle</q-item-section>
           </q-item>
           <q-item clickable to="/development" class="drawer-item" v-ripple>
-            <q-item-section>Development</q-item-section>
+            <q-item-section>Developments</q-item-section>
           </q-item>
           <q-expansion-item
           group="somegroup"
@@ -299,8 +299,8 @@
             <button class="social-btn instagram" aria-label="Instagram" @click="openInstagram">
               <i class="mdi mdi-instagram"></i>
             </button>
-            <button class="social-btn tiktok" aria-label="TikTok" @click="openTiktok">
-              <img class="tiktok" src="src\assets\tiktok1.png" alt="Tiktok">
+            <button class="social-btn-tiktok" aria-label="TikTok" @click="openTiktok">
+              <img class="tiktok" src="src\assets\tiktok3.svg" alt="Tiktok">
             </button>
           </div>
         </div>
@@ -910,10 +910,33 @@ color:#00B398;
   transform: scale(1.1); /* Slightly increase size on hover */
 }
 
-.tiktok:hover {
+.social-btn-tiktok {
+  width: 24px; /* Smaller button size */
+  height: 24px;
+  border: none; /* White border for outlined effect */
+  background: transparent; /* Transparent background */
+  color: #fff; /* Icon/text color */
+  border-radius: 4px; /* Slightly rounded corners */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px; /* Smaller icon size */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.social-btn-tiktok:hover {
   background-color: #fff; /* White background on hover */
   color: #58595B; /* Dark gray text on hover */
-  transform: scale(1.1);
+  transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+.tiktok {
+  transition: filter 0.3s ease;
+}
+
+.social-btn-tiktok:hover .tiktok {
+  filter: grayscale(1) brightness(0.4); /* Grayscale and darken to create a gray look */
 }
 
 .social-btn i {
@@ -1040,7 +1063,9 @@ color:#00B398;
   }
 
   .footer-copyright {
+    white-space: nowrap;
     right: 35%;
+    top: 0;
   }
 }
 
