@@ -335,7 +335,7 @@
             </address>
 
             <div class="map-button">
-              <button @click="downloadBrochure(plans[0].brochure)" class="btn view-full-map-btn">
+              <button @click="gotofullmap" class="btn view-full-map-btn">
                     <img src="src/assets/brochure.svg" alt="Download" />
                     View Full Map
                   </button>
@@ -370,14 +370,14 @@
               <input type="text" placeholder="Name*" required>
               <input type="email" placeholder="Email*" required>
               <input type="tel" placeholder="Telephone*" required>
-              <select>
-                <option disabled selected>Select enquiry type</option>
-                <option>General</option>
-                <option>Interested Project</option>
-                <option>Consultation</option>
-                <option>Business</option>
-                <option>Contractor</option>
-              </select>
+              <select v-model="selectedProperty">
+              <option
+                v-for="property in flattenedProperties"
+                :key="property.name"
+                :value="property.name">
+                {{ property.name }}
+              </option>
+            </select>
               <textarea placeholder="Questions/Comments*" required></textarea>
               <button type="submit" class="submit-btn">SEND</button>
             </form>
@@ -389,7 +389,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref, computed } from 'vue'
+import { onMounted, onUnmounted, ref, computed, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { properties } from 'src/components/Properties/PropertiesData.vue'
 import { floorplan } from 'src/components/Properties/PropertiesFloorplan.vue'
@@ -412,6 +412,7 @@ const translateX = ref(0)
 const translateY = ref(0)
 const lastMouseX = ref(0)
 const lastMouseY = ref(0)
+const selectedProperty = ref(property.value?.name || '') // Default to the current property name
 
 const checkScreenSize = () => {
   screenBelow540px.value = window.innerWidth < 540
@@ -465,10 +466,8 @@ const scrollToRegister = () => {
   }
 }
 
-const downloadBrochure = (brochure) => {
-  if (brochure) {
-    window.open(brochure, '_blank')
-  }
+const gotofullmap = () => {
+  window.open('https://maps.app.goo.gl/XcCFgR9Lg8vpdLfh7', '_blank')
 }
 
 const openImage = (plan) => {
@@ -574,6 +573,12 @@ const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
+watchEffect(() => {
+  if (property.value) {
+    selectedProperty.value = property.value.name
+  }
+})
+
 </script>
 
 <style scoped>
@@ -608,9 +613,8 @@ const capitalizeFirstLetter = (string) => {
 .property-hero{
   font-family: Arial, sans-serif;
   color: #333;
-  padding: 30px 0px;
+  padding: 80px 20px;
   margin-top: -80px;
-  padding: 20px 80px;
   overflow-x: hidden;
 }
 
@@ -647,6 +651,7 @@ const capitalizeFirstLetter = (string) => {
 .property-section{
   padding: 0px 50px;
   overflow-x: hidden;
+  margin-top: -20px;
 }
 
 .property-grid {
@@ -856,7 +861,6 @@ const capitalizeFirstLetter = (string) => {
   .property-toolbar {
     gap: 10px;
   }
-
 }
 
 @media (max-width: 560px) {
@@ -1087,7 +1091,7 @@ const capitalizeFirstLetter = (string) => {
 }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .gallery-grid .gallery-item:nth-child(2) {
   height: 300px;
 }
@@ -1315,7 +1319,7 @@ const capitalizeFirstLetter = (string) => {
 
 @media (max-width: 768px) {
   .floorplan-section {
-  padding: 20px 5%;
+  padding: 20px 20px;
 }
 
   .floorplan-header {
@@ -1338,7 +1342,7 @@ const capitalizeFirstLetter = (string) => {
   gap: 20px;
 }
 .btn {
-  width: 300px;
+  width: 250px;
   justify-content: center;
 }
 }
@@ -1571,8 +1575,8 @@ const capitalizeFirstLetter = (string) => {
   }
 
   .location-container {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
   }
 
 }
@@ -1748,19 +1752,19 @@ const capitalizeFirstLetter = (string) => {
 
 /* Right Section */
 .register-right {
-  padding: 20px;
+  padding: 0px 10px;
 }
 
 .register-right h2 {
   font-family: 'RecklessNeueMedium';
   font-size: 36px;
-  line-height: 40px;
-}
+  margin-bottom: 35px;
+  white-space: nowrap;}
 
 .register-right p {
   font-family: 'TitilliumWebRegular';
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 21px;
 }
 
 .register-form {
@@ -1819,21 +1823,28 @@ const capitalizeFirstLetter = (string) => {
 @media (max-width: 786px){
 
   .register {
-  padding: 40px 40px;
+  padding: 40px 20px;
 }
 
-.register-left address br:first-child {
+}
+
+@media (max-width: 520px){
+  .register-left address br:first-child {
     display: none;
   }
+
+  .register-left .register-title {
+    font-size: 34px;
+  }
+
+  .address-title {
+  font-size: 17px;
+}
 }
 
 @media (min-width: 1024px){
   .register-wrapper {
     gap: 150px;
-  }
-
-  .register-left h2{
-    font-size: 3rem;
   }
 }
 </style>
