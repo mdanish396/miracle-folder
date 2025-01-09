@@ -122,7 +122,7 @@ export const properties = {
     status: 'Current',
     price: 'RM 600,900',
     image: 'https://picsum.photos/200/300',
-    features: ['Luxury Living', 'Green Spaces'],
+    features: ['Japanese Minimalist-Inspired Terrace Homes', 'Versatile & Practical Spaces', 'Safe & Secure Family Home'],
     description: `Miracle Gardens is an 810-acre township
       fusing lifestyle and nature, featuring rolling hills and
       five cascading lakes leading to the 50-acre, pet-friendly Central Park.
@@ -153,7 +153,7 @@ export const properties = {
     status: 'Current',
     price: 'RM 600,900',
     image: 'https://picsum.photos/200/300',
-    features: ['Luxury Living', 'Green Spaces'],
+    features: ['Japanese Minimalist-Inspired Terrace Homes', 'Versatile & Practical Spaces', 'Safe & Secure Family Home'],
     description: `Miracle Gardens is an 810-acre township
       fusing lifestyle and nature, featuring rolling hills and
       five cascading lakes leading to the 50-acre, pet-friendly Central Park.
@@ -184,7 +184,7 @@ export const properties = {
     status: 'Current',
     price: 'RM 500,900',
     image: 'https://picsum.photos/200/300',
-    features: ['Luxury Living', 'Green Spaces'],
+    features: ['Japanese Minimalist-Inspired Terrace Homes', 'Japanese Minimalist-Inspired Terrace Homes', 'Japanese Minimalist-Inspired Terrace Homes'],
     description: `Miracle Gardens is an 810-acre township
       fusing lifestyle and nature, featuring rolling hills and
       five cascading lakes leading to the 50-acre, pet-friendly Central Park.
