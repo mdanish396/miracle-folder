@@ -385,18 +385,91 @@
         </div>
       </div>
     </div>
+
+        <!-- Our Product Section-->
+        <div v-if='visibleSimilarProperties.length > 0' class="products-section">
+      <h2>Similar Properties</h2>
+      <div class="line-holder">
+        <div class="line">
+          <div class="line-1">
+            <div class="line-2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="products-grid">
+        <div class="product-card" v-for="property in similarProperties" :key="property.id">
+          <img :src="property.image" alt="Product Image" class="product-image"/>
+          <q-separator/>
+          <div class="product-info">
+            <h3>{{ property.name }}</h3>
+            <div class="product-location">
+              <i class="fas fa-map-marker-alt icon">
+              </i>
+              <span class="text-product-location">
+                {{ property.location }}
+              </span>
+            </div>
+            <q-separator/>
+            <q-toolbar class="product-toolbar">
+              <div class="product-item">
+                <h4>Type</h4>
+                <p>{{ property.housetype }}
+                  <q-tooltip>
+                    {{ property.housetype }}
+                  </q-tooltip>
+                </p>
+              </div>
+
+              <q-separator vertical/>
+              <div class="product-item-1">
+                <h4>From</h4>
+                <p>{{ property.price }}</p>
+              </div>
+            </q-toolbar>
+
+            <q-separator/>
+            <div class="product-feature-list">
+              <div
+                v-for="feature in property.features"
+                :key="feature"
+                class="product-feature-item">
+                <i class="fas fa-check-circle icon"></i>
+                <span class="product-feature">
+                  {{ feature }}
+                </span>
+              </div>
+            </div>
+
+            <q-space/>
+            <q-separator/>
+            <div class="btn-more">
+              <q-btn flat label="Learn More" class="learn-more-btn" @click="navigateToPropertyDetails(property.slug)"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-more-1" v-if="visibleSimilarProperties.length > visibleCount">
+        <q-btn
+        flat
+        label="Load More"
+        class="learn-more-btn"
+        @click="loadMore"
+        />
+      </div>
+    </div>
   </q-page>
 </template>
 
 <script setup>
 import { onMounted, onUnmounted, ref, computed, watchEffect } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import { properties } from 'src/components/Properties/PropertiesData.vue'
 import { floorplan } from 'src/components/Properties/PropertiesFloorplan.vue'
 import { nearbyAmenities } from 'src/components/AmenitiesData.vue'
 
 // Assuming you have a store or an API to fetch properties
 const route = useRoute()
+const router = useRouter()
 const propertySlug = route.params.slug
 const flattenedProperties = Object.values(properties).flat()
 const property = ref(flattenedProperties.find(item => item.slug === propertySlug))
@@ -413,6 +486,7 @@ const translateY = ref(0)
 const lastMouseX = ref(0)
 const lastMouseY = ref(0)
 const selectedProperty = ref(property.value?.name || '') // Default to the current property name
+const visibleCount = ref(3)
 
 const checkScreenSize = () => {
   screenBelow540px.value = window.innerWidth < 540
@@ -579,6 +653,33 @@ watchEffect(() => {
   }
 })
 
+const similarProperties = computed(() => {
+  return flattenedProperties.filter(
+    (item) =>
+      item.place === property.value?.place && item.id !== property.value?.id
+  )
+})
+
+const visibleSimilarProperties = computed(() => {
+  return similarProperties.value.slice(0, visibleCount.value)
+})
+
+const navigateToPropertyDetails = (slug) => {
+  router.push({ path: `/property/${slug}` })
+}
+
+onBeforeRouteUpdate((to, from, next) => {
+  const newSlug = to.params.slug
+  const newProperty = flattenedProperties.find(item => item.slug === newSlug) || null
+  if (newProperty) {
+    property.value = newProperty
+  }next()
+})
+
+const loadMore = () => {
+  visibleCount.value += 3 // Increment by the number of items to load
+}
+
 </script>
 
 <style scoped>
@@ -630,8 +731,8 @@ watchEffect(() => {
 .hero-section {
   position: relative;
   width: 100%;
-  height: 81vh;
-  margin-top: -375px;
+  height: 87vh;
+  margin-top: -420px;
   display: flex;
   flex-direction: row;
   background-color: white;
@@ -644,14 +745,13 @@ watchEffect(() => {
   margin-left: 20px;
   padding-bottom: 20px;
   width: 50%;
-  height: 77vh;
+  height: 83vh;
   border-radius: 2px;
 }
 
 .property-section{
   padding: 0px 50px;
   overflow-x: hidden;
-  margin-top: -20px;
 }
 
 .property-grid {
@@ -703,7 +803,7 @@ watchEffect(() => {
   padding: 0 10px; /* Optional: Adjust padding to create space around */
   cursor: default;
   gap: 70px;
-  white-space: nowrap;
+  white-space: nowrap;  /*all text in this will be in straight line */
 }
 
 .property-item {
@@ -770,14 +870,13 @@ watchEffect(() => {
 }
 
 .icon-2 {
-  width: 35px;
+  width: 30px;
   transition: filter 0.3s ease; /* Smooth transition */
 }
 
 .text-btn {
   font-family: 'TitilliumWebSemiBold';
   font-size: 14px;
-  line-height: 21px;
   padding-top: 10px;
 }
 
@@ -785,10 +884,10 @@ watchEffect(() => {
   background-color: transparent;
   border: 2px solid #08463c;
   color: #000000;
-  padding: 10px 20px;
+  padding: 0px 10px;
   border-radius: 0;
-  width: 150px;
-  height: 100px;
+  width: 130px;
+  height: 80px;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
@@ -870,7 +969,7 @@ watchEffect(() => {
 }
 
 .hero-section {
-  margin-top: -640px;
+  margin-top: -700px;
 }
 
 .property-section{
@@ -1611,6 +1710,7 @@ watchEffect(() => {
   color: #000;
   padding: 40px 100px;
   padding-top: 0px;
+  padding-bottom: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1644,6 +1744,7 @@ watchEffect(() => {
   background-color: white;
   flex-direction: column;
   padding: 10px;
+  padding-bottom: 60px;
   padding-left: 30px;
   padding-right: 30px;
   position: relative;
@@ -1845,6 +1946,207 @@ watchEffect(() => {
 @media (min-width: 1024px){
   .register-wrapper {
     gap: 150px;
+  }
+}
+
+.products-section {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 130px;
+  background-color: #e8e1d3;
+}
+
+.products-section h2 {
+  padding-top: 50px;
+  font-size: 48px;
+  line-height: 48px;
+  font-weight: bold;
+  color: #1e1e1e;
+}
+
+.products-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  row-gap: 60px;
+  padding: 0 40px;
+  padding-top: 10px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  text-align: center;
+  align-items: center;
+  overflow: hidden;
+  width: 380px;
+  background-color: white;
+}
+
+.product-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  margin-bottom: -6px;
+}
+
+.product-info h3 {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: bold;
+  color: #1e1e1e;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.product-location {
+  text-align: left;
+  padding-left: 20px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.text-product-location {
+  font-size: 16px;
+  line-height: 24px;
+  color: #424040;
+}
+
+.product-toolbar {
+  display: flex; /* Ensures elements are placed in a row */
+  align-items: center; /* Centers content vertically */
+  padding: 0 10px; /* Optional: Adjust padding to create space around */
+}
+
+.product-item,
+.product-item-1 {
+  flex: 1; /* Makes both items take up equal space */
+  text-align: left; /* Optional: Center-aligns content */
+}
+
+.product-item h4 {
+  font-size: 16px;
+  line-height: 24px;
+  color: rgb(109, 114, 120);
+  margin-bottom: 0px;
+  padding-left: 10px;
+}
+
+.product-item p {
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+  padding-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-item-1 h4 {
+  font-size: 16px;
+  line-height: 24px;
+  color: rgb(109, 114, 120);
+  margin-bottom: 0px;
+  padding-left: 30px;
+}
+
+.product-item-1 p {
+  font-size: 16px;
+  line-height: 24px;
+  padding-left: 30px;
+  color: black;
+}
+
+.product-feature-list {
+  padding: 20px 30px;
+  height: 200px;
+  text-align: left;
+}
+
+.product-feature-item {
+  display: flex;
+  padding: 5px 0;
+  align-items: center;
+}
+
+.product-feature {
+  font-size: 16px;
+  line-height: 24px;
+  margin-left: 10px;
+}
+
+.btn-more {
+  padding: 20px 0;
+}
+
+.btn-more-1 {
+  padding-top: 50px;
+}
+
+.learn-more-btn {
+  background-color: transparent;
+  border: 2px solid #08463c;
+  color: #000000;
+  font-weight: bold;
+  padding: 10px 40px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  border-radius: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  background-color: #08463c;
+  color: white;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 1024px) {
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 40px;
+    padding: 0 20px;
+    justify-content: center;
+  }
+
+  .product-info h3 {
+    font-size: 18px;
+  }
+
+}
+
+/* Small screens (768px and below) */
+@media (max-width: 768px) {
+
+  .product-info {
+    padding: 10px;
+  }
+
+  .product-info h3 {
+    font-size: 18px;
+  }
+
+}
+
+/* Extra small screens (480px and below) */
+@media (max-width: 480px) {
+  .products-section h2 {
+    font-size: 32px;
+  }
+
+  .product-image {
+    height: 200px;
+  }
+
+  .learn-more-btn {
+    font-size: 14px;
   }
 }
 </style>
