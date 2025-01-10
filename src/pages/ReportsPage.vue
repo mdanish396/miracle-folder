@@ -221,12 +221,12 @@ padding-inline: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -485px;
+    margin-top: -460px;
   }
 
   .text-content {
     padding-left: 0px;
-    padding-top: 195px;
+    padding-top: 175px;
   }
 
   .text-above {
@@ -245,7 +245,7 @@ padding-inline: 20px;
 .top-image {
   width: 100%;
   max-width: 500px;
-  height: auto;
+  height: 47vh;
   }
 }
 @media (max-width: 520px) {
@@ -264,6 +264,11 @@ padding-inline: 20px;
 
   .text-above {
     margin-bottom: -20px;
+  }
+
+  .top-image {
+  width: 100%;
+  height: 49vh;
   }
 }
 
