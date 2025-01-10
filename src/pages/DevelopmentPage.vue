@@ -4,9 +4,9 @@
       <div class="content-container">
         <!-- Text Content Section -->
         <div class="text-content">
-          <div class="line-holder">
-            <div class="line">
-              <div class="line-1"></div>
+          <div class="line-hero-holder">
+            <div class="line-hero">
+              <div class="line-hero-1"></div>
             </div>
           </div>
           <h2 class="text-above">Our</h2>
@@ -23,6 +23,13 @@
     <!-- Current Developments Section -->
     <div class="developments-section">
       <h2>Current Developments</h2>
+      <div class="line-holder">
+        <div class="line">
+          <div class="line-1">
+            <div class="line-2"></div>
+          </div>
+        </div>
+      </div>
       <p>Explore our current developments and find your dream home.</p>
       <div class="developments-container">
         <!-- Scrollable Development Card -->
@@ -60,13 +67,15 @@
           </div>
         </div>
       </div>
-      <div v-if="!showAllDevelopments">
-        <q-btn
-          flat
-          label="Show More Developments"
-          class="view-all-btn"
-          @click="showMoreDevelopments"
-        />
+      <div v-if="allDevelopments.length > visibleCount">
+        <div v-if="!showAllDevelopments">
+          <q-btn
+            flat
+            label="Show More Developments"
+            class="view-all-btn"
+            @click="showMoreDevelopments"
+          />
+        </div>
       </div>
       <div v-if="showAllDevelopments">
         <q-btn
@@ -79,8 +88,15 @@
     </div>
 
     <!-- Past Developments Section -->
-    <div class="developments-section">
+    <div class="past-developments-section">
       <h2>Past Developments</h2>
+      <div class="line-holder">
+        <div class="line">
+          <div class="line-1">
+            <div class="line-2"></div>
+          </div>
+        </div>
+      </div>
       <p>Explore our past developments and build your confidence.</p>
       <div class="developments-container">
         <!-- Scrollable Development Card -->
@@ -119,13 +135,15 @@
           </div>
         </div>
       </div>
-      <div v-if="!showAllPastDevelopments">
-        <q-btn
-          flat
-          label="Show More Developments"
-          class="view-all-btn"
-          @click="showMorePastDevelopments"
-        />
+      <div v-if="allPastDevelopments.length > visibleCount">
+        <div v-if="!showAllPastDevelopments">
+          <q-btn
+            flat
+            label="Show More Developments"
+            class="view-all-btn"
+            @click="showMorePastDevelopments"
+          />
+        </div>
       </div>
       <div v-if="showAllPastDevelopments">
         <q-btn
@@ -146,9 +164,10 @@ import { developments } from 'src/components/CurrentDevelopmentData.vue'
 import { pastdevelopments } from 'src/components/PastDevelopmentData.vue'
 
 const allDevelopments = ref(developments)
+const visibleCount = ref(4)
 const allPastDevelopments = ref(pastdevelopments)
-const displayedDevelopments = ref(allDevelopments.value.slice(0, 4))
-const displayedPastDevelopments = ref(allPastDevelopments.value.slice(0, 4))
+const displayedDevelopments = ref(allDevelopments.value.slice(0, visibleCount.value))
+const displayedPastDevelopments = ref(allPastDevelopments.value.slice(0, visibleCount.value))
 const showAllDevelopments = ref(false)
 const showAllPastDevelopments = ref(false)
 
@@ -195,8 +214,25 @@ const navigateToPastDevelopmentDetails = (slug) => {
 }
 
 @font-face {
+  font-family: 'TitilliumWebSemiBold';
+  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
   font-family: 'RecklessNeueMedium';
   src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TitilliumWebBold';
+  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AvenirMedium';
+  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+  font-weight: bold;
 }
 
 .development-section {
@@ -219,13 +255,13 @@ const navigateToPastDevelopmentDetails = (slug) => {
   padding-left: 120px;
 }
 
-.line-holder {
+.line-hero-holder {
   position: static;
   margin-top: -20px;
   padding-bottom: 30px;
 }
 
-.line {
+.line-hero {
   display: flex;
   width: 12px; /* Thickness of the line */
   height: 4px; /* Height of the line */
@@ -234,7 +270,7 @@ const navigateToPastDevelopmentDetails = (slug) => {
 
 }
 
-.line-1 {
+.line-hero-1 {
   display: inline-block;
   height: 2px; /* Height of the line */
   background-color: #a7a4a4; /* Gold accent */
@@ -267,34 +303,40 @@ const navigateToPastDevelopmentDetails = (slug) => {
 }
 
 .top-image {
-  width: 700px;
+  width: 850px;
   height: 71vh;
   object-fit: cover;
 }
 
-@media (max-width: 1124px) {
-  .top-image {
-  width: 600px;
-}
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 1260px) {
 
 .text-above,
 .text-below {
   font-size: 30px;
 }
 
-.line {
+.line-hero {
 padding-inline: 20px;
 }
 
-.line-1 {
+.line-hero-1 {
   padding-inline-end: 100px;
   margin-inline-start: 20px;
 }
 
 .top-image {
+  width: 700px;
+}
+}
+
+@media (max-width: 1024px) {
+  .about-image {
+  width: 600px;
+}
+}
+
+@media (max-width: 910px) {
+  .about-image {
   width: 500px;
 }
 }
@@ -325,7 +367,7 @@ padding-inline: 20px;
   font-size: 30px;
 }
 
-.line-holder {
+.line-hero-holder {
   display: none;
 }
 
@@ -351,22 +393,126 @@ padding-inline: 20px;
 }
 
 .developments-section {
-  padding: 20px 20px;
+  padding: 60px 20px;
   background-color: #ffffed;
+  text-align: center;
+  padding-bottom: 80px;
+}
+
+.past-developments-section {
+  padding: 60px 20px;
+  background-color: #ebe3d5;
   text-align: center;
 }
 
 .developments-section h2 {
-  font-family: 'Georgia', serif;
+  font-family: 'RecklessNeueMedium';
   font-size: 42px;
   color: #000000;
 }
 
+.past-developments-section h2 {
+  font-family: 'RecklessNeueMedium';
+  font-size: 42px;
+  color: #000000;
+}
+
+.line-holder {
+  position: static;
+  margin-top: -30px;
+}
+
+.line {
+  display: inline-block;
+  width: 12px; /* Thickness of the line */
+  height: 3px; /* Height of the line */
+  background-color: #08463c; /* Gold accent */
+  padding-inline: 40px;
+
+}
+
+.line-1 {
+  display: inline-block;
+  width: 50px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-top: 1px; /* Space between the line and text */
+  padding-inline-end: 200px;
+  margin-inline-start: 40px;
+}
+
+.line-2 {
+  display: inline-block;
+  width: 220px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-bottom: 20px; /* Space between the line and text */
+  padding-inline-start: -100px;
+  margin-inline-start: -380px;
+}
+
+@media (max-width: 768px) {
+
+.development-section h2 {
+  font-size: 40px;
+}
+
+.past-development-section h2 {
+  font-size: 40px;
+}
+
+.line {
+  padding-inline: 20px;
+
+}
+
+.line-1 {
+  padding-inline-end: 180px;
+  margin-inline-start: 20px;
+}
+
+.line-2 {
+  width: 180px;
+  margin-inline-start: -260px;
+}
+}
+
+@media (max-width: 540px) {
+
+  .development-section h2 {
+    font-size: 32px;
+  }
+
+  .past-development-section h2 {
+    font-size: 32px;
+  }
+
+.line {
+  padding-inline: 15px;
+
+}
+
+.line-1 {
+  padding-inline-end: 140px;
+  margin-inline-start: 15px;
+}
+
+.line-2 {
+  width: 140px;
+  margin-inline-start: -200px;
+}}
+
 .developments-section p {
-  font-family: 'Georgia', serif;
+  font-family: 'TitilliumWebRegular';
   font-size: 18px;
   color: #000000;
-  margin-top: -20px;
+  margin-bottom: 60px;
+}
+
+.past-developments-section p {
+  font-family: 'TitilliumWebRegular';
+  font-size: 18px;
+  color: #000000;
   margin-bottom: 60px;
 }
 
@@ -374,7 +520,7 @@ padding-inline: 20px;
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
   align-items: center;
   justify-content: center;
 }
@@ -400,29 +546,20 @@ padding-inline: 20px;
   object-fit: cover;
 }
 
-.development-status {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 5px 10px;
-  font-size: 12px;
-  transform: rotate(-10deg);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
 .development-info {
   padding: 15px;
   text-align: left;
 }
 
 .development-info h3 {
-  font-size: 1.2rem;
+  font-size: 21px;
+  font-family: 'TitilliumWebSemiBold';
   margin-bottom: 5px;
 }
 
 .development-info p {
   margin: 2px 0;
+  font-family: 'TitilliumWebRegular';
   color: #666;
 }
 
@@ -455,9 +592,9 @@ padding-inline: 20px;
   left: -60px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 13px;
   width: 200px;
-  font-weight: bold;
+  font-family: 'TitilliumWebBold';
   text-transform: uppercase;
   transform: rotate(-30deg);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -469,9 +606,9 @@ padding-inline: 20px;
   left: -60px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 13px;
   width: 200px;
-  font-weight: bold;
+  font-family: 'TitilliumWebBold';
   text-transform: uppercase;
   transform: rotate(-30deg);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -484,9 +621,9 @@ padding-inline: 20px;
   left: -60px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 13px;
   width: 200px;
-  font-weight: bold;
+  font-family: 'TitilliumWebBold';
   text-transform: uppercase;
   transform: rotate(-30deg);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -494,11 +631,10 @@ padding-inline: 20px;
   }
 
 .description {
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 18px;
+  font-family: 'TitilliumWebBold';
   margin-bottom: 70px;
   text-transform: capitalize;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .actions {
@@ -509,37 +645,29 @@ padding-inline: 20px;
 
 .action-btn {
   background-color: transparent;
-  border: 1px solid white;
+  border: 1px solid #a39f1a;
   color: white;
-  padding: 5px 10px;
+  padding: 10px 20px;
   border-radius: 4px;
-  font-size: 0.9rem;
+  font-size: 16px;
   text-transform: uppercase;
-  font-weight: bold;
+  font-family: 'AvenirMedium';
 }
 
 .action-btn:hover {
-  background-color: #02947e;
-}
-
-.icon-btn {
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.icon-btn:hover {
-  transform: scale(1.1);
+  background-color: #a39f1a;
 }
 
 /* view all button */
 .view-all-btn{
   background-color: transparent;
-  border: 2px solid #02947e;
+  border: 2px solid black;
   color: #000000;
-  font-weight: bold;
+  font-family: 'AvenirMedium';
+  font-size: 17px;
   padding: 10px 20px;
+  width: 300px;
+  height: 60px;
   margin-top: 10px;
   margin-bottom: 20px;
   border-radius: 0;
@@ -547,8 +675,9 @@ padding-inline: 20px;
 }
 
 .view-all-btn:hover {
-  background-color: #00B398;
-  color: white;
+  background-color: #a39f1a;
+  border: none;
+  color: #fff;
   transform: translateY(-3px);
 }
 </style>
