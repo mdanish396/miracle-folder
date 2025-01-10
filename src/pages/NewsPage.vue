@@ -26,7 +26,7 @@
     <section class="news-list">
       <div v-for="news in newsItems" :key="news.slug" class="news-item">
         <q-card @click="navigateToNewsDetails(news.slug)" class="news-btn" flat>
-          <q-icon name="article" color="secondary" />
+          <q-icon name="article"/>
             {{ news.title }}
         </q-card>
       </div>
@@ -246,10 +246,10 @@ padding-inline: 20px;
   }
 }
 .news-list {
-  display: grid;
-  gap: 5px;
-  grid-template-columns: repeat(2, 1fr);
-  padding: 20px;
+display: grid;
+gap: 5px;
+grid-template-columns: repeat(2, 1fr);
+padding: 20px;
 padding-right: 70px;
 padding-left: 150px;
 padding-top: 100px;
@@ -276,7 +276,7 @@ padding-bottom: 100px;
 }
 
 .news-btn:hover {
-  color: #02947e;
+  color: #807c12;
   background-color: transparent;
 }
 
@@ -302,6 +302,7 @@ padding-bottom: 100px;
 }
 
 .q-icon {
-  font-size: 1.5rem;
+  font-size: 24px;
+  color: #807c12;
 }
 </style>
