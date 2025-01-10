@@ -1,15 +1,27 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page >
     <!-- Hero Section -->
     <div class="award-hero">
-      <div class="awards-container">
-        <h1>Awards and Recognition</h1>
-        <p>
-          We are proud to have received various awards over the years for our outstanding work and dedication to excellence.
-        </p>
+      <div class="award-container">
+        <!-- Text Content Section -->
+        <div class="text-content">
+          <div class="line-hero-holder">
+            <div class="line-hero">
+              <div class="line-hero-1"></div>
+            </div>
+          </div>
+          <h2 class="text-above">Awards</h2>
+          <p class="text-below">
+          We are proud to have received various awards over the years.
+          </p>
+        </div>
+
+        <!-- Image Section -->
+        <div class="award-image-container">
+          <img src="src/assets/currentproject/house1.jpg" class="top-image" />
+        </div>
       </div>
     </div>
-
     <!-- Awards Section -->
     <section class="award-section">
       <div v-for="year in years" :key="year.year" class="year-section">
@@ -32,51 +44,208 @@ import { years, awardsItems } from 'src/components/AwardsData.vue'
 </script>
 
 <style scoped>
-.awards-container {
-  padding: 60px;
-  text-align: center;
-  font-family: 'GeographWebMedium', sans-serif;
-}
-
-.awards-container h1 {
-  font-size: 50px;
-}
-
-.awards-container p {
-  margin-top: -30px;
+@font-face {
+  font-family: 'TitilliumWebRegular';
+  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  font-weight: bold;
 }
 
 @font-face {
-  font-family: 'GeographWebMedium';
-  src: url('src/assets/fonts/geograph/geographwebmedium.ttf') format('truetype');
+  font-family: 'TitilliumWebSemiBold';
+  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'RecklessNeueMedium';
+  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TitilliumWebBold';
+  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AvenirMedium';
+  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
   font-weight: bold;
 }
 
 .award-hero {
-  position: relative;
-  height: 43vh; /* Full-screen height */
-  overflow: hidden;
-  margin-top: -70px;
-  background-color: #006039;
-  width: 100%;
-  color: #f4f4f4;
+  background-color: #0d182b;
+  display: flex;
+  height: 71vh;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Responsive Design */
-@media (min-width: 1110px) {
-  .award.hero {
-    margin-top: -70px;
+.award-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.text-content {
+  flex: 1;
+  padding-left: 120px;
+}
+
+.line-hero-holder {
+  position: static;
+  margin-top: -20px;
+  padding-bottom: 30px;
+}
+
+.line-hero {
+  display: flex;
+  width: 12px; /* Thickness of the line */
+  height: 4px; /* Height of the line */
+  background-color: #d9d323; /* Gold accent */
+  padding-inline: 40px;
+
+}
+
+.line-hero-1 {
+  display: inline-block;
+  height: 2px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-top: 1px; /* Space between the line and text */
+  padding-inline-end: 140px;
+  margin-inline-start: 40px;
+}
+
+.text-above {
+  font-family: 'RecklessNeueMedium';
+  font-size: 48px;
+  margin: 0;
+}
+
+.text-below {
+  font-family: 'TitilliumWebRegular';
+  font-size: 16px;
+  padding-top: 20px;
+  padding-right: 40px;
+  color: #fff;
+}
+
+.text-above {
+  color: #fff;
+}
+
+/* Image Section */
+.award-image-container {
+  flex: 1; /* Adjusts the width for the image section to make it more than half the screen width */
+  display:flex;
+  justify-content: flex-end;
+  align-items:flex-end;
+}
+
+.top-image {
+  width: 850px;
+  height: 71vh;
+  object-fit: cover;
+}
+
+@media (max-width: 1260px) {
+
+.text-above {
+  font-size: 30px;
+}
+
+.text-below {
+  font-size: 15px;
+}
+
+.line-hero {
+padding-inline: 20px;
+}
+
+.line-hero-1 {
+  padding-inline-end: 100px;
+  margin-inline-start: 20px;
+}
+
+.top-image {
+  width: 700px;
 }
 }
-@media (max-width: 1106px) {
-  .award-hero {
-    height: 44vh;
-    margin-top: -85px;
+
+@media (max-width: 1024px) {
+  .about-image {
+  width: 600px;
 }
 }
+
+@media (max-width: 910px) {
+  .about-image {
+  width: 500px;
+}
+}
+
+@media (max-width: 820px) {
+
+  .award-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .award-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -485px;
+  }
+
+  .text-content {
+    padding-left: 0px;
+    padding-top: 195px;
+  }
+
+  .text-above {
+  font-size: 30px;
+}
+
+.text-below {
+  padding-right: 0px;
+
+}
+
+.line-hero-holder {
+  display: none;
+}
+
+.top-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  }
+}
+@media (max-width: 520px) {
+
+  .award-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -450px;
+  }
+
+  .text-content {
+    padding-left: 0px;
+    padding-top: 168px;
+  }
+
+  .text-above {
+    margin-bottom: -20px;
+  }
+}
+
 .award-section {
-  margin-top: 20px;
-  padding: 0 20px;
+  padding: 60px 20px;
+  padding-bottom: 80px;
 }
 
 .year-section {
@@ -131,17 +300,6 @@ import { years, awardsItems } from 'src/components/AwardsData.vue'
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .awards-container {
-    margin-top: 10px;
-  }
-  .awards-container h1 {
-    font-size: 32px;
-  }
-
-  .awards-container p {
-    font-size: 14px;
-    margin-top: -30px;
-  }
 
   .award-list {
     padding-top: 20px;
@@ -151,13 +309,4 @@ import { years, awardsItems } from 'src/components/AwardsData.vue'
   }
 }
 
-@media (max-width: 480px) {
-  .awards-container h1 {
-    font-size: 28px;
-  }
-
-  .awards-container p {
-    font-size: 13px;
-  }
-}
 </style>
