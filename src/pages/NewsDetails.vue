@@ -98,21 +98,51 @@ const goBack = () => {
 </script>
 
 <style scoped>
+
+@font-face {
+  font-family: 'TitilliumWebRegular';
+  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'TitilliumWebSemiBold';
+  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'RecklessNeueMedium';
+  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TitilliumWebBold';
+  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AvenirBlack';
+  src: url('src/assets/fonts/Avenir LT Std 95 Black.otf') format('opentype');
+}
+
 .news-details {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'TitilliumWebBold';
   padding: 20px;
 }
 
 /* Flexbox for Title and Date */
 .news-header {
   display: flex;
+  font-family: 'RecklessNeueMedium';
   align-items: center;
   gap: 20px;
   padding: 20px;
 }
 
 .date-box {
-  background: #006039;
+  background: #807c12;
+  font-family: 'AvenirBlack';
   color: white;
   padding: 10px;
   text-align: center;
@@ -156,6 +186,7 @@ const goBack = () => {
 }
 
 .news-content {
+  font-family: 'TitilliumWebRegular';
   padding: 20px;
   padding-left: 110px;
 }
@@ -179,7 +210,7 @@ const goBack = () => {
 }
 
 .image-description {
-  font-size: 14px;
+  font-size: 15px;
   color: #555;
   padding-left: 20px;
   padding-right: 20px;
@@ -227,20 +258,28 @@ const goBack = () => {
   padding-bottom: 40px;
 }
 
+@font-face {
+  font-family: 'AvenirMedium';
+  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+}
+
 .back-btn {
   background-color: transparent;
-  border: 2px solid #02947e;
+  border: 2px solid #000;
   color: #000000;
-  font-weight: bold;
+  font-family: 'AvenirMedium';
+  font-size: 16px;
   padding: 10px 20px;
-  width: 100px;
+  width: 120px;
+  height: 50px;
   border-radius: 0;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .back-btn:hover {
-  background-color: #00b398;
+  background-color: #a39f1a;
   color: white;
+  border: 2px solid #a39f1a;
   transform: translateY(-3px);
 }
 </style>
