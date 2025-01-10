@@ -39,41 +39,66 @@
         <div class="vertical-branding">MIRACLE LAND</div>
       </div>
 
-      <!-- Current Development Projects Section -->
-      <div class="projects-section">
-        <h2 class="section-title">Current Development Projects</h2>
-        <div class="projects-container"
-        :class="{ 'grid-layout': showAllProjects }"
-        :style="{ gridTemplateColumns: `repeat(${columns}, 1fr)` }"
-        >
-          <!-- Scrollable Project Card -->
-          <div class="project-card" v-for="project in displayedProjects" :key="project.id">
-            <img :src="project.image" :alt="project.name" class="project-image" />
-            <div class="project-info">
-              <h3>{{ project.name }}</h3>
-              <p>{{ project.location }}</p>
-              <p>From RM {{ project.price }}</p>
+      <!-- Current Developments Section -->
+      <div class="developments-section">
+        <h2>Current Developments</h2>
+        <div class="line-holder">
+          <div class="line">
+            <div class="line-1">
+             <div class="line-2"></div>
+           </div>
+          </div>
+        </div>
+        <p>Explore our current developments and find your dream home.</p>
+        <div class="developments-container">
+          <!-- Scrollable Development Card -->
+          <div
+            class="development-card"
+            v-for="development in displayedDevelopments"
+            :key="development.id">
+            <img
+              :src="development.image"
+              :alt="development.name"
+             class="development-image"/>
+            <div class="status">
+              {{ development.status }}
             </div>
-            <!-- Hover Project Card Information -->
-            <div class="project-hover-overlay">
-              <span class="status-sale">{{ project.status }}</span>
-              <p>{{ project.description }}</p>
-              <div class="project-details">
-                <span><i class="fas fa-bed"></i> {{ project.bedrooms }}</span>
-                <span><i class="fas fa-bath"></i> {{ project.bathrooms }}</span>
-                <span><i class="fas fa-expand-arrows-alt"></i> {{ project.size }} m²</span>
+            <div class="development-info">
+              <h3>{{ development.name }}</h3>
+              <p>{{ development.location }}</p>
+              <p>From RM {{ development.price }}</p>
+            </div>
+            <!-- Hover Development Card Information -->
+            <div class="development-hover-overlay">
+              <span class="status-current">
+                {{ development.status }}
+              </span>
+              <div class="description">
+                {{ development.shortdescription }}
               </div>
               <div class="actions">
-                <q-btn flat label="Open Details" class="action-btn" @click="viewProject(project.id)" />
+                <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(development.slug)"/>
               </div>
             </div>
           </div>
         </div>
-        <div v-if="!showAllProjects">
-          <q-btn flat label="Show More Projects" class="view-all-btn" @click="showMoreProjects" />
+        <div v-if="allDevelopments.length > visibleCount">
+          <div v-if="!showAllDevelopments">
+            <q-btn
+              flat
+              label="Show More"
+              class="view-all-btn"
+              @click="showMoreDevelopments"
+            />
+          </div>
         </div>
-        <div v-if="showAllProjects">
-          <q-btn flat label="Show Less Projects" class="view-all-btn" @click="showLessProjects" />
+        <div v-if="showAllDevelopments">
+          <q-btn
+            flat
+            label="Show Less"
+            class="view-all-btn"
+            @click="showLessDevelopments"
+          />
         </div>
       </div>
 
@@ -120,44 +145,68 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
-import { projectItems } from 'src/components/ProjectData.vue'
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { developments } from 'src/components/CurrentDevelopmentData.vue'
 
 const showLoader = ref(true)
-const columns = ref(2)
-const showAllProjects = ref(false)
-const displayedProjects = ref([])
-const projects = ref([])
-
-const saleProjects = computed(() =>
-  projectItems.value.filter((project) => project.status === 'Sale')
-)
+const router = useRouter()
+const allDevelopments = ref(developments)
+const visibleCount = ref(4)
+const displayedDevelopments = ref(allDevelopments.value.slice(0, visibleCount.value))
+const showAllDevelopments = ref(false)
 
 onMounted(() => {
   setTimeout(() => {
     showLoader.value = false
   }, 3500)
-  if (saleProjects.value) {
-    projects.value = saleProjects.value // Get projects after ProjectData mounts
-    displayedProjects.value = projects.value // Display all projects initially
-  }
 })
 
-const viewProject = (projectId) => {
-  window.location.href(`/projects/${projectId}`)
+const showMoreDevelopments = () => {
+  displayedDevelopments.value = allDevelopments.value // Show all developments
+  showAllDevelopments.value = true
 }
 
-const showMoreProjects = () => {
-  columns.value += 2
-  showAllProjects.value = true
+const showLessDevelopments = () => {
+  displayedDevelopments.value = allDevelopments.value.slice(0, 4) // Show only the first 2 developments
+  showAllDevelopments.value = false
 }
-const showLessProjects = () => {
-  columns.value -= 2
-  showAllProjects.value = false
+
+// Function to open the link
+const navigateToDevelopmentDetails = (slug) => {
+  router.push({ path: `/for-sale/${slug}` })
 }
 </script>
 
 <style scoped>
+
+@font-face {
+  font-family: 'TitilliumWebRegular';
+  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'TitilliumWebSemiBold';
+  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'RecklessNeueMedium';
+  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TitilliumWebBold';
+  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AvenirMedium';
+  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s ease;
 }
@@ -185,7 +234,7 @@ const showLessProjects = () => {
   position: relative;
 }
 
-/*Text Startu Overlay */
+/*Text Startup Overlay */
 .startup-overlay h4{
   font-family: 'Times New Roman', Times, serif;
   color: #fffbfb;
@@ -251,7 +300,7 @@ const showLessProjects = () => {
   transform: translate(-50%, -50%);
   color: rgb(238, 238, 238);
   text-align: center;
-  font-family: 'Empire', serif;
+  font-family: 'RecklessNeueMedium';
   z-index: 1000;
   cursor: default;
 }
@@ -268,8 +317,8 @@ const showLessProjects = () => {
   writing-mode: vertical-lr;
   text-transform: uppercase;
   font-size: 64px;
+  font-family: 'TitilliumWebBold';
   color: rgba(255, 255, 255, 0.1);
-  font-weight: bold;
   z-index: 2;
   white-space: nowrap;
   cursor: default;
@@ -301,177 +350,271 @@ const showLessProjects = () => {
   height: auto;
 }
 
-  /*Project Section*/
-  .projects-section {
-    padding: 20px 20px;
-    text-align: center;
-  }
-
-  .section-title {
-    font-family: 'Georgia', serif;
-    font-size: 2.5rem;
-    color: #000000;
-    margin-bottom: 50px;
-    text-align: center;
-  }
-
-  .projects-container {
-  display: flex; /* Default display is flex for horizontal scroll */
-  gap: 20px;
-  overflow-x: auto; /* Enable horizontal scroll */
-  padding-bottom: 20px;
-  scrollbar-width: none;
-  scroll-snap-type: x mandatory;
+  /*Development Section*/
+  .developments-section {
+  padding: 60px 20px;
+  background-color: #ffffed;
+  text-align: center;
+  padding-bottom: 80px;
 }
 
-.projects-container.grid-layout {
-  display: grid; /* Apply grid layout when showAllProjects is true */
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  overflow-x: auto; /* Disable horizontal scroll for grid */
-  padding-bottom: 20px;
-  scrollbar-width: none;
-  scroll-snap-type: none;
+.developments-section h2 {
+  font-family: 'RecklessNeueMedium';
+  font-size: 42px;
+  color: #000000;
 }
 
-  .project-card {
-    position: relative;
-    min-width: 280px;
-    max-width: 300px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    scroll-snap-align: start;
-    transition: transform 0.3s ease;
+.line-holder {
+  position: static;
+  margin-top: -30px;
+}
+
+.line {
+  display: inline-block;
+  width: 12px; /* Thickness of the line */
+  height: 3px; /* Height of the line */
+  background-color: #08463c; /* Gold accent */
+  padding-inline: 40px;
+
+}
+
+.line-1 {
+  display: inline-block;
+  width: 50px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-top: 1px; /* Space between the line and text */
+  padding-inline-end: 200px;
+  margin-inline-start: 40px;
+}
+
+.line-2 {
+  display: inline-block;
+  width: 220px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-bottom: 20px; /* Space between the line and text */
+  padding-inline-start: -100px;
+  margin-inline-start: -380px;
+}
+
+@media (max-width: 768px) {
+
+.development-section h2 {
+  font-size: 40px;
+}
+
+.line {
+  padding-inline: 20px;
+
+}
+
+.line-1 {
+  padding-inline-end: 180px;
+  margin-inline-start: 20px;
+}
+
+.line-2 {
+  width: 180px;
+  margin-inline-start: -260px;
+}
+}
+
+@media (max-width: 540px) {
+
+  .development-section h2 {
+    font-size: 32px;
   }
 
-  .project-card:hover {
-    transform: translateY(-5px);
+.line {
+  padding-inline: 15px;
+
+}
+
+.line-1 {
+  padding-inline-end: 140px;
+  margin-inline-start: 15px;
+}
+
+.line-2 {
+  width: 140px;
+  margin-inline-start: -200px;
+}}
+
+.developments-section p {
+  font-family: 'TitilliumWebRegular';
+  font-size: 18px;
+  color: #000000;
+  margin-bottom: 60px;
+}
+
+.developments-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 80px;
+  align-items: center;
+  justify-content: center;
+}
+
+.development-card {
+  position: relative;
+  min-width: 280px;
+  max-width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.development-card:hover {
+  transform: translateY(-5px);
+}
+
+.development-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.development-info {
+  padding: 15px;
+  text-align: left;
+}
+
+.development-info h3 {
+  font-size: 21px;
+  font-family: 'TitilliumWebSemiBold';
+  margin-bottom: 5px;
+}
+
+.development-info p {
+  margin: 2px 0;
+  font-family: 'TitilliumWebRegular';
+  color: #666;
+}
+
+/* Hover Overlay */
+.development-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.development-card:hover .development-hover-overlay {
+  opacity: 1;
+}
+
+/* Conditional Status Badge */
+.status {
+  position: absolute;
+  top: 10px;
+  left: -60px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px 10px;
+  font-size: 13px;
+  width: 200px;
+  font-family: 'TitilliumWebBold';
+  text-transform: uppercase;
+  transform: rotate(-30deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.status-current {
+  position: absolute;
+  top: 10px;
+  left: -60px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px 10px;
+  font-size: 13px;
+  width: 200px;
+  font-family: 'TitilliumWebBold';
+  text-transform: uppercase;
+  transform: rotate(-30deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: #4caf50;
   }
 
-  .project-image {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
+  .status-completed {
+  position: absolute;
+  top: 10px;
+  left: -60px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px 10px;
+  font-size: 13px;
+  width: 200px;
+  font-family: 'TitilliumWebBold';
+  text-transform: uppercase;
+  transform: rotate(-30deg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: #e53935;
   }
 
-  .project-info {
-    padding: 25px;
-    text-align: left;
-  }
+.description {
+  font-size: 18px;
+  font-family: 'TitilliumWebBold';
+  margin-bottom: 70px;
+  text-transform: capitalize;
+}
 
-  .project-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-  }
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
-  .project-info p {
-    margin: 2px 0;
-    color: #666;
-  }
+.action-btn {
+  background-color: transparent;
+  border: 1px solid #a39f1a;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-family: 'AvenirMedium';
+}
 
-  /* Hover Overlay */
-  .project-hover-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+.action-btn:hover {
+  background-color: #a39f1a;
+}
 
-  .project-card:hover .project-hover-overlay {
-    opacity: 1;
-  }
+/* view all button */
+.view-all-btn{
+  background-color: transparent;
+  border: 2px solid black;
+  color: #000000;
+  font-family: 'AvenirMedium';
+  font-size: 17px;
+  padding: 10px 20px;
+  width: 300px;
+  height: 60px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
 
-  /* Conditional Status Badge */
-  .status-sale {
-    font-weight: bold;
-    padding: 4px 8px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    background: #4caf50; /* Green for Sale */
-  }
-
-  .description {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-
-  .project-details {
-    display: flex;
-    gap: 15px;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
-
-  .price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-
-  .actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .action-btn {
-    background-color: transparent;
-    border: 1px solid white;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-
-  .icon-btn {
-    font-size: 1.5rem;
-    color: white;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-
-  .icon-btn:hover {
-    transform: scale(1.1);
-  }
-
-  /* view all button */
-  .view-all-btn{
-    background-color: transparent;
-    border: 2px solid #02947e;
-    color: #000000;
-    font-weight: bold;
-    padding: 10px 20px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    border-radius: 0;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  }
-
-  .view-all-btn:hover {
-    background-color: #00B398;
-    color: white;
-    transform: translateY(-3px);
-  }
+.view-all-btn:hover {
+  background-color: #a39f1a;
+  border: none;
+  color: #fff;
+  transform: translateY(-3px);
+}
 
 /* Partners' Logos Section */
 .partners-section {
-  margin-top: -40px;
   text-align: center;
   opacity: 0;
   animation: fadeInUp 1s ease forwards;
@@ -479,12 +622,13 @@ const showLessProjects = () => {
 }
 
 .partners-section h3 {
-  font-family: 'Georgia', serif;
-  font-size: 2rem;
+  font-family: 'RecklessNeueMedium';
+  font-size: 40px;
   color: #000000;
 }
 
 .logo-container {
+  padding-top: 40px;
   display: flex;
   justify-content: center;
   gap: 40px;
@@ -564,12 +708,10 @@ const showLessProjects = () => {
 
   .text-content h2 {
     padding-left: 20px;
-    font-size: 2rem; /* Reduce font size */
   }
 
   .text-content p {
     padding-left: 20px;
-    font-size: 1rem;
   }
 
   .image-container {
@@ -600,12 +742,12 @@ const showLessProjects = () => {
 @media (max-width: 480px) {
   .text-content h2 {
     padding-left: 40px;
-    font-size: 2rem; /* Reduce font size */
+    font-size: 36px; /* Reduce font size */
   }
 
   .text-content p {
     padding-left: 40px;
-    font-size: 1rem;
+    font-size: 16px;
   }
 
   .image-container {
@@ -619,6 +761,7 @@ const showLessProjects = () => {
   }
 
   .partners-section h3 {
+    font-size: 36px;
     padding-left: 20px;
   }
 
@@ -633,14 +776,15 @@ const showLessProjects = () => {
 }
 
 .text-content h2 {
-  font-family: 'Georgia', serif;
-  font-size: 2.5rem;
+  font-family: 'RecklessNeueMedium';
+  font-size: 40px;
   color: #000000;
   margin-bottom: 20px;
 }
 
 .text-content p {
-  font-size: 1.1rem;
+  font-size: 18px;
+  font-family: 'TitilliumWebRegular';
   color: #000000;
   line-height: 1.6;
   margin-bottom: 20px;
@@ -648,17 +792,19 @@ const showLessProjects = () => {
 
 .btn-story {
   background-color: transparent;
-  border: 2px solid #02947e;
+  border: 2px solid #000;
   color: #000000;
-  font-weight: bold;
+  font-size: 17px;
+  font-family: 'AvenirMedium';
   padding: 10px 20px;
   border-radius: 0;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-story:hover {
-  background-color: #00B398;
+  background-color: #a39f1a;
   color: white;
+  border: 2px solid #a39f1a;
   transform: translateY(-3px);
 }
 
