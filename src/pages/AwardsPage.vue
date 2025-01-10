@@ -173,13 +173,13 @@ padding-inline: 20px;
 }
 
 @media (max-width: 1024px) {
-  .about-image {
+  .top-image {
   width: 600px;
 }
 }
 
 @media (max-width: 910px) {
-  .about-image {
+  .top-image {
   width: 500px;
 }
 }
