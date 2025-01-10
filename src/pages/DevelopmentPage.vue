@@ -232,7 +232,6 @@ const navigateToPastDevelopmentDetails = (slug) => {
 @font-face {
   font-family: 'AvenirMedium';
   src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
-  font-weight: bold;
 }
 
 .development-section {
