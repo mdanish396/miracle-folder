@@ -249,13 +249,7 @@
   object-fit: cover;
 }
 
-@media (max-width: 1124px) {
-  .about-image {
-  width: 600px;
-}
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 1260px) {
 
 .text-above,
 .text-below {
@@ -272,6 +266,18 @@ padding-inline: 20px;
 }
 
 .about-image {
+  width: 700px;
+}
+}
+
+@media (max-width: 1024px) {
+  .about-image {
+  width: 600px;
+}
+}
+
+@media (max-width: 910px) {
+  .about-image {
   width: 500px;
 }
 }
@@ -297,19 +303,13 @@ padding-inline: 20px;
     padding-top: 185px;
   }
 
-  .text-above,
-  .text-below {
-  font-size: 30px;
-}
-
 .line-holder {
   display: none;
 }
 
 .about-image {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
+  width: 500px;
+  height: 49vh;
   }
 }
 @media (max-width: 520px) {
@@ -318,12 +318,17 @@ padding-inline: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -445px;
+    margin-top: -460px;
   }
 
   .text-content {
     padding-left: 0px;
-    padding-top: 138px;
+    padding-top: 190px;
+  }
+
+  .about-image {
+  width: 100%;
+  height: 49vh;
   }
 }
 /* Company Background Section */
@@ -342,7 +347,7 @@ padding-inline: 20px;
 }
 
 .company-background p {
-  font-family: 'TitilliumWeb-Regular';
+  font-family: 'TitilliumWebRegular';
   font-size: 19px;
   line-height: 35px;
   margin-bottom: 20px;
@@ -413,7 +418,7 @@ padding-inline: 20px;
 }
 
 .vision-text p {
-  font-family: 'TitilliumWeb-Regular';
+  font-family: 'TitilliumWebRegular';
   font-size: 19px;
   line-height: 27px;
 }
@@ -451,40 +456,48 @@ padding-inline: 20px;
   font-size: 20px;
   color: #08463c;
   margin-right: 10px;
+  margin-top: 10px;
 }
 
 .mission-section h2 {
   font-family: 'RecklessNeueMedium';
   font-size: 48px;
-  margin-bottom: 50px;
   color: #000;
 }
 
 .mission-wrapper {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
-  width: 100%;
 }
 
 .mission-section ul {
   list-style: none;
   padding: 0;
+  margin: 0 auto;
 }
 
 .mission-section li {
-  font-family: 'TitilliumWeb-Regular';
+  font-family: 'TitilliumWebRegular';
   margin-bottom: 20px;
   font-size: 19px;
   line-height: 35px;
   text-align: justify;
+  display: flex;
+  align-items: flex-start;
   padding-right: 140px;
   padding-left: 100px;
+}
+
+.mission-section li span {
+  display: inline-block;
+  flex: 1; /* Ensures text occupies remaining space */
 }
 
 .mission-image-container {
   flex: 1; /* Adjusts the width for the image section to make it more than half the screen width */
   display:flex;
+  justify-content: center;
   padding-right: 90px;
 }
 
@@ -494,26 +507,89 @@ padding-inline: 20px;
 }
 
 /* Responsive Design */
+
+@media (max-width: 1024px) {
+  .mission-section h2 {
+    font-size: 36px;
+  }
+
+  .mission-wrapper {
+    flex-direction: column;
+  }
+
+  .mission-section li {
+    padding-right: 40px;
+    padding-left: 40px;
+    font-size: 18px;
+  }
+
+  .mission-image {
+    width: 400px;
+    height: 400px;
+  }
+
+  .mission-image-container {
+  margin: 20px auto; /* Adds spacing and centers the container */
+  padding-right: 0px;
+}
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 10px;
   }
 
-  .content-wrapper {
-    padding: 15px;
+  .mission-section h2 {
+    font-size: 28px;
   }
 
-  .icon {
-    font-size: 18px;
+  .mission-wrapper {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  h2 {
+  .mission-section li {
+    padding-right: 20px;
+    padding-left: 20px;
+    font-size: 16px;
+  }
+
+  .mission-image {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .mission-section h2 {
     font-size: 24px;
   }
 
-  p,
-  li {
+  .mission-section li {
+    padding-right: 10px;
+    padding-left: 10px;
     font-size: 14px;
+  }
+
+  .mission-image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 375px) {
+  .mission-section h2 {
+    font-size: 20px;
+  }
+
+  .mission-section li {
+    font-size: 12px;
+  }
+
+  .mission-image {
+    width: 200px;
+    height: 200px;
   }
 }
 
@@ -530,7 +606,7 @@ padding-inline: 20px;
 .contact-wrapper {
   display: flex;
   flex-direction: column;
-  font-family: 'TitilliumWeb-Regular';
+  font-family: 'TitilliumWebRegular';
   padding: 20px;
   position: relative;
   overflow: hidden;
