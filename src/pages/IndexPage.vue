@@ -50,34 +50,36 @@
           </div>
         </div>
         <p>Explore our current developments and find your dream home.</p>
-        <div class="developments-container">
-          <!-- Scrollable Development Card -->
-          <div
-            class="development-card"
-            v-for="development in displayedDevelopments"
-            :key="development.id">
-            <img
-              :src="development.image"
-              :alt="development.name"
-             class="development-image"/>
-            <div class="status">
-              {{ development.status }}
-            </div>
-            <div class="development-info">
-              <h3>{{ development.name }}</h3>
-              <p>{{ development.location }}</p>
-              <p>From RM {{ development.price }}</p>
-            </div>
-            <!-- Hover Development Card Information -->
-            <div class="development-hover-overlay">
-              <span class="status-current">
+        <div class="development-flex">
+          <div class="developments-container">
+            <!-- Scrollable Development Card -->
+            <div
+              class="development-card"
+              v-for="development in displayedDevelopments"
+              :key="development.id">
+              <img
+                :src="development.image"
+                :alt="development.name"
+              class="development-image"/>
+              <div class="status">
                 {{ development.status }}
-              </span>
-              <div class="description">
-                {{ development.shortdescription }}
               </div>
-              <div class="actions">
-                <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(development.slug)"/>
+              <div class="development-info">
+                <h3>{{ development.name }}</h3>
+                <p>{{ development.location }}</p>
+                <p>From RM {{ development.price }}</p>
+              </div>
+              <!-- Hover Development Card Information -->
+              <div class="development-hover-overlay">
+                <span class="status-current">
+                  {{ development.status }}
+                </span>
+                <div class="description">
+                  {{ development.shortdescription }}
+                </div>
+                <div class="actions">
+                  <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(development.slug)"/>
+                </div>
               </div>
             </div>
           </div>
@@ -105,6 +107,13 @@
       <!-- Partners' Logos Section -->
       <div class="partners-section">
         <h3>Our Partners</h3>
+        <div class="line-holder">
+          <div class="line">
+            <div class="line-1">
+             <div class="line-2"></div>
+           </div>
+          </div>
+        </div>
         <div class="logo-container">
           <img src="src/assets/logo1.png" alt="Partner 1" class="partner-logo" />
           <img src="src/assets/logo1.png" alt="Partner 2" class="partner-logo" />
@@ -112,34 +121,36 @@
         </div>
       </div>
 
-      <!-- About Us Section -->
-      <div data-aos="fade-up">
-        <div class="about-us-section">
-          <div class="content-container">
-            <div class="text-content">
-              <h2>Leaders In Development</h2>
-              <p>
-                Miracle Land has a 20+ year track record of developing innovative,
-                landmark residential, commercial, and retail projects that span Malaysia's cities and beyond.
-              </p>
-              <p>
-                Our company is privately owned and has delivered over 100 projects
-                valued at over RM5 billion. We aim to create dynamic places where people live, work, and thrive.
-              </p>
-              <q-btn flat label="ABOUT US" class="btn-story" to="/about-miracle"/>
-            </div>
-            <div class="image-container">
-                <!-- Duplicate Gray-toned Image -->
-              <div class="gray-image-layer">
-                <img src="src/assets/building.png" alt="Building" class="building-image gray-tone" />
+      <!-- About Section -->
+      <section class="about-section">
+      <div class="container">
+        <div class="about-wrapper">
+          <ul>
+            <h2>Founder's Track Record</h2>
+            <div class="line-holder">
+              <div class="line">
+                <div class="line-1">
+                  <div class="line-2"></div>
+                </div>
               </div>
-
-                <!-- Main Image Layer -->
-              <img src="src/assets/building.png" alt="Building" class="building-image" />
             </div>
+            <li>
+                From a family’s dream home to an entrepreneur’s aspiration, we strive to build sustainable communities through creativity and dedication at heart.
+            </li>
+          </ul>
+
+          <div class="about-image-container">
+            <img src="src/assets/currentproject/house1.jpg" class="about-image" />
           </div>
         </div>
+        <q-btn
+              flat
+              label="About Us"
+              class="about-btn"
+              to="/about-miracle"
+            />
       </div>
+    </section>
     </q-page>
   </transition>
 </template>
@@ -253,43 +264,20 @@ const navigateToDevelopmentDetails = (slug) => {
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 100vh;
+  height: 90vh;
   overflow: hidden;
-  margin-top: -70px;
 }
+
 .hero-video {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensures the video covers the entire hero section */
 }
-@media (min-width: 1110px) {
-  .hero-section {
-    margin-top: -70px;
-}
-}
-@media (max-width: 1106px) {
-  .hero-section {
-    height: 102vh;
-    margin-top: -85px;
-}
-}
-@media (max-width: 1005px) {
-  .hero-section {
-    height: 101vh;
-    margin-top: -70px;
-}
-}
 
 @media (max-width: 480px) {
   .hero-section {
     height: 102vh;
-    margin-top: -70px;
 }
-}
-
-@font-face {
-  font-family: 'Empire';
-  src: url('src/assets/fonts/Empire.ttf') format('truetype');
 }
 
 /* Text Overlay in Video */
@@ -350,12 +338,17 @@ const navigateToDevelopmentDetails = (slug) => {
   height: auto;
 }
 
+@media (max-width: 540px) {
+  .vertical-branding {
+    right: 0%;
+  }
+}
+
   /*Development Section*/
   .developments-section {
   padding: 60px 20px;
   background-color: #ffffed;
   text-align: center;
-  padding-bottom: 80px;
 }
 
 .developments-section h2 {
@@ -448,13 +441,35 @@ const navigateToDevelopmentDetails = (slug) => {
   margin-bottom: 60px;
 }
 
-.developments-container {
+.development-flex {
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding-bottom: 80px;
-  align-items: center;
   justify-content: center;
+}
+
+.developments-container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(4, minmax(280px, 1fr)); /* Responsive grid */
+  padding-bottom: 80px;
+  justify-content: center; /* Center the grid within the container */
+}
+
+@media (max-width: 1224px) {
+  .developments-container {
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .developments-container {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .developments-container {
+    grid-template-columns: repeat(1, minmax(280px, 1fr));
+  }
 }
 
 .development-card {
@@ -547,21 +562,6 @@ const navigateToDevelopmentDetails = (slug) => {
     background: #4caf50;
   }
 
-  .status-completed {
-  position: absolute;
-  top: 10px;
-  left: -60px;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 5px 10px;
-  font-size: 13px;
-  width: 200px;
-  font-family: 'TitilliumWebBold';
-  text-transform: uppercase;
-  transform: rotate(-30deg);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    background: #e53935;
-  }
-
 .description {
   font-size: 18px;
   font-family: 'TitilliumWebBold';
@@ -618,7 +618,7 @@ const navigateToDevelopmentDetails = (slug) => {
   text-align: center;
   opacity: 0;
   animation: fadeInUp 1s ease forwards;
-  max-width: 1350px;
+  margin-top: -20px;
 }
 
 .partners-section h3 {
@@ -660,105 +660,8 @@ const navigateToDevelopmentDetails = (slug) => {
   }
 }
 
-/* About Us Section */
-.about-us-section {
-  padding: 80px 40px;
-}
-
-.content-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Adjust layout for smaller screens */
-@media (max-width: 1024px) {
-  .content-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .text-content {
-    padding-right: 0px;
-    padding-bottom: 20px;
-  }
-  .about-us-section {
-  margin-bottom: -90px;
-  margin-top: 20px;
-  }
-
-  .image-container {
-    width: 90%; /* Scale image down */
-  }
-
-  .gray-image-layer {
-    display: block; /* Hide extra layers for smaller screens */
-  }
-}
-
-/* Further adjust for tablet and smartphone */
-@media (max-width: 768px) {
-
-  .video-text-overlay h1{
-    font-size: 50px;
-  }
-
-  .text-content h2 {
-    padding-left: 20px;
-  }
-
-  .text-content p {
-    padding-left: 20px;
-  }
-
-  .image-container {
-    padding-left: 20px;
-    width: 100%;
-    margin-top: 20px;
-  }
-
-  .btn-story {
-    margin-left: 20px;
-  }
-
-  .partners-section h3 {
-    padding-left: 20px;
-  }
-
-  .logo-container {
-    padding-left: 20px;
-  }
-
-  .vertical-branding {
-    font-size: 45px;
-    margin-right: -40px;
-  }
-  }
-
 /* Further adjust for small screen */
 @media (max-width: 480px) {
-  .text-content h2 {
-    padding-left: 40px;
-    font-size: 36px; /* Reduce font size */
-  }
-
-  .text-content p {
-    padding-left: 40px;
-    font-size: 16px;
-  }
-
-  .image-container {
-    padding-left: 20px;
-    width: 100%;
-    margin-top: 20px;
-  }
-
-  .btn-story {
-    margin-left: 40px;
-  }
 
   .partners-section h3 {
     font-size: 36px;
@@ -770,92 +673,128 @@ const navigateToDevelopmentDetails = (slug) => {
   }
 }
 
-.text-content {
-  flex: 1;
-  padding-right: 40px;
+/* About Section */
+.about-section {
+  padding: 100px 20px;
+  padding-bottom: 0px;
+  text-align: center;
 }
 
-.text-content h2 {
+.about-section h2 {
   font-family: 'RecklessNeueMedium';
-  font-size: 40px;
-  color: #000000;
-  margin-bottom: 20px;
+  font-size: 46px;
+  align-items: flex-start;
+  color: #000;
 }
 
-.text-content p {
-  font-size: 18px;
+.about-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.about-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.about-section li {
   font-family: 'TitilliumWebRegular';
-  color: #000000;
-  line-height: 1.6;
   margin-bottom: 20px;
+  font-size: 19px;
+  line-height: 35px;
+  text-align: justify;
+  display: flex;
+  align-items: flex-start;
+  padding-right: 140px;
+  padding-left: 100px;
 }
 
-.btn-story {
+.about-image-container {
+  flex: 1; /* Adjusts the width for the image section to make it more than half the screen width */
+  display:flex;
+  justify-content: center;
+  padding-right: 90px;
+}
+
+.about-image {
+  width: 500px;
+  height: 400px;
+}
+
+.about-btn{
   background-color: transparent;
-  border: 2px solid #000;
+  border: 2px solid black;
   color: #000000;
-  font-size: 17px;
   font-family: 'AvenirMedium';
+  font-size: 17px;
   padding: 10px 20px;
+  margin-top: 40px;
+  width: 300px;
+  height: 60px;
   border-radius: 0;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-.btn-story:hover {
+.about-btn:hover {
   background-color: #a39f1a;
-  color: white;
-  border: 2px solid #a39f1a;
+  border: none;
+  color: #fff;
   transform: translateY(-3px);
 }
 
-/* Image Section with Layered Effect */
-.image-container {
-  position: relative;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  margin-bottom: -60px;
+/* Responsive Design */
+@media (min-width: 1200px) {
+  .about-section h2 {
+    margin-left: -25px;
+  }
+
+  .about-btn{
+    right: 25%;
+    bottom: 160px;
+  }
+
+  .about-section ul {
+    margin-top: -110px;
+  }
 }
 
-@media (min-width: 1025px) {
-.about-us-section {
-  margin-bottom: -90px;
-  margin-top: 50px;
+@media (max-width: 1200px) {
+  .about-section {
+    padding-bottom: 80px;
+  }
+
+  .about-wrapper {
+    flex-direction: column;
+  }
+
+  .about-image-container {
+  margin: 20px auto; /* Adds spacing and centers the container */
+  padding-right: 0px;
 }
-.text-content {
-  padding-top: 20px;
-  margin-bottom: 170px;
 }
 
-.image-container {
-  margin-bottom:-40px;
-}
+@media (max-width: 1024px) {
+
+  .about-section h2 {
+    font-size: 36px;
+  }
+
+  .about-wrapper {
+    flex-direction: column;
+  }
+
+  .about-section li {
+    padding-right: 40px;
+    padding-left: 40px;
+    font-size: 18px;
+  }
+
+  .about-image {
+    width: 400px;
+    height: 300px;
+  }
 }
 
-/* Main Image */
-.building-image {
-  max-width: 90%;
-  height: 65%;
-  border-radius: 2px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-}
-
-/* Gray-toned Image Layer */
-.gray-image-layer {
-  position: absolute;
-  top: 15px;  /* Adjust positioning */
-  left: 15px;
-  width: calc(100% - 30px); /* Keeps spacing relative */
-  height: auto;
-  filter: grayscale(100%);
-  opacity: 0.5; /* Semi-transparent effect */
-}
-
-@media (min-width: 1024px) {
-
-.btn-story {
-  margin-left:220px;
-}
-}
 </style>
