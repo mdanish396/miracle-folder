@@ -373,7 +373,7 @@ padding-inline: 20px;
 .top-image {
   width: 100%;
   max-width: 500px;
-  height: auto;
+  height: 47vh;
   }
 }
 @media (max-width: 520px) {
@@ -382,12 +382,17 @@ padding-inline: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -445px;
+    margin-top: -460px;
   }
 
   .text-content {
     padding-left: 0px;
-    padding-top: 138px;
+    padding-top: 190px;
+  }
+
+  .top-image {
+  width: 100%;
+  height: 49vh;
   }
 }
 
@@ -588,7 +593,7 @@ padding-inline: 20px;
 .status {
   position: absolute;
   top: 10px;
-  left: -60px;
+  left: -65px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px 10px;
   font-size: 13px;
@@ -602,7 +607,7 @@ padding-inline: 20px;
 .status-current {
   position: absolute;
   top: 10px;
-  left: -60px;
+  left: -65px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px 10px;
   font-size: 13px;
@@ -617,7 +622,7 @@ padding-inline: 20px;
   .status-completed {
   position: absolute;
   top: 10px;
-  left: -60px;
+  left: -65px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px 10px;
   font-size: 13px;
