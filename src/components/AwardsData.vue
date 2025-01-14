@@ -7,8 +7,8 @@
 <script>
 
 export const years = [
-  { year: 2025 },
-  { year: 2026 }
+  { year: 2026 },
+  { year: 2025 }
   // { year: 2027 }
 ] // add more years if needed
 
@@ -30,6 +30,20 @@ export const awardsItems = {
     },
     {
       id: 3,
+      title: 'Best Set Developer',
+      description: 'Received in 2025 for excellence in designing development.',
+      image: 'src/assets/award1.png',
+      date: '1 May 2025'
+    },
+    {
+      id: 4,
+      title: 'Best Set Developer',
+      description: 'Received in 2025 for excellence in designing development.',
+      image: 'src/assets/award1.png',
+      date: '1 May 2025'
+    },
+    {
+      id: 5,
       title: 'Best Set Developer',
       description: 'Received in 2025 for excellence in designing development.',
       image: 'src/assets/award1.png',
