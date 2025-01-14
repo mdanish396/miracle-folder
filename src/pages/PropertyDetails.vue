@@ -386,7 +386,7 @@
       </div>
     </div>
 
-        <!-- Our Product Section-->
+        <!-- Similar Properties Section-->
         <div v-if='visibleSimilarProperties.length > 0' class="products-section">
       <h2>Similar Properties</h2>
       <div class="line-holder">
@@ -1200,8 +1200,9 @@ const loadMore = () => {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  padding-top: 76px;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
@@ -1216,8 +1217,10 @@ const loadMore = () => {
 }
 
 .gallery-popup img {
-  width: 100%;
-  height: auto;
+  width: 75vw;
+  height: 80vh;
+  max-width: min-content;
+  max-height: min-content;
 }
 
 .popup-close, .popup-prev, .popup-next {
@@ -1960,7 +1963,7 @@ const loadMore = () => {
   padding-top: 50px;
   font-size: 48px;
   line-height: 48px;
-  font-weight: bold;
+  font-family: 'RecklessNeueMedium';
   color: #1e1e1e;
 }
 
@@ -1978,6 +1981,7 @@ const loadMore = () => {
   border: 1px solid #ddd;
   text-align: center;
   align-items: center;
+  font-family: 'TitilliumWebRegular';
   overflow: hidden;
   width: 380px;
   background-color: white;
@@ -1993,7 +1997,7 @@ const loadMore = () => {
 .product-info h3 {
   font-size: 20px;
   line-height: 26px;
-  font-weight: bold;
+  font-family: 'TitilliumWebBold';
   color: #1e1e1e;
   text-align: left;
   padding-left: 10px;
@@ -2082,7 +2086,7 @@ const loadMore = () => {
 }
 
 .btn-more {
-  padding: 20px 0;
+  padding: 40px 0;
 }
 
 .btn-more-1 {
@@ -2091,10 +2095,11 @@ const loadMore = () => {
 
 .learn-more-btn {
   background-color: transparent;
-  border: 2px solid #08463c;
+  border: 2px solid black;
   color: #000000;
-  font-weight: bold;
-  padding: 10px 40px;
+  font-family: 'AvenirMedium';
+  font-size: 15px;
+  padding: 15px 60px;
   margin-top: -10px;
   margin-bottom: -10px;
   border-radius: 0;
@@ -2102,8 +2107,9 @@ const loadMore = () => {
 }
 
 .learn-more-btn:hover {
-  background-color: #08463c;
-  color: white;
+  background-color: #a39f1a;
+  border: 2px solid #a39f1a;
+  color: #fff;
   transform: translateY(-3px);
 }
 
