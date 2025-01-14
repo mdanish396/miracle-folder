@@ -39,6 +39,7 @@ export const newsItems = ref([
       'Moving forward, IOI Properties’ new sales momentum is expected to be supported by upcoming project launches...',
       'Moving forward, IOI Properties’ new sales momentum is expected to be supported by upcoming project launches...'
     ],
+    source: 'The Star',
     link: '/news-details/'
   },
   {
@@ -58,6 +59,7 @@ export const newsItems = ref([
         url: 'src/assets/career2.png',
         description: 'Highlighting the latest innovations in real estate development.'
       }],
+    source: 'The Star',
     link: '/news-details/'
   },
   {
@@ -82,6 +84,7 @@ export const newsItems = ref([
       Learn more about our journey to transform the future of property development.
       Our team has been working tirelessly to create sustainable and smart housing solutions...`
     ],
+    source: 'The Star',
     link: '/news-details/'
   },
   {
@@ -105,6 +108,7 @@ export const newsItems = ref([
       Learn more about our journey to transform the future of property development.
       Our team has been working tirelessly to create sustainable and smart housing solutions...`
     ],
+    source: 'The Star',
     link: '/news-details/'
   }
 ])
