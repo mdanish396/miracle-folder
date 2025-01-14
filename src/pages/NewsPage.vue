@@ -26,7 +26,10 @@
     <section class="news-list">
       <div v-for="news in newsItems" :key="news.slug" class="news-item">
         <q-card @click="navigateToNewsDetails(news.slug)" class="news-btn" flat>
-          <q-icon name="article"/>
+          <div class="date-box">
+              <div class="date-day">{{ news.day }}</div>
+              <div class="date-month">{{ news.month }}</div>
+            </div>
             {{ news.title }}
         </q-card>
       </div>
@@ -306,8 +309,20 @@ padding-bottom: 80px;
 
 }
 
-.q-icon {
-  font-size: 24px;
-  color: #807c12;
+.date-box {
+  background: #807c12;
+  font-family: 'AvenirMedium';
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 0;
+  border: none;
+}
+
+.date-day,
+.date-month,
+.date-year {
+  font-size: 14px;
+  line-height: 15px;
 }
 </style>
