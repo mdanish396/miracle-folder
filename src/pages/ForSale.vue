@@ -127,7 +127,7 @@
         <q-btn
         flat
         label="Load More"
-        class="learn-more-btn"
+        class="load-more-btn"
         @click="loadMore"
         />
       </div>
@@ -378,6 +378,33 @@ const capitalizeFirstLetter = (string) => {
 
 <style scoped>
 
+@font-face {
+  font-family: 'TitilliumWebRegular';
+  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'TitilliumWebSemiBold';
+  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'RecklessNeueMedium';
+  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TitilliumWebBold';
+  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AvenirMedium';
+  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+}
+
 .hero-section {
   position: relative;
   height: 60vh; /* Full-screen height */
@@ -436,8 +463,7 @@ const capitalizeFirstLetter = (string) => {
     font-size: 36px;
     color: #fff;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    font-family: 'RecklessNeueMedium';
   }
 
 .info-details {
@@ -461,14 +487,14 @@ const capitalizeFirstLetter = (string) => {
 
 .info-item h4 {
   font-size: 14px;
-  font-weight: bold;
+  font-family: 'TitilliumWebBold';
   color: #666;
   margin-bottom: -10px;
 }
 
 .info-item p {
   font-size: 16px;
-  font-weight: bold;
+  font-family: 'TitilliumWebBold';
   color: #333;
 }
 
@@ -486,9 +512,59 @@ const capitalizeFirstLetter = (string) => {
 
 .main-heading {
   font-size: 52px;
-  font-weight: bold;
+  font-family: 'RecklessNeueMedium';
   margin-bottom: 30px;
   color: #1e1e1e;
+}
+
+.line-holder {
+  position: static;
+  margin-top: -30px;
+}
+
+.line {
+  display: inline-block;
+  width: 12px; /* Thickness of the line */
+  height: 3px; /* Height of the line */
+  background-color: #08463c; /* Gold accent */
+  padding-inline: 40px;
+
+}
+
+.line-1 {
+  display: inline-block;
+  width: 50px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-top: 1px; /* Space between the line and text */
+  padding-inline-end: 200px;
+  margin-inline-start: 40px;
+}
+
+.line-2 {
+  display: inline-block;
+  width: 220px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-bottom: 20px; /* Space between the line and text */
+  padding-inline-start: -100px;
+  margin-inline-start: -380px;
+}
+
+.sub-heading {
+  font-size: 18px;
+  font-family: 'TitilliumWebRegular';
+  line-height: 27px;
+  padding-left: 250px;
+  padding-right: 250px;
+  padding-bottom: 60px;
+  color: #1e1e1e;
+  margin: 0 auto;
+}
+
+.rectangle-section {
+  height: 230px;
+  margin-top: -200px;
 }
 
 @media (max-width: 1024px) {
@@ -531,8 +607,8 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .sub-heading {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .rectangle-section {
@@ -569,11 +645,6 @@ const capitalizeFirstLetter = (string) => {
   top: -100px;
 }
 
-.logo-circle {
-  width: 100px;
-  height: 100px;
-}
-
   .logo-subtitle {
     font-size: 16px;
   }
@@ -601,11 +672,6 @@ const capitalizeFirstLetter = (string) => {
   line-height: 32px;
 }
 
-.sub-heading {
-  margin-left: -40px;
-  margin-right: -40px;
-}
-
 .rectangle-section {
   margin-top: -150px;
 }
@@ -614,58 +680,6 @@ const capitalizeFirstLetter = (string) => {
 @media (max-width: 480px) {
   .rectangle-section {
   margin-top: -165px;
-}
-}
-
-.line-holder {
-  position: static;
-  margin-top: -30px;
-}
-
-.line {
-  display: inline-block;
-  width: 12px; /* Thickness of the line */
-  height: 3px; /* Height of the line */
-  background-color: #08463c; /* Gold accent */
-  padding-inline: 40px;
-
-}
-
-.line-1 {
-  display: inline-block;
-  width: 50px; /* Thickness of the line */
-  height: 1px; /* Height of the line */
-  background-color: #a7a4a4; /* Gold accent */
-  margin-top: 1px; /* Space between the line and text */
-  padding-inline-end: 200px;
-  margin-inline-start: 40px;
-}
-
-.line-2 {
-  display: inline-block;
-  width: 220px; /* Thickness of the line */
-  height: 1px; /* Height of the line */
-  background-color: #a7a4a4; /* Gold accent */
-  margin-bottom: 20px; /* Space between the line and text */
-  padding-inline-start: -100px;
-  margin-inline-start: -380px;
-}
-
-@media (min-width: 1025px) {
-
-.sub-heading {
-  font-size: 18px;
-  line-height: 27px;
-  padding-left: 250px;
-  padding-right: 250px;
-  padding-bottom: 60px;
-  color: #1e1e1e;
-  margin: 0 auto;
-}
-
-.rectangle-section {
-  height: 230px;
-  margin-top: -200px;
 }
 }
 
@@ -696,7 +710,7 @@ const capitalizeFirstLetter = (string) => {
 
 .card-title {
   font-size: 18px;
-  font-weight: bold;
+  font-family: 'TitilliumWebBold';
   line-height: 29px;
   color: rgb(235, 235, 235);
   text-align: center;
@@ -707,11 +721,6 @@ const capitalizeFirstLetter = (string) => {
 }
 
 @media (max-width: 1184px) {
-
-  .sub-heading {
-  padding-left: 80px;
-  padding-right: 80px;
-}
 
 .card img {
   width: 280px;
@@ -797,9 +806,9 @@ line-height: 20px;
 
 .products-section h2 {
   padding-top: 50px;
+  font-family: 'RecklessNeueMedium';
   font-size: 48px;
   line-height: 48px;
-  font-weight: bold;
   color: #1e1e1e;
 }
 
@@ -817,6 +826,7 @@ line-height: 20px;
   border: 1px solid #ddd;
   text-align: center;
   align-items: center;
+  font-family: 'TitilliumWebRegular';
   overflow: hidden;
   width: 340px;
   background-color: white;
@@ -832,7 +842,7 @@ line-height: 20px;
 .product-info h3 {
   font-size: 20px;
   line-height: 26px;
-  font-weight: bold;
+  font-family: 'TitilliumWebBold';
   color: #1e1e1e;
   text-align: left;
   padding-left: 10px;
@@ -901,6 +911,7 @@ line-height: 20px;
 
 .product-feature-list {
   padding: 20px 30px;
+  height: 200px;
   text-align: left;
 }
 
@@ -917,7 +928,7 @@ line-height: 20px;
 }
 
 .btn-more {
-  padding: 20px 0;
+  padding: 40px 0;
 }
 
 .btn-more-1 {
@@ -926,10 +937,11 @@ line-height: 20px;
 
 .learn-more-btn {
   background-color: transparent;
-  border: 2px solid #08463c;
+  border: 2px solid black;
   color: #000000;
-  font-weight: bold;
-  padding: 10px 20px;
+  font-family: 'AvenirMedium';
+  font-size: 15px;
+  padding: 15px 60px;
   margin-top: -10px;
   margin-bottom: -10px;
   border-radius: 0;
@@ -937,8 +949,31 @@ line-height: 20px;
 }
 
 .learn-more-btn:hover {
-  background-color: #08463c;
-  color: white;
+  background-color: #a39f1a;
+  border: 2px solid #a39f1a;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.load-more-btn{
+  background-color: transparent;
+  border: 2px solid black;
+  color: #000000;
+  font-family: 'AvenirMedium';
+  font-size: 17px;
+  padding: 10px 20px;
+  width: 300px;
+  height: 60px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.load-more-btn:hover {
+  background-color: #a39f1a;
+  border: 2px solid #a39f1a;
+  color: #fff;
   transform: translateY(-3px);
 }
 
@@ -1005,7 +1040,7 @@ line-height: 20px;
   padding-top: 50px;
   font-size: 48px;
   line-height: 48px;
-  font-weight: bold;
+  font-family: 'RecklessNeueMedium';
   color: #1e1e1e;
 }
 
@@ -1083,15 +1118,16 @@ line-height: 20px;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
   padding: 10px 20px;
+  width: 200px;
   border: none;
   cursor: pointer;
   font-size: 24px;
+  font-family: 'AvenirMedium';
   transition: background-color 0.3s ease;
 }
 
 .visit-gallery-btn:hover {
-  background-color: #08463c;
-  color: white;
+  background-color: #a39f1a;
 }
 
 @media (max-width: 900px) {
@@ -1144,8 +1180,10 @@ line-height: 20px;
 }
 
 .gallery-popup img {
-  width: 800px;
-  height: 500px;
+  width: 75vw;
+  height: 80vh;
+  max-width: min-content;
+  max-height: min-content;
 }
 
 .popup-close, .popup-prev, .popup-next {
@@ -1196,7 +1234,7 @@ line-height: 20px;
   padding-top: 40px;
   font-size: 48px;
   line-height: 48px;
-  font-weight: bold;
+  font-family: 'RecklessNeueMedium';
   color: #1e1e1e;
 }
 
@@ -1233,13 +1271,14 @@ line-height: 20px;
     text-align: center;
     font-size: 24px;
     line-height: 32px;
-    font-weight: bold;
+    font-family: 'TitilliumWebBold';
     cursor:default;
   }
 
   .amenities-expand {
     font-size: 16px;
     color: antiquewhite;
+    font-family: 'TitilliumWebSemiBold';
     line-height: 24px;
   }
 
