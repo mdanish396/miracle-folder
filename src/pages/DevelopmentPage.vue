@@ -71,7 +71,7 @@
         <div v-if="!showAllDevelopments">
           <q-btn
             flat
-            label="Show More Developments"
+            label="Show More"
             class="view-all-btn"
             @click="showMoreDevelopments"
           />
@@ -80,7 +80,7 @@
       <div v-if="showAllDevelopments">
         <q-btn
           flat
-          label="Show Less Developments"
+          label="Show Less"
           class="view-all-btn"
           @click="showLessDevelopments"
         />
@@ -139,7 +139,7 @@
         <div v-if="!showAllPastDevelopments">
           <q-btn
             flat
-            label="Show More Developments"
+            label="Show More"
             class="view-all-btn"
             @click="showMorePastDevelopments"
           />
@@ -521,12 +521,30 @@ padding-inline: 20px;
 }
 
 .developments-container {
-  display: flex;
+  display: grid;
   gap: 20px;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(4, minmax(280px, 1fr)); /* Responsive grid */
   padding-bottom: 40px;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 1224px) {
+  .developments-container {
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .developments-container {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .developments-container {
+    grid-template-columns: repeat(1, minmax(280px, 1fr));
+  }
 }
 
 .development-card {
