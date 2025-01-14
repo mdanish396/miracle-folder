@@ -26,12 +26,14 @@
     <section class="award-section">
       <div v-for="year in years" :key="year.year" class="year-section">
         <h2 class="year-title">{{ year.year }}</h2>
-        <div class="award-list">
-          <div class="award-item" v-for="award in awardsItems[year.year]" :key="award.id">
-            <img :src="award.image" :alt="award.title" />
-            <h2>{{ award.title }}</h2>
-            <p>{{ award.description }}</p>
-            <small>{{ award.date }}</small>
+        <div class="award-contain">
+          <div class="award-list">
+            <div class="award-item" v-for="award in awardsItems[year.year]" :key="award.id">
+              <img :src="award.image" :alt="award.title" />
+              <h2>{{ award.title }}</h2>
+              <p>{{ award.description }}</p>
+              <small>{{ award.date }}</small>
+            </div>
           </div>
         </div>
       </div>
@@ -89,7 +91,7 @@ import { years, awardsItems } from 'src/components/AwardsData.vue'
 
 .text-content {
   flex: 1;
-  padding-left: 120px;
+  padding-left: 6%;
 }
 
 .line-hero-holder {
@@ -234,7 +236,7 @@ padding-inline: 20px;
   }
 
   .text-content {
-    padding-left: 0px;
+    padding-left: 0%;
     padding-top: 168px;
   }
 
@@ -244,27 +246,56 @@ padding-inline: 20px;
 }
 
 .award-section {
-  padding: 20px 20px;
+  padding: 20px 6%;
   padding-bottom: 80px;
 }
 
 .year-section {
+  padding-left: 7%;
+  padding-right: 7%;
   margin-bottom: 40px;
 }
 
 .year-title {
-  font-size: 2rem;
+  font-size: 40px;
   font-family: 'RecklessNeueMedium';
-  text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-.award-list {
+.award-contain {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+}
+
+.award-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 10px;
+  padding-bottom: 80px;
+  justify-content: center; /* Center the grid within the container */
+}
+@media (max-width: 1224px) {
+  .award-list {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .award-list {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .award-list {
+    grid-template-columns: repeat(1, minmax(250px, 1fr));
+  }
+
+  .year-section {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
 }
 
 .award-item {
@@ -305,9 +336,6 @@ padding-inline: 20px;
 
   .award-list {
     padding-top: 20px;
-  }
-  .year-title {
-    font-size: 1.5rem;
   }
 }
 
