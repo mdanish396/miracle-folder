@@ -1,58 +1,59 @@
 <template>
   <q-page>
     <div class="news-details" v-if="newsItem">
-      <q-card class="q-my-md">
         <!-- Main Content -->
-        <div class="news-header">
-          <!-- Date Section -->
-          <div class="date-box">
-            <div class="date-day">{{ newsItem.day }}</div>
-            <div class="date-month">{{ newsItem.month }}</div>
-            <div class="date-year">{{ newsItem.year }}</div>
-          </div>
-          <!-- News Title -->
-          <div class="news-title">
-            <h1 class="text-h4">{{ newsItem.title }}</h1>
-          </div>
-        </div>
+        <div class="news-page">
 
-        <div class="image-title-container">
-          <img v-if="newsItem.imagetitle" :src="newsItem.imagetitle" class="title-image" />
-          <p v-if="newsItem.descriptionimagetitle" class="title-image-description">{{ newsItem.descriptionimagetitle }}</p>
-        </div>
-
-        <!-- News Content -->
-        <div class="news-content">
-          <div v-for="(paragraph, index) in newsItem.content" :key="index">
-            <div v-if="newsItem.images && newsItem.images[index]" class="images-content">
-              <img :src="newsItem.images[index].url" class="content-image" />
-              <p v-if="newsItem.images[index].description" class="image-description">{{ newsItem.images[index].description }}</p>
+          <div class="image-title-container">
+            <img v-if="newsItem.imagetitle" :src="newsItem.imagetitle" class="title-image" />
+          </div>
+          <div class="news-header">
+            <!-- Date Section -->
+            <div class="date-box">
+              <div class="date-day">{{ newsItem.day }}</div>
+              <div class="date-month">{{ newsItem.month }}</div>
+              <div class="date-year">{{ newsItem.year }}</div>
             </div>
-            <p class="text-body2">{{ paragraph }}</p>
+            <!-- News Title -->
+            <div class="news-title">
+              <h1 class="text-h4">{{ newsItem.title }}</h1>
+            </div>
+          </div>
+
+          <!-- News Content -->
+          <div class="news-content">
+            <div v-for="(paragraph, index) in newsItem.content" :key="index">
+              <div v-if="newsItem.images && newsItem.images[index]" class="images-content">
+                <img :src="newsItem.images[index].url" class="content-image" />
+              </div>
+              <p class="text-body2">{{ paragraph }}</p>
+            </div>
+            <div class="source">
+              <p class="text-body3">Source: {{ newsItem.source }}</p>
+            </div>
+          </div>
+
+          <!-- Share Section -->
+          <div class="share-section q-px-md q-py-md">
+            <p class="text-subtitle2">Share Now</p>
+            <div class="share-button">
+              <q-btn flat round class="share-btn facebook" icon="mdi-facebook" aria-label="Facebook" @click="openFacebook" />
+              <q-btn flat round class="share-btn twitter" icon="mdi-twitter" aria-label="Twitter" @click="openTwitter" />
+              <q-btn flat round class="share-btn linkedin" icon="mdi-linkedin" aria-label="Linkedin" @click="openLinkedin" />
+              <q-btn flat round class="share-btn whatsapp" icon="mdi-whatsapp" aria-label="Whatsapp" @click="openWhatsapp" />
+            </div>
+          </div>
+
+          <!-- Back Button -->
+          <div class="back-btn-wrapper">
+            <q-btn
+              label="Back"
+              flat
+              class="back-btn"
+              @click="goBack"
+            />
           </div>
         </div>
-
-        <!-- Share Section -->
-        <div class="share-section q-px-md q-py-md">
-          <p class="text-subtitle2">Share Now</p>
-          <div class="flex gap-sm">
-            <q-btn flat round icon="mdi-facebook" aria-label="Facebook" @click="openFacebook" />
-            <q-btn flat round icon="mdi-twitter" aria-label="Twitter" @click="openTwitter" />
-            <q-btn flat round icon="mdi-linkedin" aria-label="Linkedin" @click="openLinkedin" />
-            <q-btn flat round icon="mdi-whatsapp" aria-label="Whatsapp" @click="openWhatsapp" />
-          </div>
-        </div>
-
-        <!-- Back Button -->
-        <div class="back-btn-wrapper">
-          <q-btn
-            label="Back"
-            flat
-            class="back-btn"
-            @click="goBack"
-          />
-        </div>
-      </q-card>
     </div>
   </q-page>
 </template>
@@ -126,9 +127,28 @@ const goBack = () => {
   src: url('src/assets/fonts/Avenir LT Std 95 Black.otf') format('opentype');
 }
 
-.news-details {
-  font-family: 'TitilliumWebBold';
-  padding: 20px;
+.news-page {
+  padding-left: 13.5%;
+  padding-right: 13.5%;
+}
+
+.image-title-container {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.title-image {
+  width: 70vw;
+  height: 70vh;
+  max-width: min-content;
+  max-height: min-content;
+}
+
+.news-content {
+  font-family: 'TitilliumWebRegular';
+  padding: 20px 0; /* Same as images-content */
 }
 
 /* Flexbox for Title and Date */
@@ -152,30 +172,12 @@ const goBack = () => {
 .date-month,
 .date-year {
   font-size: 14px;
-  font-weight: bold;
+  line-height: 16px;
 }
 
 .news-title {
   flex: 1;
   padding-left: 20px;
-}
-
-.image-title-container {
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.title-image {
-  width: 60%;
-  height: auto;
-}
-
-.title-image-description {
-  font-size: 14px;
-  color: #555;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .text-h4 {
@@ -188,7 +190,6 @@ const goBack = () => {
 .news-content {
   font-family: 'TitilliumWebRegular';
   padding: 20px;
-  padding-left: 110px;
 }
 
 .content-section {
@@ -199,44 +200,15 @@ const goBack = () => {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-left: -110px;
-  padding: 20px 0;
+  padding: 0;
 }
 
 .content-image {
-  width: 50%;
-  height: auto;
+  width: 70vw;
+  height: 70vh;
+  max-width: min-content;
+  max-height: min-content;
   margin-bottom: 10px;
-}
-
-.image-description {
-  font-size: 15px;
-  color: #555;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-@media (max-width: 768px) {
-
-.title-image {
-  width: 90%;
-}
-
-.news-content {
-  padding-left: 20px;
-}
-
-.content-image {
-  width: 80%;
-}
-
-.images-content {
-  margin-left: 0px;
-}
-
-.share-section {
-  margin-left: -80px;
-}
 }
 
 .text-body2 {
@@ -246,8 +218,66 @@ const goBack = () => {
   padding-bottom: 10px;
 }
 
+.text-body3 {
+  font-size: 16px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  font-style: italic;
+}
+
 .share-section {
-  padding-left: 100px;
+  text-align: center;
+}
+
+.text-subtitle2 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.share-btn {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 15px;
+  font-size: 16px;
+  width: 25%;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.share-btn.facebook {
+  background-color: #4267B2;
+}
+
+.share-btn.twitter {
+  background-color: #1DA1F2;
+}
+
+.share-btn.linkedin {
+  background-color: #0077B5;
+}
+
+.share-btn.whatsapp {
+  background-color: #25D366;
+}
+
+.share-btn.more {
+  background-color: #007BFF;
+}
+
+.share-btn:hover {
+  transform: translateY(-3px);
 }
 
 /* Centering Back Button */
