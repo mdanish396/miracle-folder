@@ -235,12 +235,13 @@ padding: 20px;
 padding-right: 70px;
 padding-left: 150px;
 margin-top: 10px;
-padding-bottom: 100px;
+padding-bottom: 80px;
 }
 
 .investor-list {
   display: grid;
   gap: 5px;
+  font-family: 'TitilliumWebRegular';
   grid-template-columns: repeat(2, 1fr);
 }
 
@@ -254,14 +255,6 @@ padding-bottom: 100px;
 .investor-list {
   display: flex;
   flex-direction: column;
-}
-
-.title-IM h1 {
-font-size: 40px;
-}
-
-.title-IM p {
-font-size: 13px;
 }
 }
 

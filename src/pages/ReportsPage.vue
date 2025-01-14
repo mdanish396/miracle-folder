@@ -273,7 +273,7 @@ padding-inline: 20px;
 }
 
 .year-selector {
-  padding-top: 100px;
+  padding-top: 30px;
   display: flex;
   padding-left: 180px;
   margin: 0 auto;
@@ -285,7 +285,7 @@ padding-inline: 20px;
   padding-right: 70px;
   padding-left: 150px;
   padding-top: 40px;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
 }
 
 .report-list {

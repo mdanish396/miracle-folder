@@ -257,8 +257,8 @@ grid-template-columns: repeat(2, 1fr);
 padding: 20px;
 padding-right: 70px;
 padding-left: 150px;
-padding-top: 100px;
-padding-bottom: 100px;
+padding-top: 30px;
+padding-bottom: 80px;
 }
 
 .news-item {

@@ -244,7 +244,7 @@ padding-inline: 20px;
 }
 
 .award-section {
-  padding: 60px 20px;
+  padding: 20px 20px;
   padding-bottom: 80px;
 }
 
@@ -254,7 +254,7 @@ padding-inline: 20px;
 
 .year-title {
   font-size: 2rem;
-  font-weight: bold;
+  font-family: 'RecklessNeueMedium';
   text-align: center;
   margin-bottom: 20px;
   color: #333;
@@ -283,11 +283,12 @@ padding-inline: 20px;
 
 .award-item h2 {
   font-size: 1.2rem;
-  font-weight: bold;
+  font-family: 'TitilliumWebBold';
 }
 
 .award-item p {
   font-size: 1rem;
+  font-family: 'TitilliumWebRegular';
   color: #666;
 }
 
@@ -295,6 +296,7 @@ padding-inline: 20px;
   display: block;
   margin-top: 10px;
   font-size: 0.9rem;
+  font-family: 'TitilliumWebSemiBold';
   color: #999;
 }
 
