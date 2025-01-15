@@ -23,8 +23,8 @@
     </div>
 
     <!-- Announcements Section -->
-    <section class="announcements">
-      <div v-for="announcement in announcementsItems" :key="announcement.id" class="announcement-list">
+    <section class="announcements-list">
+      <div v-for="announcement in announcementsItems" :key="announcement.id">
         <div class="announcement-item">
           <q-card @click="openAnnouncement(announcement.link)" class="announcement-btn" flat>
             <q-icon name="notifications"/>
@@ -90,7 +90,7 @@ const openAnnouncement = (link) => {
 
 .text-content {
   flex: 1;
-  padding-left: 120px;
+  padding-left: 6%;
 }
 
 .line-hero-holder {
@@ -248,44 +248,21 @@ padding-inline: 20px;
   height: 49vh;
   }
 }
-.announcements {
-  padding: 20px;
-padding-right: 70px;
-padding-left: 150px;
+
+.announcements-list {
+display: grid;
+gap: 5px;
+grid-template-columns: repeat(2, 1fr);
+padding: 20px;
+padding-right: 15%;
+padding-left: 15%;
 padding-top: 30px;
 padding-bottom: 80px;
-}
-
-.announcement-list {
-  display: grid;
-  gap: 5px;
-  grid-template-columns: repeat(2, 1fr);
 }
 
 .announcement-item {
   display: flex;
   align-items: center;
-}
-
-@media (max-width: 1024px){
-  .announcements{
-    padding-left: 70px;
-    padding-right: 70px;
-}
-}
-
-@media (max-width: 768px){
-
-.announcement-list {
-  display: flex;
-  flex-direction: column;
-}
-}
-
-@media (max-width: 480px) {
-.announcements{
-  padding-left: 80px;
-}
 }
 
 .announcement-btn {
@@ -300,6 +277,20 @@ padding-bottom: 80px;
   background-color: transparent;
   cursor: pointer;
   color: rgb(48, 48, 48);
+}
+
+@media (max-width: 768px){
+
+.announcements-list {
+  display: flex;
+  flex-direction: column;
+}
+}
+
+@media (max-width: 480px) {
+.announcements-list{
+text-align: center;
+}
 }
 
 .announcement-btn:hover {
