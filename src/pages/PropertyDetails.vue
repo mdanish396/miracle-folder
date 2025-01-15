@@ -2,77 +2,88 @@
   <q-page class="property-details-page">
     <div class="property-hero">
       <div v-if="property">
-        <div class="before-hero-section"></div>
-        <div class="hero-section">
-          <img :src="property.image" alt="Property Image" class="hero-image" />
-          <div class="property-section">
-            <div class="property-grid">
-              <div class="property-card">
-                <div class="property-info">
-                  <h3 class="property-name">{{ property.name }}</h3>
-                  <div class="property-location">
-                    <i class="fas fa-map-marker-alt icon"></i>
-                    <span class="text-property-location">
-                      {{ property.location }}
-                    </span>
-                  </div>
-                  <q-separator/>
-                  <q-toolbar class="property-toolbar">
-                    <div class="property-item">
-                      <h4>Type</h4>
-                      <p class="truncated-text">{{ property.housetype }}
-                        <q-tooltip v-if="!screenBelow540px">
-                          {{ property.housetype }}
-                        </q-tooltip>
-                      </p>
-                    </div>
-
-                    <div class="property-item">
-                      <h4>From</h4>
-                      <p>{{ property.price }}</p>
-                    </div>
-
-                    <div class="property-item">
-                      <h4>Status</h4>
-                      <p>{{ property.status }}</p>
-                    </div>
-                  </q-toolbar>
-                  <q-separator/>
-                  <div class="property-feature-list">
-                    <div
-                      v-for="feature in property.features"
-                      :key="feature"
-                      class="property-feature-item">
-                      <i class="fas fa-check-circle icon-1"></i>
-                      <span class="property-feature">
-                        {{ feature }}
+        <div class="hero-section-1">
+          <div class="before-hero-section"></div>
+          <div class="hero-section">
+            <img :src="property.image" alt="Property Image" class="hero-image" />
+            <div class="property-section">
+              <div class="property-grid">
+                <div class="property-card">
+                  <div class="property-info">
+                    <h3 class="property-name">{{ property.name }}</h3>
+                    <div class="property-location">
+                      <i class="fas fa-map-marker-alt icon"></i>
+                      <span class="text-property-location">
+                        {{ property.location }}
                       </span>
                     </div>
-                  </div>
+                    <q-separator/>
+                    <q-toolbar class="property-toolbar">
+                      <div class="property-item">
+                        <h4>Type</h4>
+                        <p class="truncated-text">{{ property.housetype }}
+                          <q-tooltip v-if="!screenBelow540px">
+                            {{ property.housetype }}
+                          </q-tooltip>
+                        </p>
+                      </div>
 
-                  <div class="property-button">
-                    <q-btn
-                      stack
-                      flat
-                      @click="scrollToFloorplan"
-                      class="property-btn">
-                      <img src="src/assets/floor.svg" class="icon-2">
-                      <span class="text-btn">FLOOR PLANS</span>
-                    </q-btn>
+                      <div class="property-item">
+                        <h4>From</h4>
+                        <p>{{ property.price }}</p>
+                      </div>
 
-                    <q-btn
-                      stack
-                      flat
-                      @click="scrollToGallery"
-                      class="property-btn">
-                      <img src="src/assets/gallery.svg" class="icon-2">
-                      <span class="text-btn">GALLERY</span>
-                    </q-btn>
-                  </div>
-                  <div class="register-button">
-                    <q-btn flat @click="scrollToRegister" class="register-btn">
-                      <span class="register-text-btn">Register Now</span>
-                    </q-btn>
+                      <div class="property-item">
+                        <h4>Status</h4>
+                        <p>{{ property.status }}</p>
+                      </div>
+                    </q-toolbar>
+                    <q-separator/>
+                    <div class="property-feature-list">
+                      <div
+                        v-for="feature in property.features"
+                        :key="feature"
+                        class="property-feature-item">
+                        <i class="fas fa-check-circle icon-1"></i>
+                        <span class="property-feature">
+                          {{ feature }}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="property-button">
+                      <q-btn
+                        stack
+                        flat
+                        @click="open(property.vr)"
+                        class="property-btn">
+                        <img src="src/assets/vr camera.svg" class="icon-2">
+                        <span class="text-btn">VIRTUAL TOUR</span>
+                      </q-btn>
+
+                      <q-btn
+                        stack
+                        flat
+                        @click="scrollToFloorplan"
+                        class="property-btn">
+                        <img src="src/assets/floor.svg" class="icon-2">
+                        <span class="text-btn">FLOOR PLANS</span>
+                      </q-btn>
+
+                      <q-btn
+                        stack
+                        flat
+                        @click="scrollToGallery"
+                        class="property-btn">
+                        <img src="src/assets/gallery.svg" class="icon-2">
+                        <span class="text-btn">GALLERY</span>
+                      </q-btn>
+                    </div>
+                    <div class="register-button">
+                      <q-btn flat @click="scrollToRegister" class="register-btn">
+                        <span class="register-text-btn">Register Now</span>
+                      </q-btn>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -127,7 +138,7 @@
             </div>
           </div>
 
-          <!-- Right Image -->
+                    <!-- Center Image -->
           <div
             v-if="property.gallery[2]"
             :key="2"
@@ -135,6 +146,21 @@
             <img
               :src="property.gallery[2]"
               @click="openPopup(2)"
+              loading="lazy"
+              alt="Center Image"/>
+            <div class="gallery-overlay">
+              <button class="visit-gallery-btn" @click="openPopup(2)">Visit Gallery</button>
+            </div>
+          </div>
+
+          <!-- Right Image -->
+          <div
+            v-if="property.gallery[3]"
+            :key="2"
+            class="gallery-item">
+            <img
+              :src="property.gallery[3]"
+              @click="openPopup(3)"
               loading="lazy"
               alt="Right Image"/>
             <div class="gallery-overlay"></div>
@@ -396,54 +422,56 @@
           </div>
         </div>
       </div>
-      <div class="products-grid">
-        <div class="product-card" v-for="property in similarProperties" :key="property.id">
-          <img :src="property.image" alt="Product Image" class="product-image"/>
-          <q-separator/>
-          <div class="product-info">
-            <h3>{{ property.name }}</h3>
-            <div class="product-location">
-              <i class="fas fa-map-marker-alt icon">
-              </i>
-              <span class="text-product-location">
-                {{ property.location }}
-              </span>
-            </div>
+      <div class="product-grid">
+        <div class="products-grid">
+          <div class="product-card" v-for="property in similarProperties" :key="property.id">
+            <img :src="property.image" alt="Product Image" class="product-image"/>
             <q-separator/>
-            <q-toolbar class="product-toolbar">
-              <div class="product-item">
-                <h4>Type</h4>
-                <p>{{ property.housetype }}
-                  <q-tooltip>
-                    {{ property.housetype }}
-                  </q-tooltip>
-                </p>
-              </div>
-
-              <q-separator vertical/>
-              <div class="product-item-1">
-                <h4>From</h4>
-                <p>{{ property.price }}</p>
-              </div>
-            </q-toolbar>
-
-            <q-separator/>
-            <div class="product-feature-list">
-              <div
-                v-for="feature in property.features"
-                :key="feature"
-                class="product-feature-item">
-                <i class="fas fa-check-circle icon"></i>
-                <span class="product-feature">
-                  {{ feature }}
+            <div class="product-info">
+              <h3>{{ property.name }}</h3>
+              <div class="product-location">
+                <i class="fas fa-map-marker-alt icon">
+                </i>
+                <span class="text-product-location">
+                  {{ property.location }}
                 </span>
               </div>
-            </div>
+              <q-separator/>
+              <q-toolbar class="product-toolbar">
+                <div class="product-item">
+                  <h4>Type</h4>
+                  <p class="truncated-text">{{ property.housetype }}
+                    <q-tooltip>
+                      {{ property.housetype }}
+                    </q-tooltip>
+                    </p>
+                </div>
 
-            <q-space/>
-            <q-separator/>
-            <div class="btn-more">
-              <q-btn flat label="Learn More" class="learn-more-btn" @click="navigateToPropertyDetails(property.slug)"/>
+                <q-separator vertical/>
+                <div class="product-item-1">
+                  <h4>From</h4>
+                  <p>{{ property.price }}</p>
+                </div>
+              </q-toolbar>
+
+              <q-separator/>
+              <div class="product-feature-list">
+                <div
+                  v-for="feature in property.features"
+                  :key="feature"
+                  class="product-feature-item">
+                  <i class="fas fa-check-circle icon"></i>
+                  <span class="product-feature">
+                    {{ feature }}
+                  </span>
+                </div>
+              </div>
+
+              <q-space/>
+              <q-separator/>
+              <div class="btn-more">
+                <q-btn flat label="Learn More" class="learn-more-btn" @click="navigateToPropertyDetails(property.slug)"/>
+              </div>
             </div>
           </div>
         </div>
@@ -515,6 +543,10 @@ onMounted(() => {
   const firstPlan = Object.keys(currentFloorplans.value)[0]
   selectedPlan.value = firstPlan
 })
+
+const open = (vr) => {
+  window.open(vr, '_blank')
+}
 
 const scrollToGallery = () => {
   const gallerySection = document.getElementById('section-gallery')
@@ -714,9 +746,6 @@ const loadMore = () => {
 .property-hero{
   font-family: Arial, sans-serif;
   color: #333;
-  padding: 80px 20px;
-  margin-top: -80px;
-  overflow-x: hidden;
 }
 
 .before-hero-section {
@@ -724,8 +753,14 @@ const loadMore = () => {
   display: flex;
   height: 65vh;
   background-color: #08463c;
-  margin-left: -80px;
-  margin-right: -80px;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.hero-section-1{
+  padding: 20px 20px;
+  margin-top: -20px;
+  overflow-x: hidden;
 }
 
 .hero-section {
@@ -744,8 +779,9 @@ const loadMore = () => {
   margin-top: 20px;
   margin-left: 20px;
   padding-bottom: 20px;
-  width: 50%;
-  height: 83vh;
+  width: 46vw;
+  height: 80vh;
+  max-width: min-content;
   border-radius: 2px;
 }
 
@@ -864,20 +900,20 @@ const loadMore = () => {
 .property-button {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
   flex-wrap: nowrap;
   white-space: nowrap;
 }
 
 .icon-2 {
   width: 30px;
+  height: 30px;
   transition: filter 0.3s ease; /* Smooth transition */
 }
 
 .text-btn {
   font-family: 'TitilliumWebSemiBold';
   font-size: 14px;
-  padding-top: 10px;
 }
 
 .property-btn {
@@ -965,7 +1001,7 @@ const loadMore = () => {
 @media (max-width: 560px) {
 
   .before-hero-section {
-  height: 120vh;
+  height: 106vh;
 }
 
 .hero-section {
@@ -1099,7 +1135,7 @@ const loadMore = () => {
 
 .gallery-grid {
   display: flex;
-  padding-bottom: 20px;
+  padding-bottom: 120px;
   padding-top: 10px;
   gap: 10px;
   justify-content: center;
@@ -1122,7 +1158,7 @@ const loadMore = () => {
 
 .gallery-grid .gallery-item:nth-child(1) {
   flex: 1;
-  max-width: 35%;
+  max-width: 25%;
   height: 550px;
   clip-path: inset(0 0 0 0);
 }
@@ -1134,8 +1170,14 @@ const loadMore = () => {
 }
 
 .gallery-grid .gallery-item:nth-child(3) {
+  flex: 2;
+  max-width: 50%;
+  height: 550px;
+}
+
+.gallery-grid .gallery-item:nth-child(4) {
   flex: 1;
-  width: 35%;
+  width: 25%;
   height: 550px;
   clip-path: inset(0 0 0 0);
 }
@@ -1182,15 +1224,24 @@ const loadMore = () => {
 }
 
 .gallery-grid .gallery-item:nth-child(2) {
-  max-width: 100%;
+  max-width: 550px;
 }
 
 .gallery-grid .gallery-item:nth-child(3) {
   display: none;
 }
+
+.gallery-grid .gallery-item:nth-child(4) {
+  display: none;
 }
 
-@media (max-width: 768px) {
+.gallery-grid {
+  padding-left: 70px;
+  padding-right: 70px;
+}
+}
+
+@media (max-width: 600px) {
   .gallery-grid .gallery-item:nth-child(2) {
   height: 300px;
 }
@@ -1466,6 +1517,7 @@ const loadMore = () => {
   left: 0;
   width: 100%;
   height: 100%;
+  padding-top: 76px;
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
@@ -1529,6 +1581,8 @@ const loadMore = () => {
 .popup-image {
   width: 100%;
   height: 100%;
+  max-width: min-content;
+  max-height: min-content;
   transition: transform 0.2s ease-in-out;
   transform-origin: center;
 }
@@ -1711,6 +1765,7 @@ const loadMore = () => {
 /* Contact Us Section */
 .register {
   color: #000;
+  background-color: white;
   padding: 40px 100px;
   padding-top: 0px;
   padding-bottom: 100px;
@@ -1744,7 +1799,6 @@ const loadMore = () => {
 
 .register-wrapper {
   display: flex;
-  background-color: white;
   flex-direction: column;
   padding: 10px;
   padding-bottom: 60px;
@@ -1967,14 +2021,31 @@ const loadMore = () => {
   color: #1e1e1e;
 }
 
+.product-grid {
+display: flex;
+justify-content: center;
+}
+
 .products-grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  row-gap: 60px;
-  padding: 0 40px;
-  padding-top: 10px;
+display: grid;
+gap: 5px;
+grid-template-columns: repeat(3, minmax(340px, 1fr)); /* Responsive grid */
+justify-content: center; /* Center the grid within the container */
+padding-left: 10%;
+padding-right: 10%;
+padding-top: 10px;
+}
+
+@media (max-width: 1180px) {
+.products-grid {
+  grid-template-columns: repeat(2, minmax(340px, 1fr));
+}
+}
+
+@media (max-width: 800px) {
+.products-grid {
+  grid-template-columns: repeat(1, minmax(340px, 1fr));
+}
 }
 
 .product-card {
@@ -1983,7 +2054,7 @@ const loadMore = () => {
   align-items: center;
   font-family: 'TitilliumWebRegular';
   overflow: hidden;
-  width: 380px;
+  width: 340px;
   background-color: white;
 }
 
@@ -2040,6 +2111,7 @@ const loadMore = () => {
   color: rgb(109, 114, 120);
   margin-bottom: 0px;
   padding-left: 10px;
+  white-space: nowrap;
 }
 
 .product-item p {
@@ -2050,6 +2122,19 @@ const loadMore = () => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.truncated-text {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.product-item p,
+.product-item-1 p {
+  width: 150px;
 }
 
 .product-item-1 h4 {
@@ -2115,13 +2200,6 @@ const loadMore = () => {
 
 @media (max-width: 1024px) {
 
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    gap: 40px;
-    padding: 0 20px;
-    justify-content: center;
-  }
-
   .product-info h3 {
     font-size: 18px;
   }
@@ -2130,10 +2208,6 @@ const loadMore = () => {
 
 /* Small screens (768px and below) */
 @media (max-width: 768px) {
-
-  .product-info {
-    padding: 10px;
-  }
 
   .product-info h3 {
     font-size: 18px;
@@ -2145,10 +2219,6 @@ const loadMore = () => {
 @media (max-width: 480px) {
   .products-section h2 {
     font-size: 32px;
-  }
-
-  .product-image {
-    height: 200px;
   }
 
   .learn-more-btn {
