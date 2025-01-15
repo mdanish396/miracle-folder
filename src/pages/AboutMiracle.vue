@@ -193,7 +193,7 @@
 
 .text-content {
   flex: 1;
-  padding-left: 120px;
+  padding-left: 6%;
 }
 
 .line-holder {
@@ -253,7 +253,7 @@
 
 .text-above,
 .text-below {
-  font-size: 30px;
+  font-size: 36px;
 }
 
 .line {
@@ -261,7 +261,7 @@ padding-inline: 20px;
 }
 
 .line-1 {
-  padding-inline-end: 100px;
+  padding-inline-end: 140px;
   margin-inline-start: 20px;
 }
 
@@ -352,8 +352,8 @@ padding-inline: 20px;
   line-height: 35px;
   margin-bottom: 20px;
   text-align: justify;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 8%;
+  padding-right: 8%;
 }
 
 @media (max-width: 768px) {
@@ -375,8 +375,6 @@ padding-inline: 20px;
 .company-background p {
   font-size: 18px;
   line-height: 30px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 }
 
@@ -386,7 +384,6 @@ padding-inline: 20px;
   padding-right: 120px;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 12px;
-  width:max-content;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
@@ -430,10 +427,18 @@ padding-inline: 20px;
 
 .vision-text p {
   font-size: 18px;
+  white-space: nowrap;
+}
+
+.content-wrapper {
+  padding: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 }
 
 @media (max-width: 520px) {
+
   .vision-text h2 {
     font-size: 30px;
     margin-bottom: 10px;
@@ -442,6 +447,7 @@ padding-inline: 20px;
 .vision-text p {
   font-size: 18px;
 }
+
 }
 
 /* Mission Section */
@@ -485,8 +491,8 @@ padding-inline: 20px;
   text-align: justify;
   display: flex;
   align-items: flex-start;
-  padding-right: 140px;
-  padding-left: 100px;
+  padding-right: 15%;
+  padding-left: 15%;
 }
 
 .mission-section li span {
@@ -509,17 +515,14 @@ padding-inline: 20px;
 /* Responsive Design */
 
 @media (max-width: 1024px) {
-  .mission-section h2 {
-    font-size: 36px;
-  }
 
   .mission-wrapper {
     flex-direction: column;
   }
 
   .mission-section li {
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-right: 7%;
+    padding-left: 7%;
     font-size: 18px;
   }
 
@@ -540,7 +543,7 @@ padding-inline: 20px;
   }
 
   .mission-section h2 {
-    font-size: 28px;
+    font-size: 40px;
   }
 
   .mission-wrapper {
@@ -550,9 +553,8 @@ padding-inline: 20px;
   }
 
   .mission-section li {
-    padding-right: 20px;
-    padding-left: 20px;
-    font-size: 16px;
+    padding-left: 8%;
+    padding-right: 8%;
   }
 
   .mission-image {
@@ -563,13 +565,7 @@ padding-inline: 20px;
 
 @media (max-width: 576px) {
   .mission-section h2 {
-    font-size: 24px;
-  }
-
-  .mission-section li {
-    padding-right: 10px;
-    padding-left: 10px;
-    font-size: 14px;
+    font-size: 30px;
   }
 
   .mission-image {
@@ -578,26 +574,13 @@ padding-inline: 20px;
   }
 }
 
-@media (max-width: 375px) {
-  .mission-section h2 {
-    font-size: 20px;
-  }
-
-  .mission-section li {
-    font-size: 12px;
-  }
-
-  .mission-image {
-    width: 200px;
-    height: 200px;
-  }
-}
-
 /* Contact Us Section */
 .contact-us {
   background-color: #fff;
   color: #000;
   padding: 40px;
+  padding-left: 7%;
+  padding-right: 7%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -616,7 +599,8 @@ padding-inline: 20px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1200px;
+  max-width: max-content;
+  min-width: min-content;
   gap: 20px;
 }
 
@@ -627,7 +611,7 @@ padding-inline: 20px;
 }
 
 .contact-left {
-  padding-left: 30px;
+  padding-left: 3%;
 }
 
 .contact-left h2 {
@@ -690,7 +674,7 @@ padding-inline: 20px;
   text-transform: uppercase;
 }
 
-@media screen and (min-width: 768px){
+@media (min-width: 768px){
   .contact-wrapper {
     flex-direction: row;
     justify-content: space-between;
@@ -710,13 +694,13 @@ padding-inline: 20px;
   }
 }
 
-@media screen and (min-width: 1024px){
+@media (min-width: 1024px){
   .contact-wrapper {
     gap: 150px;
   }
 
   .register-right {
-    padding-right: -40px;
+    padding-right: -4%;
   }
 
   .contact-left h2{
