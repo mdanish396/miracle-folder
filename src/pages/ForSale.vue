@@ -303,11 +303,11 @@
 </template>
 
 <script setup>
-import { developments } from 'src/components/CurrentDevelopmentData.vue'
+import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
 import { ref, computed } from 'vue'
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
-import { properties } from 'src/components/Properties/PropertiesData.vue'
-import { nearbyAmenities } from 'src/components/AmenitiesData.vue'
+import { properties } from 'src/components/Properties/CurrentPropertiesData.vue'
+import { nearbyAmenities } from 'src/components/Properties/CurrentDevelopmentAmenitiesData.vue'
 
 const route = useRoute()
 const developmentSlug = route.params.slug
