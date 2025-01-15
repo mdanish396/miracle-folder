@@ -75,50 +75,56 @@
           </div>
         </div>
       </div>
-      <div class="products-grid">
-        <div class="product-card" v-for="property in visibleProperties" :key="property.id">
-          <img :src="property.image" alt="Product Image" class="product-image"/>
-          <q-separator/>
-          <div class="product-info">
-            <h3>{{ property.name }}</h3>
-            <div class="product-location">
-              <i class="fas fa-map-marker-alt icon">
-              </i>
-              <span class="text-product-location">
-                {{ property.location }}
-              </span>
-            </div>
+      <div class="product-grid">
+        <div class="products-grid">
+          <div class="product-card" v-for="property in visibleProperties" :key="property.id">
+            <img :src="property.image" alt="Product Image" class="product-image"/>
             <q-separator/>
-            <q-toolbar class="product-toolbar">
-              <div class="product-item">
-                <h4>Type</h4>
-                <p>{{ property.housetype }}</p>
-              </div>
-
-              <q-separator vertical/>
-              <div class="product-item-1">
-                <h4>From</h4>
-                <p>{{ property.price }}</p>
-              </div>
-            </q-toolbar>
-
-            <q-separator/>
-            <div class="product-feature-list">
-              <div
-                v-for="feature in property.features"
-                :key="feature"
-                class="product-feature-item">
-                <i class="fas fa-check-circle icon"></i>
-                <span class="product-feature">
-                  {{ feature }}
+            <div class="product-info">
+              <h3>{{ property.name }}</h3>
+              <div class="product-location">
+                <i class="fas fa-map-marker-alt icon">
+                </i>
+                <span class="text-product-location">
+                  {{ property.location }}
                 </span>
               </div>
-            </div>
+              <q-separator/>
+              <q-toolbar class="product-toolbar">
+                <div class="product-item">
+                  <h4>Type</h4>
+                  <p class="truncated-text">{{ property.housetype }}
+                    <q-tooltip>
+                      {{ property.housetype }}
+                    </q-tooltip>
+                  </p>
+                </div>
 
-            <q-space/>
-            <q-separator/>
-            <div class="btn-more">
-              <q-btn flat label="Learn More" class="learn-more-btn" @click="navigateToPropertyDetails(property.slug)"/>
+                <q-separator vertical/>
+                <div class="product-item-1">
+                  <h4>From</h4>
+                  <p>{{ property.price }}</p>
+                </div>
+              </q-toolbar>
+
+              <q-separator/>
+              <div class="product-feature-list">
+                <div
+                  v-for="feature in property.features"
+                  :key="feature"
+                  class="product-feature-item">
+                  <i class="fas fa-check-circle icon"></i>
+                  <span class="product-feature">
+                    {{ feature }}
+                  </span>
+                </div>
+              </div>
+
+              <q-space/>
+              <q-separator/>
+              <div class="btn-more">
+                <q-btn flat label="Learn More" class="learn-more-btn" @click="navigateToPropertyDetails(property.slug)"/>
+              </div>
             </div>
           </div>
         </div>
@@ -131,6 +137,14 @@
         @click="loadMore"
         />
       </div>
+      <div class="btn-more-1" v-if="visibleCount > 3">
+          <q-btn
+            flat
+            label="Show Less"
+            class="load-more-btn"
+            @click="showLess"
+          />
+        </div>
     </div>
 
     <div class="rectangle-section-1"></div>
@@ -328,6 +342,10 @@ const loadMore = () => {
   }
 }
 
+const showLess = () => {
+  visibleCount.value = 3
+}
+
 const openPopup = (index) => {
   currentImage.value = index
   isPopupOpen.value = true
@@ -477,6 +495,7 @@ const capitalizeFirstLetter = (string) => {
 
 .info-item{
   padding: 0 20px;
+  width: 320px;
   text-align: center;
 }
 
@@ -555,22 +574,21 @@ const capitalizeFirstLetter = (string) => {
   font-size: 18px;
   font-family: 'TitilliumWebRegular';
   line-height: 27px;
-  padding-left: 250px;
-  padding-right: 250px;
+  padding-left: 10%;
+  padding-right: 10%;
   padding-bottom: 60px;
   color: #1e1e1e;
   margin: 0 auto;
-}
-
-.rectangle-section {
-  height: 230px;
-  margin-top: -200px;
 }
 
 @media (max-width: 1024px) {
 
 .information-overlay {
     bottom: 89.7%;
+  }
+
+  .info-item{
+  width: 230px;
   }
 
 .main-heading {
@@ -581,21 +599,14 @@ const capitalizeFirstLetter = (string) => {
 
 .sub-heading {
   font-size: 18px;
-  padding-left: 110px;
-  padding-right: 110px;
-}
-
-.rectangle-section {
-  margin-top: -210px;
-  height: 200px;
 }
 }
 
 @media (max-width: 768px) {
 
-.information-overlay {
-    left: 55.5%;
-  }
+.info-item{
+  width: 180px;
+}
 
 .info-item-1{
   padding-right: 0px;
@@ -605,28 +616,14 @@ const capitalizeFirstLetter = (string) => {
   font-size: 42px;
   line-height: 50px;
 }
-
-.sub-heading {
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
-.rectangle-section {
-  margin-top: -170px;
-}
 }
 
 @media (max-width: 620px) {
 
-  .rectangle-section {
-  height: 200px;
-}
-}
-
-@media (max-width: 610px) {
-
-.rectangle-section {
-  margin-top: -190px;
+  .info-item{
+  width: 150px;
+  padding-left: 0;
+  padding-right: 0;
 }
 }
 
@@ -649,14 +646,6 @@ const capitalizeFirstLetter = (string) => {
     font-size: 16px;
   }
 
-.info-details {
-  padding: 0 10px;
-}
-
-.info-item{
-  padding: 0 20px;
-}
-
 .info-item-1{
   padding: 0;
   padding-right: 0;
@@ -670,16 +659,6 @@ const capitalizeFirstLetter = (string) => {
 .main-heading {
   font-size: 32px;
   line-height: 32px;
-}
-
-.rectangle-section {
-  margin-top: -150px;
-}
-}
-
-@media (max-width: 480px) {
-  .rectangle-section {
-  margin-top: -165px;
 }
 }
 
@@ -703,8 +682,10 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .card img {
-  width: 360px;
-  height: 200px;
+  width: 30vw;
+  height: 45vh;
+  max-width: min-content;
+  max-width: min-content;
   border-bottom: 3px solid #759403;
 }
 
@@ -714,42 +695,21 @@ const capitalizeFirstLetter = (string) => {
   line-height: 29px;
   color: rgb(235, 235, 235);
   text-align: center;
+  height: 100px;
 }
 
 .card:hover {
   transform: translateY(-5px);
 }
 
-@media (max-width: 1184px) {
-
-.card img {
-  width: 280px;
-  height: 160px;
-}
-
-.card-title {
-  font-size: 16px;
-  line-height: 24px;
-}
-
-.rectangle-section {
-  height: 180px;
-  margin-top: -170px;
-}
-}
-
 @media (max-width: 1015px) {
-
-  .card-section {
-    padding: 40px 10px;
-  }
-
-  .card-grid {
-    padding: 0;
-  }
 
 .card-grid .card:nth-child(3) {
   display: none;
+}
+
+.card img {
+  width: 45vw;
 }
 
 .card-title {
@@ -760,29 +720,12 @@ const capitalizeFirstLetter = (string) => {
 
 @media (max-width: 695px) {
 
-  .rectangle-section {
-  height: 160px;
-  margin-top: -170px;
-}
-
-.card-grid {
-  padding: 0;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
+.card img {
+  width: 75vw;
 }
 
 .card-grid .card:nth-child(2) {
   display: none;
-}
-
-.card {
-  width: 90%;
-}
-
-.card img {
-  width: 320px;
-  height: 160px;
 }
 
 .card-title {
@@ -795,6 +738,8 @@ line-height: 20px;
   position:static;
   display: flex;
   width: 100%;
+  height: 230px;
+  margin-top: -230px;
   background-color: #08463c;
 }
 
@@ -812,14 +757,31 @@ line-height: 20px;
   color: #1e1e1e;
 }
 
-.products-grid {
+.product-grid {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  row-gap: 60px;
-  padding: 0 40px;
+}
+
+.products-grid {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(3, minmax(340px, 1fr)); /* Responsive grid */
+  justify-content: center; /* Center the grid within the container */
+  padding-left: 10%;
+  padding-right: 10%;
   padding-top: 10px;
+}
+
+@media (max-width: 1180px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(340px, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .products-grid {
+    grid-template-columns: repeat(1, minmax(340px, 1fr));
+  }
 }
 
 .product-card {
@@ -885,6 +847,7 @@ line-height: 20px;
   color: rgb(109, 114, 120);
   margin-bottom: 0px;
   padding-left: 10px;
+  white-space: nowrap;
 }
 
 .product-item p {
@@ -892,6 +855,22 @@ line-height: 20px;
   line-height: 24px;
   color: black;
   padding-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.truncated-text {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.product-item p,
+.product-item-1 p {
+  width: 150px;
 }
 
 .product-item-1 h4 {
@@ -979,40 +958,15 @@ line-height: 20px;
 
 @media (max-width: 1024px) {
 
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    gap: 40px;
-    padding: 0 20px;
-    justify-content: center;
-  }
-
   .product-info h3 {
     font-size: 18px;
   }
-
-}
-
-/* Small screens (768px and below) */
-@media (max-width: 768px) {
-
-  .product-info {
-    padding: 10px;
-  }
-
-  .product-info h3 {
-    font-size: 18px;
-  }
-
 }
 
 /* Extra small screens (480px and below) */
 @media (max-width: 480px) {
   .products-section h2 {
     font-size: 32px;
-  }
-
-  .product-image {
-    height: 200px;
   }
 
   .learn-more-btn {
