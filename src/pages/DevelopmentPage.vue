@@ -31,38 +31,40 @@
         </div>
       </div>
       <p>Explore our current developments and find your dream home.</p>
-      <div class="developments-container">
-        <!-- Scrollable Development Card -->
-        <div
-          class="development-card"
-          v-for="development in displayedDevelopments"
-          :key="development.id"
-        >
-          <img
-            :src="development.image"
-            :alt="development.name"
-            class="development-image"
-          />
-          <div class="status">
-            {{ development.status }}
-          </div>
-          <div class="development-info">
-            <h3>{{ development.name }}</h3>
-            <p>{{ development.location }}</p>
-            <p>From RM {{ development.price }}</p>
-          </div>
-          <!-- Hover Development Card Information -->
-          <div class="development-hover-overlay">
-            <span
-            class="status-current"
-            >
+      <div class="development-flex">
+        <div class="developments-container">
+          <!-- Scrollable Development Card -->
+          <div
+            class="development-card"
+            v-for="development in displayedDevelopments"
+            :key="development.id"
+          >
+            <img
+              :src="development.image"
+              :alt="development.name"
+              class="development-image"
+            />
+            <div class="status">
               {{ development.status }}
-            </span>
-            <div class="description">
-              {{ development.shortdescription }}
             </div>
-            <div class="actions">
-              <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(development.slug)"/>
+            <div class="development-info">
+              <h3>{{ development.name }}</h3>
+              <p>{{ development.location }}</p>
+              <p>From RM {{ development.price }}</p>
+            </div>
+            <!-- Hover Development Card Information -->
+            <div class="development-hover-overlay">
+              <span
+              class="status-current"
+              >
+                {{ development.status }}
+              </span>
+              <div class="description">
+                {{ development.shortdescription }}
+              </div>
+              <div class="actions">
+                <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(development.slug)"/>
+              </div>
             </div>
           </div>
         </div>
@@ -98,39 +100,41 @@
         </div>
       </div>
       <p>Explore our past developments and build your confidence.</p>
-      <div class="developments-container">
-        <!-- Scrollable Development Card -->
-        <div
-          class="development-card"
-          v-for="pastdevelopments in displayedPastDevelopments"
-          :key="pastdevelopments.id"
-        >
-          <img
-            :src="pastdevelopments.image"
-            :alt="pastdevelopments.name"
-            class="development-image"
-          />
-          <div class="status"
+      <div class="development-flex">
+        <div class="developments-container">
+          <!-- Scrollable Development Card -->
+          <div
+            class="development-card"
+            v-for="pastdevelopments in displayedPastDevelopments"
+            :key="pastdevelopments.id"
           >
-            {{ pastdevelopments.status }}
-          </div>
-          <div class="development-info">
-            <h3>{{ pastdevelopments.name }}</h3>
-            <p>{{ pastdevelopments.location }}</p>
-            <p>From RM {{ pastdevelopments.price }}</p>
-          </div>
-          <!-- Hover Development Card Information -->
-          <div class="development-hover-overlay">
-            <span
-              class="status-completed"
+            <img
+              :src="pastdevelopments.image"
+              :alt="pastdevelopments.name"
+              class="development-image"
+            />
+            <div class="status"
             >
               {{ pastdevelopments.status }}
-            </span>
-            <div class="description">
-              {{ pastdevelopments.shortdescription }}
             </div>
-            <div class="actions">
-              <q-btn flat label="Open Details" class="action-btn" @click="navigateToPastDevelopmentDetails(pastdevelopments.slug)" />
+            <div class="development-info">
+              <h3>{{ pastdevelopments.name }}</h3>
+              <p>{{ pastdevelopments.location }}</p>
+              <p>From RM {{ pastdevelopments.price }}</p>
+            </div>
+            <!-- Hover Development Card Information -->
+            <div class="development-hover-overlay">
+              <span
+                class="status-completed"
+              >
+                {{ pastdevelopments.status }}
+              </span>
+              <div class="description">
+                {{ pastdevelopments.shortdescription }}
+              </div>
+              <div class="actions">
+                <q-btn flat label="Open Details" class="action-btn" @click="navigateToPastDevelopmentDetails(pastdevelopments.slug)" />
+              </div>
             </div>
           </div>
         </div>
@@ -163,9 +167,9 @@ import { useRouter } from 'vue-router'
 import { developments } from 'src/components/CurrentDevelopmentData.vue'
 import { pastdevelopments } from 'src/components/PastDevelopmentData.vue'
 
-const allDevelopments = ref(developments)
+const allDevelopments = ref(developments.filter((d) => d.status === 'Current'))
 const visibleCount = ref(4)
-const allPastDevelopments = ref(pastdevelopments)
+const allPastDevelopments = ref(pastdevelopments.filter((d) => d.status === 'Completed'))
 const displayedDevelopments = ref(allDevelopments.value.slice(0, visibleCount.value))
 const displayedPastDevelopments = ref(allPastDevelopments.value.slice(0, visibleCount.value))
 const showAllDevelopments = ref(false)
@@ -251,7 +255,7 @@ const navigateToPastDevelopmentDetails = (slug) => {
 
 .text-content {
   flex: 1;
-  padding-left: 120px;
+  padding-left: 6%;
 }
 
 .line-hero-holder {
@@ -520,15 +524,18 @@ padding-inline: 20px;
   margin-bottom: 60px;
 }
 
+.development-flex {
+  display: flex;
+  justify-content: center;
+}
+
 .developments-container {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(4, minmax(280px, 1fr)); /* Responsive grid */
-  padding-bottom: 40px;
-  align-items: center;
-  justify-content: center;
+  padding-bottom: 80px;
+  justify-content: center; /* Center the grid within the container */
 }
-
 @media (max-width: 1224px) {
   .developments-container {
     grid-template-columns: repeat(3, minmax(280px, 1fr));
