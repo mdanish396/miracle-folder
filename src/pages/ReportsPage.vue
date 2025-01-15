@@ -113,7 +113,7 @@ const downloadReport = (file) => {
 
 .text-content {
   flex: 1;
-  padding-left: 120px;
+  padding-left: 6%;
 }
 
 .line-hero-holder {
