@@ -30,7 +30,10 @@
               <div class="date-day">{{ news.day }}</div>
               <div class="date-month">{{ news.month }}</div>
             </div>
-            {{ news.title }}
+            <div class="title-text">
+              <p class="title-news">{{ news.title }}</p>
+              <p class="title-source">{{ news.source }}</p>
+            </div>
         </q-card>
       </div>
     </section>
@@ -95,7 +98,7 @@ const navigateToNewsDetails = (slug) => {
 
 .text-content {
   flex: 1;
-  padding-left: 120px;
+  padding-left: 6%;
 }
 
 .line-hero-holder {
@@ -258,8 +261,8 @@ display: grid;
 gap: 5px;
 grid-template-columns: repeat(2, 1fr);
 padding: 20px;
-padding-right: 70px;
-padding-left: 150px;
+padding-right: 15%;
+padding-left: 15%;
 padding-top: 30px;
 padding-bottom: 80px;
 }
@@ -273,8 +276,6 @@ padding-bottom: 80px;
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 16px;
-  font-family: 'TitilliumWebRegular';
   padding: 12px 20px;
   width: fit-content;
   transition: color 0.3s;
@@ -286,6 +287,19 @@ padding-bottom: 80px;
 .news-btn:hover {
   color: #807c12;
   background-color: transparent;
+}
+
+.title-news {
+  font-size: 16px;
+  font-family: 'TitilliumWebRegular';
+  padding-top: 15px;
+  margin-bottom: -2px;
+}
+
+.title-source {
+  font-size: 14px;
+  font-family: 'TitilliumWebRegular';
+  font-style: italic;
 }
 
 @media (max-width: 1024px){

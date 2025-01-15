@@ -91,7 +91,7 @@ const openInvestor = (link) => {
 
 .text-content {
   flex: 1;
-  padding-left: 120px;
+  padding-left: 6%;
 }
 
 .line-hero-holder {
@@ -232,8 +232,8 @@ padding-inline: 20px;
 
 .investor-centre {
 padding: 20px;
-padding-right: 70px;
-padding-left: 150px;
+padding-right: 10%;
+padding-left: 10%;
 margin-top: 10px;
 padding-bottom: 80px;
 }
@@ -255,12 +255,6 @@ padding-bottom: 80px;
 .investor-list {
   display: flex;
   flex-direction: column;
-}
-}
-
-@media (max-width: 480px) {
-.investor-centre{
-  padding-left: 80px;
 }
 }
 
