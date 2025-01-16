@@ -13,6 +13,7 @@ const routes = [
       { path: '/reports', component: () => import('src/pages/ReportsPage.vue') },
       { path: '/news', component: () => import('src/pages/NewsPage.vue') },
       { path: '/career', component: () => import('src/pages/CareerPage.vue') },
+      { path: '/career-opportunities', component: () => import('src/pages/CareerDetails.vue') },
       { path: '/news-details/:slug', name: 'NewsDetails', component: () => import('src/pages/NewsDetails.vue') },
       { path: '/project-details', component: () => import('src/pages/ProjectDetails.vue') },
       { path: '/development', component: () => import('src/pages/DevelopmentPage.vue') },
