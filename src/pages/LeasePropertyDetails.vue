@@ -492,8 +492,8 @@
 import { onMounted, onUnmounted, ref, computed, watchEffect } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import { leaseproperties } from 'src/components/Lease/LeasePropertiesData.vue'
-import { leasefloorplan } from 'src/components/Lease/LeasePropertiesFloorplan.vue'
-import { leasenearbyAmenities } from 'src/components/Leasa/LeaseAmenitiesData.vue'
+import { floorplan } from 'src/components/Lease/LeasePropertiesFloorplan.vue'
+import { nearbyAmenities } from 'src/components/Lease/LeaseAmenitiesData.vue'
 
 // Assuming you have a store or an API to fetch properties
 const route = useRoute()
@@ -537,7 +537,7 @@ onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
 })
 
-const currentFloorplans = computed(() => leasefloorplan[property.value.name]?.[0] || {})
+const currentFloorplans = computed(() => floorplan[property.value.name]?.[0] || {})
 
 onMounted(() => {
   const firstPlan = Object.keys(currentFloorplans.value)[0]
@@ -661,7 +661,7 @@ const nextImage = () => {
 
 const computedNearbyAmenities = computed(() => {
   const name = property.value?.place
-  return leasenearbyAmenities[name]?.amenities || {}
+  return nearbyAmenities[name]?.amenities || {}
 })
 const getCategoryIcon = (category) => {
   const icons = {
@@ -682,7 +682,7 @@ const capitalizeFirstLetter = (string) => {
 watchEffect(() => {
   if (property.value) {
     selectedProperty.value = property.value.name
-    const firstPlan = Object.keys(leasefloorplan[property.value.name]?.[0] || {})[0]
+    const firstPlan = Object.keys(floorplan[property.value.name]?.[0] || {})[0]
     selectedPlan.value = firstPlan || '' // Update the selected plan
   }
 })
