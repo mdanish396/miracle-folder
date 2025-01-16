@@ -4,7 +4,7 @@
 </template>
 
 <script>
-export const leasenearbyAmenities = {
+export const nearbyAmenities = {
   'Monarc Cove': {
     amenities: {
       education: [
@@ -63,7 +63,7 @@ export const leasenearbyAmenities = {
       ]
     }
   },
-  'ZIG Homes': {
+  'ZIG House': {
     amenities: {
       education: [
         { name: 'Sk', distance: '2.4km' },

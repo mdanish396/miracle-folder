@@ -4,10 +4,10 @@
 </template>
 
 <script>
-export const leasefloorplan = {
+export const floorplan = {
   'Monarc Homes': [
     {
-      '2 Storey Terrace A': [
+      '3 Storey Terrace A': [
         {
           area: '1,800 sqft',
           bedroom: 4,
@@ -16,7 +16,7 @@ export const leasefloorplan = {
           brochure: 'src/assets/reports/brochure.pdf'
         }
       ],
-      '2 Storey Terrace B': [
+      '3 Storey Terrace B': [
         {
           area: '2,800 sqft',
           bedroom: 5,
@@ -35,6 +35,28 @@ export const leasefloorplan = {
         }
       ],
       '2 Storey Semi-D B': [
+        {
+          area: '2,800 sqft',
+          bedroom: 5,
+          bathroom: 4,
+          plan: 'src/assets/currentproject/house3.jpg',
+          brochure: 'src/assets/reports/brochure.pdf'
+        }
+      ]
+    }
+  ],
+  'Monarc Sour': [
+    {
+      '2-Storey Terrace A': [
+        {
+          area: '1,800 sqft',
+          bedroom: 4,
+          bathroom: 3,
+          plan: 'src/assets/currentproject/house1.jpg',
+          brochure: 'src/assets/reports/brochure.pdf'
+        }
+      ],
+      '2-Storey Terrace B': [
         {
           area: '2,800 sqft',
           bedroom: 5,
