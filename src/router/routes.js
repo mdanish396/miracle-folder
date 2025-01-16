@@ -17,9 +17,11 @@ const routes = [
       { path: '/project-details', component: () => import('src/pages/ProjectDetails.vue') },
       { path: '/development', component: () => import('src/pages/DevelopmentPage.vue') },
       { path: '/for-sale/:slug', name: 'ForSale', component: () => import('src/pages/ForSale.vue') },
+      { path: '/for-lease/:slug', name: 'ForLease', component: () => import('src/pages/ForLease.vue') },
       { path: '/past-development/:slug', name: 'PastDevelopmentDetails', component: () => import('src/pages/PastDevelopmentDetails.vue') },
       { path: '/property/:slug', name: 'CurrentPropertyDetails', component: () => import('src/pages/CurrentPropertyDetails.vue') },
-      { path: '/past-property/:slug', name: 'PastPropertyDetails', component: () => import('src/pages/PastPropertyDetails.vue') }
+      { path: '/past-property/:slug', name: 'PastPropertyDetails', component: () => import('src/pages/PastPropertyDetails.vue') },
+      { path: '/lease-property/:slug', name: 'LeasePropertyDetails', component: () => import('src/pages/LeasePropertyDetails.vue') }
     ]
   },
   {
