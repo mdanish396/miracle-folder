@@ -307,7 +307,7 @@ import { leasedevelopments } from 'src/components/Lease/LeaseData.vue'
 import { ref, computed } from 'vue'
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 import { leaseproperties } from 'src/components/Lease/LeasePropertiesData.vue'
-import { leasenearbyAmenities } from 'src/components/Lease/LeaseAmenitiesData.vue'
+import { nearbyAmenities } from 'src/components/Lease/LeaseAmenitiesData.vue'
 
 const route = useRoute()
 const developmentSlug = route.params.slug
@@ -333,7 +333,7 @@ const filteredProperties = computed(() => {
 const router = useRouter()
 
 const navigateToPropertyDetails = (slug) => {
-  router.push({ path: `/property/${slug}` })
+  router.push({ path: `/lease-property/${slug}` })
 }
 
 const loadMore = () => {
@@ -373,7 +373,7 @@ const filteredAmenities = computed(() => {
   const name = development.value?.name
 
   // Return amenities for the location if it exists or an empty array otherwise
-  return leasenearbyAmenities[name]?.amenities || {}
+  return nearbyAmenities[name]?.amenities || {}
 })
 
 const getCategoryIcon = (category) => {
