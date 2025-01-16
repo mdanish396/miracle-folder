@@ -129,7 +129,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { developments } from 'src/components/CurrentDevelopmentData.vue'
+import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
 import { pastdevelopments } from 'src/components/PastDevelopmentDetails.vue'
 
 const allDevelopments = ref(developments)
