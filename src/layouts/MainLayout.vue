@@ -89,28 +89,30 @@
             @mouseleave="hideDropdown('lease')"
             class="dropdown-container"
             >
-              <div class="dropdown-content">
+            <div class="dropdown-content">
                 <!-- district list -->
-                <div class="district-list">
-                  <h6>Pahang</h6>
+                <div v-for="(districts, state) in groupedLeaseDevelopments" :key="state" class="district-list">
+                  <h6>{{ state }}</h6>
                   <ul>
                     <li
                     v-for="(district, index) in districts"
                     :key="index"
-                    @mouseover="setSelectedDistrict(district.name)"
-                    @click="setSelectedDistrict(district.name)"
+                    @mouseover="setSelectedLeaseDistrict(district)"
+                    @click="setSelectedLeaseDistrict(district)"
                     class="district-item"
+                    default-opened
                     >
-                      {{ district.name }}
+                      {{ district }}
                     </li>
                   </ul>
                 </div>
 
                 <!-- Images Grid -->
                 <div class="image-grid">
-                  <div class="grid-item" v-for="(lease, index) in filteredLeases" :key="index">
-                    <div class="image-container">
-                      <img :src="lease.image" alt="Lease Image" />
+                  <div class="grid-item" v-for="(lease, index) in filteredLease" :key="index">
+                    <div class="image-container"
+                    @click="navigateToLeaseSlug(lease.slug)">
+                      <img :src="lease.image" alt="Lease Project Image" />
                       <div class="overlay">
                         <p>{{ lease.name }}</p>
                       </div>
@@ -213,27 +215,29 @@
               </q-item>
             </q-expansion-item>
           </q-expansion-item>
+
           <q-expansion-item
           group="somegroup"
           label="For Lease"
           class="drawer-item-expand"
+          v-for="(districts, state) in groupedLeaseDevelopments" :key="state"
           >
+            <q-item class="drawer-item-child-1">
+              <q-item-section>{{ state }}</q-item-section>
+            </q-item>
             <q-expansion-item
             group="somegroup1"
-            label="Jengka"
             class="drawer-item-expand-2"
+            v-for="(district, index) in districts"
+                    :key="index"
+                    @click="setSelectedLeaseDistrict(district)"
+                    :label="district"
             >
-              <q-item clickable to="/reports" class="drawer-item-child-2">
-                <q-item-section>43 gireeess</q-item-section>
-              </q-item>
-            </q-expansion-item>
-            <q-expansion-item
-            group="somegroup1"
-            label="Maran"
-            class="drawer-item-expand-2"
-            >
-              <q-item clickable to="/reports" class="drawer-item-child-2">
-                <q-item-section>1 gireeess</q-item-section>
+              <q-item
+              v-for="(lease, index) in filteredLease" :key="index"
+              clickable :to="`/for-lease/${lease.slug}`"
+              class="drawer-item-child-2">
+                <q-item-section>{{ lease.name }}</q-item-section>
               </q-item>
             </q-expansion-item>
           </q-expansion-item>
@@ -317,16 +321,13 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
-import { developments } from 'src/components/CurrentDevelopmentData.vue'
-import { districts } from 'src/components/DropdownProjectSaleData.vue'
-
-const leases = [
-  { name: '43 gireeess', image: 'src/assets/currentproject/house1.jpg', district: 'Jengka' },
-  { name: '1 gireeess', image: 'src/assets/building.png', district: 'Maran' }
-]
+import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
+import { leasedevelopments } from 'src/components/Lease/LeaseData.vue'
 
 const displayedDevelopments = ref(developments)
 const selectedDistrict = ref('')
+const displayedLeaseDevelopments = ref(leasedevelopments)
+const selectedLeaseDistrict = ref('')
 
 const groupedDevelopments = computed(() => {
   return developments.reduce((acc, dev) => {
@@ -356,9 +357,32 @@ const navigateToSlug = (slug) => {
   router.push(`/for-sale/${slug}`).catch(() => {})
 }
 
-const filteredLeases = computed(() =>
-  leases.filter((lease) => lease.district === selectedDistrict.value)
+const groupedLeaseDevelopments = computed(() => {
+  return leasedevelopments.reduce((acc, dev) => {
+    if (!acc[dev.state]) {
+      acc[dev.state] = []
+    }
+    if (!acc[dev.state].includes(dev.district)) {
+      acc[dev.state].push(dev.district)
+    }
+    return acc
+  }, {})
+})
+
+const filteredLease = computed(() => {
+  return displayedLeaseDevelopments.value.filter(
+    (dev) => dev.district === selectedLeaseDistrict.value
+  )
+}
 )
+
+const setSelectedLeaseDistrict = (districts) => {
+  selectedLeaseDistrict.value = districts
+}
+
+const navigateToLeaseSlug = (slug) => {
+  router.push(`/for-lease/${slug}`).catch(() => {})
+}
 
 const $q = useQuasar() // Get the $q object
 const router = useRouter()
@@ -437,6 +461,33 @@ onUnmounted(() => {
 
 <style>
 @import 'src/css/global.css';
+
+@font-face {
+  font-family: 'TitilliumWebRegular';
+  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'TitilliumWebSemiBold';
+  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'RecklessNeueMedium';
+  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'TitilliumWebBold';
+  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AvenirMedium';
+  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+}
 /* Logo */
 .logo {
   height: 40px;
@@ -470,6 +521,7 @@ onUnmounted(() => {
 /* Navigation Buttons Group */
 .nav-buttons {
   display: flex;
+  font-family: 'TitilliumWebRegular';
   gap: 25px; /* Space between buttons */
 }
 
@@ -484,7 +536,7 @@ onUnmounted(() => {
   padding: 5px;
   font-size: 1rem; /* Adjust font size */
   font-weight: 500; /* Adjust font weight */
-  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'TitilliumWebSemiBold';
   transition: color 0.3s ease-in-out;
   color: #000;
 }
@@ -513,6 +565,10 @@ onUnmounted(() => {
   white-space: nowrap; /* Prevents the menu items from wrapping */
 }
 
+.menu-section {
+  font-family: 'TitilliumWebRegular';
+}
+
 .menu-section:hover{
   color: #00B398;
 }
@@ -537,12 +593,13 @@ onUnmounted(() => {
 
 .district-list h6 {
   font-size: 14px;
-  font-weight: bold;
+  font-family: 'TitilliumWebBold';
   margin-bottom: -15px;
 }
 
 .district-list ul {
   list-style: none;
+  font-family: 'TitilliumWebRegular';
   padding-left: 20px;
 }
 
@@ -606,6 +663,7 @@ position: relative;
 
 .overlay p {
   margin-bottom: 7px;
+  font-family: 'TitilliumWebRegular';
 }
 
 .dropdown {
@@ -640,10 +698,9 @@ color:#00B398;
 
 /* Style for drawer items */
 .drawer-item {
-  font-family: 'Arial', sans-serif;
+  font-family: 'TitilliumWebRegular';
   font-size: 15px;
   padding: 0px 15px;
-  font-weight: bold;
   margin-bottom: -10px;
 }
 
@@ -656,9 +713,8 @@ color:#00B398;
 }
 
 .drawer-item-expand {
-  font-family: 'Arial', sans-serif;
+  font-family: 'TitilliumWebBold';
   font-size: 15px;
-  font-weight: bold;
   padding: 0px 0px;
   margin-bottom: -10px;
 }
@@ -670,9 +726,8 @@ color:#00B398;
 /* Style for drawer item children */
 .drawer-item-child {
   padding: 0px 25px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'TitilliumWebRegular';
   font-size: 13.5px;
-  font-weight: bold;
   color: #3d3c3c;
   margin-top: -10px;
 }
@@ -683,7 +738,7 @@ color:#00B398;
 
 .drawer-item-child-1 {
   padding: 0px 25px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'TitilliumWebRegular';
   font-size: 14px;
   cursor:default;
   margin-bottom: -10px;
@@ -692,7 +747,7 @@ color:#00B398;
 }
 
 .drawer-item-expand-2 {
-  font-family: 'Arial', sans-serif;
+  font-family: 'TitilliumWebSemiBold';
   font-size: 15px;
   font-weight: bold;
   padding-left: 20px;
@@ -702,7 +757,7 @@ color:#00B398;
 
 .drawer-item-child-2 {
   padding: 0px 30px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'TitilliumWebSemiBold';
   font-size: 13px;
   font-weight: bold;
   margin-top: -10px;
@@ -785,7 +840,7 @@ color:#00B398;
   padding: 0 120px; /* Smaller footer padding */
   padding-top: 8px;
   padding-bottom: 30px;
-  font-family: Arial, sans-serif; /* Set default font */
+  font-family: 'TitilliumWebRegular';
   position: relative; /* Set position for nested elements */
 }
 
@@ -849,12 +904,6 @@ color:#00B398;
     gap: 20px;
   }
 
-  @font-face {
-  font-family: 'Modista';
-  src: url('src\assets\fonts\Modista-9ME6y.otf') format('opentype');
-  font-weight: 400;
-}
-
 .footer-link {
   color: #fff; /* White links */
   font-size: 16px; /* Smaller link size */
@@ -862,8 +911,7 @@ color:#00B398;
   gap: 40px;
   text-decoration: none;
   transition: color 0.3s ease;
-  font-family: 'Modista', sans-serif;
-
+  font-family: 'AvenirMedium';
 }
 
 .footer-time {
@@ -872,8 +920,7 @@ color:#00B398;
   margin-right: 20px;
   gap: 40px;
   text-decoration: none;
-  font-family: 'Modista', sans-serif;
-
+  font-family: 'AvenirMedium';
 }
 
 .footer-link:hover {
