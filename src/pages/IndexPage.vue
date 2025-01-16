@@ -158,11 +158,11 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { developments } from 'src/components/CurrentDevelopmentData.vue'
+import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
 
 const showLoader = ref(true)
 const router = useRouter()
-const allDevelopments = ref(developments)
+const allDevelopments = ref(developments.filter((d) => d.status === 'Current'))
 const visibleCount = ref(4)
 const displayedDevelopments = ref(allDevelopments.value.slice(0, visibleCount.value))
 const showAllDevelopments = ref(false)
@@ -488,7 +488,7 @@ const navigateToDevelopmentDetails = (slug) => {
 }
 
 .development-image {
-  width: 100%;
+  width: 300px;
   height: 260px;
   object-fit: cover;
 }
