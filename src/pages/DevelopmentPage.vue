@@ -560,7 +560,7 @@ padding-inline: 20px;
   max-width: 300px;
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   transition: transform 0.3s ease;
 }
