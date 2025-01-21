@@ -12,10 +12,11 @@
         <!-- Information Overlay -->
         <div class="information-overlay">
           <div class="info-overlay">
-            <div class="place-logo-section">
-              <h4 class="logo-title">{{ development.name }}</h4>
-            </div>
             <div class="info-details">
+              <!-- Logo Section -->
+              <div class="logo-container">
+                <img class="logo-image" :src="development.logo" alt="Logo">
+              </div>
               <div class="info-item">
                 <h4>Type</h4>
                 <p>{{ development.type }}</p>
@@ -27,8 +28,8 @@
               </div>
               <div class="divider"></div>
               <div class="info-item">
-                <h4>Size</h4>
-                <p>{{ development.size }}</p>
+                <h4>Status</h4>
+                <p>{{ development.statusbuyer }}</p>
               </div>
             </div>
           </div>
@@ -38,7 +39,7 @@
         <!-- Intro Section -->
       <div class="intro-section">
         <div class="text-content">
-            <h1 class="main-heading">{{ development.topic }}</h1>
+            <h1 class="main-heading">{{ development.name }}</h1>
           <div class="line-holder">
             <div class="line">
               <div class="line-1">
@@ -200,7 +201,7 @@
             alt="Center Image"
           />
           <div class="gallery-overlay">
-            <button class="visit-gallery-btn" @click="openPopup(1)">Visit Gallery</button>
+            <button class="visit-gallery-btn" @click="openPopup(2)">Visit Gallery</button>
           </div>
         </div>
 
@@ -290,7 +291,11 @@
                 :key="idx"
                 class="amenities-child"
               >
-                  <q-item-section class="amenities-location">{{ location.name }}<q-space class="amenities-km"/> {{ location.distance }} </q-item-section>
+                  <q-item-section class="amenities-location">
+                    <span class="amenities-name">{{ location.name }}</span>
+                    <q-space/>
+                      <span class="amenities-km">{{ location.distance }}</span>
+                  </q-item-section>
                 </q-item>
               </div>
               <q-separator color="white"/>
@@ -449,48 +454,39 @@ const capitalizeFirstLetter = (string) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
 
 .information-overlay {
     position: absolute;
-    top: 76%;
+    top: 70%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 1;
   }
+
+.logo-image {
+  width: 100px;
+  margin-top: -12px;
+}
 
 .info-overlay {
   display: flex;
   flex-direction: column;
   color: black;
   align-items: center;
-  white-space: nowrap;
   gap: 20px;
 }
-
-.place-logo-section {
-  position: absolute;
-  top: -180px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.logo-title {
-    font-size: 36px;
-    color: #fff;
-    text-align: center;
-    font-family: 'RecklessNeueMedium';
-  }
 
 .info-details {
   display: flex;
   background: white;
+  height: 120px;
   border-radius: 2px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   padding: 0 20px;
+  overflow:visible;
 }
 
 .info-item{
@@ -581,14 +577,17 @@ const capitalizeFirstLetter = (string) => {
   margin: 0 auto;
 }
 
-@media (max-width: 1024px) {
-
+@media (max-width: 1100px) {
 .information-overlay {
-    bottom: 89.7%;
+  bottom: 89.7%;
   }
 
-  .info-item{
+.info-item{
   width: 230px;
+  }
+
+.logo-image {
+  width:85px;
   }
 
 .main-heading {
@@ -602,7 +601,7 @@ const capitalizeFirstLetter = (string) => {
 }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 790px) {
 
 .info-item{
   width: 180px;
@@ -616,35 +615,46 @@ const capitalizeFirstLetter = (string) => {
   font-size: 42px;
   line-height: 50px;
 }
+
+.logo-image {
+  width: 80px;
+}
 }
 
-@media (max-width: 620px) {
+@media (max-width: 640px) {
 
-  .info-item{
+.info-item{
   width: 150px;
-  padding-left: 0;
-  padding-right: 0;
+}
+
+.info-item p{
+  font-size: 14px;
+}
+
+.logo-image {
+  width: 75px;
 }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 550px) {
 
-  .overview-section {
+.overview-section {
   height: 50vh;
 }
 
 .information-overlay {
-    top: 53%;
+    top: 45%;
     left: 50%;
   }
 
-.place-logo-section {
-  top: -100px;
-}
-
-  .logo-subtitle {
-    font-size: 16px;
+  .info-details {
+    width: 90vw;
+    height:auto;
   }
+
+.logo-image {
+  width: 60px;
+}
 
 .info-item-1{
   padding: 0;
@@ -1125,7 +1135,7 @@ line-height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1;
 }
 
 .gallery-popup-content {
@@ -1244,18 +1254,30 @@ line-height: 20px;
   }
 
   .amenities-location {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Push items to opposite ends */
+  /* border: 2px solid wheat; Border for the whole container */
+}
 
-  }
+.amenities-name {
+  display: flex;
+  text-align: start; /* Align the name at the start */
+  /* border: 2px solid #a7a4a4; */
+  max-width: 13vw;
+  min-height: 40px;
+  white-space: wrap;
+}
 
-  .amenities-km {
-    display: flex;
-    flex-direction: row;
-  }
+.amenities-km {
+  display: flex;
+  flex-direction: row;
+  justify-content: end; /* Align km at the end */
+  /* border: 2px solid white; */
+}
 
 /* For screens larger than 768px */
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
 
   .location-container {
   display: flex;
