@@ -323,7 +323,7 @@ padding-inline: 20px;
   font-size: 36px;
   border-bottom: 2px solid #08463c;
   display: inline-block;
-  color: #08463c;
+  color: #333;
   margin-bottom: 20px;
 }
 
@@ -393,8 +393,8 @@ padding-right: 10px;
   background-color: #f9f9f9;
   border-radius: 8px;
   margin-top: 20px;
-  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.1), /* Top shadow */
-              0 3px 6px rgba(0, 0, 0, 0.1); /* Bottom shadow */}
+  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2), /* Top shadow */
+              0 3px 6px rgba(0, 0, 0, 0.2); /* Bottom shadow */}
 
 .department-title {
   font-size: 36px;
