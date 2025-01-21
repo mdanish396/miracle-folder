@@ -333,7 +333,11 @@
                   v-for="(location, idx) in locations"
                   :key="idx"
                   class="amenities-child">
-                  <q-item-section class="amenities-location">{{ location.name }}<q-space class="amenities-km"/> {{ location.distance }} </q-item-section>
+                  <q-item-section class="amenities-location">
+                    <span class="amenities-name">{{ location.name }}</span>
+                    <q-space/>
+                      <span class="amenities-km">{{ location.distance }}</span>
+                  </q-item-section>
                 </q-item>
               </div>
             </q-expansion-item>
@@ -1668,16 +1672,28 @@ const loadMore = () => {
   .amenities-location {
     display: flex;
     flex-direction: row;
+    justify-content: space-between; /* Push items to opposite ends */
+  /* border: 2px solid wheat; Border for the whole container */
+}
 
-  }
+.amenities-name {
+  display: flex;
+  text-align: start; /* Align the name at the start */
+  /* border: 2px solid #a7a4a4; */
+  max-width: 13vw;
+  min-height: 40px;
+  white-space: wrap;
+}
 
   .amenities-km {
     display: flex;
     flex-direction: row;
-  }
+    justify-content: end; /* Align km at the end */
+  /* border: 2px solid white; */
+}
 
 /* For screens larger than 768px */
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
 
   .location-container {
   display: flex;
