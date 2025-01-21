@@ -1581,8 +1581,8 @@ const loadMore = () => {
 }
 
 .popup-image {
-  width: 100%;
-  height: 100%;
+  width: 75vw;
+  height: 80vh;
   max-width: min-content;
   max-height: min-content;
   transition: transform 0.2s ease-in-out;
