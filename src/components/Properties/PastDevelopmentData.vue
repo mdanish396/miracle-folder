@@ -115,8 +115,8 @@ export const pastdevelopments = [
     galleryImages: [
       'src/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.jpg',
       'src/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_01.jpg',
-      'src/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.jpg',
-      'src/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_01.jpg'
+      'src/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_04.png',
+      'src/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_03.png'
     ],
     map: 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3982.6055546065654!2d102.43473067434896!3d3.4456997512594376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwMjYnNDQuNSJOIDEwMsKwMjYnMTQuMyJF!5e0!3m2!1sen!2smy!4v1737444592915!5m2!1sen!2smy',
     link: '/past-development/'
