@@ -170,8 +170,8 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
-import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
-import { pastdevelopments } from 'src/components/Properties/PastDevelopmentData.vue'
+import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
+import { pastdevelopments } from 'src/components/Properties/PastProperties/PastDevelopmentData.vue'
 
 const allDevelopments = ref(developments.filter((d) => d.status === 'Current'))
 // const visibleCount = ref(4)

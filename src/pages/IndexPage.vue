@@ -160,7 +160,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
-import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
+import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 
 const showLoader = ref(true)
 const router = useRouter()

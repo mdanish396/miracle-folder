@@ -327,11 +327,11 @@
 </template>
 
 <script setup>
-import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
+import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
-import { properties } from 'src/components/Properties/CurrentPropertiesData.vue'
-import { nearbyAmenities } from 'src/components/Properties/CurrentDevelopmentAmenitiesData.vue'
+import { properties } from 'src/components/Properties/CurrentProperties/CurrentPropertiesData.vue'
+import { nearbyAmenities } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentAmenitiesData.vue'
 
 const route = useRoute()
 const developmentSlug = route.params.slug

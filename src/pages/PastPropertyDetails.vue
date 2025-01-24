@@ -491,9 +491,9 @@
 <script setup>
 import { onMounted, onUnmounted, ref, computed, watchEffect } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
-import { pastproperties } from 'src/components/Properties/PastPropertiesData.vue'
-import { floorplan } from 'src/components/Properties/PastPropertiesFloorplan.vue'
-import { nearbyAmenities } from 'src/components/Properties/PastDevelopmentAmenitiesData.vue'
+import { pastproperties } from 'src/components/Properties/PastProperties/PastPropertiesData.vue'
+import { floorplan } from 'src/components/Properties/PastProperties/PastPropertiesFloorplan.vue'
+import { nearbyAmenities } from 'src/components/Properties/PastProperties/PastDevelopmentAmenitiesData.vue'
 
 // Assuming you have a store or an API to fetch properties
 const route = useRoute()

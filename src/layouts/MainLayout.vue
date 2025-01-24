@@ -321,7 +321,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
-import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
+import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 import { leasedevelopments } from 'src/components/Lease/LeaseData.vue'
 
 const displayedDevelopments = ref(developments)
