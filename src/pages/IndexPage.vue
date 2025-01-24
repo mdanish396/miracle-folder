@@ -1,6 +1,5 @@
 <template>
-  <transition name="fade" mode="out-in">
-    <q-page :key="$route.fullPath">
+  <q-page :key="$route.fullPath">
       <!-- Startup Animation Overlay -->
       <div v-if="showLoader" class="startup-overlay">
         <div>
@@ -41,80 +40,82 @@
 
       <!-- Current Developments Section -->
       <div class="developments-section">
-        <h2>Current Developments</h2>
-        <div class="line-holder">
+        <h2 class="fade-up">Current Developments</h2>
+        <div class="line-holder fade-up delay-1">
           <div class="line">
             <div class="line-1">
              <div class="line-2"></div>
            </div>
           </div>
         </div>
-        <p>Explore our current developments and find your dream home.</p>
-        <div class="development-flex">
-          <div class="developments-container">
-            <!-- Scrollable Development Card -->
-            <div
-              class="development-card"
-              v-for="development in displayedDevelopments"
-              :key="development.id">
-              <img
-                :src="development.image"
-                :alt="development.name"
-              class="development-image"/>
-              <div class="status">
-                {{ development.status }}
-              </div>
-              <div class="development-info">
-                <h3>{{ development.name }}</h3>
-                <p>{{ development.location }}</p>
-                <p>From RM {{ development.price }}</p>
-              </div>
-              <!-- Hover Development Card Information -->
-              <div class="development-hover-overlay">
-                <span class="status-current">
+        <p class="fade-up delay-2">Explore our current developments and find your dream home or shop.</p>
+        <div class="container fade-up delay-3">
+          <div class="development-flex">
+            <div class="developments-container">
+              <!-- Scrollable Development Card -->
+              <div
+                class="development-card"
+                v-for="development in displayedDevelopments"
+                :key="development.id">
+                <img
+                  :src="development.image"
+                  :alt="development.name"
+                class="development-image"/>
+                <div class="status">
                   {{ development.status }}
-                </span>
-                <div class="description">
-                  {{ development.shortdescription }}
                 </div>
-                <div class="actions">
-                  <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(development.slug)"/>
+                <div class="development-info">
+                  <h3>{{ development.name }}</h3>
+                  <p>{{ development.location }}</p>
+                  <p>From RM {{ development.price }}</p>
+                </div>
+                <!-- Hover Development Card Information -->
+                <div class="development-hover-overlay">
+                  <span class="status-current">
+                    {{ development.status }}
+                  </span>
+                  <div class="description">
+                    {{ development.shortdescription }}
+                  </div>
+                  <div class="actions">
+                    <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(development.slug)"/>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div v-if="allDevelopments.length > visibleCount">
-          <div v-if="!showAllDevelopments">
+          <div v-if="allDevelopments.length > visibleCount">
+            <div v-if="!showAllDevelopments">
+              <q-btn
+                flat
+                label="Show More"
+                class="view-all-btn"
+                @click="showMoreDevelopments"
+              />
+            </div>
+          </div>
+          <div v-if="showAllDevelopments">
             <q-btn
               flat
-              label="Show More"
+              label="Show Less"
               class="view-all-btn"
-              @click="showMoreDevelopments"
+              @click="showLessDevelopments"
             />
           </div>
-        </div>
-        <div v-if="showAllDevelopments">
-          <q-btn
-            flat
-            label="Show Less"
-            class="view-all-btn"
-            @click="showLessDevelopments"
-          />
         </div>
       </div>
 
       <!-- Partners' Logos Section -->
-      <div class="partners-section">
-        <h3>Our Partners</h3>
-        <div class="line-holder">
+      <div class="partners-section ">
+        <h3 class="fade-up">Our Partners</h3>
+        <div class="line-holder fade-up delay-1">
           <div class="line">
             <div class="line-1">
              <div class="line-2"></div>
            </div>
           </div>
         </div>
-        <div class="logo-container">
+        <div class="logo-container fade-up delay-2">
           <img src="src/assets/logo1.png" alt="Partner 1" class="partner-logo" />
           <img src="src/assets/logo1.png" alt="Partner 2" class="partner-logo" />
           <img src="src/assets/logo1.png" alt="Partner 3" class="partner-logo" />
@@ -122,41 +123,42 @@
       </div>
 
       <!-- About Section -->
-      <section class="about-section">
+      <div class="about-section">
       <div class="container">
         <div class="about-wrapper">
           <ul>
-            <h2>Founder's Track Record</h2>
-            <div class="line-holder">
+            <h2 class="fade-up">Founder's Track Record</h2>
+            <div class="line-holde fade-up delay-1">
               <div class="line">
                 <div class="line-1">
                   <div class="line-2"></div>
                 </div>
               </div>
             </div>
-            <li>
+            <li class="fade-up delay-2">
                 From a family’s dream home to an entrepreneur’s aspiration, we strive to build sustainable communities through creativity and dedication at heart.
             </li>
           </ul>
 
-          <div class="about-image-container">
+          <div class="about-image-container fade-up delay-3">
             <img src="src/assets/currentproject/house1.jpg" class="about-image" />
           </div>
         </div>
-        <q-btn
-              flat
-              label="About Us"
-              class="about-btn"
-              to="/about-miracle"
-            />
+        <div class="fade-up delay-2">
+          <q-btn
+                flat
+                label="About Us"
+                class="about-btn"
+                to="/about-miracle"
+              />
+        </div>
       </div>
-    </section>
-    </q-page>
-  </transition>
+    </div>
+  </q-page>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
 
@@ -166,11 +168,39 @@ const allDevelopments = ref(developments.filter((d) => d.status === 'Current'))
 const visibleCount = ref(4)
 const displayedDevelopments = ref(allDevelopments.value.slice(0, visibleCount.value))
 const showAllDevelopments = ref(false)
+const sections = ref([])
+const fadeItems = ref([])
+let observer = null
 
 onMounted(() => {
   setTimeout(() => {
     showLoader.value = false
   }, 3500)
+})
+
+onMounted(() => {
+  // Initialize Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      } else {
+        entry.target.classList.remove('visible')
+      }
+    })
+  })
+
+  // Observe all sections
+  sections.value = Array.from(document.querySelectorAll('.section'))
+  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+  sections.value.forEach((section) => observer.observe(section))
+  fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+onBeforeUnmount(() => {
+  // Clean up observer
+  if (observer) observer.disconnect()
 })
 
 const showMoreDevelopments = () => {
@@ -216,6 +246,40 @@ const navigateToDevelopmentDetails = (slug) => {
 @font-face {
   font-family: 'AvenirMedium';
   src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+}
+
+.section {
+  opacity: 0.4;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.fade-up.delay-3 {
+  transition-delay: 0.6s;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -444,10 +508,12 @@ const navigateToDevelopmentDetails = (slug) => {
 .development-flex {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .developments-container {
-  display: grid;
+  display: flex;
   gap: 20px;
   grid-template-columns: repeat(4, minmax(280px, 1fr)); /* Responsive grid */
   padding-bottom: 80px;
