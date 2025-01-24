@@ -5,14 +5,16 @@
       <div class="new-container">
         <!-- Text Content Section -->
         <div class="text-content">
-          <div class="line-hero-holder">
+          <div class="line-hero-holder fade-up">
             <div class="line-hero">
               <div class="line-hero-1"></div>
             </div>
           </div>
-          <h2 class="text-above">Announcements</h2>
-          <p class="text-below">
-            Read the latest announcements from our company</p>
+          <div class="text-hero">
+            <h2 class="text-above fade-up delay-1">Announcements</h2>
+            <p class="text-below fade-up delay-2">
+              Read the latest announcements from our company</p>
+          </div>
         </div>
 
         <!-- Image Section -->
@@ -25,7 +27,7 @@
     <!-- Announcements Section -->
     <section class="announcements-list">
       <div v-for="announcement in announcementsItems" :key="announcement.id">
-        <div class="announcement-item">
+        <div class="announcement-item fade-up delay-1">
           <q-card @click="openAnnouncement(announcement.link)" class="announcement-btn" flat>
             <q-icon name="notifications"/>
             {{ announcement.title }}
@@ -38,6 +40,36 @@
 
 <script setup>
 import { announcementsItems } from 'src/components/AnnouncementData.vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const sections = ref([])
+const fadeItems = ref([])
+let observer = null
+
+onMounted(() => {
+  // Initialize Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      } else {
+        entry.target.classList.remove('visible')
+      }
+    })
+  })
+
+  // Observe all sections
+  sections.value = Array.from(document.querySelectorAll('.section'))
+  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+  sections.value.forEach((section) => observer.observe(section))
+  fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+onBeforeUnmount(() => {
+  // Clean up observer
+  if (observer) observer.disconnect()
+})
 
 const openAnnouncement = (link) => {
   window.open(link, '_blank')
@@ -71,6 +103,40 @@ const openAnnouncement = (link) => {
   font-family: 'AvenirMedium';
   src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
   font-weight: bold;
+}
+
+.section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.fade-up.delay-3 {
+  transition-delay: 0.6s;
 }
 
 .new-hero {

@@ -4,15 +4,15 @@
     <div class="new-hero">
       <div class="new-container">
         <!-- Text Content Section -->
-        <div class="text-content">
-          <div class="line-hero-holder">
+        <div class="text-content section">
+          <div class="line-hero-holder fade-up">
             <div class="line-hero">
               <div class="line-hero-1"></div>
             </div>
           </div>
-          <h2 class="text-above">Career</h2>
-          <p class="text-below">
-            Explore our current job opportunities.          </p>
+            <h2 class="text-above fade-up delay-1">Career</h2>
+            <p class="text-below fade-up delay-2">
+              Explore our current job opportunities.</p>
         </div>
 
         <!-- Image Section -->
@@ -26,8 +26,8 @@
     <div class="career-section">
       <div class="content-container">
         <div class="text-content-1">
-          <h2>Why Join Us</h2>
-          <ul>
+          <h2 class="fade-up">Why Join Us</h2>
+          <ul class="fade-up delay-1">
             <li><div class="list"> <div class="strong-list"><strong>Realistic bosses</strong></div><div class="dot">:</div> <div>  Our leaders are supportive and result-oriented.</div></div></li>
             <li><div class="list"> <div class="strong-list"><strong>Flat structure</strong></div> <div class="dot">:</div><div> Hierarchy is not our focus; we value contributions from all levels.</div></div></li>
             <li><div class="list"> <div class="strong-list"><strong>Fast career progression</strong> </div><div class="dot">:</div><div>  We ensure you have the tools and opportunities to grow.</div></div></li>
@@ -42,19 +42,19 @@
     </div>
 
     <!-- Why Teamwork Matters Section -->
-    <div class="career-section">
+    <div class="career-section section">
       <div class="content-container">
         <div class="image-container">
           <!-- Image -->
           <img src="src/assets/career3.jpg" alt="Why Join Us" class="career-image" />
         </div>
         <div class="text-content-2">
-          <h2>Why Teamwork Matters</h2>
-          <p>
+          <h2 class="fade-up">Why Teamwork Matters</h2>
+          <p class="fade-up delay-1">
             Teamwork is essential for success in today’s professional world. Collaboration fosters productivity, strengthens
             relationships, and enhances problem-solving skills.
           </p>
-          <p>
+          <p class="fade-up delay-1">
             The ability to effectively work as a team is key to achieving shared goals and individual growth.
           </p>
         </div>
@@ -62,11 +62,11 @@
     </div>
 
     <!-- Our People Section -->
-    <div class="career-section">
+    <div class="career-section section">
       <div class="content-container">
         <div class="text-content-1">
-          <h2>Our People</h2>
-          <p>
+          <h2 class="fade-up">Our People</h2>
+          <p class="fade-up delay-1">
             Our people are the heart of our business. Whatever you need, we’re here to help.
           </p>
         </div>
@@ -76,15 +76,43 @@
         </div>
       </div>
     </div>
-    <div class="btn">
+    <div class="btn fade-up delay-1">
     <q-btn flat label="Career Opportunities" class="btn-story" to='/career-opportunities'/>
     </div>
   </q-page>
 </template>
 
 <script setup>
-// This is a setup script for CareerPage.vue
-</script>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const sections = ref([])
+const fadeItems = ref([])
+let observer = null
+
+onMounted(() => {
+  // Initialize Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      } else {
+        entry.target.classList.remove('visible')
+      }
+    })
+  })
+
+  // Observe all sections
+  sections.value = Array.from(document.querySelectorAll('.section'))
+  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+  sections.value.forEach((section) => observer.observe(section))
+  fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+onBeforeUnmount(() => {
+  // Clean up observer
+  if (observer) observer.disconnect()
+})</script>
 
 <style scoped>
 
@@ -113,6 +141,40 @@
 @font-face {
   font-family: 'AvenirMedium';
   src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+}
+
+.section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.fade-up.delay-3 {
+  transition-delay: 0.6s;
 }
 
 .new-hero {

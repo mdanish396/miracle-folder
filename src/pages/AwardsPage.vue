@@ -5,13 +5,13 @@
       <div class="award-container">
         <!-- Text Content Section -->
         <div class="text-content">
-          <div class="line-hero-holder">
+          <div class="line-hero-holder fade-up">
             <div class="line-hero">
               <div class="line-hero-1"></div>
             </div>
           </div>
-          <h2 class="text-above">Awards</h2>
-          <p class="text-below">
+          <h2 class="text-above fade-up delay-1">Awards</h2>
+          <p class="text-below fade-up delay-2">
           We are proud to have received various awards over the years.
           </p>
         </div>
@@ -25,9 +25,9 @@
     <!-- Awards Section -->
     <section class="award-section">
       <div v-for="year in years" :key="year.year" class="year-section">
-        <h2 class="year-title">{{ year.year }}</h2>
+        <h2 class="year-title fade-up">{{ year.year }}</h2>
         <div class="award-contain">
-          <div class="award-list">
+          <div class="award-list fade-up delay-1">
             <div class="award-item" v-for="award in awardsItems[year.year]" :key="award.id">
               <img :src="award.image" :alt="award.title" />
               <h2>{{ award.title }}</h2>
@@ -43,6 +43,36 @@
 
 <script setup>
 import { years, awardsItems } from 'src/components/AwardsData.vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const sections = ref([])
+const fadeItems = ref([])
+let observer = null
+
+onMounted(() => {
+  // Initialize Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      } else {
+        entry.target.classList.remove('visible')
+      }
+    })
+  })
+
+  // Observe all sections
+  sections.value = Array.from(document.querySelectorAll('.section'))
+  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+  sections.value.forEach((section) => observer.observe(section))
+  fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+onBeforeUnmount(() => {
+  // Clean up observer
+  if (observer) observer.disconnect()
+})
 </script>
 
 <style scoped>
@@ -72,6 +102,43 @@ import { years, awardsItems } from 'src/components/AwardsData.vue'
   font-family: 'AvenirMedium';
   src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
   font-weight: bold;
+}
+
+.section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.fade-up.delay-3 {
+  transition-delay: 0.6s;
+}
+.fade-up.delay-4 {
+  transition-delay: 0.8s;
 }
 
 .award-hero {

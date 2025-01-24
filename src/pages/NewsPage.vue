@@ -4,15 +4,17 @@
     <div class="new-hero">
       <div class="new-container">
         <!-- Text Content Section -->
-        <div class="text-content">
-          <div class="line-hero-holder">
+        <div class="text-content ">
+          <div class="line-hero-holder fade-up">
             <div class="line-hero">
               <div class="line-hero-1"></div>
             </div>
           </div>
-          <h2 class="text-above">News</h2>
-          <p class="text-below">
-            Stay updated with the latest company news.          </p>
+          <div class="text-hero">
+            <h2 class="text-above fade-up delay-1">News</h2>
+            <p class="text-below fade-up delay-2">
+              Stay updated with the latest company news.</p>
+          </div>
         </div>
 
         <!-- Image Section -->
@@ -24,7 +26,7 @@
 
     <!-- News Section -->
     <section class="news-list">
-      <div v-for="news in newsItems" :key="news.slug" class="news-item">
+      <div v-for="news in newsItems" :key="news.slug" class="news-item fade-up">
         <q-card @click="navigateToNewsDetails(news.slug)" class="news-btn" flat>
           <div class="date-box">
               <div class="date-day">{{ news.day }}</div>
@@ -43,8 +45,37 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { newsItems } from 'src/components/NewsData.vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const router = useRouter()
+const fadeItems = ref([])
+const sections = ref([])
+let observer = null
+
+onMounted(() => {
+  // Initialize Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      } else {
+        entry.target.classList.remove('visible')
+      }
+    })
+  })
+
+  // Observe all sections
+  sections.value = Array.from(document.querySelectorAll('.section'))
+  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+  sections.value.forEach((section) => observer.observe(section))
+  fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+onBeforeUnmount(() => {
+  // Clean up observer
+  if (observer) observer.disconnect()
+})
 
 // Function to open the link
 const navigateToNewsDetails = (slug) => {
@@ -79,6 +110,40 @@ const navigateToNewsDetails = (slug) => {
   font-family: 'AvenirMedium';
   src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
   font-weight: bold;
+}
+
+.section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.fade-up.delay-3 {
+  transition-delay: 0.6s;
 }
 
 .new-hero {

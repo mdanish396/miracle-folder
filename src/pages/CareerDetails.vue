@@ -6,14 +6,14 @@
       <div class="new-container">
         <!-- Text Content Section -->
         <div class="text-content">
-          <div class="line-hero-holder">
+          <div class="line-hero-holder fade-up">
             <div class="line-hero">
               <div class="line-hero-1"></div>
             </div>
           </div>
-          <h2 class="text-above">Career</h2>
-          <p class="text-below">
-            Explore our current job opportunities. <i class="fa fa-bullhorn" style="font-size:larger; color: beige;"></i></p>
+            <h2 class="text-above fade-up delay-1">Career</h2>
+            <p class="text-below fade-up delay-2">
+              Explore our current job opportunities. <i class="fa fa-bullhorn" style="font-size:larger; color: beige;"></i></p>
         </div>
 
         <!-- Image Section -->
@@ -25,28 +25,30 @@
 
     <div class="contact">
       <div class="contact-offer">
-        <h2>What We Offer</h2>
-        <div class="text-list">
-          <img src="src/assets/handshake.png" class="icon-image"/>
-            <span class="offer-text">
-              Competitive pay
-            </span>
-        </div>
-        <div class="text-list">
-          <img src="src/assets/handshake.png" class="icon-image"/>
-            <span class="offer-text">
-              Comprehensive training
-            </span>
-        </div>
-        <div class="text-list">
-          <img src="src/assets/handshake.png" class="icon-image"/>
-            <span class="offer-text">
-              Friendly and supportive work environment
-            </span>
+        <h2 class="fade-up">What We Offer</h2>
+        <div class="fade-up delay-1">
+          <div class="text-list">
+            <img src="src/assets/handshake.png" class="icon-image"/>
+              <span class="offer-text">
+                Competitive pay
+              </span>
+          </div>
+          <div class="text-list">
+            <img src="src/assets/handshake.png" class="icon-image"/>
+              <span class="offer-text">
+                Comprehensive training
+              </span>
+          </div>
+          <div class="text-list">
+            <img src="src/assets/handshake.png" class="icon-image"/>
+              <span class="offer-text">
+                Friendly and supportive work environment
+              </span>
+          </div>
         </div>
       </div>
 
-      <div class="contact-apply">
+      <div class="contact-apply fade-up delay-2">
         <div class="contact-info">
           <p>Send your resume</p>
           <p class="info"><i class="fa fa-envelope icons"></i>hmnrs.md3@gmail.com</p>
@@ -92,6 +94,36 @@
 
 <script setup>
 import { departments, jobposition } from 'src/components/CareerData.vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const sections = ref([])
+const fadeItems = ref([])
+let observer = null
+
+onMounted(() => {
+  // Initialize Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      } else {
+        entry.target.classList.remove('visible')
+      }
+    })
+  })
+
+  // Observe all sections
+  sections.value = Array.from(document.querySelectorAll('.section'))
+  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+  sections.value.forEach((section) => observer.observe(section))
+  fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+onBeforeUnmount(() => {
+  // Clean up observer
+  if (observer) observer.disconnect()
+})
 </script>
 
 <style scoped>
@@ -121,6 +153,40 @@ import { departments, jobposition } from 'src/components/CareerData.vue'
 @font-face {
   font-family: 'AvenirMedium';
   src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+}
+
+.section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.fade-up.delay-3 {
+  transition-delay: 0.6s;
 }
 
 .new-hero {

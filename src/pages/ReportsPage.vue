@@ -4,16 +4,18 @@
     <div class="report-hero">
       <div class="report-container">
         <!-- Text Content Section -->
-        <div class="text-content">
-          <div class="line-hero-holder">
+        <div class="text-content section">
+          <div class="line-hero-holder fade-up">
             <div class="line-hero">
               <div class="line-hero-1"></div>
             </div>
           </div>
-          <h2 class="text-above">Reports</h2>
-          <p class="text-below">
-            Access our latest financial reports and company statements here.
-          </p>
+          <div class="text-hero">
+            <h2 class="text-above fade-up delay-1">Reports</h2>
+            <p class="text-below fade-up delay-2">
+              Access our latest financial reports and company statements here.
+            </p>
+          </div>
         </div>
 
         <!-- Image Section -->
@@ -24,7 +26,7 @@
     </div>
 
     <!-- Year Selector -->
-    <div class="year-selector">
+    <div class="year-selector fade-up">
       <q-select
         v-model="selectedYear"
         :options="yearOptions"
@@ -36,7 +38,7 @@
 
     <!-- Reports Section -->
     <section class="reports">
-      <div class="report-list">
+      <div class="report-list fade-up delay-1">
         <div class="report-item" v-for="report in filteredReports" :key="report.id">
           <q-card @click="downloadReport(report.file)" class="report-btn" flat>
             <q-icon name="picture_as_pdf" />
@@ -49,12 +51,41 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { years, reportsItems } from 'src/components/ReportData.vue'
 
 const selectedYear = ref(years[0].year) // Default to the first year
 const yearOptions = years.map((y) => y.year) // Extract year options
 const filteredReports = ref(reportsItems[selectedYear.value])
+
+const sections = ref([])
+const fadeItems = ref([])
+let observer = null
+
+onMounted(() => {
+  // Initialize Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      } else {
+        entry.target.classList.remove('visible')
+      }
+    })
+  })
+
+  // Observe all sections
+  sections.value = Array.from(document.querySelectorAll('.section'))
+  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+  sections.value.forEach((section) => observer.observe(section))
+  fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+onBeforeUnmount(() => {
+  // Clean up observer
+  if (observer) observer.disconnect()
+})
 
 const filterReports = (year) => {
   filteredReports.value = reportsItems[year] || []
@@ -94,6 +125,40 @@ const downloadReport = (file) => {
   font-family: 'AvenirMedium';
   src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
   font-weight: bold;
+}
+
+.section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.fade-up.delay-3 {
+  transition-delay: 0.6s;
 }
 
 .report-hero {

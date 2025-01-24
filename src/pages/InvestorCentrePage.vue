@@ -5,13 +5,13 @@
       <div class="investor-container">
         <!-- Text Content Section -->
         <div class="text-content">
-          <div class="line-hero-holder">
+          <div class="line-hero-holder fade-up">
             <div class="line-hero">
               <div class="line-hero-1"></div>
             </div>
           </div>
-          <h2 class="text-above">Investor</h2>
-          <h2 class="text-below">Centre</h2>
+          <h2 class="text-above fade-up delay-1">Investor</h2>
+          <h2 class="text-below fade-up delay-1">Centre</h2>
         </div>
 
         <!-- Image Section -->
@@ -24,7 +24,7 @@
     <!-- Investor Centre Section -->
     <section class="investor-centre">
       <div class="investor-list">
-        <div class="investor-item" v-for="investor in investorsItems" :key="investor.id">
+        <div class="investor-item fade-up delay-1" v-for="investor in investorsItems" :key="investor.id">
           <q-card @click="openInvestor(investor.link)" class="investor-btn" flat>
             <q-icon name="account_balance_wallet" color="primary"/>
             {{ investor.title }}
@@ -37,6 +37,36 @@
 
 <script setup>
 import { investorsItems } from 'src/components/InvestorData.vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const sections = ref([])
+const fadeItems = ref([])
+let observer = null
+
+onMounted(() => {
+  // Initialize Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      } else {
+        entry.target.classList.remove('visible')
+      }
+    })
+  })
+
+  // Observe all sections
+  sections.value = Array.from(document.querySelectorAll('.section'))
+  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+  sections.value.forEach((section) => observer.observe(section))
+  fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+onBeforeUnmount(() => {
+  // Clean up observer
+  if (observer) observer.disconnect()
+})
 
 const openInvestor = (link) => {
   window.open(link, '_blank')
@@ -74,6 +104,42 @@ const openInvestor = (link) => {
   font-weight: bold;
 }
 
+.section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.fade-up.delay-3 {
+  transition-delay: 0.6s;
+}
+.fade-up.delay-4 {
+  transition-delay: 0.8s;
+}
 .investor-hero {
   background-color: #0d182b;
   display: flex;
