@@ -69,7 +69,7 @@ export const pastdevelopments = [
       'src/assets/Development/Dynaton Bukit Angin/bukit_angin_02.jpg',
       'src/assets/Development/Dynaton Bukit Angin/bukit_angin_08.png'
     ],
-    map: 'https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1991.312976026303!2d102.41846813838592!3d3.440822676509943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sdynaton%20bukit%20angin!5e0!3m2!1sen!2smy!4v1737095232110!5m2!1sen!2smy',
+    map: 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3982.6261178882855!2d102.41706707438674!3d3.4407829965336987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwMjYnMjYuOCJOIDEwMsKwMjUnMTAuNyJF!5e0!3m2!1sen!2smy!4v1737527338884!5m2!1sen!2smy',
     link: '/past-development/'
   },
   {
