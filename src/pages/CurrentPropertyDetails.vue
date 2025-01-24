@@ -5,21 +5,21 @@
         <div class="hero-section-1">
           <div class="before-hero-section"></div>
           <div class="hero-section">
-            <img :src="property.image" alt="Property Image" class="hero-image" />
+            <img :src="property.image" alt="Property Image" class="hero-image fade-up" />
             <div class="property-section">
               <div class="property-grid">
                 <div class="property-card">
                   <div class="property-info">
-                    <h3 class="property-name">{{ property.name }}</h3>
-                    <div class="property-location">
+                    <h3 class="property-name fade-up">{{ property.name }}</h3>
+                    <div class="property-location fade-up">
                       <i class="fas fa-map-marker-alt icon"></i>
                       <span class="text-property-location">
                         {{ property.location }}
                       </span>
                     </div>
                     <q-separator/>
-                    <q-toolbar class="property-toolbar">
-                      <div class="property-item">
+                    <q-toolbar class="property-toolbar fade-up delay-1">
+                      <div class="property-item ">
                         <h4>Type</h4>
                         <p class="truncated-text">{{ property.housetype }}
                           <q-tooltip v-if="!screenBelow540px">
@@ -39,7 +39,7 @@
                       </div>
                     </q-toolbar>
                     <q-separator/>
-                    <div class="property-feature-list">
+                    <div class="property-feature-list fade-up delay-2">
                       <div
                         v-for="feature in property.features"
                         :key="feature"
@@ -51,7 +51,7 @@
                       </div>
                     </div>
 
-                    <div class="property-button">
+                    <div class="property-button fade-up delay-3">
                       <q-btn
                         stack
                         flat
@@ -79,7 +79,7 @@
                         <span class="text-btn">GALLERY</span>
                       </q-btn>
                     </div>
-                    <div class="register-button">
+                    <div class="register-button fade-up delay-4">
                       <q-btn flat @click="scrollToRegister" class="register-btn">
                         <span class="register-text-btn">Register Now</span>
                       </q-btn>
@@ -93,22 +93,22 @@
       </div>
 
       <div class="description-section">
-        <h2>{{ property.name }}</h2>
-        <p>{{ property.description }}</p>
+        <h2 class="fade-up">{{ property.name }}</h2>
+        <p class="fade-up delay-1">{{ property.description }}</p>
         <div class="description-icon"></div>
       </div>
 
       <!-- Gallery Section -->
       <div class="gallery-section" id="section-gallery">
-        <h2>Gallery</h2>
-        <div class="line-holder">
+        <h2 class="fade-up">Gallery</h2>
+        <div class="line-holder fade-up delay-1">
           <div class="line">
             <div class="line-1">
               <div class="line-2"></div>
             </div>
           </div>
         </div>
-        <div class="gallery-grid">
+        <div class="gallery-grid fade-up delay-2">
 
           <!-- Left image -->
           <div
@@ -170,16 +170,29 @@
         <div v-if="isPopupOpen" class="gallery-popup">
           <div class="gallery-popup-content">
             <!-- Close Button -->
-            <button class="popup-close" @click="closePopup">&#9747;</button>
+            <button class="popup-close" @click="closePopup">
+            <i class="fa fa-close"></i>
+          </button>
 
-            <!-- Image Display -->
-            <img :src="property.gallery[currentImage]" alt="Popup Image" loading="lazy" class="gallery-popup-image" />
-
-             <!-- Previous Button -->
-            <button class="popup-prev" @click="prevImage">&#8592;</button>
-
-            <!-- Next Button -->
-            <button class="popup-next" @click="nextImage">&#8594;</button>
+          <q-carousel
+            v-model="currentImage"
+            animated
+            arrows
+            navigation
+            infinite
+            swipeable
+            transition-prev="slide-right"
+            transition-next="slide-left"
+            class="carousel"
+          >
+            <q-carousel-slide
+              v-for="(image, index) in property.gallery"
+              :key="index"
+              :name="index"
+            >
+              <img :src="image" alt="Carousel Image" class="carousel-image" />
+            </q-carousel-slide>
+          </q-carousel>
          </div>
         </div>
       </div>
@@ -187,8 +200,8 @@
 
     <!-- Floor Plan Section -->
     <div class="floorplan-section" id="section-floorplan">
-      <h2 class="floorplan-title">Floorplan</h2>
-      <div class="line-holder">
+      <h2 class="floorplan-title fade-up">Floorplan</h2>
+      <div class="line-holder fade-up delay-1">
         <div class="line">
           <div class="line-1">
             <div class="line-2"></div>
@@ -198,7 +211,7 @@
       <div class="floorplan-container">
         <!-- Header Section -->
         <div class="floorplan-header">
-          <div class="plan-select">
+          <div class="plan-select fade-up delay-2">
             <select v-model="selectedPlan" class="custom-select">
               <option
                 v-for="(plans, planType) in currentFloorplans"
@@ -208,7 +221,7 @@
               </option>
             </select>
           </div>
-          <div class="plan-price">
+          <div class="plan-price fade-up delay-2">
             Price From <span class="price">{{ property.price }}</span>
           </div>
         </div>
@@ -220,7 +233,7 @@
             :key="planType">
             <div v-if="selectedPlan === planType" class="details-floorplan">
               <div class="details-grid-items">
-                <div class="details-grid">
+                <div class="details-grid fade-up delay-3">
                   <!-- Bedrooms -->
                   <div class="details-item">
                     <img src="src/assets/bed.png" alt="Area" class="icon-3" />
@@ -239,7 +252,7 @@
                 </div>
 
                 <!-- Buttons Section -->
-                <div class="floorplan-buttons">
+                <div class="floorplan-buttons fade-up delay-4">
                   <button @click="downloadBrochure(plans[0].brochure)" class="btn download-btn">
                     <img src="src/assets/brochure.svg" alt="Download" />
                     Download Brochure
@@ -285,8 +298,8 @@
 
     <div class="location-section">
       <div class="location-title">
-        <h2>Location</h2>
-        <div class="line-holder">
+        <h2 class="fade-up">Location</h2>
+        <div class="line-holder fade-up delay-1">
           <div class="line">
             <div class="line-1">
               <div class="line-2"></div>
@@ -296,7 +309,7 @@
       </div>
 
       <div class="location-container">
-        <div class="location-map" v-if="property">
+        <div class="location-map fade-up delay-2" v-if="property">
           <iframe
             :src="property.map"
             style="border:0;"
@@ -305,7 +318,7 @@
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
-        <div class="amenities" v-if="computedNearbyAmenities">
+        <div class="amenities fade-up delay-3" v-if="computedNearbyAmenities">
           <q-list>
             <q-item class="amenities-section">
               <q-item-section>Nearby Amenities</q-item-section>
@@ -351,63 +364,93 @@
         <div class="register-wrapper">
           <!-- Left Section -->
           <div class="register-left">
-            <h2 class="register-title">Contact Details</h2>
-            <div class="register-line-holder">
+            <h2 class="register-title fade-up">Contact Details</h2>
+            <div class="register-line-holder fade-up delay-1">
               <div class="register-line">
                 <div class="register-line-1">
                 </div>
               </div>
             </div>
-            <h5 class="address-title">Address</h5>
-            <address>
+            <h5 class="address-title fade-up delay-2">Address</h5>
+            <address class="fade-up delay-3">
               No. 1, Tingkat Basement, Jalan Dagang 2,<br>
               Kampung Bukit Angin, 28000 Temerloh, Pahang<br>
             </address>
 
-            <div class="map-button">
+            <div class="map-button fade-up delay-2">
               <button @click="gotofullmap" class="btn view-full-map-btn">
-                    <img src="src/assets/brochure.svg" alt="Download" />
+                    <img src="src/assets/brochure.svg" alt="Map" />
                     View Full Map
                   </button>
             </div>
-            <h5 class="contact-title">Contact Number</h5>
-            <div>
+            <h5 class="contact-title fade-up delay-2">Contact Number</h5>
+            <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
                 <span class="contact-no">
-                  09-296 0000
+                  019-296 6666
                 </span>
             </div>
-            <h5 class="business-title">Business Hours</h5>
-            <div>
+            <h5 class="email-title fade-up delay-2">General Enquiries</h5>
+            <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
+            <div class="fade-up delay-3">
+              <i class="fa fa-envelope email-icon"></i>
+                <span class="email-address">
+                  enquiries@woha.net
+                </span>
+            </div>
+            <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
+            <p class="email-subtitle fade-up delay-2">We're always on the lookout for talented people - please send us <br> your CV and portfolio (no larger than 5MB) to</p>
+            <div class="fade-up delay-3">
+              <i class="fa fa-envelope email-icon"></i>
+                <span class="email-address">
+                  hmnrs.md3@gmail.com
+                </span>
+              <div>
+                <i class="fa fa-phone phone-icon"></i>
+                <span class="contact-no">
+                  011-69999888
+                </span>
+              </div>
+            </div>
+            <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
+            <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
+            <div class="fade-up delay-3">
+              <i class="fa fa-envelope email-icon"></i>
+                <span class="email-address">
+                  kevin@interplandesigns.com
+                </span>
+            </div>
+            <h5 class="business-title fade-up delay-2">Business Hours</h5>
+            <div class="fade-up delay-3">
               <i class="fas fa-business-time calendar-icon"></i>
                 <span class="business-hours">
-                  Mon - Sat, 9AM - 5PM
+                  Mon - Sat , 9am - 5pm
                 </span>
             </div>
           </div>
 
           <!-- Right Section -->
           <div class="register-right">
-            <h2>Got A Question?</h2>
-            <div class="register-line-holder">
+            <h2 class="fade-up delay-1">Got A Question?</h2>
+            <div class="register-line-holder fade-up delay-2">
               <div class="register-line">
                 <div class="register-line-1">
                 </div>
               </div>
             </div>
-            <p>Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
-            <form class="register-form">
+            <p class="fade-up delay-3">Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
+            <form class="register-form fade-up delay-4">
               <input type="text" placeholder="Name*" required>
               <input type="email" placeholder="Email*" required>
               <input type="tel" placeholder="Telephone*" required>
-              <select v-model="selectedProperty">
-              <option
-                v-for="property in flattenedProperties"
-                :key="property.name"
-                :value="property.name">
-                {{ property.name }}
-              </option>
-            </select>
+              <select>
+                <option disabled selected>Select enquiry type</option>
+                <option>General</option>
+                <option>Interested Project</option>
+                <option>Consultation</option>
+                <option>Business</option>
+                <option>Contractor</option>
+              </select>
               <textarea placeholder="Questions/Comments*" required></textarea>
               <button type="submit" class="submit-btn">SEND</button>
             </form>
@@ -416,10 +459,10 @@
       </div>
     </div>
 
-        <!-- Similar Properties Section-->
-        <div v-if='visibleSimilarProperties.length > 0' class="products-section">
-      <h2>Similar Properties</h2>
-      <div class="line-holder">
+    <!-- Similar Properties Section-->
+    <div v-if='visibleSimilarProperties.length > 0' class="products-section">
+      <h2 class="fade-up">Similar Properties</h2>
+      <div class="line-holder fade-up delay-1">
         <div class="line">
           <div class="line-1">
             <div class="line-2"></div>
@@ -427,7 +470,7 @@
         </div>
       </div>
       <div class="product-grid">
-        <div class="products-grid">
+        <div class="products-grid fade-up delay-2">
           <div class="product-card" v-for="property in similarProperties" :key="property.id">
             <img :src="property.image" alt="Product Image" class="product-image"/>
             <q-separator/>
@@ -480,7 +523,7 @@
           </div>
         </div>
       </div>
-      <div class="btn-more-1" v-if="visibleSimilarProperties.length > visibleCount">
+      <div class="btn-more-1 fade-up delay-3" v-if="visibleSimilarProperties.length > visibleCount">
         <q-btn
         flat
         label="Load More"
@@ -493,7 +536,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref, computed, watchEffect } from 'vue'
+import { onMounted, onUnmounted, ref, onBeforeUnmount, computed, watchEffect } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import { properties } from 'src/components/Properties/CurrentPropertiesData.vue'
 import { floorplan } from 'src/components/Properties/CurrentPropertiesFloorplan.vue'
@@ -519,6 +562,34 @@ const lastMouseX = ref(0)
 const lastMouseY = ref(0)
 const selectedProperty = ref(property.value?.name || '') // Default to the current property name
 const visibleCount = ref(3)
+const sections = ref([])
+const fadeItems = ref([])
+let observer = null
+
+onMounted(() => {
+  // Initialize Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      } else {
+        entry.target.classList.remove('visible')
+      }
+    })
+  })
+
+  // Observe all sections
+  sections.value = Array.from(document.querySelectorAll('.section'))
+  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+  sections.value.forEach((section) => observer.observe(section))
+  fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+onBeforeUnmount(() => {
+  // Clean up observer
+  if (observer) observer.disconnect()
+})
 
 const checkScreenSize = () => {
   screenBelow540px.value = window.innerWidth < 540
@@ -585,11 +656,13 @@ const openImage = (plan) => {
   showPopup.value = true
   resetImagePosition()
   document.body.style.overflow = 'hidden'
+  emitToggleHeader(false) // Hide the header
 }
 
 const ClosePopup = () => {
   showPopup.value = false
   document.body.style.overflow = 'auto'
+  emitToggleHeader(true)
 }
 
 const resetImagePosition = () => {
@@ -645,12 +718,26 @@ const openPopup = (index) => {
   currentImage.value = index
   isPopupOpen.value = true
   document.body.style.overflow = 'hidden'
+  emitToggleHeader(false) // Hide the header
 }
 
 const closePopup = () => {
   isPopupOpen.value = false
   document.body.style.overflow = 'auto'
+  emitToggleHeader(true)
 }
+
+const emitToggleHeader = (value) => {
+  // Emit the toggle-header event to the parent component
+  const event = new CustomEvent('toggle-header', { detail: value })
+  document.dispatchEvent(event)
+}
+
+onMounted(() => {
+  document.addEventListener('toggle-header', (event) => {
+    console.log('Header toggled:', event.detail)
+  })
+})
 
 const prevImage = () => {
   const gallery = property.value.gallery
@@ -747,6 +834,43 @@ const loadMore = () => {
 @font-face {
   font-family: 'TitilliumWebBoldItalic';
   src: url('src/assets/fonts/TitilliumWeb-BoldItalic.ttf') format('truetype');
+}
+
+.section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.fade-up.delay-3 {
+  transition-delay: 0.6s;
+}
+.fade-up.delay-4 {
+  transition-delay: 0.8s;
 }
 
 .property-hero{
@@ -1248,6 +1372,10 @@ const loadMore = () => {
 }
 
 @media (max-width: 600px) {
+  .gallery-grid {
+  padding-left: 40px;
+  padding-right: 40px;
+}
   .gallery-grid .gallery-item:nth-child(2) {
   height: 300px;
 }
@@ -1259,12 +1387,11 @@ const loadMore = () => {
   left: 0;
   width: 100%;
   height: 100%;
-  padding-top: 76px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1;
 }
 
 .gallery-popup-content {
@@ -1273,45 +1400,34 @@ const loadMore = () => {
   max-height: 90%;
 }
 
-.gallery-popup img {
+.carousel {
+  width: fit-content;
+  height: fit-content;
+}
+
+.carousel-image {
   width: 75vw;
   height: 80vh;
   max-width: min-content;
   max-height: min-content;
 }
 
-.popup-close, .popup-prev, .popup-next {
+.popup-close {
   position: absolute;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
+  top: 20px;
+  right: 20px;
+  background: none;
   border: none;
+  color: white;
+  border-radius: 30%;
+  font-size: 18px;
   padding: 10px;
   cursor: pointer;
-  font-size: 24px;
-  transition: transform 0.2s ease;
+  z-index: 2;
 }
 
-.popup-close {
-  top: 10px;
-  right: 10px;
-  width: 50px;
-}
-
-.popup-prev {
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-}
-
-.popup-next {
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-}
-
-.popup-prev:hover,
-.popup-next:hover {
-  transform: translateY(-50%) scale(1.2);
+.popup-close:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
  /*Floorplan Section */
@@ -1523,12 +1639,11 @@ const loadMore = () => {
   left: 0;
   width: 100%;
   height: 100%;
-  padding-top: 76px;
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 1;
 }
 
 .popup-content {
@@ -1905,6 +2020,39 @@ const loadMore = () => {
   line-height: 21px;
 }
 
+.email-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.register-left .email-subtitle {
+  font-family: 'TitilliumWebRegular';
+  font-size: 15px;
+  margin-bottom: 10px;
+  margin-top: -15px;
+  color: #555;
+}
+
+.email-icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.email-address {
+  font-family: 'TitilliumWebRegular';
+  font-style: normal;
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.email-subtitle br {
+  display: none;
+}
+
 .business-title {
   font-family: 'TitilliumWebSemiBold';
   font-size: 18px;
@@ -1993,6 +2141,12 @@ const loadMore = () => {
 
   .register-right {
     width: 450px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .email-subtitle br {
+    display: initial;
   }
 }
 
