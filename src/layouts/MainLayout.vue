@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <!-- Conditionally render header based on the route -->
     <!-- Top Bar as Overlay -->
-    <q-header class="q-pa-md navigation-bar">
+    <q-header v-if="showHeader" class="q-pa-md navigation-bar">
       <q-toolbar class="toolbar">
         <!-- Left-aligned: Logo and Title -->
         <router-link to="/" class="logo-title-group" @click="handleLogoClick">
@@ -267,7 +267,7 @@
     </q-drawer>
     <q-page-container>
       <q-page :style="{ backgroundColor: '#ffffed', }">
-        <router-view /> <!-- This is where the content of your pages will be inserted -->
+        <router-view @toggle-header="toggleHeader"/> <!-- This is where the content of your pages will be inserted -->
       </q-page>
     </q-page-container>
 
@@ -328,6 +328,21 @@ const displayedDevelopments = ref(developments)
 const selectedDistrict = ref('')
 const displayedLeaseDevelopments = ref(leasedevelopments)
 const selectedLeaseDistrict = ref('')
+const showHeader = ref(true)
+
+const toggleHeader = (value) => {
+  showHeader.value = value
+}
+
+onMounted(() => {
+  document.addEventListener('toggle-header', (event) => {
+    toggleHeader(event.detail)
+  })
+})
+
+onUnmounted(() => {
+  document.removeEventListener('toggle-header', toggleHeader)
+})
 
 const groupedDevelopments = computed(() => {
   return developments.reduce((acc, dev) => {
