@@ -4,13 +4,15 @@
       <div class="content-container">
         <!-- Text Content Section -->
         <div class="text-content">
-          <div class="line-holder">
+          <div class="line-holder fade-up">
             <div class="line">
               <div class="line-1"></div>
             </div>
           </div>
-          <h2 class="text-above">About</h2>
-          <h2 class="text-below">Miracle Land</h2>
+          <div class="text fade-up delay-1">
+            <h2 class="text-above">About</h2>
+            <h2 class="text-below">Miracle Land</h2>
+          </div>
         </div>
 
         <!-- Image Section -->
@@ -23,30 +25,32 @@
     <!-- Company Background Section -->
     <section class="company-background">
       <div class="container">
-          <h2>Company Background</h2>
-          <p>
-            MLHB was incorporated in October 2014 as the holding company of various
-            subsidiaries for upcoming development projects of the group. The company
-            aspire to provide quality homes and valuable commercials in the country’s
-            second and third tiered cities by creating townships with well-planned and
-            integrated developments.
-          </p>
-          <p>
-            The group’s initial focus would be on the high potential areas across Pahang
-            and eventually progressing to the other parts of the country. The group has
-            secured several development projects and it is actively seeking out to acquire
-            new land banks to ensure continuing growth.
-          </p>
-          <p>
-            MLHB’s core team has substantial experience in the property development industry
-            which had completed to date numerous development projects covering Residential and
-            Commercial as well as Light Industrial, under Dynaton Group - a series of ISO
-            accredited property development and construction companies.
-          </p>
-          <p>
-            With a team of experienced and dedicated workforce, MLHB is confident to further
-            grow its capabilities while generating sustainable value for its stakeholders.
-          </p>
+          <h2 class="fade-up">Company Background</h2>
+          <div class="para-text fade-up delay-1">
+            <p>
+              MLHB was incorporated in October 2014 as the holding company of various
+              subsidiaries for upcoming development projects of the group. The company
+              aspire to provide quality homes and valuable commercials in the country’s
+              second and third tiered cities by creating townships with well-planned and
+              integrated developments.
+            </p>
+            <p>
+              The group’s initial focus would be on the high potential areas across Pahang
+              and eventually progressing to the other parts of the country. The group has
+              secured several development projects and it is actively seeking out to acquire
+              new land banks to ensure continuing growth.
+            </p>
+            <p>
+              MLHB’s core team has substantial experience in the property development industry
+              which had completed to date numerous development projects covering Residential and
+              Commercial as well as Light Industrial, under Dynaton Group - a series of ISO
+              accredited property development and construction companies.
+            </p>
+            <p>
+              With a team of experienced and dedicated workforce, MLHB is confident to further
+              grow its capabilities while generating sustainable value for its stakeholders.
+            </p>
+          </div>
       </div>
     </section>
 
@@ -55,8 +59,8 @@
       <div class="container">
         <div class="content-wrapper">
           <div class="vision-text">
-            <h2>Vision</h2>
-            <p>
+            <h2 class="fade-up">Vision</h2>
+            <p class="fade-up delay-1">
               To be one of the most trusted and<br/>
               leading developer in the country.
             </p>
@@ -68,8 +72,8 @@
     <!-- Mission Section -->
     <section class="mission-section">
       <div class="container">
-          <h2>Mission</h2>
-        <div class="mission-wrapper">
+          <h2 class="fade-up">Mission</h2>
+        <div class="mission-wrapper fade-up delay-1">
           <ul>
             <li>
               <i class="fas fa-check-circle icon"></i>
@@ -110,29 +114,93 @@
           </ul>
 
           <div class="mission-image-container">
-            <img src="src/assets/currentproject/house1.jpg" class="mission-image" />
+            <img src="src/assets/about2.jpg" class="mission-image" />
           </div>
         </div>
       </div>
     </section>
 
-    <div class="contact-us" id="section-contact">
-      <div class="contact-container">
-        <div class="contact-wrapper">
+    <div class="register" id="section-contact">
+      <div class="register-container">
+        <div class="register-wrapper">
           <!-- Left Section -->
-          <div class="contact-left">
-            <h2>Contact Us</h2>
-            <address>
+          <div class="register-left">
+            <h2 class="register-title fade-up">Contact Details</h2>
+            <div class="register-line-holder fade-up delay-1">
+              <div class="register-line">
+                <div class="register-line-1">
+                </div>
+              </div>
+            </div>
+            <h5 class="address-title fade-up delay-2">Address</h5>
+            <address class="fade-up delay-3">
               No. 1, Tingkat Basement, Jalan Dagang 2,<br>
               Kampung Bukit Angin, 28000 Temerloh, Pahang<br>
-              09-296 0000
             </address>
-            <p>Please leave your details to receive more information about our developments or projects.</p>
+
+            <div class="map-button fade-up delay-2">
+              <button @click="gotofullmap" class="btn view-full-map-btn">
+                    <img src="src/assets/brochure.svg" alt="Download" />
+                    View Full Map
+                  </button>
+            </div>
+            <h5 class="contact-title fade-up delay-2">Contact Number</h5>
+            <div class="fade-up delay-3">
+              <i class="fa fa-phone phone-icon"></i>
+                <span class="contact-no">
+                  019-296 6666
+                </span>
+            </div>
+            <h5 class="email-title fade-up delay-2">General Enquiries</h5>
+            <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
+            <div class="fade-up delay-3">
+              <i class="fa fa-envelope email-icon"></i>
+                <span class="email-address">
+                  enquiries@woha.net
+                </span>
+            </div>
+            <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
+            <p class="email-subtitle fade-up delay-2">We're always on the lookout for talented people - please send us <br> your CV and portfolio (no larger than 5MB) to</p>
+            <div class="fade-up delay-3">
+              <i class="fa fa-envelope email-icon"></i>
+                <span class="email-address">
+                  hmnrs.md3@gmail.com
+                </span>
+              <div>
+                <i class="fa fa-phone phone-icon"></i>
+                <span class="contact-no">
+                  011-69999888
+                </span>
+              </div>
+            </div>
+            <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
+            <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
+            <div class="fade-up delay-3">
+              <i class="fa fa-envelope email-icon"></i>
+                <span class="email-address">
+                  kevin@interplandesigns.com
+                </span>
+            </div>
+            <h5 class="business-title fade-up delay-2">Business Hours</h5>
+            <div class="fade-up delay-3">
+              <i class="fas fa-business-time calendar-icon"></i>
+                <span class="business-hours">
+                  Mon - Sat , 9am - 5pm
+                </span>
+            </div>
           </div>
 
           <!-- Right Section -->
-          <div class="contact-right">
-            <form class="contact-form">
+          <div class="register-right">
+            <h2 class="fade-up delay-1">Got A Question?</h2>
+            <div class="register-line-holder fade-up delay-2">
+              <div class="register-line">
+                <div class="register-line-1">
+                </div>
+              </div>
+            </div>
+            <p class="fade-up delay-3">Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
+            <form class="register-form fade-up delay-4">
               <input type="text" placeholder="Name*" required>
               <input type="email" placeholder="Email*" required>
               <input type="tel" placeholder="Telephone*" required>
@@ -155,7 +223,36 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
+const sections = ref([])
+const fadeItems = ref([])
+let observer = null
+
+onMounted(() => {
+  // Initialize Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      } else {
+        entry.target.classList.remove('visible')
+      }
+    })
+  })
+
+  // Observe all sections
+  sections.value = Array.from(document.querySelectorAll('.section'))
+  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+  sections.value.forEach((section) => observer.observe(section))
+  fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+onBeforeUnmount(() => {
+  // Clean up observer
+  if (observer) observer.disconnect()
+})
 </script>
 <style scoped>
 /* General Font Definitions */
@@ -174,6 +271,44 @@
 @font-face {
   font-family: 'RecklessNeueMedium';
   src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+}
+
+.section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.fade-up.delay-3 {
+  transition-delay: 0.6s;
+}
+
+.fade-up.delay-4 {
+  transition-delay: 0.8s;
 }
 
 .about-section {
@@ -575,77 +710,235 @@ padding-inline: 20px;
 }
 
 /* Contact Us Section */
-.contact-us {
-  background-color: #fff;
+.register {
   color: #000;
-  padding: 40px;
-  padding-left: 7%;
-  padding-right: 7%;
+  background-color: white;
+  padding: 40px 100px;
+  padding-top: 0px;
+  padding-bottom: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.contact-wrapper {
+.register-line-holder {
+  position: static;
+  margin-top: -20px;
+}
+
+.register-line {
+  display: inline-block;
+  width: 12px; /* Thickness of the line */
+  height: 3px; /* Height of the line */
+  background-color: #08463c; /* Gold accent */
+  padding-inline: 45px;
+
+}
+
+.register-line-1 {
+  display: inline-block;
+  width: 170px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-bottom: 13px; /* Space between the line and text */
+  margin-inline-start: 45px;
+}
+
+.register-wrapper {
   display: flex;
   flex-direction: column;
-  font-family: 'TitilliumWebRegular';
-  padding: 20px;
+  padding: 10px;
+  padding-bottom: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
   position: relative;
   overflow: hidden;
 }
 
-.contact-container {
+.register-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: max-content;
-  min-width: min-content;
-  gap: 20px;
+  gap: 10px;
 }
 
-/* Left Section */
-.contact-left, .contact-right {
+.register-left, .register-right {
   flex: 1;
   width: 100%;
 }
 
-.contact-left {
-  padding-left: 3%;
+.register-left {
+  padding: 0px 10px;
+  padding-left: 30px;
 }
 
-.contact-left h2 {
+.register-left .register-title {
   font-family: 'RecklessNeueMedium';
-  font-size: 2rem;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
+  white-space: nowrap;
+  font-size: 36px;
 }
 
-.contact-left p {
+.address-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+.register-left p {
+  font-family: 'TitilliumWebRegular';
   font-size: 16px;
-  line-height: 24px;
+  line-height: 21px;
 }
 
-.contact-left address {
+.register-left address {
+  font-family: 'TitilliumWebRegular';
+  font-style: normal;
+  margin-bottom: 0px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+  width: 200px;
+  cursor: pointer;
+  font-family: 'TitilliumWebBold';
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.btn img {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+.btn:hover {
+  background-color: #08463c;
+  color: white;
+}
+
+.map-button {
+  padding-top: 20px;
+}
+
+.view-full-map-btn {
+  border: 2px solid #08463c;
+  color: #08463c;
+}
+
+.view-full-map-btn:hover img {
+  filter: invert(1);
+}
+
+.contact-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.phone-icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.contact-no {
+  font-family: 'TitilliumWebRegular';
   font-style: normal;
   margin-bottom: 15px;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 21px;
+}
+
+.email-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.register-left .email-subtitle {
+  font-family: 'TitilliumWebRegular';
+  font-size: 15px;
+  margin-bottom: 10px;
+  margin-top: -15px;
+  color: #555;
+}
+
+.email-icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.email-address {
+  font-family: 'TitilliumWebRegular';
+  font-style: normal;
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.email-subtitle br {
+  display: none;
+}
+
+.business-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.calendar-icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.business-hours {
+  font-family: 'TitilliumWebRegular';
+  font-style: normal;
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 21px;
 }
 
 /* Right Section */
-.contact-right {
-  padding: 20px;
+.register-right {
+  padding: 0px 10px;
 }
 
-.contact-form {
+.register-right h2 {
+  font-family: 'RecklessNeueMedium';
+  font-size: 36px;
+  margin-bottom: 35px;
+  white-space: nowrap;}
+
+.register-right p {
+  font-family: 'TitilliumWebRegular';
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.register-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.contact-form input,
-.contact-form textarea,
-.contact-form select {
+.register-form input,
+.register-form textarea,
+.register-form select {
   width: 100%;
   padding: 10px;
   border: 1px solid #5555555e;
@@ -654,12 +947,12 @@ padding-inline: 20px;
   color: #000;
 }
 
-.contact-form textarea {
+.register-form textarea {
   resize: none;
   height: 100px;
 }
 
-.contact-form select {
+.register-form select {
   font-size: 0.9rem;
   cursor: pointer;
 }
@@ -674,37 +967,53 @@ padding-inline: 20px;
   text-transform: uppercase;
 }
 
-@media (min-width: 768px){
-  .contact-wrapper {
+@media (min-width: 900px){
+  .register-wrapper {
     flex-direction: row;
     justify-content: space-between;
     gap: 50px;
   }
 
-  .contact-container {
+  .register-container {
     gap: 40px;
   }
 
-  .contact-left h2{
-    font-size: 2.5rem;
-  }
-
-  .contact-right {
+  .register-right {
     width: 450px;
   }
 }
 
+@media (min-width: 1024px) {
+  .email-subtitle br {
+    display: initial;
+  }
+}
+
+@media (max-width: 786px){
+
+  .register {
+  padding: 40px 20px;
+}
+
+}
+
+@media (max-width: 520px){
+  .register-left address br:first-child {
+    display: none;
+  }
+
+  .register-left .register-title {
+    font-size: 34px;
+  }
+
+  .address-title {
+  font-size: 17px;
+}
+}
+
 @media (min-width: 1024px){
-  .contact-wrapper {
+  .register-wrapper {
     gap: 150px;
-  }
-
-  .register-right {
-    padding-right: -4%;
-  }
-
-  .contact-left h2{
-    font-size: 3rem;
   }
 }
 
