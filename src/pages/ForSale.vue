@@ -11,23 +11,23 @@
 
         <!-- Information Overlay -->
         <div class="information-overlay">
-          <div class="info-overlay">
+          <div class="info-overlay fade-up">
             <div class="info-details">
               <!-- Logo Section -->
-              <div class="logo-container">
+              <div class="logo-container fade-up delay-1">
                 <img class="logo-image" :src="development.logo" alt="Logo">
               </div>
-              <div class="info-item">
+              <div class="info-item fade-up delay-1">
                 <h4>Type</h4>
                 <p>{{ development.type }}</p>
               </div>
               <div class="divider"></div>
-              <div class="info-item">
+              <div class="info-item fade-up delay-1">
                 <h4>Location</h4>
                 <p>{{ development.location }}</p>
               </div>
               <div class="divider"></div>
-              <div class="info-item">
+              <div class="info-item fade-up delay-1">
                 <h4>Status</h4>
                 <p>{{ development.statusbuyer }}</p>
               </div>
@@ -39,23 +39,23 @@
         <!-- Intro Section -->
       <div class="intro-section">
         <div class="text-content">
-            <h1 class="main-heading">{{ development.name }}</h1>
-          <div class="line-holder">
+            <h1 class="main-heading fade-up">{{ development.name }}</h1>
+          <div class="line-holder fade-up delay-1">
             <div class="line">
               <div class="line-1">
                 <div class="line-2"></div>
               </div>
             </div>
           </div>
-          <p class="sub-heading">{{ development.description }}</p>
+          <p class="sub-heading fade-up delay-2">{{ development.description }}</p>
         </div>
 
         <!-- Highlight Section -->
         <div class="card-section">
           <div class="card-grid">
             <div class="card" v-for="(image, index) in development.gallerydevelopment" :key="index">
-              <img :src="image.url" class="card-image" alt="Gallery Image">
-              <div class="card-title">
+              <img :src="image.url" class="card-image fade-up" alt="Gallery Image">
+              <div class="card-title fade-up delay-1">
                 <p>{{ image.description }}</p>
               </div>
             </div>
@@ -68,15 +68,15 @@
 
     <!-- Our Product Section-->
     <div class="products-section">
-      <h2>Our Products</h2>
-      <div class="line-holder">
+      <h2 class="fade-up" >Our Products</h2>
+      <div class="line-holder fade-up delay-1">
         <div class="line">
           <div class="line-1">
             <div class="line-2"></div>
           </div>
         </div>
       </div>
-      <div class="product-grid">
+      <div class="product-grid fade-up delay-2">
         <div class="products-grid">
           <div class="product-card" v-for="property in visibleProperties" :key="property.id">
             <img :src="property.image" alt="Product Image" class="product-image"/>
@@ -130,177 +130,196 @@
           </div>
         </div>
       </div>
-      <div class="btn-more-1" v-if="filteredProperties.length > visibleCount">
-        <q-btn
-        flat
-        label="Load More"
-        class="load-more-btn"
-        @click="loadMore"
-        />
-      </div>
-      <div class="btn-more-1" v-if="visibleCount > 3">
+      <div class="fade-up delay-3">
+        <div class="btn-more-1" v-if="filteredProperties.length > visibleCount">
           <q-btn
-            flat
-            label="Show Less"
-            class="load-more-btn"
-            @click="showLess"
+          flat
+          label="Load More"
+          class="load-more-btn"
+          @click="loadMore"
           />
         </div>
+        <div class="btn-more-1" v-if="visibleCount > 3">
+          <q-btn
+          flat
+          label="Show Less"
+          class="load-more-btn"
+          @click="showLess"
+          />
+        </div>
+      </div>
     </div>
 
     <div class="rectangle-section-1"></div>
 
     <!-- Gallery section-->
     <div class="gallery-section" v-if="development">
-      <h2>Gallery</h2>
-      <div class="line-holder">
-        <div class="line">
-          <div class="line-1">
-            <div class="line-2"></div>
-          </div>
-        </div>
-      </div>
-      <div class="gallery-grid">
-
-        <!-- Left image -->
-        <div class="gallery-item"
-          v-if="development.galleryImages[0]"
-          :key="idx">
-          <img
-            :src="development.galleryImages[0]"
-            @click="openPopup(0)"
-            loading="lazy"
-            alt="Left Image"
-          />
-          <div class="gallery-overlay"></div>
-        </div>
-
-        <!-- Center Image -->
-        <div class="gallery-item"
-          v-if="development.galleryImages[1]"
-          :key="idx">
-          <img
-            :src="development.galleryImages[1]"
-            @click="openPopup(1)"
-            loading="lazy"
-            alt="Center Image"
-          />
-          <div class="gallery-overlay">
-            <button class="visit-gallery-btn" @click="openPopup(1)">Visit Gallery</button>
-          </div>
-        </div>
-
-        <!-- Center Image -->
-        <div class="gallery-item"
-          v-if="development.galleryImages[2]"
-          :key="idx">
-          <img
-            :src="development.galleryImages[2]"
-            @click="openPopup(2)"
-            loading="lazy"
-            alt="Center Image"
-          />
-          <div class="gallery-overlay">
-            <button class="visit-gallery-btn" @click="openPopup(2)">Visit Gallery</button>
-          </div>
-        </div>
-
-        <!-- Right Image -->
-        <div class="gallery-item"
-          v-if="development.galleryImages[3]"
-          :key="idx">
-          <img
-            :src="development.galleryImages[3]"
-            @click="openPopup(3)"
-            loading="lazy"
-            alt="Left Image"
-          />
-          <div class="gallery-overlay"></div>
-        </div>
-      </div>
-
-      <div v-if="isPopupOpen" class="gallery-popup">
-        <div class="gallery-popup-content">
-          <!-- Close Button -->
-          <button class="popup-close" @click="closePopup">&#9747;</button>
-
-          <!-- Image Display -->
-          <img :src="development.galleryImages[currentImage]" alt="Popup Image" loading="lazy" class="gallery-popup-image" />
-
-          <!-- Previous Button -->
-          <button class="popup-prev" @click="prevImage">&#8592;</button>
-
-          <!-- Next Button -->
-          <button class="popup-next" @click="nextImage">&#8594;</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Location section -->
-    <div class="location-section">
-      <div class="location-title">
-        <h2>Location</h2>
-        <div class="line-holder">
+      <div class="gallery-section-header">
+        <h2 class="fade-up">Gallery</h2>
+        <div class="line-holder fade-up delay-1">
           <div class="line">
             <div class="line-1">
               <div class="line-2"></div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="location-container">
-        <div class="location-map" v-if="development">
-          <iframe
-          :src="development.map"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          >
-          </iframe>
+        <div class="gallery-grid fade-up delay-2">
+
+          <!-- Left image -->
+          <div class="gallery-item"
+            v-if="development.galleryImages[0]"
+            :key="idx">
+            <img
+              :src="development.galleryImages[0]"
+              @click="openPopup(0)"
+              loading="lazy"
+              alt="Left Image"
+            />
+            <div class="gallery-overlay"></div>
+          </div>
+
+          <!-- Center Image -->
+          <div class="gallery-item"
+            v-if="development.galleryImages[1]"
+            :key="idx">
+            <img
+              :src="development.galleryImages[1]"
+              @click="openPopup(1)"
+              loading="lazy"
+              alt="Center Image"
+            />
+            <div class="gallery-overlay">
+              <button class="visit-gallery-btn" @click="openPopup(1)">Visit Gallery</button>
+            </div>
+          </div>
+
+          <!-- Center Image -->
+          <div class="gallery-item"
+            v-if="development.galleryImages[2]"
+            :key="idx">
+            <img
+              :src="development.galleryImages[2]"
+              @click="openPopup(2)"
+              loading="lazy"
+              alt="Center Image"
+            />
+            <div class="gallery-overlay">
+              <button class="visit-gallery-btn" @click="openPopup(2)">Visit Gallery</button>
+            </div>
+          </div>
+
+          <!-- Right Image -->
+          <div class="gallery-item"
+            v-if="development.galleryImages[3]"
+            :key="idx">
+            <img
+              :src="development.galleryImages[3]"
+              @click="openPopup(3)"
+              loading="lazy"
+              alt="Left Image"
+            />
+            <div class="gallery-overlay"></div>
+          </div>
         </div>
+      </div>
 
-        <div class="amenities" v-if="Object.keys(filteredAmenities).length > 0">
-          <q-list>
-            <q-item class="amenities-section">
-              <q-item-section>Nearby Amenities</q-item-section>
-            </q-item>
-            <q-separator color="white"/>
+      <div v-if="isPopupOpen" class="gallery-popup">
+        <div class="gallery-popup-content">
+          <!-- Close Button -->
+          <button class="popup-close" @click="closePopup">
+            <i class="fa fa-close"></i>
+          </button>
 
-            <q-expansion-item
-            v-for="(locations, category) in filteredAmenities"
-            :key="category"
-            expand-icon-class="text-white"
-            group="somegroup"
-            class="amenities-expand"
+          <q-carousel
+            v-model="currentImage"
+            animated
+            arrows
+            navigation
+            infinite
+            swipeable
+            transition-prev="slide-right"
+            transition-next="slide-left"
+            class="carousel"
+          >
+            <q-carousel-slide
+              v-for="(image, index) in development.galleryImages"
+              :key="index"
+              :name="index"
             >
-              <template v-slot:header>
-                <q-item-section avatar>
-                  <i :class="getCategoryIcon(category)" style="color: white; font-size: 18px;"></i>
-                </q-item-section>
-                <q-item-section>
-                  <span class="text-white">{{ capitalizeFirstLetter(category) }}</span>
-                </q-item-section>
-              </template>
+              <img :src="image" alt="Carousel Image" class="carousel-image" />
+            </q-carousel-slide>
+          </q-carousel>
+        </div>
+      </div>
+    </div>
+
+    <!-- Location section -->
+    <div class="location-section">
+      <div class="location-sector">
+        <div class="location-title">
+          <h2 class="fade-up">Location</h2>
+          <div class="line-holder fade-up delay-1">
+            <div class="line">
+              <div class="line-1">
+                <div class="line-2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="location-container">
+          <div class="location-map fade-up delay-2" v-if="development">
+            <iframe
+            :src="development.map"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            >
+            </iframe>
+          </div>
+
+          <div class="amenities fade-up delay-3" v-if="Object.keys(filteredAmenities).length > 0">
+            <q-list>
+              <q-item class="amenities-section">
+                <q-item-section>Nearby Amenities</q-item-section>
+              </q-item>
               <q-separator color="white"/>
 
-              <!-- Content inside the expansion item -->
-              <div class="q-pa-md">
-                <q-item
-                v-for="(location, idx) in locations"
-                :key="idx"
-                class="amenities-child"
+              <q-expansion-item
+              v-for="(locations, category) in filteredAmenities"
+              :key="category"
+              expand-icon-class="text-white"
+              group="somegroup"
+              class="amenities-expand"
               >
-                  <q-item-section class="amenities-location">
-                    <span class="amenities-name">{{ location.name }}</span>
-                    <q-space/>
-                    <span class="amenities-km">{{ location.distance }}</span>
+                <template v-slot:header>
+                  <q-item-section avatar>
+                    <i :class="getCategoryIcon(category)" style="color: white; font-size: 18px;"></i>
                   </q-item-section>
-                </q-item>
-              </div>
-              <q-separator color="white"/>
-            </q-expansion-item>
-          </q-list>
+                  <q-item-section>
+                    <span class="text-white">{{ capitalizeFirstLetter(category) }}</span>
+                  </q-item-section>
+                </template>
+                <q-separator color="white"/>
+
+                <!-- Content inside the expansion item -->
+                <div class="q-pa-md">
+                  <q-item
+                  v-for="(location, idx) in locations"
+                  :key="idx"
+                  class="amenities-child"
+                >
+                    <q-item-section class="amenities-location">
+                      <span class="amenities-name">{{ location.name }}</span>
+                      <q-space/>
+                      <span class="amenities-km">{{ location.distance }}</span>
+                    </q-item-section>
+                  </q-item>
+                </div>
+                <q-separator color="white"/>
+              </q-expansion-item>
+            </q-list>
+          </div>
         </div>
       </div>
     </div>
@@ -309,7 +328,7 @@
 
 <script setup>
 import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 import { properties } from 'src/components/Properties/CurrentPropertiesData.vue'
 import { nearbyAmenities } from 'src/components/Properties/CurrentDevelopmentAmenitiesData.vue'
@@ -320,6 +339,34 @@ const development = ref(developments.find(item => item.slug === developmentSlug)
 const visibleCount = ref(3)
 const isPopupOpen = ref(false)
 const currentImage = ref(0)
+const sections = ref([])
+const fadeItems = ref([])
+let observer = null
+
+onMounted(() => {
+  // Initialize Intersection Observer
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      } else {
+        entry.target.classList.remove('visible')
+      }
+    })
+  })
+
+  // Observe all sections
+  sections.value = Array.from(document.querySelectorAll('.section'))
+  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+  sections.value.forEach((section) => observer.observe(section))
+  fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+onBeforeUnmount(() => {
+  // Clean up observer
+  if (observer) observer.disconnect()
+})
 
 onBeforeRouteUpdate((to, from, next) => {
   const newSlug = to.params.slug
@@ -355,23 +402,37 @@ const openPopup = (index) => {
   currentImage.value = index
   isPopupOpen.value = true
   document.body.style.overflow = 'hidden'
+  emitToggleHeader(false) // Hide the header
 }
 
 const closePopup = () => {
   isPopupOpen.value = false
   document.body.style.overflow = 'auto'
+  emitToggleHeader(true)
 }
 
-const prevImage = () => {
-  const galleryImages = development.value.galleryImages
-  currentImage.value = (currentImage.value - 1 + galleryImages.length) % galleryImages.length
+const emitToggleHeader = (value) => {
+  // Emit the toggle-header event to the parent component
+  const event = new CustomEvent('toggle-header', { detail: value })
+  document.dispatchEvent(event)
 }
+
+onMounted(() => {
+  document.addEventListener('toggle-header', (event) => {
+    console.log('Header toggled:', event.detail)
+  })
+})
+
+// const prevImage = () => {
+//   const galleryImages = development.value.galleryImages
+//   currentImage.value = (currentImage.value - 1 + galleryImages.length) % galleryImages.length
+// }
 
 // Navigate to the next image
-const nextImage = () => {
-  const galleryImages = development.value.galleryImages
-  currentImage.value = (currentImage.value + 1) % galleryImages.length
-}
+// const nextImage = () => {
+//   const galleryImages = development.value.galleryImages
+//   currentImage.value = (currentImage.value + 1) % galleryImages.length
+// }
 
 const filteredAmenities = computed(() => {
   // Get the location of the current development
@@ -426,6 +487,40 @@ const capitalizeFirstLetter = (string) => {
 @font-face {
   font-family: 'AvenirMedium';
   src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+}
+
+.section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-1 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-2 {
+  transition-delay: 0.4s;
+}
+
+.fade-up.delay-3 {
+  transition-delay: 0.6s;
 }
 
 .hero-section {
@@ -1114,6 +1209,10 @@ line-height: 20px;
 }
 
 @media (max-width: 600px) {
+  .gallery-grid {
+  padding-left: 40px;
+  padding-right: 40px;
+}
   .gallery-grid .gallery-item:nth-child(2) {
   height: 300px;
 }
@@ -1125,8 +1224,7 @@ line-height: 20px;
   left: 0;
   width: 100%;
   height: 100%;
-  padding-top: 76px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1139,45 +1237,34 @@ line-height: 20px;
   max-height: 90%;
 }
 
-.gallery-popup img {
+.carousel {
+  width: fit-content;
+  height: fit-content;
+}
+
+.carousel-image {
   width: 75vw;
   height: 80vh;
   max-width: min-content;
   max-height: min-content;
 }
 
-.popup-close, .popup-prev, .popup-next {
+.popup-close {
   position: absolute;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
+  top: 20px;
+  right: 20px;
+  background: none;
   border: none;
+  color: white;
+  border-radius: 30%;
+  font-size: 18px;
   padding: 10px;
   cursor: pointer;
-  font-size: 24px;
-  transition: transform 0.2s ease;
+  z-index: 2;
 }
 
-.popup-close {
-  top: 10px;
-  right: 10px;
-  width: 50px;
-}
-
-.popup-prev {
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-}
-
-.popup-next {
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-}
-
-.popup-prev:hover,
-.popup-next:hover {
-  transform: translateY(-50%) scale(1.2);
+.popup-close:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .location-section {
