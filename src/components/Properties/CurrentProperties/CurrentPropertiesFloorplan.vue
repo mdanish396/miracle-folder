@@ -5,7 +5,7 @@
 
 <script>
 export const floorplan = {
-  'Monarc Homes': [
+  'Miracle Sentral': [
     {
       '2 Storey Terrace A': [
         {
@@ -13,7 +13,7 @@ export const floorplan = {
           bedroom: 4,
           bathroom: 3,
           plan: 'src/assets/currentproject/house1.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          brochure: 'src/assets/Development/Miracle Sentral/miracle_sentral-brochure.pdf'
         }
       ],
       '2 Storey Terrace B': [
@@ -31,15 +31,6 @@ export const floorplan = {
           bedroom: 4,
           bathroom: 3,
           plan: 'src/assets/currentproject/house1.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
-        }
-      ],
-      '2 Storey Semi-D B': [
-        {
-          area: '2,800 sqft',
-          bedroom: 5,
-          bathroom: 4,
-          plan: 'src/assets/currentproject/house3.jpg',
           brochure: 'src/assets/reports/brochure.pdf'
         }
       ]

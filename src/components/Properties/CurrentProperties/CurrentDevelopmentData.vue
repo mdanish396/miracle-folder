@@ -18,16 +18,18 @@ function generateSlug (text) {
 export const developments = [
   {
     id: 1,
-    name: 'Monarc Cove',
-    slug: generateSlug('Monarc Cove'),
-    bannerimage: 'src/assets/building.png',
-    location: 'Kalimantan, Mana',
+    name: 'Miracle Sentral',
+    slug: generateSlug('Miracle Sentral'),
+    bannerimage: 'src/assets/Development/Miracle Sentral/miracle_sentral_12.png',
+    logo: 'src/assets/Development/Miracle Sentral/logo.png',
+    location: 'Jengka, Pahang',
     districts: 'Jengka',
     state: 'Pahang',
-    type: 'Township',
-    price: '500,000',
-    status: 'Current',
-    image: 'src/assets/currentproject/house1.jpg',
+    type: 'Commercial',
+    price: 'RM 5XX,XXX*',
+    status: 'New Launch',
+    statusbuyer: 'New Launch',
+    image: 'src/assets/Development/Miracle Sentral/miracle_sentral_09.png',
     features: ['Exclusive Amenities', 'Spacious Homes', 'Green Spaces'],
     shortdescription: 'home to your nature',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -48,39 +50,41 @@ export const developments = [
     lotsize: '26` x 76`',
     gallerydevelopment: [ // 3 image only no less no more
       {
-        url: 'src/assets/currentproject/house1.jpg',
+        url: 'src/assets/Development/Miracle Sentral/miracle_sentral_10.png',
         description: 'Living in Harmony with Nature'
       },
       {
-        url: 'src/assets/award1.png',
+        url: 'src/assets/Development/Miracle Sentral/miracle_sentral_13.jpg',
         description: 'Doorstep Lifestyle and Retail Convenience'
       },
       {
-        url: 'src/assets/currentproject/house3.jpg',
+        url: 'src/assets/Development/Miracle Sentral/miracle_sentral_09.png',
         description: 'Exciting Placemaking Experience'
       }
     ],
     galleryImages: [
-      'src/assets/currentproject/house2.jpg',
-      'src/assets/currentproject/house3.jpg',
-      'src/assets/currentproject/house1.jpg',
-      'https://picsum.photos/200/300'
+      'src/assets/Development/Miracle Sentral/miracle_sentral_15.png',
+      'src/assets/Development/Miracle Sentral/miracle_sentral_04.jpeg',
+      'src/assets/Development/Miracle Sentral/miracle_sentral_03.jpg',
+      'src/assets/Development/Miracle Sentral/miracle_sentral_14.png',
+      'src/assets/Development/Miracle Sentral/miracle_sentral_10.png'
     ],
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: ''
+    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
   },
   {
     id: 2,
-    name: 'Connaught Cove',
-    slug: generateSlug('Connaught Cove'),
-    bannerimage: 'src/assets/building.png',
-    location: 'Mert, Temerloh',
-    districts: 'Jengka',
+    name: 'Casa Hill',
+    slug: generateSlug('Casa Hill'),
+    bannerimage: 'src/assets/Development/Casa Hill/casa_hill_01.png',
+    logo: 'src/assets/Development/Casa Hill/logo.png',
+    location: 'Mentakab, Temerloh',
+    districts: 'Temerloh',
     state: 'Pahang',
     type: 'Residential',
-    price: '600,900',
-    status: 'Current',
-    image: 'src/assets/currentproject/house2.jpg',
+    price: 'RM 6XX,XXX*',
+    status: 'New Launch',
+    statusbuyer: 'New Launch',
+    image: 'src/assets/Development/Casa Hill/casa_hill_02.png',
     features: ['Luxury Living', 'Green Spaces'],
     shortdescription: 'home to your nature',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -99,184 +103,30 @@ export const developments = [
     lotsize: '36` x 86`',
     gallerydevelopment: [
       {
-        url: 'src/assets/currentproject/house3.jpg',
+        url: 'src/assets/Development/Casa Hill/casa_hill_05.jpg',
         description: 'Living in Harmony with Nature'
       },
       {
-        url: 'src/assets/award2.png',
+        url: 'src/assets/Development/Casa Hill/casa_hill_03.jpg',
         description: 'Doorstep Lifestyle and Retail Convenience'
       },
       {
-        url: 'src/assets/currentproject/house2.jpg',
+        url: 'src/assets/Development/Casa Hill/casa_hill_04.jpg',
         description: 'Exciting Placemaking Experience'
       }
     ],
     galleryImages: [
-      'https://picsum.photos/200/300',
-      'https://picsum.photos/200/300',
-      'https://picsum.photos/200/300',
-      'https://picsum.photos/200/300'
+      'src/assets/Development/Casa Hill/casa_hill_01.png',
+      'src/assets/Development/Casa Hill/casa_hill_08.jpg',
+      'src/assets/Development/Casa Hill/casa_hill_06.jpg',
+      'src/assets/Development/Casa Hill/casa_hill_04.jpg',
+      'src/assets/Development/Casa Hill/casa_hill_05.jpg',
+      'src/assets/Development/Casa Hill/casa_hill_07.jpg',
+      'src/assets/Development/Casa Hill/casa_hill_02.png',
+      'src/assets/Development/Casa Hill/casa_hill_03.jpg'
     ],
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15930.380935267707!2d102.4265958!3d3.4481648500000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceb98ede1fc697%3A0x525d3e85476ef763!2sRestoran%20Saiful!5e0!3m2!1sen!2smy!4v1735284346219!5m2!1sen!2smy',
-    link: ''
-  }/*,
-  {
-    id: 3,
-    name: 'ZIG Homes',
-    slug: generateSlug('ZIG Homes'),
-    bannerimage: 'src/assets/building.png',
-    location: 'Greater Kuala Lumpur',
-    districts: 'Temerloh',
-    state: 'Pahang',
-    type: 'Residential',
-    price: '500,900',
-    status: 'Current',
-    image: 'src/assets/currentproject/house3.jpg',
-    features: ['Luxury Living', 'Lakeside'],
-    shortdescription: 'home to your nature',
-    description: `The Camellia, your home at Wetlands Estates, the
-    private enclave in Gamuda Cove.`,
-    size: '820 acres',
-    topic: 'In a Garden Where Happiness Lives',
-    fulldescription: `Miracle Gardens is an 810-acre township
-      fusing lifestyle and nature, featuring rolling hills and
-      five cascading lakes leading to the 50-acre, pet-friendly Central Park.
-      The township includes a Waterfront Village offering a walkable retail
-      experience with various F&B options. Nearby the township, Gamuda Luge Gardens
-      hosts a mix of commercial and leisure spaces, including retail shops, FunPark
-      family-friendly park, Big Bucket Splash waterplay and Skyline Luge Kuala Lumpur.
-      This development is designed to be a vibrant hub that brings the community together.`,
-    builtup: '2,150 - 2,497 sqft',
-    lotsize: '36` x 76`',
-    gallerydevelopment: [
-      {
-        url: 'src/assets/currentproject/house1.jpg',
-        description: 'Living in Harmony with Nature'
-      },
-      {
-        url: 'src/assets/award2.png',
-        description: 'Doorstep Lifestyle and Retail Convenience'
-      },
-      {
-        url: 'src/assets/currentproject/house2.jpg',
-        description: 'Exciting Placemaking Experience'
-      }
-    ],
-    galleryImages: [
-      'https://picsum.photos/200/300',
-      'https://picsum.photos/200/300',
-      'https://picsum.photos/200/300',
-      'https://picsum.photos/200/300'
-    ],
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: ''
-  },
-  {
-    id: 4,
-    name: 'Moc Cove',
-    slug: generateSlug('Monarc Cove'),
-    bannerimage: 'src/assets/building.png',
-    location: 'Kalimantan, Mana',
-    districts: 'Jengka',
-    state: 'Pahang',
-    type: 'Township',
-    price: '500,000',
-    status: 'Current',
-    image: 'src/assets/currentproject/house1.jpg',
-    features: ['Exclusive Amenities', 'Spacious Homes', 'Green Spaces'],
-    shortdescription: 'home to your nature',
-    description: `The Camellia, your home at Wetlands Estates, the
-    private enclave in Gamuda Cove. The Camellia, your home at Wetlands
-    Estates, the private enclave in Gamuda Cove. The Camellia, your home at
-    Wetlands Estates, the private enclave in Gamuda Cove.`,
-    size: '810 acres',
-    topic: 'In a Garden Where Happiness Lives',
-    fulldescription: `Miracle Gardens is an 810-acre township
-      fusing lifestyle and nature, featuring rolling hills and
-      five cascading lakes leading to the 50-acre, pet-friendly Central Park.
-      The township includes a Waterfront Village offering a walkable retail
-      experience with various F&B options. Nearby the township, Gamuda Luge Gardens
-      hosts a mix of commercial and leisure spaces, including retail shops, FunPark
-      family-friendly park, Big Bucket Splash waterplay and Skyline Luge Kuala Lumpur.
-      This development is designed to be a vibrant hub that brings the community together.`,
-    builtup: '2,110 - 2,497 sqft',
-    lotsize: '26` x 76`',
-    gallerydevelopment: [ // 3 image only no less no more
-      {
-        url: 'src/assets/currentproject/house1.jpg',
-        description: 'Living in Harmony with Nature'
-      },
-      {
-        url: 'src/assets/award1.png',
-        description: 'Doorstep Lifestyle and Retail Convenience'
-      },
-      {
-        url: 'src/assets/currentproject/house3.jpg',
-        description: 'Exciting Placemaking Experience'
-      }
-    ],
-    galleryImages: [
-      'src/assets/currentproject/house2.jpg',
-      'https://picsum.photos/200/300',
-      'https://picsum.photos/200/300',
-      'https://picsum.photos/200/300'
-    ],
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: ''
-  },
-  {
-    id: 5,
-    name: 'Monc Cave',
-    slug: generateSlug('Monarc Cove'),
-    bannerimage: 'src/assets/building.png',
-    location: 'Kalimantan, Mana',
-    districts: 'Jengka',
-    state: 'Pahang',
-    type: 'Township',
-    price: '500,000',
-    status: 'Current',
-    image: 'src/assets/currentproject/house1.jpg',
-    features: ['Exclusive Amenities', 'Spacious Homes', 'Green Spaces'],
-    shortdescription: 'home to your nature',
-    description: `The Camellia, your home at Wetlands Estates, the
-    private enclave in Gamuda Cove. The Camellia, your home at Wetlands
-    Estates, the private enclave in Gamuda Cove. The Camellia, your home at
-    Wetlands Estates, the private enclave in Gamuda Cove.`,
-    size: '810 acres',
-    topic: 'In a Garden Where Happiness Lives',
-    fulldescription: `Miracle Gardens is an 810-acre township
-      fusing lifestyle and nature, featuring rolling hills and
-      five cascading lakes leading to the 50-acre, pet-friendly Central Park.
-      The township includes a Waterfront Village offering a walkable retail
-      experience with various F&B options. Nearby the township, Gamuda Luge Gardens
-      hosts a mix of commercial and leisure spaces, including retail shops, FunPark
-      family-friendly park, Big Bucket Splash waterplay and Skyline Luge Kuala Lumpur.
-      This development is designed to be a vibrant hub that brings the community together.`,
-    builtup: '2,110 - 2,497 sqft',
-    lotsize: '26` x 76`',
-    gallerydevelopment: [ // 3 image only no less no more
-      {
-        url: 'src/assets/currentproject/house1.jpg',
-        description: 'Living in Harmony with Nature'
-      },
-      {
-        url: 'src/assets/award1.png',
-        description: 'Doorstep Lifestyle and Retail Convenience'
-      },
-      {
-        url: 'src/assets/currentproject/house3.jpg',
-        description: 'Exciting Placemaking Experience'
-      }
-    ],
-    galleryImages: [
-      'src/assets/currentproject/house2.jpg',
-      'https://picsum.photos/200/300',
-      'https://picsum.photos/200/300',
-      'https://picsum.photos/200/300'
-    ],
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: ''
-  } */
+    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.4411082928295!2d102.33912939999999!3d3.4847702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba1bc23fa6b7%3A0xfe72a6be37126111!2sDynaton%20Casa%20Hill!5e0!3m2!1sen!2smy!4v1737941338360!5m2!1sen!2smy'
+  }
 ]
 
 </script>

@@ -17,15 +17,15 @@ function generateSlug (text) {
 
 export const properties = {
 
-  'Monarc Cove': [{
+  'Miracle Sentral': [{
     id: 1,
-    name: 'Monarc Homes',
-    slug: generateSlug('Monarc Homes'),
-    location: 'Kalimantan, Mana',
-    place: 'Monarc Cove',
+    name: 'Miracle Sentral A',
+    slug: generateSlug('Miracle Sentral A'),
+    location: 'Jengka, Pahang',
+    place: 'Miracle Sentral',
     housetype: '2-Storey Terrace & Semi-D',
-    status: 'Current',
-    price: 'RM 500,000',
+    status: 'New Launch',
+    price: 'RM 5XX,XXX*',
     image: 'src/assets/currentproject/car.jpg',
     features: ['Exclusive Amenities', 'Spacious Homes'],
     description: `Miracle Gardens is an 810-acre township
@@ -45,18 +45,17 @@ export const properties = {
       'src/assets/career2.png'
     ],
     builtup: '2,150 - 2,497 sqft',
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: '/property/'
+    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
   },
   {
     id: 2,
-    name: 'Monarc Sweet',
-    slug: generateSlug('Monarc Sweet'),
-    location: 'Kalimantan, Mana',
-    place: 'Monarc Cove',
+    name: 'Miracle Sentral B',
+    slug: generateSlug('Miracle Sentral B'),
+    location: 'Jengka, Pahang',
+    place: 'Miracle Sentral',
     housetype: '2-Storey Terrace',
-    status: 'Current',
-    price: 'RM 500,000',
+    status: 'New Launch',
+    price: 'RM 5XX,XXX*',
     image: 'https://picsum.photos/200/300',
     features: ['Exclusive Amenities', 'Spacious Homes'],
     description: `Miracle Gardens is an 810-acre township
@@ -77,20 +76,19 @@ export const properties = {
     ],
     builtup: '2,150 - 2,497 sqft',
     vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: '/property/'
+    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
   }
   ],
-  'Connaught Cove': [{
+  'Casa Hill': [{
     id: 1,
-    name: 'The Connaught One',
-    slug: generateSlug('The Connaught One'),
-    location: 'Mert, Temerloh',
-    place: 'Connaught Cove',
+    name: 'Casa Hill Type A',
+    slug: generateSlug('Casa Hill Type A'),
+    location: 'Mentakab, Temerloh',
+    place: 'Casa Hill',
     housetype: 'Bungalow',
-    status: 'Current',
-    price: 'RM 500,000',
-    image: 'https://picsum.photos/200/300',
+    status: 'New Launch',
+    price: 'RM 6XX,XXX*',
+    image: 'src/assets/Development/Casa Hill/type_a_01.jpg',
     features: ['Exclusive Amenities', 'Spacious Homes'],
     description: `Miracle Gardens is an 810-acre township
       fusing lifestyle and nature, featuring rolling hills and
@@ -110,53 +108,19 @@ export const properties = {
     ],
     builtup: '2,150 - 2,497 sqft',
     vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15930.380935267707!2d102.4265958!3d3.4481648500000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceb98ede1fc697%3A0x525d3e85476ef763!2sRestoran%20Saiful!5e0!3m2!1sen!2smy!4v1735284346219!5m2!1sen!2smy',
-    link: '/property/'
-  }
-  ],
-  'ZIG Homes': [{
-    id: 1,
-    name: 'The ZIG One',
-    location: 'Greater Kuala Lumpur',
-    slug: generateSlug('The ZIG One'),
-    place: 'ZIG Homes',
-    housetype: 'Bungalow',
-    status: 'Current',
-    price: 'RM 600,900',
-    image: 'https://picsum.photos/200/300',
-    features: ['Luxury Living', 'Green Spaces'],
-    description: `Miracle Gardens is an 810-acre township
-      fusing lifestyle and nature, featuring rolling hills and
-      five cascading lakes leading to the 50-acre, pet-friendly Central Park.
-      The township includes a Waterfront Village offering a walkable retail
-      experience with various F&B options. Nearby the township, Gamuda Luge Gardens
-      hosts a mix of commercial and leisure spaces, including retail shops, FunPark
-      family-friendly park, Big Bucket Splash waterplay and Skyline Luge Kuala Lumpur.
-      This development is designed to be a vibrant hub that brings the community together.`,
-    gallery: [
-      'src/assets/currentproject/house1.jpg',
-      'src/assets/currentproject/house2.jpg',
-      'src/assets/career3.jpg',
-      'src/assets/award1.png',
-      'src/assets/award2.png',
-      'src/assets/career3.jpg'
-    ],
-    builtup: '2,150 - 2,497 sqft',
-    vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: '/property/'
+    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.4411082928295!2d102.33912939999999!3d3.4847702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba1bc23fa6b7%3A0xfe72a6be37126111!2sDynaton%20Casa%20Hill!5e0!3m2!1sen!2smy!4v1737941338360!5m2!1sen!2smy'
   },
   {
     id: 2,
-    name: 'Residensi ZIG',
-    slug: generateSlug('Residensi ZIG'),
-    location: 'Greater Kuala Lumpur',
-    place: 'ZIG Homes',
-    housetype: '2 Storey Terrace',
-    status: 'Current',
-    price: 'RM 600,900',
-    image: 'src/assets/currentproject/car.jpg',
-    features: ['Japanese Minimalist-Inspired Terrace Homes', 'Versatile & Practical Spaces', 'Safe & Secure Family Home'],
+    name: 'Casa Hill Type B',
+    slug: generateSlug('Casa Hill Type B'),
+    location: 'Mentakab, Temerloh',
+    place: 'Casa Hill',
+    housetype: 'Bungalow',
+    status: 'New Launch',
+    price: 'RM 6XX,XXX*',
+    image: 'src/assets/Development/Casa Hill/type_b_01.jpg',
+    features: ['Exclusive Amenities', 'Spacious Homes'],
     description: `Miracle Gardens is an 810-acre township
       fusing lifestyle and nature, featuring rolling hills and
       five cascading lakes leading to the 50-acre, pet-friendly Central Park.
@@ -168,27 +132,26 @@ export const properties = {
     gallery: [
       'src/assets/currentproject/house1.jpg',
       'src/assets/currentproject/house2.jpg',
-      'src/assets/career3.jpg',
+      'src/assets/currentproject/house3.jpg',
       'src/assets/award1.png',
       'src/assets/award2.png',
-      'src/assets/career3.jpg'
+      'src/assets/career1.png'
     ],
     builtup: '2,150 - 2,497 sqft',
     vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: '/property/'
+    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.4411082928295!2d102.33912939999999!3d3.4847702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba1bc23fa6b7%3A0xfe72a6be37126111!2sDynaton%20Casa%20Hill!5e0!3m2!1sen!2smy!4v1737941338360!5m2!1sen!2smy'
   },
   {
     id: 3,
-    name: 'The ZIG',
-    slug: generateSlug('The ZIG'),
-    location: 'Greater Kuala Lumpur',
-    place: 'ZIG Homes',
-    housetype: 'Double Storey',
-    status: 'Current',
-    price: 'RM 600,900',
-    image: 'https://picsum.photos/200/300',
-    features: ['Japanese Minimalist-Inspired Terrace Homes', 'Versatile & Practical Spaces', 'Safe & Secure Family Home'],
+    name: 'Casa Hill Type C',
+    slug: generateSlug('Casa Hill Type C'),
+    location: 'Mentakab, Temerloh',
+    place: 'Casa Hill',
+    housetype: 'Bungalow',
+    status: 'New Launch',
+    price: 'RM 6XX,XXX*',
+    image: 'src/assets/Development/Casa Hill/type_c_01.jpg',
+    features: ['Exclusive Amenities', 'Spacious Homes'],
     description: `Miracle Gardens is an 810-acre township
       fusing lifestyle and nature, featuring rolling hills and
       five cascading lakes leading to the 50-acre, pet-friendly Central Park.
@@ -200,47 +163,14 @@ export const properties = {
     gallery: [
       'src/assets/currentproject/house1.jpg',
       'src/assets/currentproject/house2.jpg',
-      'src/assets/career3.jpg',
-      'src/assets/award2.png',
-      'src/assets/award1.png',
-      'src/assets/career3.jpg'
-    ],
-    builtup: '2,150 - 2,497 sqft',
-    vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: '/property/'
-  },
-  {
-    id: 4,
-    name: 'The Resident',
-    slug: generateSlug('The Resident'),
-    location: 'Greater Kuala Lumpur',
-    place: 'ZIG Homes',
-    housetype: '2 Storey Terrace',
-    status: 'Current',
-    price: 'RM 500,900',
-    image: 'https://picsum.photos/200/300',
-    features: ['Japanese Minimalist-Inspired Terrace Homes', 'Japanese Minimalist-Inspired Terrace Homes', 'Japanese Minimalist-Inspired Terrace Homes'],
-    description: `Miracle Gardens is an 810-acre township
-      fusing lifestyle and nature, featuring rolling hills and
-      five cascading lakes leading to the 50-acre, pet-friendly Central Park.
-      The township includes a Waterfront Village offering a walkable retail
-      experience with various F&B options. Nearby the township, Gamuda Luge Gardens
-      hosts a mix of commercial and leisure spaces, including retail shops, FunPark
-      family-friendly park, Big Bucket Splash waterplay and Skyline Luge Kuala Lumpur.
-      This development is designed to be a vibrant hub that brings the community together.`,
-    gallery: [
       'src/assets/currentproject/house3.jpg',
-      'src/assets/currentproject/house2.jpg',
-      'src/assets/career1.png',
       'src/assets/award1.png',
       'src/assets/award2.png',
-      'src/assets/career3.jpg'
+      'src/assets/career1.png'
     ],
     builtup: '2,150 - 2,497 sqft',
     vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: '/property/'
+    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.4411082928295!2d102.33912939999999!3d3.4847702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba1bc23fa6b7%3A0xfe72a6be37126111!2sDynaton%20Casa%20Hill!5e0!3m2!1sen!2smy!4v1737941338360!5m2!1sen!2smy'
   }
   ]
 }
