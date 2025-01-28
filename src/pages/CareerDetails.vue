@@ -63,7 +63,7 @@
     </div>
 
     <div class="job-filter-container">
-      <div class="filter-bar">
+      <div class="filter-bar fade-up">
         <q-select
         v-model="selectedDepartment"
         :options="['All departments', ...departments.map(dept => dept.department)]"
@@ -88,7 +88,7 @@
       </div>
 
       <!-- Job Positions Cards -->
-      <div class="job-cards">
+      <div class="job-cards fade-up delay-1">
         <q-card v-for="job in filteredJobs" :key="job.id" class="job-card">
           <q-card-section>
             <div class="job-location">
@@ -107,16 +107,16 @@
 
     <div class="careers-text">
       <div class="career-first">
-        <h2>Can't find any job vacancies?</h2>
-        <p>The Miracle Land Company has a strong presence in Pahang,
+        <h2 class="fade-up">Can't find any job vacancies?</h2>
+        <p class="fade-up delay-1">The Miracle Land Company has a strong presence in Pahang,
           with offices in Temerloh, Kuantan, and Jengka. If you haven't
           found the job vacancy on our site today, you can submit your
           details prospectively with us and one of our team will get in touch with you</p>
       </div>
-      <div class="career-link">
+      <div class="career-link fade-up delay-2">
         <q-btn flat label="Submit your details prospectively" class="btn" @click="navigateToForm"/>
       </div>
-      <div class="career-second">
+      <div class="career-second fade-up delay-3">
       <strong>Be fraud aware:</strong> Fraudulent job advertisements can circulate online and falsely
           claim to be associated with The Miracle Land Company. Genuine
           correspondence from The Miracle Land Company will always come

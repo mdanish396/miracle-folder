@@ -1,8 +1,8 @@
 <template>
   <q-page class="contact-page">
     <!-- Hero Section -->
-    <div class="investor-hero">
-      <div class="investor-container">
+    <div class="contact-hero">
+      <div class="contact-container">
         <!-- Text Content Section -->
         <div class="text-content">
           <div class="line-hero-holder fade-up">
@@ -10,17 +10,116 @@
               <div class="line-hero-1"></div>
             </div>
           </div>
-          <h2 class="text-above fade-up delay-1">Investor</h2>
-          <h2 class="text-below fade-up delay-1">Centre</h2>
+          <h2 class="text-above fade-up delay-1">Contact</h2>
+          <h2 class="text-below fade-up delay-1">Miracle Land</h2>
         </div>
 
         <!-- Image Section -->
-        <div class="investor-image-container">
+        <div class="contact-image-container">
           <img src="src/assets/currentproject/house1.jpg" class="top-image" />
         </div>
       </div>
     </div>
 
+    <div class="register" id="section-contact">
+      <div class="register-container">
+        <div class="register-wrapper">
+          <!-- Left Section -->
+          <div class="register-left">
+            <h2 class="register-title fade-up">Contact Details</h2>
+            <div class="register-line-holder fade-up delay-1">
+              <div class="register-line">
+                <div class="register-line-1">
+                </div>
+              </div>
+            </div>
+            <h5 class="address-title fade-up delay-2">Address</h5>
+            <address class="fade-up delay-3">
+              No. 1, Tingkat Basement, Jalan Dagang 2,<br>
+              Kampung Bukit Angin, 28000 Temerloh, Pahang<br>
+            </address>
+
+            <div class="map-button fade-up delay-2">
+              <button @click="gotofullmap" class="btn view-full-map-btn">
+                    <img src="src/assets/brochure.svg" alt="Download" />
+                    View Full Map
+                  </button>
+            </div>
+            <h5 class="contact-title fade-up delay-2">Contact Number</h5>
+            <div class="fade-up delay-3">
+              <i class="fa fa-phone phone-icon"></i>
+                <span class="contact-no">
+                  +60 19 296 6666
+                </span>
+            </div>
+            <h5 class="email-title fade-up delay-2">General Enquiries</h5>
+            <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
+            <div class="fade-up delay-3">
+              <i class="fa fa-envelope email-icon"></i>
+                <span class="email-address">
+                  kevin@interplandesigns.com
+                </span>
+            </div>
+            <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
+            <p class="email-subtitle fade-up delay-2">We're always on the lookout for talented people - please send us <br> your CV and portfolio (no larger than 5MB) to</p>
+            <div class="fade-up delay-3">
+              <i class="fa fa-envelope email-icon"></i>
+                <span class="email-address">
+                  hmnrs.md3@gmail.com
+                </span>
+              <div>
+                <i class="fa fa-phone phone-icon"></i>
+                <span class="contact-no">
+                  +60 11 6999 9888
+                </span>
+              </div>
+            </div>
+            <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
+            <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
+            <div class="fade-up delay-3">
+              <i class="fa fa-envelope email-icon"></i>
+                <span class="email-address">
+                  kevin@interplandesigns.com
+                </span>
+            </div>
+            <h5 class="business-title fade-up delay-2">Business Hours</h5>
+            <div class="fade-up delay-3">
+              <i class="fas fa-business-time calendar-icon"></i>
+                <span class="business-hours">
+                  Mon - Sat , 9am - 5pm
+                </span>
+            </div>
+          </div>
+
+          <!-- Right Section -->
+          <div class="register-right">
+            <h2 class="fade-up delay-1">Got A Question?</h2>
+            <div class="register-line-holder fade-up delay-2">
+              <div class="register-line">
+                <div class="register-line-1">
+                </div>
+              </div>
+            </div>
+            <p class="fade-up delay-3">Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
+            <form class="register-form fade-up delay-4">
+              <input type="text" placeholder="Name*" required>
+              <input type="email" placeholder="Email*" required>
+              <input type="tel" placeholder="Telephone*" required>
+              <select>
+                <option disabled selected>Select enquiry type</option>
+                <option>General</option>
+                <option>Interested Project</option>
+                <option>Consultation</option>
+                <option>Business</option>
+                <option>Contractor</option>
+              </select>
+              <textarea placeholder="Questions/Comments*" required></textarea>
+              <button type="submit" class="submit-btn">SEND</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </q-page>
 </template>
 
@@ -124,7 +223,7 @@ onBeforeUnmount(() => {
 .fade-up.delay-4 {
   transition-delay: 0.8s;
 }
-.investor-hero {
+.contact-hero {
   background-color: #0d182b;
   display: flex;
   height: 71vh;
@@ -132,7 +231,7 @@ onBeforeUnmount(() => {
   align-items: center;
 }
 
-.investor-container {
+.contact-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -184,7 +283,7 @@ onBeforeUnmount(() => {
 }
 
 /* Image Section */
-.investor-image-container {
+.contact-image-container {
   flex: 1; /* Adjusts the width for the image section to make it more than half the screen width */
   display:flex;
   justify-content: flex-end;
@@ -232,14 +331,14 @@ padding-inline: 20px;
 
 @media (max-width: 820px) {
 
-  .investor-container {
+  .contact-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
-  .investor-image-container {
+  .contact-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -262,7 +361,7 @@ padding-inline: 20px;
 }
 @media (max-width: 520px) {
 
-  .investor-image-container {
+  .contact-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -280,53 +379,312 @@ padding-inline: 20px;
   }
 }
 
-.investor-centre {
-padding: 20px;
-padding-right: 10%;
-padding-left: 10%;
-margin-top: 10px;
-padding-bottom: 80px;
-}
-
-.investor-list {
-  display: grid;
-  gap: 5px;
-  font-family: 'TitilliumWebRegular';
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.investor-item {
+/* Contact Us Section */
+.register {
+  color: #000;
+  background-color: white;
+  padding: 40px 100px;
+  padding-top: 0px;
+  padding-bottom: 100px;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-@media (max-width: 768px){
+.register-line-holder {
+  position: static;
+  margin-top: -20px;
+}
 
-.investor-list {
+.register-line {
+  display: inline-block;
+  width: 12px; /* Thickness of the line */
+  height: 3px; /* Height of the line */
+  background-color: #08463c; /* Gold accent */
+  padding-inline: 45px;
+
+}
+
+.register-line-1 {
+  display: inline-block;
+  width: 170px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-bottom: 13px; /* Space between the line and text */
+  margin-inline-start: 45px;
+}
+
+.register-wrapper {
   display: flex;
   flex-direction: column;
-}
+  padding: 10px;
+  padding-bottom: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
+  position: relative;
+  overflow: hidden;
 }
 
-.investor-btn {
+.register-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.register-left, .register-right {
+  flex: 1;
+  width: 100%;
+}
+
+.register-left {
+  padding: 0px 10px;
+  padding-left: 30px;
+}
+
+.register-left .register-title {
+  font-family: 'RecklessNeueMedium';
+  margin-bottom: 35px;
+  white-space: nowrap;
+  font-size: 36px;
+}
+
+.address-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+.register-left p {
+  font-family: 'TitilliumWebRegular';
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.register-left address {
+  font-family: 'TitilliumWebRegular';
+  font-style: normal;
+  margin-bottom: 0px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.btn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  padding: 12px 20px;
-  width: fit-content;
-  transition: color 0.3s;
-  background-color: transparent;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+  width: 200px;
   cursor: pointer;
-  color: rgb(48, 48, 48);
+  font-family: 'TitilliumWebBold';
+  font-size: 14px;
+  white-space: nowrap;
 }
 
-.investor-btn:hover {
-  color: #02947e;
-  background-color: transparent;
+.btn img {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
 }
 
-.q-icon {
-  font-size: 1.5rem;
+.btn:hover {
+  background-color: #08463c;
+  color: white;
 }
+
+.map-button {
+  padding-top: 20px;
+}
+
+.view-full-map-btn {
+  border: 2px solid #08463c;
+  color: #08463c;
+}
+
+.view-full-map-btn:hover img {
+  filter: invert(1);
+}
+
+.contact-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.phone-icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.contact-no {
+  font-family: 'TitilliumWebRegular';
+  font-style: normal;
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.email-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.register-left .email-subtitle {
+  font-family: 'TitilliumWebRegular';
+  font-size: 15px;
+  margin-bottom: 10px;
+  margin-top: -15px;
+  color: #555;
+}
+
+.email-icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.email-address {
+  font-family: 'TitilliumWebRegular';
+  font-style: normal;
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.email-subtitle br {
+  display: none;
+}
+
+.business-title {
+  font-family: 'TitilliumWebSemiBold';
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.calendar-icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.business-hours {
+  font-family: 'TitilliumWebRegular';
+  font-style: normal;
+  margin-bottom: 15px;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+/* Right Section */
+.register-right {
+  padding: 0px 10px;
+}
+
+.register-right h2 {
+  font-family: 'RecklessNeueMedium';
+  font-size: 36px;
+  margin-bottom: 35px;
+  white-space: nowrap;}
+
+.register-right p {
+  font-family: 'TitilliumWebRegular';
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.register-form input,
+.register-form textarea,
+.register-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #5555555e;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000;
+}
+
+.register-form textarea {
+  resize: none;
+  height: 100px;
+}
+
+.register-form select {
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.submit-btn {
+  padding: 10px 20px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+@media (min-width: 900px){
+  .register-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+  }
+
+  .register-container {
+    gap: 40px;
+  }
+
+  .register-right {
+    width: 450px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .email-subtitle br {
+    display: initial;
+  }
+}
+
+@media (max-width: 786px){
+
+  .register {
+  padding: 40px 20px;
+}
+
+}
+
+@media (max-width: 520px){
+  .register-left address br:first-child {
+    display: none;
+  }
+
+  .register-left .register-title {
+    font-size: 34px;
+  }
+
+  .address-title {
+  font-size: 17px;
+}
+}
+
+@media (min-width: 1024px){
+  .register-wrapper {
+    gap: 150px;
+  }
+}
+
 </style>

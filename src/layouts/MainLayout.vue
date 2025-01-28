@@ -123,7 +123,7 @@
             </q-menu>
           </q-card>
 
-          <q-card class="nav-button flat-card" clickable @click="$router.push('/contact')">
+          <q-card class="nav-button flat-card" clickable @click="$router.push('/contacts')">
             <q-card-section class="nav-card-section">Contact Us</q-card-section>
           </q-card>
           <!-- <q-card class="nav-button flat-card" clickable @click="$router.push('/awards')">
@@ -245,7 +245,7 @@
               </q-item>
             </q-expansion-item>
           </q-expansion-item>
-          <q-item clickable to="/contact" class="drawer-item" v-ripple>
+          <q-item clickable to="/contacts" class="drawer-item" v-ripple>
             <q-item-section>Contact Us</q-item-section>
           </q-item>
           <!-- <q-item clickable to="/awards" class="drawer-item">
@@ -296,7 +296,7 @@
         <!-- Right Section -->
         <div class="footer-right">
           <div class="footer-navigation">
-            <router-link to="/contact" class="footer-link">Contact Us</router-link>
+            <router-link to="/contacts" class="footer-link">Contact Us</router-link>
             <router-link to="/career" class="footer-link">Careers</router-link>
             <p class="footer-time">Mon - Sat, 9AM - 5PM</p>
           </div>
