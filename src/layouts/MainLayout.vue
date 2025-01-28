@@ -122,7 +122,11 @@
               </div>
             </q-menu>
           </q-card>
-          <q-card class="nav-button flat-card" clickable @click="$router.push('/awards')">
+
+          <q-card class="nav-button flat-card" clickable @click="$router.push('/contact')">
+            <q-card-section class="nav-card-section">Contact Us</q-card-section>
+          </q-card>
+          <!-- <q-card class="nav-button flat-card" clickable @click="$router.push('/awards')">
             <q-card-section class="nav-card-section">Awards</q-card-section>
           </q-card>
 
@@ -158,7 +162,7 @@
                 </q-item>
               </q-list>
             </q-menu>
-          </q-card>
+          </q-card> -->
         </div>
 
         <!-- Drawer toggle button for small screens -->
@@ -241,7 +245,10 @@
               </q-item>
             </q-expansion-item>
           </q-expansion-item>
-          <q-item clickable to="/awards" class="drawer-item">
+          <q-item clickable to="/contact" class="drawer-item" v-ripple>
+            <q-item-section>Contact Us</q-item-section>
+          </q-item>
+          <!-- <q-item clickable to="/awards" class="drawer-item">
             <q-item-section>Awards</q-item-section>
           </q-item>
           <q-expansion-item
@@ -261,7 +268,7 @@
             <q-item clickable to="/news" class="drawer-item-child">
               <q-item-section>News</q-item-section>
             </q-item>
-          </q-expansion-item>
+          </q-expansion-item> -->
         </q-list>
       </q-scroll-area>
     </q-drawer>
@@ -289,7 +296,7 @@
         <!-- Right Section -->
         <div class="footer-right">
           <div class="footer-navigation">
-            <a @click.prevent="navigateToContactUs" class="footer-link" href="#">Contact Us</a>
+            <router-link to="/contact" class="footer-link">Contact Us</router-link>
             <router-link to="/career" class="footer-link">Careers</router-link>
             <p class="footer-time">Mon - Sat, 9AM - 5PM</p>
           </div>
@@ -321,7 +328,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
-import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
+import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 import { leasedevelopments } from 'src/components/Lease/LeaseData.vue'
 
 const displayedDevelopments = ref(developments)
@@ -440,10 +447,6 @@ const toggleDrawer = () => {
 // Logo click handler
 const handleLogoClick = () => {
   this.$router.push('/') // Redirect to IndexPage.vue
-}
-
-const navigateToContactUs = () => {
-  router.push({ path: '/about-miracle', hash: '#section-contact' })
 }
 
 // Social media handlers
@@ -935,7 +938,7 @@ color:#00B398;
   margin-right: 20px;
   gap: 40px;
   text-decoration: none;
-  font-family: 'AvenirMedium';
+  font-family: 'TitilliumWebRegular';
 }
 
 .footer-link:hover {

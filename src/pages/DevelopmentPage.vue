@@ -53,7 +53,7 @@
               <div class="development-info">
                 <h3>{{ development.name }}</h3>
                 <p>{{ development.location }}</p>
-                <p>From RM {{ development.price }}</p>
+                <p>From {{ development.price }}</p>
               </div>
               <!-- Hover Development Card Information -->
               <div class="development-hover-overlay">
@@ -125,7 +125,6 @@
                 <div class="development-info">
                   <h3>{{ pastdevelopments.name }}</h3>
                   <p>{{ pastdevelopments.location }}</p>
-                  <p>From RM {{ pastdevelopments.price }}</p>
                 </div>
                 <!-- Hover Development Card Information -->
                 <div class="development-hover-overlay">
@@ -170,10 +169,10 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
-import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
-import { pastdevelopments } from 'src/components/Properties/PastDevelopmentData.vue'
+import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
+import { pastdevelopments } from 'src/components/Properties/PastProperties/PastDevelopmentData.vue'
 
-const allDevelopments = ref(developments.filter((d) => d.status === 'Current'))
+const allDevelopments = ref(developments.filter((d) => d.status === 'New Launch'))
 // const visibleCount = ref(4)
 const allPastDevelopments = ref(pastdevelopments.filter((d) => d.status === 'Completed'))
 const displayedDevelopments = ref(allDevelopments.value /* .slice(0, visibleCount.value) */)
@@ -650,8 +649,11 @@ padding-inline: 20px;
 
 .development-info h3 {
   font-size: 21px;
+  line-height: 31px;
   font-family: 'TitilliumWebSemiBold';
   margin-bottom: 5px;
+  margin-top: -10px;
+  height: 60px;
 }
 
 .development-info p {

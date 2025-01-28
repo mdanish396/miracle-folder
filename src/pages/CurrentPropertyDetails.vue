@@ -387,7 +387,7 @@
             <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
                 <span class="contact-no">
-                  019-296 6666
+                  +60 19 296 6666
                 </span>
             </div>
             <h5 class="email-title fade-up delay-2">General Enquiries</h5>
@@ -395,7 +395,7 @@
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
                 <span class="email-address">
-                  enquiries@woha.net
+                  kevin@interplandesigns.com
                 </span>
             </div>
             <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
@@ -408,7 +408,7 @@
               <div>
                 <i class="fa fa-phone phone-icon"></i>
                 <span class="contact-no">
-                  011-69999888
+                  +60 11 6999 9888
                 </span>
               </div>
             </div>
@@ -538,9 +538,9 @@
 <script setup>
 import { onMounted, onUnmounted, ref, onBeforeUnmount, computed, watchEffect } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
-import { properties } from 'src/components/Properties/CurrentPropertiesData.vue'
-import { floorplan } from 'src/components/Properties/CurrentPropertiesFloorplan.vue'
-import { nearbyAmenities } from 'src/components/Properties/CurrentDevelopmentAmenitiesData.vue'
+import { properties } from 'src/components/Properties/CurrentProperties/CurrentPropertiesData.vue'
+import { floorplan } from 'src/components/Properties/CurrentProperties/CurrentPropertiesFloorplan.vue'
+import { nearbyAmenities } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentAmenitiesData.vue'
 
 // Assuming you have a store or an API to fetch properties
 const route = useRoute()
@@ -649,6 +649,10 @@ const scrollToRegister = () => {
 
 const gotofullmap = () => {
   window.open('https://maps.app.goo.gl/XcCFgR9Lg8vpdLfh7', '_blank')
+}
+
+const downloadBrochure = (file) => {
+  window.open(file, '_blank')
 }
 
 const openImage = (plan) => {
@@ -926,7 +930,7 @@ const loadMore = () => {
   gap: 20px;
   padding: 0 20px;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 .property-card {
@@ -935,7 +939,7 @@ const loadMore = () => {
 }
 
 .property-info h3 {
-  font-size: 26px;
+  font-size: 30px;
   font-family: 'TitilliumWebSemiBold';
   color: #1e1e1e;
   text-align: left;
@@ -949,8 +953,8 @@ const loadMore = () => {
   margin-bottom: 20px;
 }
 
-.icon {
-  font-size: 16px;
+.property-location .icon {
+  font-size: 24px;
   color: #08463c;
   margin-right: 10px;
 }
@@ -1030,7 +1034,7 @@ const loadMore = () => {
 .property-button {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   flex-wrap: nowrap;
   white-space: nowrap;
 }
@@ -1052,13 +1056,13 @@ const loadMore = () => {
   color: #000000;
   padding: 0px 10px;
   border-radius: 0;
-  width: 130px;
-  height: 80px;
+  width: 140px;
+  height: 90px;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .property-btn:hover {
-  background-color: #08463c;
+  background-color: #5e5c5c;
   color: white;
 }
 
@@ -1075,16 +1079,16 @@ const loadMore = () => {
   border: 2px solid #08463c;
   color: #000000;
   font-weight: bold;
-  padding: 0px 20px;
+  padding: 0px;
   border-radius: 0;
-  width: 150px;
+  width: 100%;
   height: 50px;
   white-space: nowrap;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .register-btn:hover {
-  background-color: #08463c;
+  background-color: #5e5c5c;
   color: white;
 }
 

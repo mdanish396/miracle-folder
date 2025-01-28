@@ -160,11 +160,11 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
-import { developments } from 'src/components/Properties/CurrentDevelopmentData.vue'
+import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 
 const showLoader = ref(true)
 const router = useRouter()
-const allDevelopments = ref(developments.filter((d) => d.status === 'Current'))
+const allDevelopments = ref(developments.filter((d) => d.status === 'New Launch'))
 const visibleCount = ref(4)
 const displayedDevelopments = ref(allDevelopments.value.slice(0, visibleCount.value))
 const showAllDevelopments = ref(false)
@@ -555,12 +555,15 @@ const navigateToDevelopmentDetails = (slug) => {
 
 .development-image {
   width: 300px;
-  height: 260px;
+  height: 225px;
   object-fit: cover;
 }
 
 .development-info {
-  padding: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: -20px;
+  padding-bottom: 20px;
   text-align: left;
 }
 
@@ -601,8 +604,8 @@ const navigateToDevelopmentDetails = (slug) => {
 /* Conditional Status Badge */
 .status {
   position: absolute;
-  top: 10px;
-  left: -60px;
+  top: 12px;
+  left: -62px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px 10px;
   font-size: 13px;
@@ -615,8 +618,8 @@ const navigateToDevelopmentDetails = (slug) => {
 
 .status-current {
   position: absolute;
-  top: 10px;
-  left: -60px;
+  top: 12px;
+  left: -62px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px 10px;
   font-size: 13px;

@@ -42,7 +42,7 @@
     </div>
 
     <!-- Why Teamwork Matters Section -->
-    <div class="career-section section">
+    <div class="career-section">
       <div class="content-container">
         <div class="image-container">
           <!-- Image -->
@@ -62,7 +62,7 @@
     </div>
 
     <!-- Our People Section -->
-    <div class="career-section section">
+    <div class="career-section">
       <div class="content-container">
         <div class="text-content-1">
           <h2 class="fade-up">Our People</h2>
@@ -355,6 +355,7 @@ padding-inline: 20px;
 
 .career-section {
   padding: 80px 10%;
+  padding-bottom: 0px;
 }
 
 .content-container {
@@ -453,6 +454,7 @@ ul {
 
 .btn {
   text-align: center;
+  padding: 40px 0;
 }
 
 .btn-story {

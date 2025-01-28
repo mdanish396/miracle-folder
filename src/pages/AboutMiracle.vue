@@ -148,7 +148,7 @@
             <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
                 <span class="contact-no">
-                  019-296 6666
+                  +60 19 296 6666
                 </span>
             </div>
             <h5 class="email-title fade-up delay-2">General Enquiries</h5>
@@ -156,7 +156,7 @@
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
                 <span class="email-address">
-                  enquiries@woha.net
+                  kevin@interplandesigns.com
                 </span>
             </div>
             <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
@@ -169,7 +169,7 @@
               <div>
                 <i class="fa fa-phone phone-icon"></i>
                 <span class="contact-no">
-                  011-69999888
+                  +60 11 6999 9888
                 </span>
               </div>
             </div>

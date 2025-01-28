@@ -56,25 +56,77 @@
         <div class="contact-info">
           <p>Contact us
           </p>
-          <p class="info"><i class="fas fa-phone-alt icons"></i> 0116 9999 888
+          <p class="info"><i class="fas fa-phone-alt icons"></i> +60 11 6999 9888
           </p>
         </div>
       </div>
     </div>
 
-    <div v-for="department in departments" :key="department.department" class="department-section">
-      <h2 class="department-title">{{ department.department }}</h2>
-        <div class="department-contain">
-          <div class="department-list">
-            <div class="department-item" v-for="job in jobposition[department.department]" :key="job.id">
-              <i class="fa fa-check-square-o icon"></i>
-                <span class="department-feature">
-                  {{ job.position }}
-                </span>
-              </div>
-          </div>
+    <div class="job-filter-container">
+      <div class="filter-bar">
+        <q-select
+        v-model="selectedDepartment"
+        :options="['All departments', ...departments.map(dept => dept.department)]"
+        outlined
+        dense
+        fit
+        @update:model-value="filterJobs"
+        class="select"
+        />
+
+        <!-- Location Selector -->
+        <q-select
+        v-model="selectedLocation"
+        :options="['All locations', ...filteredLocations.map(loc => loc.location)]"
+        outlined
+        dense
+        fit
+        color=""
+        @update:model-value="filterJobs"
+        class="select"
+        />
+      </div>
+
+      <!-- Job Positions Cards -->
+      <div class="job-cards">
+        <q-card v-for="job in filteredJobs" :key="job.id" class="job-card">
+          <q-card-section>
+            <div class="job-location">
+              {{ job.location }}
+            </div>
+            <div class="job-title">
+              {{ job.position }}
+            </div>
+          </q-card-section>
+        </q-card>
+        <div v-if="filteredJobs.length === 0" class="no-jobs">
+          No job positions available
         </div>
       </div>
+    </div>
+
+    <div class="careers-text">
+      <div class="career-first">
+        <h2>Can't find any job vacancies?</h2>
+        <p>The Miracle Land Company has a strong presence in Pahang,
+          with offices in Temerloh, Kuantan, and Jengka. If you haven't
+          found the job vacancy on our site today, you can submit your
+          details prospectively with us and one of our team will get in touch with you</p>
+      </div>
+      <div class="career-link">
+        <q-btn flat label="Submit your details prospectively" class="btn" @click="navigateToForm"/>
+      </div>
+      <div class="career-second">
+      <strong>Be fraud aware:</strong> Fraudulent job advertisements can circulate online and falsely
+          claim to be associated with The Miracle Land Company. Genuine
+          correspondence from The Miracle Land Company will always come
+          from the official website [www.miracleland.com].We will never
+          request sensitive or personal financial information during the
+          recruitment process. If you suspect that you have been contacted
+          by someone misrepresenting The Miracle Land Company, please
+          contact us at hmnrs.md3@gmail.com.
+      </div>
+    </div>
 
       <q-page-sticky position="bottom-right" :offset="[35, 50]">
         <q-fab direction="up" color="dark grey" icon="keyboard_arrow_up"         label-position="left"
@@ -93,12 +145,48 @@
 </template>
 
 <script setup>
-import { departments, jobposition } from 'src/components/CareerData.vue'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { departments, jobposition, locations } from 'src/components/CareerData.vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 const sections = ref([])
+const selectedDepartment = ref('All departments')
+const selectedLocation = ref('All locations')
 const fadeItems = ref([])
 let observer = null
+
+// Filtered jobs based on selected department and location
+const filteredJobs = computed(() => {
+  let jobs = Object.values(jobposition).flat()
+
+  // Apply department filter if selected
+  if (selectedDepartment.value !== 'All departments') {
+    jobs = jobs.filter(job => jobposition[selectedDepartment.value]?.includes(job))
+  }
+  // Apply location filter if selected
+  if (selectedLocation.value !== 'All locations') {
+    jobs = jobs.filter(job => job.location === selectedLocation.value)
+  }
+  return jobs
+})
+
+// Filtered locations based on department
+const filteredLocations = computed(() => {
+  if (selectedDepartment.value === 'All departments') return locations
+
+  const jobLocations = new Set(
+    jobposition[selectedDepartment.value]?.map(job => job.location) || []
+  )
+
+  return locations.filter(loc => jobLocations.has(loc.location))
+})
+
+// Triggered when either department or location changes
+const filterJobs = () => {
+}
+
+const navigateToForm = () => {
+  window.open('https://forms.monday.com/forms/af05330b16c06a3f98c8e8e0efdf767f?r=use1&s=6', '_blank')
+}
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -124,6 +212,7 @@ onBeforeUnmount(() => {
   // Clean up observer
   if (observer) observer.disconnect()
 })
+
 </script>
 
 <style scoped>
@@ -372,9 +461,6 @@ padding-inline: 20px;
   justify-content: space-between;
   gap: 20px;
   background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .contact-offer {
@@ -454,57 +540,99 @@ padding-right: 10px;
   }
 }
 
-.department-section {
-  padding: 10px 15%;
+.job-filter-container {
+  padding: 80px 5%;
   background-color: #f9f9f9;
-  border-radius: 8px;
-  margin-top: 20px;
-  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2), /* Top shadow */
-              0 3px 6px rgba(0, 0, 0, 0.2); /* Bottom shadow */}
-
-.department-title {
-  font-size: 36px;
-  color: #333;
-  font-family: 'RecklessNeueMedium';
-  margin-bottom: 15px;
-  margin-top: 0px;
-  border-bottom: 2px solid #08463c;
-  display: inline-block;
-
 }
 
-.icon {
-  font-size: 20px;
-  color: #087f5b;
-  margin-right: -5px;
-}
-.department-item {
+.filter-bar {
   display: flex;
-  align-items: center;
-  padding: 8px 0;
-  align-items: center;
-  border-bottom: 1px solid #ddd;
+  gap: 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 
-.department-item:last-child {
-  border-bottom: none;
-}
-
-.department-feature {
-  font-size: 18px;
-  line-height: 22px;
+.select {
+  width: 300px;
   font-family: 'TitilliumWebRegular';
-  margin-left: 8px;
-  color: #555;
+  font-size: 16px;
 }
 
-.department-contain {
-  margin-top: 10px;
-  margin-bottom: 50px;
+.job-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
 }
 
-.department-list {
-  padding-left: 15px; /* Indent the list slightly */
+.job-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.job-location {
+  font-family: 'TitilliumWebRegular';
+  color: #666;
+  font-size: 16px;
+}
+
+.job-title {
+  font-size: 20px;
+  font-family: 'TitilliumWebSemiBold';
+}
+
+.no-jobs {
+  text-align: center;
+  font-size: 16px;
+  color: #888;
+}
+
+.careers-text {
+  padding: 10px 5%;
+  padding-bottom: 80px;
+  background-color:#f9f9f9;
+}
+
+.career-first h2 {
+  font-size: 17px;
+  font-family: 'TitilliumWebSemiBold';
+  margin-bottom: -5px;
+}
+
+.career-first p {
+  font-size: 17px;
+  font-family: 'TitilliumWebRegular';
+}
+
+.career-link {
+  padding-bottom: 30px;
+}
+
+.btn {
+  background-color: transparent;
+  border: 1px solid #a39f1a;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  text-transform: none;
+  font-family: 'AvenirMedium';
+}
+
+.btn:hover {
+  background-color: #a39f1a;
+  color: white;
+}
+
+.career-second strong{
+  font-size: 17px;
+  font-family: 'TitilliumWebSemiBold';
+}
+
+.career-second {
+  font-size: 17px;
+  font-family: 'TitilliumWebRegular';
 }
 
 .qr-img {
