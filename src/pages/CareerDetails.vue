@@ -64,20 +64,26 @@
 
     <div class="job-filter-container">
       <div class="filter-bar fade-up">
-        <select v-model="selectedDepartment" @change="filterJobs" class="select">
-          <option value="">All Departments</option>
-          <option v-for="dept in departments" :key="dept.department" :value="dept.department">
-            {{ dept.department }}
-          </option>
-        </select>
-
+        <!-- Department Selector -->
+        <q-select
+          v-model="selectedDepartment"
+          :options="['All Departments', ...departments.map(dept => dept.department)]"          outlined
+          dense
+          emit-value
+          map-options
+          class="select"
+          @update:model-value="filterJobs"
+        />
         <!-- Location Selector -->
-        <select v-model="selectedLocation" @change="filterJobs" class="select">
-          <option value="">All Locations</option>
-          <option v-for="loc in locations" :key="loc.location" :value="loc.location">
-            {{ loc.location }}
-          </option>
-        </select>
+        <q-select
+          v-model="selectedLocation"
+          :options="['All Locations', ...locations.map(loc => loc.location)]"          outlined
+          dense
+          class="select"
+          emit-value
+          map-options
+          @update:model-value="filterJobs"
+        />
       </div>
 
       <!-- Job Positions Cards -->
@@ -144,13 +150,16 @@ import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
-const selectedDepartment = ref('')
-const selectedLocation = ref('')
+const selectedDepartment = ref('All Departments')
+const selectedLocation = ref('All Locations')
 
 // Filtered jobs based on selected department and location
 const filteredJobs = computed(() => {
   const jobs = []
-  if (!selectedDepartment.value && !selectedLocation.value) {
+  const deptFilter = selectedDepartment.value === 'All Departments' ? '' : selectedDepartment.value
+  const locFilter = selectedLocation.value === 'All Locations' ? '' : selectedLocation.value
+
+  if (!deptFilter && !locFilter) {
     for (const dept in jobposition) {
       for (const locData of jobposition[dept]) {
         for (const loc in locData) {
@@ -158,30 +167,31 @@ const filteredJobs = computed(() => {
         }
       }
     }
-  } else if (selectedDepartment.value && !selectedLocation.value) {
-    const deptJobs = jobposition[selectedDepartment.value]
+  } else if (deptFilter && !locFilter) {
+    const deptJobs = jobposition[deptFilter]
     for (const locData of deptJobs) {
       for (const loc in locData) {
-        jobs.push(...locData[loc].map((job) => ({ ...job, location: loc, department: selectedDepartment.value })))
+        jobs.push(...locData[loc].map((job) => ({ ...job, location: loc, department: deptFilter })))
       }
     }
-  } else if (selectedLocation.value && !selectedDepartment.value) {
+  } else if (locFilter && !deptFilter) {
     for (const dept in jobposition) {
       for (const locData of jobposition[dept]) {
-        if (locData[selectedLocation.value]) {
-          jobs.push(...locData[selectedLocation.value].map((job) => ({ ...job, location: selectedLocation.value, department: dept })))
+        if (locData[locFilter]) {
+          jobs.push(...locData[locFilter].map((job) => ({ ...job, location: locFilter, department: dept })))
         }
       }
     }
   } else {
-    const deptJobs = jobposition[selectedDepartment.value]
+    const deptJobs = jobposition[deptFilter]
     for (const locData of deptJobs) {
-      if (locData[selectedLocation.value]) {
-        jobs.push(...locData[selectedLocation.value].map((job) => ({ ...job, location: selectedLocation.value, department: selectedDepartment.value })))
+      if (locData[locFilter]) {
+        jobs.push(...locData[locFilter].map((job) => ({ ...job, location: locFilter, department: deptFilter })))
       }
     }
   }
-  return jobs
+
+  return jobs.sort((a, b) => a.position.localeCompare(b.position, undefined, { numeric: true }))
 })
 
 const filterJobs = () => {
