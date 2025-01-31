@@ -385,7 +385,7 @@ padding-inline: 20px;
   background-color: white;
   padding: 40px 100px;
   padding-top: 0px;
-  padding-bottom: 100px;
+  padding-bottom: 40px;
   display: flex;
   justify-content: center;
   align-items: center;

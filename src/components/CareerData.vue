@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- this component only hold Awards data -->
+    <!-- this component only hold Careers data -->
   </div>
 </template>
 
@@ -23,47 +23,99 @@ export const locations = [
 
 export const jobposition = {
   'Sales and Marketing': [
-    { id: 1, position: 'Sales Manager', location: 'Temerloh' },
-    { id: 2, position: 'Sales & Marketing Manager', location: 'Temerloh' },
-    { id: 3, position: 'Sales & Marketing Executive', location: 'Jengka' },
-    { id: 4, position: 'Sales Executive', location: 'Jengka' },
-    { id: 5, position: 'Content Creator', location: 'Temerloh' },
-    { id: 6, position: 'Graphic Designer', location: 'Temerloh' }
+    {
+      Temerloh: [
+        { position: 'Sales Manager' },
+        { position: 'Sales & Marketing Manager' },
+        { position: 'Content Creator' },
+        { position: 'Graphic Designer' }
+      ],
+      Jengka: [
+        { position: 'Sales Executive' },
+        { position: 'Sales & Marketing Executive' }
+      ],
+      Kuantan: [
+      ]
+    }
   ],
+
   Accounts: [
-    { id: 1, position: 'Accountant', location: 'Temerloh' }
+    {
+      Temerloh: [
+        { position: 'Accountant' }
+      ],
+      Jengka: [
+      ],
+      Kuantan: [
+      ]
+    }
   ],
+
   Development: [
-    { id: 1, position: '3D Architectural Visualiser', location: 'Temerloh' },
-    { id: 2, position: 'Architectural Drafter', location: 'Jengka' },
-    { id: 3, position: 'Town Planner', location: 'Kuantan' }
+    {
+      Temerloh: [
+        { position: '3D Architectural Visualiser' }
+      ],
+      Kuantan: [
+        { position: 'Town Planner' }
+      ],
+      Jengka: [
+        { position: 'Architectural Drafter' }
+      ]
+    }
   ],
+
   Construction: [
-    { id: 1, position: 'Site Safety Supervisor', location: 'Jengka' },
-    { id: 2, position: 'Site Supervisor', location: 'Kuantan' },
-    { id: 3, position: 'Project Manager', location: 'Temerloh' },
-    { id: 4, position: 'Project Engineer', location: 'Jengka' },
-    { id: 5, position: 'Civil Engineer', location: 'Jengka' }
+    {
+      Temerloh: [
+        { position: 'Project Manager' }
+      ],
+      Jengka: [
+        { position: 'Site Safety Supervisor' },
+        { position: 'Project Engineer' },
+        { position: 'Civil Engineer' }
+      ],
+      Kuantan: [
+        { position: 'Site Supervisor' }
+      ]
+    }
   ],
+
   Internship: [
-    { id: 1, position: 'Architecture', location: 'Temerloh' },
-    { id: 2, position: 'Marketing | Sales', location: 'Kuantan' },
-    { id: 3, position: 'Accounting | Finance', location: 'Temerloh' },
-    { id: 4, position: 'Graphic Design', location: 'Jengka' },
-    { id: 5, position: 'Multimedia Creative', location: 'Temerloh' },
-    { id: 6, position: 'IT | Website Development', location: 'Temerloh' },
-    { id: 7, position: 'Administration', location: 'Temerloh' },
-    { id: 8, position: 'Human Resources', location: 'Temerloh' },
-    { id: 9, position: 'Customer Service', location: 'Temerloh' },
-    { id: 10, position: 'Urban Planning', location: 'Kuantan' }
+    {
+      Temerloh: [
+        { position: 'Architecture' },
+        { position: 'Accounting | Finance' },
+        { position: 'Multimedia Creative' },
+        { position: 'IT | Website Development' },
+        { position: 'Administration' },
+        { position: 'Human Resources' },
+        { position: 'Customer Service' }
+      ],
+      Jengka: [
+        { position: 'Graphic Design' }
+      ],
+      Kuantan: [
+        { position: 'Marketing | Sales' },
+        { position: 'Urban Planning' }
+      ]
+    }
   ],
+
   'Internship Construction Related': [
-    { id: 1, position: 'Civil Engineering', location: 'Kuantan' },
-    { id: 2, position: 'Construction Management', location: 'Temerloh' },
-    { id: 2, position: 'Construction Management', location: 'Jengka' },
-    { id: 3, position: 'Quantity Surveyor', location: 'Jengka' },
-    { id: 4, position: 'Safety & Health', location: 'Kuantan' },
-    { id: 5, position: 'Building Management', location: 'Temerloh' }
+    {
+      Temerloh: [
+        { position: 'Construction Management' },
+        { position: 'Building Management' }
+      ],
+      Jengka: [
+        { position: 'Quantity Surveyor' }
+      ],
+      Kuantan: [
+        { position: 'Civil Engineering' },
+        { position: 'Safety & Health' }
+      ]
+    }
   ]
 }
 </script>

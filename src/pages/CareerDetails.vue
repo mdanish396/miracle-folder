@@ -64,32 +64,25 @@
 
     <div class="job-filter-container">
       <div class="filter-bar fade-up">
-        <q-select
-        v-model="selectedDepartment"
-        :options="['All departments', ...departments.map(dept => dept.department)]"
-        outlined
-        dense
-        fit
-        @update:model-value="filterJobs"
-        class="select"
-        />
+        <select v-model="selectedDepartment" @change="filterJobs" class="select">
+          <option value="">All Departments</option>
+          <option v-for="dept in departments" :key="dept.department" :value="dept.department">
+            {{ dept.department }}
+          </option>
+        </select>
 
         <!-- Location Selector -->
-        <q-select
-        v-model="selectedLocation"
-        :options="['All locations', ...filteredLocations.map(loc => loc.location)]"
-        outlined
-        dense
-        fit
-        color=""
-        @update:model-value="filterJobs"
-        class="select"
-        />
+        <select v-model="selectedLocation" @change="filterJobs" class="select">
+          <option value="">All Locations</option>
+          <option v-for="loc in locations" :key="loc.location" :value="loc.location">
+            {{ loc.location }}
+          </option>
+        </select>
       </div>
 
       <!-- Job Positions Cards -->
       <div class="job-cards fade-up delay-1">
-        <q-card v-for="job in filteredJobs" :key="job.id" class="job-card">
+        <q-card v-for="job in filteredJobs" :key="job.position" class="job-card">
           <q-card-section>
             <div class="job-location">
               {{ job.location }}
@@ -145,43 +138,54 @@
 </template>
 
 <script setup>
-import { departments, jobposition, locations } from 'src/components/CareerData.vue'
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { departments, locations, jobposition } from 'src/components/CareerData.vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 
 const sections = ref([])
-const selectedDepartment = ref('All departments')
-const selectedLocation = ref('All locations')
 const fadeItems = ref([])
 let observer = null
+const selectedDepartment = ref('')
+const selectedLocation = ref('')
 
 // Filtered jobs based on selected department and location
 const filteredJobs = computed(() => {
-  let jobs = Object.values(jobposition).flat()
-
-  // Apply department filter if selected
-  if (selectedDepartment.value !== 'All departments') {
-    jobs = jobs.filter(job => jobposition[selectedDepartment.value]?.includes(job))
-  }
-  // Apply location filter if selected
-  if (selectedLocation.value !== 'All locations') {
-    jobs = jobs.filter(job => job.location === selectedLocation.value)
+  const jobs = []
+  if (!selectedDepartment.value && !selectedLocation.value) {
+    for (const dept in jobposition) {
+      for (const locData of jobposition[dept]) {
+        for (const loc in locData) {
+          jobs.push(...locData[loc].map((job) => ({ ...job, location: loc, department: dept })))
+        }
+      }
+    }
+  } else if (selectedDepartment.value && !selectedLocation.value) {
+    const deptJobs = jobposition[selectedDepartment.value]
+    for (const locData of deptJobs) {
+      for (const loc in locData) {
+        jobs.push(...locData[loc].map((job) => ({ ...job, location: loc, department: selectedDepartment.value })))
+      }
+    }
+  } else if (selectedLocation.value && !selectedDepartment.value) {
+    for (const dept in jobposition) {
+      for (const locData of jobposition[dept]) {
+        if (locData[selectedLocation.value]) {
+          jobs.push(...locData[selectedLocation.value].map((job) => ({ ...job, location: selectedLocation.value, department: dept })))
+        }
+      }
+    }
+  } else {
+    const deptJobs = jobposition[selectedDepartment.value]
+    for (const locData of deptJobs) {
+      if (locData[selectedLocation.value]) {
+        jobs.push(...locData[selectedLocation.value].map((job) => ({ ...job, location: selectedLocation.value, department: selectedDepartment.value })))
+      }
+    }
   }
   return jobs
 })
 
-// Filtered locations based on department
-const filteredLocations = computed(() => {
-  if (selectedDepartment.value === 'All departments') return locations
-
-  const jobLocations = new Set(
-    jobposition[selectedDepartment.value]?.map(job => job.location) || []
-  )
-
-  return locations.filter(loc => jobLocations.has(loc.location))
-})
-
-// Triggered when either department or location changes
 const filterJobs = () => {
+
 }
 
 const navigateToForm = () => {
@@ -582,9 +586,14 @@ padding-right: 10px;
   font-family: 'TitilliumWebSemiBold';
 }
 
-.no-jobs {
+.job-cards .no-jobs {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 16px;
+  padding-top: 80px;
+  font-size: 18px;
+  font-family: 'TitilliumWebRegular';
   color: #888;
 }
 
