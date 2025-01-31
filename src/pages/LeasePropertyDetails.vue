@@ -439,19 +439,34 @@
               </div>
             </div>
             <p class="fade-up delay-3">Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
-            <form class="register-form fade-up delay-4">
-              <input type="text" placeholder="Name*" required>
-              <input type="email" placeholder="Email*" required>
-              <input type="tel" placeholder="Telephone*" required>
-              <select>
+            <form
+              action="https://formspree.io/f/myzkjkew"
+              method="POST"
+              class="register-form fade-up delay-4"
+            >
+              <!-- Name Field -->
+              <input type="text" name="name" placeholder="Name*" required>
+
+              <!-- Email Field -->
+              <input type="email" name="email" placeholder="Email*" required>
+
+              <!-- Telephone Field -->
+              <input type="tel" name="telephone" placeholder="Telephone*" required>
+
+              <!-- Enquiry Type Dropdown -->
+              <select name="enquiryType" required>
                 <option disabled selected>Select enquiry type</option>
-                <option>General</option>
-                <option>Interested Project</option>
-                <option>Consultation</option>
-                <option>Business</option>
-                <option>Contractor</option>
+                <option value="General">General</option>
+                <option value="Interested Project">Interested Project</option>
+                <option value="Consultation">Consultation</option>
+                <option value="Business">Business</option>
+                <option value="Contractor">Contractor</option>
               </select>
-              <textarea placeholder="Questions/Comments*" required></textarea>
+
+              <!-- Message Field -->
+              <textarea name="message" placeholder="Questions/Comments*" required></textarea>
+
+              <!-- Submit Button -->
               <button type="submit" class="submit-btn">SEND</button>
             </form>
           </div>
