@@ -35,7 +35,7 @@
       <p class="fade-up delay-2">Explore our current developments and find your dream home.</p>
       <div class="fade-up delay-3">
         <div class="development-flex">
-          <div class="developments-container">
+          <div class="developments-container" :class="{ 'flex-layout': displayedDevelopments.length < 4 }">
             <!-- Scrollable Development Card -->
             <div
               class="development-card"
@@ -106,7 +106,7 @@
       <p class="fade-up delay-2">Explore our past developments and build your confidence.</p>
       <div class=" fade-up delay-3">
         <div class="development-flex">
-          <div class="developments-container">
+          <div class="developments-container" :class="{ 'flex-layout': displayedPastDevelopments.length < 4 }">
             <!-- Scrollable Development Card -->
             <div
               class="development-card"
@@ -619,6 +619,12 @@ padding-inline: 20px;
   .developments-container {
     grid-template-columns: repeat(1, minmax(280px, 1fr));
   }
+}
+
+.developments-container.flex-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .development-card {

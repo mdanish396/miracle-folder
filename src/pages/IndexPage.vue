@@ -51,7 +51,7 @@
         <p class="fade-up delay-2">Explore our current developments and find your dream home or shop.</p>
         <div class="container fade-up delay-3">
           <div class="development-flex">
-            <div class="developments-container">
+            <div class="developments-container" :class="{ 'flex-layout': displayedDevelopments.length < 4 }">
               <!-- Scrollable Development Card -->
               <div
                 class="development-card"
@@ -158,7 +158,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 
@@ -172,6 +172,32 @@ const sections = ref([])
 const fadeItems = ref([])
 let observer = null
 
+const updateLayout = () => {
+  const container = document.querySelector('.developments-container')
+  const cards = document.querySelectorAll('.development-card')
+
+  if (!container) return // Prevent errors if container doesn't exist
+
+  if (cards.length < 4) {
+    container.style.display = 'flex'
+    container.style.justifyContent = 'center'
+    container.style.flexWrap = 'wrap'
+  } else {
+    container.style.display = 'grid'
+    container.style.gridTemplateColumns = 'repeat(4, minmax(280px, 1fr))'
+  }
+}
+
+onMounted(() => {
+  nextTick(() => {
+    updateLayout() // Ensure layout updates after DOM is rendered
+    window.addEventListener('resize', updateLayout)
+  })
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateLayout)
+})
 onMounted(() => {
   setTimeout(() => {
     showLoader.value = false
@@ -513,7 +539,7 @@ const navigateToDevelopmentDetails = (slug) => {
 }
 
 .developments-container {
-  display: flex;
+  display: grid;
   gap: 20px;
   grid-template-columns: repeat(4, minmax(280px, 1fr)); /* Responsive grid */
   padding-bottom: 80px;
@@ -538,6 +564,12 @@ const navigateToDevelopmentDetails = (slug) => {
   }
 }
 
+.developments-container.flex-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .development-card {
   position: relative;
   min-width: 280px;
@@ -554,16 +586,13 @@ const navigateToDevelopmentDetails = (slug) => {
 }
 
 .development-image {
-  width: 300px;
+  width: 100%;
   height: 225px;
   object-fit: cover;
 }
 
 .development-info {
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-top: -20px;
-  padding-bottom: 20px;
+  padding: 15px;
   text-align: left;
 }
 
@@ -571,6 +600,9 @@ const navigateToDevelopmentDetails = (slug) => {
   font-size: 21px;
   font-family: 'TitilliumWebSemiBold';
   margin-bottom: 5px;
+  margin-top: -10px;
+  height: 60px;
+  line-height: 31px;
 }
 
 .development-info p {
