@@ -638,7 +638,7 @@ padding-inline: 20px;
 
 .development-image {
   width: 100%;
-  height: 260px;
+  height: 225px;
   object-fit: cover;
 }
 
