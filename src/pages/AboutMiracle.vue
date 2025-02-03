@@ -114,7 +114,7 @@
           </ul>
 
           <div class="mission-image-container">
-            <img src="src/assets/about2.jpg" class="mission-image" />
+            <img src="src/assets/about2.png" class="mission-image" />
           </div>
         </div>
       </div>

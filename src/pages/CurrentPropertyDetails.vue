@@ -199,99 +199,92 @@
     </div>
 
     <!-- Floor Plan Section -->
-    <div class="floorplan-section" id="section-floorplan">
-      <h2 class="floorplan-title fade-up">Floorplan</h2>
-      <div class="line-holder fade-up delay-1">
-        <div class="line">
-          <div class="line-1">
-            <div class="line-2"></div>
+    <div>
+      <div class="floorplan-section" id="section-floorplan">
+        <h2 class="floorplan-title fade-up">Floorplan</h2>
+        <div class="line-holder fade-up delay-1">
+          <div class="line">
+            <div class="line-1">
+              <div class="line-2"></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="floorplan-container">
-        <!-- Header Section -->
-        <div class="floorplan-header">
-          <div class="plan-select fade-up delay-2">
-            <select v-model="selectedPlan" class="custom-select">
-              <option
-                v-for="(plans, planType) in currentFloorplans"
-                :key="planType"
-                :value="planType">
-                {{ planType }}
-              </option>
-            </select>
+        <div class="floorplan-container">
+          <!-- Header Section -->
+          <div class="floorplan-header">
+            <div class="plan-select fade-up delay-2">
+                {{ property.name }}
+            </div>
+            <div class="plan-price fade-up delay-2">
+              Price From <span class="price">{{ property.price }}</span>
+            </div>
           </div>
-          <div class="plan-price fade-up delay-2">
-            Price From <span class="price">{{ property.price }}</span>
-          </div>
-        </div>
 
-        <!-- Floorplan Details Section -->
-        <div class="floorplan-details">
-          <div
-            v-for="(plans, planType) in currentFloorplans"
-            :key="planType">
-            <div v-if="selectedPlan === planType" class="details-floorplan">
-              <div class="details-grid-items">
-                <div class="details-grid fade-up delay-3">
-                  <!-- Bedrooms -->
-                  <div class="details-item">
-                    <img src="src/assets/bed.png" alt="Area" class="icon-3" />
-                    <p>{{ plans[0].bedroom }} Bedrooms</p>
+          <!-- Floorplan Details Section -->
+          <div class="floorplan-details">
+            <div>
+              <div class="details-floorplan">
+                <div class="details-grid-items">
+                  <div class="details-grid fade-up delay-2">
+                    <!-- Bedrooms -->
+                    <div class="details-item">
+                      <img src="src/assets/bed.png" alt="Area" class="icon-3" />
+                      <p>{{ property.bedroom }} Bedrooms</p>
+                    </div>
+                    <!-- Bathrooms -->
+                    <div class="details-item">
+                      <img src="src/assets/bathroom.svg" alt="Area" class="icon-3" />
+                      <p>{{ property.bathroom }} Bathrooms</p>
+                    </div>
+                    <!-- Area -->
+                    <div class="details-item">
+                      <img src="src/assets/area.svg" alt="Area" class="icon-3" />
+                      <p>{{ property.area }}</p>
+                    </div>
                   </div>
-                  <!-- Bathrooms -->
-                  <div class="details-item">
-                    <img src="src/assets/bathroom.svg" alt="Area" class="icon-3" />
-                    <p>{{ plans[0].bathroom }} Bathrooms</p>
-                  </div>
-                  <!-- Area -->
-                  <div class="details-item">
-                    <img src="src/assets/area.svg" alt="Area" class="icon-3" />
-                    <p>{{ plans[0].area }}</p>
-                  </div>
-                </div>
 
-                <!-- Buttons Section -->
-                <div class="floorplan-buttons fade-up delay-4">
-                  <button @click="downloadBrochure(plans[0].brochure)" class="btn download-btn">
-                    <img src="src/assets/brochure.svg" alt="Download" />
-                    Download Brochure
-                  </button>
-                  <button @click="openImage(plans[0].plan)" class="btn view-btn">
-                    <img src="src/assets/area.svg" alt="View" />
-                    View Floorplan
-                  </button>
+                  <!-- Buttons Section -->
+                  <div class="floorplan-buttons fade-up delay-3">
+                    <button @click="downloadBrochure(property.brochure)" class="btn download-btn">
+                      <img src="src/assets/brochure.svg" alt="Download" />
+                      Download Brochure
+                    </button>
+                    <button @click="openImage(property.plan)" class="btn view-btn">
+                      <img src="src/assets/area.svg" alt="View" />
+                      View Floorplan
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Popup for floorplan image -->
-    <div class="popup" v-if="showPopup">
-      <div class="popup-content">
-        <div class="popup-header">
-          <h2 class="popup-title">{{ selectedPlan }}</h2>
-          <div class="zoom-control">
-            <button @click="zoomIn" class="close-btn"> <i class="fa fa-search-plus"></i></button>
-            <button @click="zoomOut" class="close-btn"> <i class="fa fa-search-minus"></i></button>
-            <button class="close-btn" @click="ClosePopup"><i class="fa fa-times-circle"></i></button>
+      <!-- Popup for floorplan image -->
+      <div class="popup" v-if="showPopup">
+        <div class="popup-content">
+          <div class="popup-header">
+            <h2 class="popup-title">{{ property.name }}</h2>
+            <div class="zoom-control">
+              <button @click="zoomIn" class="close-btn"> <i class="fa fa-search-plus"></i></button>
+              <button @click="zoomOut" class="close-btn"> <i class="fa fa-search-minus"></i></button>
+              <button class="close-btn" @click="ClosePopup"><i class="fa fa-times-circle"></i></button>
+            </div>
           </div>
-        </div>
 
-        <div class="popup-image-container"
-          :class="{ grabbing: isDragging }"
-          @mousedown="startDragging"
-          @mousemove="dragImage"
-          @mouseup="stopDragging"
-          @mouseleave="stopDragging">
-          <img
-            :src="selectedPlanImage"
-            alt="Floorplan"
-            class="popup-image"
-            :style="{transform: `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`, }"/>
+          <div class="popup-image-container"
+            :class="{ grabbing: isDragging }"
+            @mousedown="startDragging"
+            @mousemove="dragImage"
+            @mouseup="stopDragging"
+            @mouseleave="stopDragging">
+            <img
+              :src="property.plan"
+              alt="Floorplan"
+              class="popup-image"
+              :style="{transform: `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`, }"/>
+          </div>
         </div>
       </div>
     </div>
@@ -550,10 +543,9 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref, onBeforeUnmount, computed, watchEffect } from 'vue'
+import { onMounted, onUnmounted, ref, onBeforeUnmount, computed } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import { properties } from 'src/components/Properties/CurrentProperties/CurrentPropertiesData.vue'
-import { floorplan } from 'src/components/Properties/CurrentProperties/CurrentPropertiesFloorplan.vue'
 import { nearbyAmenities } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentAmenitiesData.vue'
 
 // Assuming you have a store or an API to fetch properties
@@ -565,7 +557,6 @@ const property = ref(flattenedProperties.find(item => item.slug === propertySlug
 const screenBelow540px = ref(window.innerWidth < 540)
 const isPopupOpen = ref(false)
 const currentImage = ref(0)
-const selectedPlan = ref('') // Default selected plan
 const selectedPlanImage = ref('')
 const showPopup = ref(false)
 const zoomLevel = ref(1)
@@ -574,7 +565,6 @@ const translateX = ref(0)
 const translateY = ref(0)
 const lastMouseX = ref(0)
 const lastMouseY = ref(0)
-const selectedProperty = ref(property.value?.name || '') // Default to the current property name
 const visibleCount = ref(3)
 const sections = ref([])
 const fadeItems = ref([])
@@ -624,13 +614,6 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
-})
-
-const currentFloorplans = computed(() => floorplan[property.value.name]?.[0] || {})
-
-onMounted(() => {
-  const firstPlan = Object.keys(currentFloorplans.value)[0]
-  selectedPlan.value = firstPlan
 })
 
 const open = (vr) => {
@@ -787,14 +770,6 @@ const getCategoryIcon = (category) => {
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
-
-watchEffect(() => {
-  if (property.value) {
-    selectedProperty.value = property.value.name
-    const firstPlan = Object.keys(floorplan[property.value.name]?.[0] || {})[0]
-    selectedPlan.value = firstPlan || '' // Update the selected plan
-  }
-})
 
 const similarProperties = computed(() => {
   return flattenedProperties.filter(
@@ -1480,41 +1455,15 @@ const loadMore = () => {
 
 .plan-select {
   font-family: 'TitilliumWebRegular';
-  padding: 5px;
+  padding: 10px 5%;
   font-size: 17px;
   color: white;
-}
-
-/* Custom select styling */
-.custom-select {
-  width: 300px;
-  background-color: #08463c; /* Background color */
-  color: white; /* Text color */
-  border: 1px solid #727272;
-  padding: 10px 16px;
-  font-size: 16px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Dropdown hover effect */
-.custom-select:hover {
-  background-color: #0a5b4d; /* Slightly darker green */
-}
-
-/* Styling the options */
-.custom-select option {
-  background-color: #0a5b4d; /* Default background */
-  color: white; /* Text color */
-  padding: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .plan-price {
   font-family: 'TitilliumWebRegular';
   white-space: nowrap;
-  padding: 10px;
+  padding: 10px 5%;
   font-size: 17px;
   line-height: 27px;
 }

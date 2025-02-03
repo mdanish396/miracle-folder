@@ -23,7 +23,7 @@ export const leaseproperties = {
     slug: generateSlug('Monarc Homes'),
     location: 'Kalimantan, Mana',
     place: 'Monarc Cove',
-    housetype: '2-Storey Terrace & Semi-D',
+    housetype: '3-Storey Terrace & 2 Storey Semi-D',
     status: 'Current',
     price: 'RM 5000',
     image: 'src/assets/currentproject/car.jpg',
@@ -46,7 +46,11 @@ export const leaseproperties = {
     ],
     builtup: '2,150 - 2,497 sqft',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: '/property/'
+    area: '1,800 sqft',
+    bedroom: 4,
+    bathroom: 3,
+    plan: 'src/assets/currentproject/house1.jpg',
+    brochure: 'src/assets/reports/BILL GATES AND MICROSOFT.pdf'
   }
   ],
   'Connaught Cove': [{
@@ -79,7 +83,11 @@ export const leaseproperties = {
     builtup: '2,150 - 2,497 sqft',
     vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15930.380935267707!2d102.4265958!3d3.4481648500000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceb98ede1fc697%3A0x525d3e85476ef763!2sRestoran%20Saiful!5e0!3m2!1sen!2smy!4v1735284346219!5m2!1sen!2smy',
-    link: '/property/'
+    area: '2,800 sqft',
+    bedroom: 5,
+    bathroom: 4,
+    plan: 'src/assets/currentproject/house3.jpg',
+    brochure: 'src/assets/reports/brochure.pdf'
   }
   ],
   'ZIG House': [{
@@ -112,7 +120,11 @@ export const leaseproperties = {
     builtup: '2,150 - 2,497 sqft',
     vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: '/property/'
+    area: '3,800 sqft',
+    bedroom: 5,
+    bathroom: 4,
+    plan: 'src/assets/currentproject/house1.jpg',
+    brochure: 'src/assets/reports/brochure.pdf'
   },
   {
     id: 2,
@@ -144,7 +156,11 @@ export const leaseproperties = {
     builtup: '2,150 - 2,497 sqft',
     vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: '/property/'
+    area: '2,800 sqft',
+    bedroom: 4,
+    bathroom: 3,
+    plan: 'src/assets/currentproject/house2.jpg',
+    brochure: 'src/assets/reports/brochure.pdf'
   },
   {
     id: 3,
@@ -176,7 +192,11 @@ export const leaseproperties = {
     builtup: '2,150 - 2,497 sqft',
     vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: '/property/'
+    area: '3,300 sqft',
+    bedroom: 4,
+    bathroom: 4,
+    plan: 'src/assets/currentproject/house1.jpg',
+    brochure: 'src/assets/reports/brochure.pdf'
   },
   {
     id: 4,
@@ -208,7 +228,11 @@ export const leaseproperties = {
     builtup: '2,150 - 2,497 sqft',
     vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on',
-    link: '/property/'
+    area: '3,300 sqft',
+    bedroom: 4,
+    bathroom: 4,
+    plan: 'src/assets/currentproject/house1.jpg',
+    brochure: 'src/assets/reports/brochure.pdf'
   }
   ]
 }

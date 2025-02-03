@@ -3,7 +3,7 @@
       <!-- Startup Animation Overlay -->
       <div v-if="showLoader" class="startup-overlay">
         <div>
-          <img src="src/assets/logo4.png" class="startup-image">
+          <img src="src/assets/logo.png" class="startup-image">
         </div>
         <h4>MIRACLE LAND</h4>
       </div>
@@ -116,9 +116,9 @@
           </div>
         </div>
         <div class="logo-container fade-up delay-2">
-          <img src="src/assets/logo1.png" alt="Partner 1" class="partner-logo" />
-          <img src="src/assets/logo1.png" alt="Partner 2" class="partner-logo" />
-          <img src="src/assets/logo1.png" alt="Partner 3" class="partner-logo" />
+          <img src="src/assets/logo.png" alt="Partner 1" class="partner-logo" />
+          <img src="src/assets/logo.png" alt="Partner 2" class="partner-logo" />
+          <img src="src/assets/logo.png" alt="Partner 3" class="partner-logo" />
         </div>
       </div>
 

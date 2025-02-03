@@ -6,7 +6,6 @@ const routes = [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: '/about-miracle', name: 'AboutMiracle', component: () => import('src/pages/AboutMiracle.vue') },
       { path: '/awards', component: () => import('src/pages/AwardsPage.vue') },
-      { path: '/current-development', component: () => import('src/pages/CurrentDevelopmentPage.vue') },
       { path: '/past-development', component: () => import('src/pages/PastDevelopmentDetails.vue') },
       { path: '/announcement', component: () => import('src/pages/AnnouncementPage.vue') },
       { path: '/investor-centre', component: () => import('src/pages/InvestorCentrePage.vue') },
