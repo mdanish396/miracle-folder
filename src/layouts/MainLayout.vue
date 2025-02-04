@@ -24,35 +24,32 @@
           </q-card>
 
           <q-card
-          class="nav-button flat-card"
-          @mouseover="showDropdown('sale')"
-          @mouseleave="hideDropdown('sale')"
-          >
+            class="nav-button flat-card"
+            @mouseover="showDropdown('sale')"
+            @mouseleave="hideDropdown('sale')">
             <q-card-section class="nav-card-section">For Sale
               <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
             </q-card-section>
             <q-menu
-            v-if="activeDropdown === 'sale'"
-            anchor="bottom middle"
-            self="top middle"
-            fit
-            @mouseover="showDropdown('sale')"
-            @mouseleave="hideDropdown('sale')"
-            class="dropdown-container"
-            >
+              v-if="activeDropdown === 'sale'"
+              anchor="bottom middle"
+              self="top middle"
+              fit
+              @mouseover="showDropdown('sale')"
+              @mouseleave="hideDropdown('sale')"
+              class="dropdown-container">
               <div class="dropdown-content">
                 <!-- district list -->
                 <div v-for="(districts, state) in groupedDevelopments" :key="state" class="district-list">
                   <h6>{{ state }}</h6>
                   <ul>
                     <li
-                    v-for="(district, index) in districts"
-                    :key="index"
-                    @mouseover="setSelectedDistrict(district)"
-                    @click="setSelectedDistrict(district)"
-                    class="district-item"
-                    default-opened
-                    >
+                      v-for="(district, index) in districts"
+                      :key="index"
+                      @mouseover="setSelectedDistrict(district)"
+                      @click="setSelectedDistrict(district)"
+                      class="district-item"
+                      default-opened>
                       {{ district }}
                     </li>
                   </ul>
@@ -62,7 +59,7 @@
                 <div class="image-grid">
                   <div class="grid-item" v-for="(project, index) in filteredProjects" :key="index">
                     <div class="image-container"
-                    @click="navigateToSlug(project.slug)">
+                      @click="navigateToSlug(project.slug)">
                       <img :src="project.image" alt="Project Image" />
                       <div class="overlay">
                         <p>{{ project.name }}</p>
@@ -75,9 +72,8 @@
           </q-card>
 
           <q-card class="nav-button flat-card"
-          @mouseover="showDropdown('lease')"
-          @mouseleave="hideDropdown('lease')"
-          >
+            @mouseover="showDropdown('lease')"
+            @mouseleave="hideDropdown('lease')">
             <q-card-section class="nav-card-section">For Lease
               <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
             </q-card-section>
