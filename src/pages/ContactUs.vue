@@ -29,8 +29,7 @@
             <h2 class="register-title fade-up">Contact Details</h2>
             <div class="register-line-holder fade-up delay-1">
               <div class="register-line">
-                <div class="register-line-1">
-                </div>
+                <div class="register-line-1"></div>
               </div>
             </div>
             <h5 class="address-title fade-up delay-2">Address</h5>
@@ -41,36 +40,36 @@
 
             <div class="map-button fade-up delay-2">
               <button @click="gotofullmap" class="btn view-full-map-btn">
-                    <img src="src/assets/brochure.svg" alt="Download" />
-                    View Full Map
-                  </button>
+                <img src="src/assets/brochure.svg" alt="Download" />
+                View Full Map
+              </button>
             </div>
             <h5 class="contact-title fade-up delay-2">Contact Number</h5>
             <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
-                <span class="contact-no">
-                  +60 19 296 6666
-                </span>
+              <span class="contact-no">
+                +60 19 296 6666
+              </span>
             </div>
             <h5 class="email-title fade-up delay-2">General Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-                <span class="email-address">
-                  kevin@interplandesigns.com
-                </span>
+              <span class="email-address">
+                kevin@interplandesigns.com
+              </span>
             </div>
             <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
             <p class="email-subtitle fade-up delay-2">We're always on the lookout for talented people - please send us <br> your CV and portfolio (no larger than 5MB) to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-                <span class="email-address">
-                  hmnrs.md3@gmail.com
-                </span>
+              <span class="email-address">
+                hmnrs.md3@gmail.com
+              </span>
               <div>
                 <i class="fa fa-phone phone-icon"></i>
                 <span class="contact-no">
-                  +60 11 6999 9888
+                  +60 116 9999 888
                 </span>
               </div>
             </div>
@@ -78,16 +77,16 @@
             <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-                <span class="email-address">
-                  kevin@interplandesigns.com
-                </span>
+              <span class="email-address">
+                kevin@interplandesigns.com
+              </span>
             </div>
             <h5 class="business-title fade-up delay-2">Business Hours</h5>
             <div class="fade-up delay-3">
               <i class="fas fa-business-time calendar-icon"></i>
-                <span class="business-hours">
-                  Mon - Sat , 9am - 5pm
-                </span>
+              <span class="business-hours">
+                Mon - Sat , 9am - 5pm
+              </span>
             </div>
           </div>
 
@@ -96,16 +95,15 @@
             <h2 class="fade-up delay-1">Got A Question?</h2>
             <div class="register-line-holder fade-up delay-2">
               <div class="register-line">
-                <div class="register-line-1">
-                </div>
+                <div class="register-line-1"></div>
               </div>
             </div>
             <p class="fade-up delay-3">Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
             <form
               action="https://formspree.io/f/myzkjkew"
               method="POST"
-              class="register-form fade-up delay-4"
-            >
+              class="register-form fade-up delay-4">
+
               <!-- Name Field -->
               <input type="text" name="name" placeholder="Name*" required>
 

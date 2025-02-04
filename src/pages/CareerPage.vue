@@ -10,9 +10,10 @@
               <div class="line-hero-1"></div>
             </div>
           </div>
-            <h2 class="text-above fade-up delay-1">Career</h2>
-            <p class="text-below fade-up delay-2">
-              Explore our current job opportunities.</p>
+          <h2 class="text-above fade-up delay-1">Career</h2>
+          <p class="text-below fade-up delay-2">
+            Explore our current job opportunities.
+          </p>
         </div>
 
         <!-- Image Section -->
@@ -77,7 +78,7 @@
       </div>
     </div>
     <div class="btn fade-up delay-1">
-    <q-btn flat label="Career Opportunities" class="btn-story" to='/career-opportunities'/>
+      <q-btn flat label="Career Opportunities" class="btn-story" to='/career-opportunities'/>
     </div>
   </q-page>
 </template>

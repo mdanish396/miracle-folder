@@ -1,59 +1,59 @@
 <template>
   <q-page>
     <div class="news-details" v-if="newsItem">
-        <!-- Main Content -->
-        <div class="news-page">
+      <!-- Main Content -->
+      <div class="news-page">
 
-          <div class="image-title-container">
-            <img v-if="newsItem.imagetitle" :src="newsItem.imagetitle" class="title-image" />
+        <div class="image-title-container">
+          <img v-if="newsItem.imagetitle" :src="newsItem.imagetitle" class="title-image" />
+        </div>
+        <div class="news-header">
+          <!-- Date Section -->
+          <div class="date-box">
+            <div class="date-day">{{ newsItem.day }}</div>
+            <div class="date-month">{{ newsItem.month }}</div>
+            <div class="date-year">{{ newsItem.year }}</div>
           </div>
-          <div class="news-header">
-            <!-- Date Section -->
-            <div class="date-box">
-              <div class="date-day">{{ newsItem.day }}</div>
-              <div class="date-month">{{ newsItem.month }}</div>
-              <div class="date-year">{{ newsItem.year }}</div>
-            </div>
-            <!-- News Title -->
-            <div class="news-title">
-              <h1 class="text-h4">{{ newsItem.title }}</h1>
-            </div>
-          </div>
-
-          <!-- News Content -->
-          <div class="news-content">
-            <div v-for="(paragraph, index) in newsItem.content" :key="index">
-              <div v-if="newsItem.images && newsItem.images[index]" class="images-content">
-                <img :src="newsItem.images[index].url" class="content-image" />
-              </div>
-              <p class="text-body2">{{ paragraph }}</p>
-            </div>
-            <div class="source">
-              <p class="text-body3">Source: {{ newsItem.source }}</p>
-            </div>
-          </div>
-
-          <!-- Share Section -->
-          <div class="share-section q-px-md q-py-md">
-            <p class="text-subtitle2">Share Now</p>
-            <div class="share-button">
-              <q-btn flat round class="share-btn facebook" icon="mdi-facebook" aria-label="Facebook" @click="openFacebook" />
-              <q-btn flat round class="share-btn twitter" icon="mdi-twitter" aria-label="Twitter" @click="openTwitter" />
-              <q-btn flat round class="share-btn linkedin" icon="mdi-linkedin" aria-label="Linkedin" @click="openLinkedin" />
-              <q-btn flat round class="share-btn whatsapp" icon="mdi-whatsapp" aria-label="Whatsapp" @click="openWhatsapp" />
-            </div>
-          </div>
-
-          <!-- Back Button -->
-          <div class="back-btn-wrapper">
-            <q-btn
-              label="Back"
-              flat
-              class="back-btn"
-              @click="goBack"
-            />
+          <!-- News Title -->
+          <div class="news-title">
+            <h1 class="text-h4">{{ newsItem.title }}</h1>
           </div>
         </div>
+
+        <!-- News Content -->
+        <div class="news-content">
+          <div v-for="(paragraph, index) in newsItem.content" :key="index">
+            <div v-if="newsItem.images && newsItem.images[index]" class="images-content">
+              <img :src="newsItem.images[index].url" class="content-image" />
+            </div>
+            <p class="text-body2">{{ paragraph }}</p>
+          </div>
+          <div class="source">
+            <p class="text-body3">Source: {{ newsItem.source }}</p>
+          </div>
+        </div>
+
+        <!-- Share Section -->
+        <div class="share-section q-px-md q-py-md">
+          <p class="text-subtitle2">Share Now</p>
+          <div class="share-button">
+            <q-btn flat round class="share-btn facebook" icon="mdi-facebook" aria-label="Facebook" @click="openFacebook" />
+            <q-btn flat round class="share-btn twitter" icon="mdi-twitter" aria-label="Twitter" @click="openTwitter" />
+            <q-btn flat round class="share-btn linkedin" icon="mdi-linkedin" aria-label="Linkedin" @click="openLinkedin" />
+            <q-btn flat round class="share-btn whatsapp" icon="mdi-whatsapp" aria-label="Whatsapp" @click="openWhatsapp" />
+          </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="back-btn-wrapper">
+          <q-btn
+            label="Back"
+            flat
+            class="back-btn"
+            @click="goBack"
+          />
+        </div>
+      </div>
     </div>
   </q-page>
 </template>

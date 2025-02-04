@@ -11,9 +11,11 @@
               <div class="line-hero-1"></div>
             </div>
           </div>
-            <h2 class="text-above fade-up delay-1">Career</h2>
-            <p class="text-below fade-up delay-2">
-              Explore our current job opportunities. <i class="fa fa-bullhorn" style="font-size:larger; color: beige;"></i></p>
+          <h2 class="text-above fade-up delay-1">Career</h2>
+          <p class="text-below fade-up delay-2">
+            Explore our current job opportunities.
+            <i class="fa fa-bullhorn" style="font-size:larger; color: beige;"></i>
+          </p>
         </div>
 
         <!-- Image Section -->
@@ -29,21 +31,21 @@
         <div class="fade-up delay-1">
           <div class="text-list">
             <img src="src/assets/handshake.png" class="icon-image"/>
-              <span class="offer-text">
-                Competitive pay
-              </span>
+            <span class="offer-text">
+              Competitive pay
+            </span>
           </div>
           <div class="text-list">
             <img src="src/assets/handshake.png" class="icon-image"/>
-              <span class="offer-text">
-                Comprehensive training
-              </span>
+            <span class="offer-text">
+              Comprehensive training
+            </span>
           </div>
           <div class="text-list">
             <img src="src/assets/handshake.png" class="icon-image"/>
-              <span class="offer-text">
-                Friendly and supportive work environment
-              </span>
+            <span class="offer-text">
+              Friendly and supportive work environment
+            </span>
           </div>
         </div>
       </div>
@@ -51,12 +53,16 @@
       <div class="contact-apply fade-up delay-2">
         <div class="contact-info">
           <p>Send your resume</p>
-          <p class="info"><i class="fa fa-envelope icons"></i>hmnrs.md3@gmail.com</p>
+          <p class="info">
+            <i class="fa fa-envelope icons"></i>
+            hmnrs.md3@gmail.com
+          </p>
         </div>
         <div class="contact-info">
-          <p>Contact us
-          </p>
-          <p class="info"><i class="fas fa-phone-alt icons"></i> +60 11 6999 9888
+          <p>Contact us</p>
+          <p class="info">
+            <i class="fas fa-phone-alt icons"></i>
+            +60 11 6999 9888
           </p>
         </div>
       </div>
@@ -110,13 +116,14 @@
         <p class="fade-up delay-1">The Miracle Land Company has a strong presence in Pahang,
           with offices in Temerloh, Kuantan, and Jengka. If you haven't
           found the job vacancy on our site today, you can submit your
-          details prospectively with us and one of our team will get in touch with you</p>
+          details prospectively with us and one of our team will get in touch with you
+        </p>
       </div>
       <div class="career-link fade-up delay-2">
         <q-btn flat label="Submit your details prospectively" class="btn" @click="navigateToForm"/>
       </div>
       <div class="career-second fade-up delay-3">
-      <strong>Be fraud aware:</strong> Fraudulent job advertisements can circulate online and falsely
+        <strong>Be fraud aware:</strong> Fraudulent job advertisements can circulate online and falsely
           claim to be associated with The Miracle Land Company. Genuine
           correspondence from The Miracle Land Company will always come
           from the official website [www.miracleland.com].We will never
@@ -127,20 +134,19 @@
       </div>
     </div>
 
-      <q-page-sticky position="bottom-right" :offset="[35, 50]">
-        <q-fab direction="up" color="dark grey" icon="keyboard_arrow_up"         label-position="left"
-        >
-          <template v-slot:label="{ opened }">
-            <div :class="{ 'example-fab-animate--hover': opened !== true }">
-              {{ opened !== true ? 'Click for QR Code' : 'Scan to Apply Now' }}
-            </div>
-          </template>
-          <q-fab-action @click="onClick" color="white" style="border-radius: 1%;" >
-            <img src="src/assets/qr-career.png" alt="QR Code" class="qr-img"/>
-          </q-fab-action>
-        </q-fab>
-      </q-page-sticky>
-    </q-page>
+    <q-page-sticky position="bottom-right" :offset="[35, 50]">
+      <q-fab direction="up" color="dark grey" icon="keyboard_arrow_up" label-position="left">
+        <template v-slot:label="{ opened }">
+          <div :class="{ 'example-fab-animate--hover': opened !== true }">
+            {{ opened !== true ? 'Click for QR Code' : 'Scan to Apply Now' }}
+          </div>
+        </template>
+        <q-fab-action @click="onClick" color="white" style="border-radius: 1%;" >
+          <img src="src/assets/qr-career.png" alt="QR Code" class="qr-img"/>
+        </q-fab-action>
+      </q-fab>
+    </q-page-sticky>
+  </q-page>
 </template>
 
 <script setup>

@@ -40,8 +40,7 @@
             <div
               class="development-card"
               v-for="development in displayedDevelopments"
-              :key="development.id"
-            >
+              :key="development.id">
               <img
                 :src="development.image"
                 :alt="development.name"
@@ -57,9 +56,7 @@
               </div>
               <!-- Hover Development Card Information -->
               <div class="development-hover-overlay">
-                <span
-                class="status-current"
-                >
+                <span class="status-current">
                   {{ development.status }}
                 </span>
                 <div class="description">
@@ -111,35 +108,31 @@
             <div
               class="development-card"
               v-for="pastdevelopments in displayedPastDevelopments"
-              :key="pastdevelopments.id"
-            >
-                <img
-                  :src="pastdevelopments.image"
-                  :alt="pastdevelopments.name"
-                  class="development-image"
-                />
-                <div class="status"
-                >
+              :key="pastdevelopments.id">
+              <img
+                :src="pastdevelopments.image"
+                :alt="pastdevelopments.name"
+                class="development-image"
+              />
+              <div class="status">
+                {{ pastdevelopments.status }}
+              </div>
+              <div class="development-info">
+                <h3>{{ pastdevelopments.name }}</h3>
+                <p>{{ pastdevelopments.location }}</p>
+              </div>
+              <!-- Hover Development Card Information -->
+              <div class="development-hover-overlay">
+                <span class="status-completed">
                   {{ pastdevelopments.status }}
+                </span>
+                <div class="description">
+                  {{ pastdevelopments.shortdescription }}
                 </div>
-                <div class="development-info">
-                  <h3>{{ pastdevelopments.name }}</h3>
-                  <p>{{ pastdevelopments.location }}</p>
+                <div class="actions">
+                  <q-btn flat label="Open Details" class="action-btn" @click="navigateToPastDevelopmentDetails(pastdevelopments.slug)" />
                 </div>
-                <!-- Hover Development Card Information -->
-                <div class="development-hover-overlay">
-                  <span
-                    class="status-completed"
-                  >
-                    {{ pastdevelopments.status }}
-                  </span>
-                  <div class="description">
-                    {{ pastdevelopments.shortdescription }}
-                  </div>
-                  <div class="actions">
-                    <q-btn flat label="Open Details" class="action-btn" @click="navigateToPastDevelopmentDetails(pastdevelopments.slug)" />
-                  </div>
-                </div>
+              </div>
             </div>
           </div>
         </div>

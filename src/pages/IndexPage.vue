@@ -1,157 +1,155 @@
 <template>
   <q-page :key="$route.fullPath">
-      <!-- Startup Animation Overlay -->
-      <div v-if="showLoader" class="startup-overlay">
-        <div>
-          <img src="src/assets/logo.png" class="startup-image">
-        </div>
-        <h4>MIRACLE LAND</h4>
+    <!-- Startup Animation Overlay -->
+    <div v-if="showLoader" class="startup-overlay">
+      <div>
+        <img src="src/assets/logo.png" class="startup-image">
       </div>
+      <h4>MIRACLE LAND</h4>
+    </div>
 
-      <!-- Hero Section -->
-      <div class="hero-section">
-        <video
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <video
         autoplay
         loop
         muted
         class="hero-video"
         playsinline
-        preload="auto"
-        >
-          <source src="src/assets/landscape3.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        preload="auto">
+        <source src="src/assets/landscape3.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
-        <!-- Text Overlay in Video (centered) -->
-        <div class="video-text-overlay">
-          <h1>MIRACLE FOR YOU FOREVER</h1>
-        </div>
-
-        <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
-        <div class="scroll-indicator">
-          <video autoplay loop muted class="mouse-animation" playsinline>
-            <source src="src/assets/mouse.webm" type="video/webm" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <!-- Vertical Branding -->
-        <div class="vertical-branding">MIRACLE LAND</div>
+      <!-- Text Overlay in Video (centered) -->
+      <div class="video-text-overlay">
+        <h1>MIRACLE FOR YOU FOREVER</h1>
       </div>
 
-      <!-- Current Developments Section -->
-      <div class="developments-section">
-        <h2 class="fade-up">Current Developments</h2>
-        <div class="line-holder fade-up delay-1">
-          <div class="line">
-            <div class="line-1">
-             <div class="line-2"></div>
-           </div>
-          </div>
+      <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
+      <div class="scroll-indicator">
+        <video autoplay loop muted class="mouse-animation" playsinline>
+          <source src="src/assets/mouse.webm" type="video/webm" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <!-- Vertical Branding -->
+      <div class="vertical-branding">MIRACLE LAND</div>
+    </div>
+
+    <!-- Current Developments Section -->
+    <div class="developments-section">
+      <h2 class="fade-up">Current Developments</h2>
+      <div class="line-holder fade-up delay-1">
+        <div class="line">
+          <div class="line-1">
+           <div class="line-2"></div>
+         </div>
         </div>
-        <p class="fade-up delay-2">Explore our current developments and find your dream home or shop.</p>
-        <div class="container fade-up delay-3">
-          <div class="development-flex">
-            <div class="developments-container" :class="{ 'flex-layout': displayedDevelopments.length < 4 }">
-              <!-- Scrollable Development Card -->
-              <div
-                class="development-card"
-                v-for="development in displayedDevelopments"
-                :key="development.id">
-                <img
-                  :src="development.image"
-                  :alt="development.name"
-                class="development-image"/>
-                <div class="status">
+      </div>
+      <p class="fade-up delay-2">Explore our current developments and find your dream home or shop.</p>
+      <div class="container fade-up delay-3">
+        <div class="development-flex">
+          <div class="developments-container" :class="{ 'flex-layout': displayedDevelopments.length < 4 }">
+            <!-- Scrollable Development Card -->
+            <div
+              class="development-card"
+              v-for="development in displayedDevelopments"
+              :key="development.id">
+              <img
+                :src="development.image"
+                :alt="development.name"
+                class="development-image"
+              />
+              <div class="status">
+                {{ development.status }}
+              </div>
+              <div class="development-info">
+                <h3>{{ development.name }}</h3>
+                <p>{{ development.location }}</p>
+                <p>From RM {{ development.price }}</p>
+              </div>
+              <!-- Hover Development Card Information -->
+              <div class="development-hover-overlay">
+                <span class="status-current">
                   {{ development.status }}
+                </span>
+                <div class="description">
+                  {{ development.shortdescription }}
                 </div>
-                <div class="development-info">
-                  <h3>{{ development.name }}</h3>
-                  <p>{{ development.location }}</p>
-                  <p>From RM {{ development.price }}</p>
-                </div>
-                <!-- Hover Development Card Information -->
-                <div class="development-hover-overlay">
-                  <span class="status-current">
-                    {{ development.status }}
-                  </span>
-                  <div class="description">
-                    {{ development.shortdescription }}
-                  </div>
-                  <div class="actions">
-                    <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(development.slug)"/>
-                  </div>
+                <div class="actions">
+                  <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(development.slug)"/>
                 </div>
               </div>
             </div>
           </div>
-          <div v-if="allDevelopments.length > visibleCount">
-            <div v-if="!showAllDevelopments">
-              <q-btn
-                flat
-                label="Show More"
-                class="view-all-btn"
-                @click="showMoreDevelopments"
-              />
-            </div>
-          </div>
-          <div v-if="showAllDevelopments">
+        </div>
+        <div v-if="allDevelopments.length > visibleCount">
+          <div v-if="!showAllDevelopments">
             <q-btn
               flat
-              label="Show Less"
+              label="Show More"
               class="view-all-btn"
-              @click="showLessDevelopments"
+              @click="showMoreDevelopments"
             />
           </div>
         </div>
+        <div v-if="showAllDevelopments">
+          <q-btn
+            flat
+            label="Show Less"
+            class="view-all-btn"
+            @click="showLessDevelopments"
+          />
+        </div>
       </div>
+    </div>
 
-      <!-- Partners' Logos Section -->
-      <div class="partners-section ">
-        <h3 class="fade-up">Our Partners</h3>
-        <div class="line-holder fade-up delay-1">
-          <div class="line">
-            <div class="line-1">
-             <div class="line-2"></div>
-           </div>
+    <!-- Partners' Logos Section -->
+    <div class="partners-section ">
+      <h3 class="fade-up">Our Partners</h3>
+      <div class="line-holder fade-up delay-1">
+        <div class="line">
+          <div class="line-1">
+            <div class="line-2"></div>
           </div>
         </div>
-        <div class="logo-container fade-up delay-2">
-          <img src="src/assets/logo.png" alt="Partner 1" class="partner-logo" />
-          <img src="src/assets/logo.png" alt="Partner 2" class="partner-logo" />
-          <img src="src/assets/logo.png" alt="Partner 3" class="partner-logo" />
-        </div>
       </div>
+      <div class="logo-container fade-up delay-2">
+        <img src="src/assets/logo.png" alt="Partner 1" class="partner-logo" />
+        <img src="src/assets/logo.png" alt="Partner 2" class="partner-logo" />
+        <img src="src/assets/logo.png" alt="Partner 3" class="partner-logo" />
+      </div>
+    </div>
 
-      <!-- About Section -->
-      <div class="about-section">
-      <div class="container">
-        <div class="about-wrapper">
-          <ul>
-            <h2 class="fade-up">Founder's Track Record</h2>
-            <div class="line-holde fade-up delay-1">
-              <div class="line">
-                <div class="line-1">
-                  <div class="line-2"></div>
-                </div>
+    <!-- About Section -->
+    <div class="about-section">
+      <div class="about-wrapper">
+        <ul>
+          <h2 class="fade-up">Founder's Track Record</h2>
+          <div class="line-holde fade-up delay-1">
+            <div class="line">
+              <div class="line-1">
+                <div class="line-2"></div>
               </div>
             </div>
-            <li class="fade-up delay-2">
-                From a family’s dream home to an entrepreneur’s aspiration, we strive to build sustainable communities through creativity and dedication at heart.
-            </li>
-          </ul>
-
-          <div class="about-image-container fade-up delay-3">
-            <img src="src/assets/currentproject/house1.jpg" class="about-image" />
           </div>
+          <li class="fade-up delay-2">
+              From a family’s dream home to an entrepreneur’s aspiration, we strive to build sustainable communities through creativity and dedication at heart.
+          </li>
+        </ul>
+
+        <div class="about-image-container fade-up delay-3">
+          <img src="src/assets/currentproject/house1.jpg" class="about-image" />
         </div>
-        <div class="fade-up delay-2">
-          <q-btn
-                flat
-                label="About Us"
-                class="about-btn"
-                to="/about-miracle"
-              />
-        </div>
+      </div>
+      <div class="fade-up delay-2">
+        <q-btn
+          flat
+          label="About Us"
+          class="about-btn"
+          to="/about-miracle"
+        />
       </div>
     </div>
   </q-page>

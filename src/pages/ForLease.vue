@@ -84,8 +84,7 @@
             <div class="product-info">
               <h3>{{ property.name }}</h3>
               <div class="product-location">
-                <i class="fas fa-map-marker-alt icon">
-                </i>
+                <i class="fas fa-map-marker-alt icon"></i>
                 <span class="text-product-location">
                   {{ property.location }}
                 </span>
@@ -133,19 +132,19 @@
       <div class="fade-up delay-3">
         <div class="btn-more-1" v-if="filteredProperties.length > visibleCount">
           <q-btn
-          flat
-          label="Load More"
-          class="load-more-btn"
-          @click="loadMore"
+            flat
+            label="Load More"
+            class="load-more-btn"
+            @click="loadMore"
           />
         </div>
         <div class="btn-more-1" v-if="visibleCount > 3">
-            <q-btn
-              flat
-              label="Show Less"
-              class="load-more-btn"
-              @click="showLess"
-            />
+          <q-btn
+            flat
+            label="Show Less"
+            class="load-more-btn"
+            @click="showLess"
+          />
         </div>
       </div>
     </div>
@@ -239,13 +238,12 @@
             swipeable
             transition-prev="slide-right"
             transition-next="slide-left"
-            class="carousel"
-          >
+            class="carousel">
+
             <q-carousel-slide
               v-for="(image, index) in development.galleryImages"
               :key="index"
-              :name="index"
-            >
+              :name="index">
               <img :src="image" alt="Carousel Image" class="carousel-image" />
             </q-carousel-slide>
           </q-carousel>
@@ -269,12 +267,11 @@
         <div class="location-container">
           <div class="location-map fade-up delay-2" v-if="development">
             <iframe
-            :src="development.map"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            >
+              :src="development.map"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
             </iframe>
           </div>
 
@@ -286,12 +283,12 @@
               <q-separator color="white"/>
 
               <q-expansion-item
-              v-for="(locations, category) in filteredAmenities"
-              :key="category"
-              expand-icon-class="text-white"
-              group="somegroup"
-              class="amenities-expand"
-              >
+                v-for="(locations, category) in filteredAmenities"
+                :key="category"
+                expand-icon-class="text-white"
+                group="somegroup"
+                class="amenities-expand">
+
                 <template v-slot:header>
                   <q-item-section avatar>
                     <i :class="getCategoryIcon(category)" style="color: white; font-size: 18px;"></i>
@@ -305,14 +302,13 @@
                 <!-- Content inside the expansion item -->
                 <div class="q-pa-md">
                   <q-item
-                  v-for="(location, idx) in locations"
-                  :key="idx"
-                  class="amenities-child"
-                >
-                <q-item-section class="amenities-location">
+                    v-for="(location, idx) in locations"
+                    :key="idx"
+                    class="amenities-child">
+                    <q-item-section class="amenities-location">
                       <span class="amenities-name">{{ location.name }}</span>
                       <q-space/>
-                        <span class="amenities-km">{{ location.distance }}</span>
+                      <span class="amenities-km">{{ location.distance }}</span>
                     </q-item-section>
                   </q-item>
                 </div>

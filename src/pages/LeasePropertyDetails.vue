@@ -119,7 +119,8 @@
               :src="property.gallery[0]"
               @click="openPopup(0)"
               loading="lazy"
-              alt="Left Image"/>
+              alt="Left Image"
+            />
             <div class="gallery-overlay"></div>
           </div>
 
@@ -132,13 +133,14 @@
               :src="property.gallery[1]"
               @click="openPopup(1)"
               loading="lazy"
-              alt="Center Image"/>
+              alt="Center Image"
+            />
             <div class="gallery-overlay">
               <button class="visit-gallery-btn" @click="openPopup(1)">Visit Gallery</button>
             </div>
           </div>
 
-                    <!-- Center Image -->
+          <!-- Center Image -->
           <div
             v-if="property.gallery[2]"
             :key="2"
@@ -147,7 +149,8 @@
               :src="property.gallery[2]"
               @click="openPopup(2)"
               loading="lazy"
-              alt="Center Image"/>
+              alt="Center Image"
+            />
             <div class="gallery-overlay">
               <button class="visit-gallery-btn" @click="openPopup(2)">Visit Gallery</button>
             </div>
@@ -162,7 +165,8 @@
               :src="property.gallery[3]"
               @click="openPopup(3)"
               loading="lazy"
-              alt="Right Image"/>
+              alt="Right Image"
+            />
             <div class="gallery-overlay"></div>
           </div>
         </div>
@@ -171,29 +175,28 @@
           <div class="gallery-popup-content">
             <!-- Close Button -->
             <button class="popup-close" @click="closePopup">
-            <i class="fa fa-close"></i>
-          </button>
+              <i class="fa fa-close"></i>
+            </button>
 
-          <q-carousel
-            v-model="currentImage"
-            animated
-            arrows
-            navigation
-            infinite
-            swipeable
-            transition-prev="slide-right"
-            transition-next="slide-left"
-            class="carousel"
-          >
-            <q-carousel-slide
-              v-for="(image, index) in property.gallery"
-              :key="index"
-              :name="index"
-            >
-              <img :src="image" alt="Carousel Image" class="carousel-image" />
-            </q-carousel-slide>
-          </q-carousel>
-         </div>
+            <q-carousel
+              v-model="currentImage"
+              animated
+              arrows
+              navigation
+              infinite
+              swipeable
+              transition-prev="slide-right"
+              transition-next="slide-left"
+              class="carousel">
+
+              <q-carousel-slide
+                v-for="(image, index) in property.gallery"
+                :key="index"
+                :name="index">
+                <img :src="image" alt="Carousel Image" class="carousel-image" />
+              </q-carousel-slide>
+            </q-carousel>
+          </div>
         </div>
       </div>
     </div>
@@ -209,11 +212,11 @@
             </div>
           </div>
         </div>
-      <div class="floorplan-container">
+        <div class="floorplan-container">
           <!-- Header Section -->
           <div class="floorplan-header">
             <div class="plan-select fade-up delay-2">
-                {{ property.name }}
+              {{ property.name }}
             </div>
             <div class="plan-price fade-up delay-2">
               Price From <span class="price">{{ property.price }}</span>
@@ -222,38 +225,36 @@
 
           <!-- Floorplan Details Section -->
           <div class="floorplan-details">
-            <div>
-              <div class="details-floorplan">
-                <div class="details-grid-items">
-                  <div class="details-grid fade-up delay-2">
-                    <!-- Bedrooms -->
-                    <div class="details-item">
-                      <img src="src/assets/bed.png" alt="Area" class="icon-3" />
-                      <p>{{ property.bedroom }} Bedrooms</p>
-                    </div>
-                    <!-- Bathrooms -->
-                    <div class="details-item">
-                      <img src="src/assets/bathroom.svg" alt="Area" class="icon-3" />
-                      <p>{{ property.bathroom }} Bathrooms</p>
-                    </div>
-                    <!-- Area -->
-                    <div class="details-item">
-                      <img src="src/assets/area.svg" alt="Area" class="icon-3" />
-                      <p>{{ property.area }}</p>
-                    </div>
+            <div class="details-floorplan">
+              <div class="details-grid-items">
+                <div class="details-grid fade-up delay-2">
+                  <!-- Bedrooms -->
+                  <div class="details-item">
+                    <img src="src/assets/bed.png" alt="Area" class="icon-3" />
+                    <p>{{ property.bedroom }} Bedrooms</p>
                   </div>
+                  <!-- Bathrooms -->
+                  <div class="details-item">
+                    <img src="src/assets/bathroom.svg" alt="Area" class="icon-3" />
+                    <p>{{ property.bathroom }} Bathrooms</p>
+                  </div>
+                  <!-- Area -->
+                  <div class="details-item">
+                    <img src="src/assets/area.svg" alt="Area" class="icon-3" />
+                    <p>{{ property.area }}</p>
+                  </div>
+                </div>
 
-                  <!-- Buttons Section -->
-                  <div class="floorplan-buttons fade-up delay-3">
-                    <button @click="downloadBrochure(property.brochure)" class="btn download-btn">
-                      <img src="src/assets/brochure.svg" alt="Download" />
-                      Download Brochure
-                    </button>
-                    <button @click="openImage(property.plan)" class="btn view-btn">
-                      <img src="src/assets/area.svg" alt="View" />
-                      View Floorplan
-                    </button>
-                  </div>
+                <!-- Buttons Section -->
+                <div class="floorplan-buttons fade-up delay-3">
+                  <button @click="downloadBrochure(property.brochure)" class="btn download-btn">
+                    <img src="src/assets/brochure.svg" alt="Download" />
+                    Download Brochure
+                  </button>
+                  <button @click="openImage(property.plan)" class="btn view-btn">
+                    <img src="src/assets/area.svg" alt="View" />
+                    View Floorplan
+                  </button>
                 </div>
               </div>
             </div>
@@ -283,7 +284,8 @@
               :src="property.plan"
               alt="Floorplan"
               class="popup-image"
-              :style="{transform: `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`, }"/>
+              :style="{transform: `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`, }"
+            />
           </div>
         </div>
       </div>
@@ -324,6 +326,7 @@
               expand-icon-class="text-white"
               group="somegroup"
               class="amenities-expand">
+
               <template v-slot:header>
                 <q-item-section avatar>
                   <i :class="getCategoryIcon(category)" style="color: white; font-size: 18px;"></i>
@@ -342,7 +345,7 @@
                   <q-item-section class="amenities-location">
                     <span class="amenities-name">{{ location.name }}</span>
                     <q-space/>
-                      <span class="amenities-km">{{ location.distance }}</span>
+                    <span class="amenities-km">{{ location.distance }}</span>
                   </q-item-section>
                 </q-item>
               </div>
@@ -360,8 +363,7 @@
             <h2 class="register-title fade-up">Contact Details</h2>
             <div class="register-line-holder fade-up delay-1">
               <div class="register-line">
-                <div class="register-line-1">
-                </div>
+                <div class="register-line-1"></div>
               </div>
             </div>
             <h5 class="address-title fade-up delay-2">Address</h5>
@@ -372,36 +374,36 @@
 
             <div class="map-button fade-up delay-2">
               <button @click="gotofullmap" class="btn view-full-map-btn">
-                    <img src="src/assets/brochure.svg" alt="Map" />
-                    View Full Map
-                  </button>
+                <img src="src/assets/brochure.svg" alt="Map" />
+                View Full Map
+              </button>
             </div>
             <h5 class="contact-title fade-up delay-2">Contact Number</h5>
             <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
-                <span class="contact-no">
-                  019-296 6666
-                </span>
+              <span class="contact-no">
+                +60 19 296 6666
+              </span>
             </div>
             <h5 class="email-title fade-up delay-2">General Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-                <span class="email-address">
-                  enquiries@woha.net
-                </span>
+              <span class="email-address">
+                kevin@interplandesigns.com
+              </span>
             </div>
             <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
             <p class="email-subtitle fade-up delay-2">We're always on the lookout for talented people - please send us <br> your CV and portfolio (no larger than 5MB) to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-                <span class="email-address">
-                  hmnrs.md3@gmail.com
-                </span>
+              <span class="email-address">
+                hmnrs.md3@gmail.com
+              </span>
               <div>
                 <i class="fa fa-phone phone-icon"></i>
                 <span class="contact-no">
-                  011-69999888
+                  +60 116 9999 888
                 </span>
               </div>
             </div>
@@ -409,16 +411,16 @@
             <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-                <span class="email-address">
-                  kevin@interplandesigns.com
-                </span>
+              <span class="email-address">
+                kevin@interplandesigns.com
+              </span>
             </div>
             <h5 class="business-title fade-up delay-2">Business Hours</h5>
             <div class="fade-up delay-3">
               <i class="fas fa-business-time calendar-icon"></i>
-                <span class="business-hours">
-                  Mon - Sat , 9am - 5pm
-                </span>
+              <span class="business-hours">
+                Mon - Sat , 9am - 5pm
+              </span>
             </div>
           </div>
 
@@ -427,16 +429,14 @@
             <h2 class="fade-up delay-1">Got A Question?</h2>
             <div class="register-line-holder fade-up delay-2">
               <div class="register-line">
-                <div class="register-line-1">
-                </div>
+                <div class="register-line-1"></div>
               </div>
             </div>
             <p class="fade-up delay-3">Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
             <form
               action="https://formspree.io/f/myzkjkew"
               method="POST"
-              class="register-form fade-up delay-4"
-            >
+              class="register-form fade-up delay-4">
               <!-- Name Field -->
               <input type="text" name="name" placeholder="Name*" required>
 
@@ -467,8 +467,8 @@
       </div>
     </div>
 
-        <!-- Similar Properties Section-->
-        <div v-if='visibleSimilarProperties.length > 0' class="products-section">
+    <!-- Similar Properties Section-->
+    <div v-if='visibleSimilarProperties.length > 0' class="products-section">
       <h2 class="fade-up">Similar Properties</h2>
       <div class="line-holder fade-up delay-1">
         <div class="line">
@@ -485,8 +485,7 @@
             <div class="product-info">
               <h3>{{ property.name }}</h3>
               <div class="product-location">
-                <i class="fas fa-map-marker-alt icon">
-                </i>
+                <i class="fas fa-map-marker-alt icon"></i>
                 <span class="text-product-location">
                   {{ property.location }}
                 </span>
@@ -499,7 +498,7 @@
                     <q-tooltip>
                       {{ property.housetype }}
                     </q-tooltip>
-                    </p>
+                  </p>
                 </div>
 
                 <q-separator vertical/>
@@ -533,10 +532,10 @@
       </div>
       <div class="btn-more-1 fade-up delay-3" v-if="visibleSimilarProperties.length > visibleCount">
         <q-btn
-        flat
-        label="Load More"
-        class="learn-more-btn"
-        @click="loadMore"
+          flat
+          label="Load More"
+          class="learn-more-btn"
+          @click="loadMore"
         />
       </div>
     </div>

@@ -13,7 +13,8 @@
           <div class="text-hero">
             <h2 class="text-above fade-up delay-1">News</h2>
             <p class="text-below fade-up delay-2">
-              Stay updated with the latest company news.</p>
+              Stay updated with the latest company news.
+            </p>
           </div>
         </div>
 
@@ -29,13 +30,13 @@
       <div v-for="news in newsItems" :key="news.slug" class="news-item fade-up">
         <q-card @click="navigateToNewsDetails(news.slug)" class="news-btn" flat>
           <div class="date-box">
-              <div class="date-day">{{ news.day }}</div>
-              <div class="date-month">{{ news.month }}</div>
-            </div>
-            <div class="title-text">
-              <p class="title-news">{{ news.title }}</p>
-              <p class="title-source">{{ news.source }}</p>
-            </div>
+            <div class="date-day">{{ news.day }}</div>
+            <div class="date-month">{{ news.month }}</div>
+          </div>
+          <div class="title-text">
+            <p class="title-news">{{ news.title }}</p>
+            <p class="title-source">{{ news.source }}</p>
+          </div>
         </q-card>
       </div>
     </section>

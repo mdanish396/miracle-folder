@@ -119,7 +119,8 @@
               :src="property.gallery[0]"
               @click="openPopup(0)"
               loading="lazy"
-              alt="Left Image"/>
+              alt="Left Image"
+            />
             <div class="gallery-overlay"></div>
           </div>
 
@@ -132,13 +133,14 @@
               :src="property.gallery[1]"
               @click="openPopup(1)"
               loading="lazy"
-              alt="Center Image"/>
+              alt="Center Image"
+            />
             <div class="gallery-overlay">
               <button class="visit-gallery-btn" @click="openPopup(1)">Visit Gallery</button>
             </div>
           </div>
 
-                    <!-- Center Image -->
+          <!-- Center Image -->
           <div
             v-if="property.gallery[2]"
             :key="2"
@@ -147,7 +149,8 @@
               :src="property.gallery[2]"
               @click="openPopup(2)"
               loading="lazy"
-              alt="Center Image"/>
+              alt="Center Image"
+            />
             <div class="gallery-overlay">
               <button class="visit-gallery-btn" @click="openPopup(2)">Visit Gallery</button>
             </div>
@@ -162,7 +165,8 @@
               :src="property.gallery[3]"
               @click="openPopup(3)"
               loading="lazy"
-              alt="Right Image"/>
+              alt="Right Image"
+            />
             <div class="gallery-overlay"></div>
           </div>
         </div>
@@ -278,7 +282,8 @@
             :src="selectedPlanImage"
             alt="Floorplan"
             class="popup-image"
-            :style="{transform: `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`, }"/>
+            :style="{transform: `translate(${translateX}px, ${translateY}px) scale(${zoomLevel})`, }"
+          />
         </div>
       </div>
     </div>
@@ -362,15 +367,15 @@
 
             <div class="map-button">
               <button @click="gotofullmap" class="btn view-full-map-btn">
-                    <img src="src/assets/brochure.svg" alt="Download" />
-                    View Full Map
-                  </button>
+                <img src="src/assets/brochure.svg" alt="Download" />
+                View Full Map
+              </button>
             </div>
             <h5 class="contact-title">Contact Number</h5>
             <div>
               <i class="fa fa-phone phone-icon"></i>
-                <span class="contact-no">
-                  09-296 0000
+              <span class="contact-no">
+                09-296 0000
                 </span>
             </div>
             <h5 class="business-title">Business Hours</h5>
