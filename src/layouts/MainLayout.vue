@@ -6,10 +6,10 @@
       <q-toolbar class="toolbar">
         <!-- Left-aligned: Logo and Title -->
         <router-link to="/" class="logo-title-group" @click="handleLogoClick">
-          <img src="src/assets/icons/logo-96X96.png" alt="Logo" class="logo" />
-          <q-toolbar-title class="toolbar-title">
+          <img src="src/assets/logotext.png" alt="Logo" class="logo" />
+          <!-- <q-toolbar-title class="toolbar-title">
             MIRACLE LAND
-          </q-toolbar-title>
+          </q-toolbar-title> -->
         </router-link>
 
         <!-- Right-aligned: Navigation Buttons for larger screens -->
@@ -78,26 +78,24 @@
               <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
             </q-card-section>
             <q-menu
-            v-if="activeDropdown === 'lease'"
-            anchor="bottom middle"
-            self="top middle"
-            @mouseover="showDropdown('lease')"
-            @mouseleave="hideDropdown('lease')"
-            class="dropdown-container"
-            >
-            <div class="dropdown-content">
+              v-if="activeDropdown === 'lease'"
+              anchor="bottom middle"
+              self="top middle"
+              @mouseover="showDropdown('lease')"
+              @mouseleave="hideDropdown('lease')"
+              class="dropdown-container">
+              <div class="dropdown-content">
                 <!-- district list -->
                 <div v-for="(districts, state) in groupedLeaseDevelopments" :key="state" class="district-list">
                   <h6>{{ state }}</h6>
                   <ul>
                     <li
-                    v-for="(district, index) in districts"
-                    :key="index"
-                    @mouseover="setSelectedLeaseDistrict(district)"
-                    @click="setSelectedLeaseDistrict(district)"
-                    class="district-item"
-                    default-opened
-                    >
+                      v-for="(district, index) in districts"
+                      :key="index"
+                      @mouseover="setSelectedLeaseDistrict(district)"
+                      @click="setSelectedLeaseDistrict(district)"
+                      class="district-item"
+                      default-opened>
                       {{ district }}
                     </li>
                   </ul>
@@ -107,7 +105,7 @@
                 <div class="image-grid">
                   <div class="grid-item" v-for="(lease, index) in filteredLease" :key="index">
                     <div class="image-container"
-                    @click="navigateToLeaseSlug(lease.slug)">
+                      @click="navigateToLeaseSlug(lease.slug)">
                       <img :src="lease.image" alt="Lease Project Image" />
                       <div class="overlay">
                         <p>{{ lease.name }}</p>
@@ -127,22 +125,20 @@
           </q-card>
 
           <q-card
-          class="nav-button flat-card"
-          @mouseover="showDropdown('investor')"
-          @mouseleave="hideDropdown('investor')"
-          >
+            class="nav-button flat-card"
+            @mouseover="showDropdown('investor')"
+            @mouseleave="hideDropdown('investor')">
             <q-card-section class="nav-card-section">
               Investor & Media
               <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
             </q-card-section>
             <q-menu
-            v-if="activeDropdown === 'investor'"
-            anchor="bottom left"
-            self="top left"
-            fit
-            @mouseover="showDropdown('investor')"
-            @mouseleave="hideDropdown('investor')"
-            >
+              v-if="activeDropdown === 'investor'"
+              anchor="bottom left"
+              self="top left"
+              fit
+              @mouseover="showDropdown('investor')"
+              @mouseleave="hideDropdown('investor')">
               <q-list>
                 <q-item clickable @click="$router.push('/investor-centre')" class="menu-section">
                   <q-item-section>Investor Centre</q-item-section>
@@ -163,25 +159,24 @@
 
         <!-- Drawer toggle button for small screens -->
         <q-btn
-        flat
-        icon="menu"
-        class="q-ml-md"
-        style="color: black;"
-        @click="toggleDrawer"
-        v-if="isSmallScreen"
+          flat
+          icon="menu"
+          class="q-ml-md"
+          style="color: black;"
+          @click="toggleDrawer"
+          v-if="isSmallScreen"
         />
       </q-toolbar>
     </q-header>
 
     <!-- Drawer for small screens -->
     <q-drawer v-model="drawerVisible" side="right"
-    :width="350"
-    :breakpoint="300"
-    overlay
-    bordered
-    class="full-height-drawer"
-    v-if="isSmallScreen"
-    >
+      :width="350"
+      :breakpoint="300"
+      overlay
+      bordered
+      class="full-height-drawer"
+      v-if="isSmallScreen">
       <q-scroll-area class="fit">
         <q-list>
           <q-item clickable to="/about-miracle" class="drawer-item" v-ripple>
@@ -191,52 +186,48 @@
             <q-item-section>Developments</q-item-section>
           </q-item>
           <q-expansion-item
-          group="somegroup"
-          label="For Sale"
-          class="drawer-item-expand"
-          v-for="(districts, state) in groupedDevelopments" :key="state"
-          >
+            group="somegroup"
+            label="For Sale"
+            class="drawer-item-expand"
+            v-for="(districts, state) in groupedDevelopments" :key="state">
             <q-item class="drawer-item-child-1">
               <q-item-section>{{ state }}</q-item-section>
             </q-item>
             <q-expansion-item
-            group="somegroup1"
-            class="drawer-item-expand-2"
-            v-for="(district, index) in districts"
-                    :key="index"
-                    @click="setSelectedDistrict(district)"
-                    :label="district"
-            >
+              group="somegroup1"
+              class="drawer-item-expand-2"
+              v-for="(district, index) in districts"
+              :key="index"
+              @click="setSelectedDistrict(district)"
+              :label="district">
               <q-item
-              v-for="(project, index) in filteredProjects" :key="index"
-              clickable :to="`/for-sale/${project.slug}`"
-              class="drawer-item-child-2">
+                v-for="(project, index) in filteredProjects" :key="index"
+                clickable :to="`/for-sale/${project.slug}`"
+                class="drawer-item-child-2">
                 <q-item-section>{{ project.name }}</q-item-section>
               </q-item>
             </q-expansion-item>
           </q-expansion-item>
 
           <q-expansion-item
-          group="somegroup"
-          label="For Lease"
-          class="drawer-item-expand"
-          v-for="(districts, state) in groupedLeaseDevelopments" :key="state"
-          >
+            group="somegroup"
+            label="For Lease"
+            class="drawer-item-expand"
+            v-for="(districts, state) in groupedLeaseDevelopments" :key="state">
             <q-item class="drawer-item-child-1">
               <q-item-section>{{ state }}</q-item-section>
             </q-item>
             <q-expansion-item
-            group="somegroup1"
-            class="drawer-item-expand-2"
-            v-for="(district, index) in districts"
-                    :key="index"
-                    @click="setSelectedLeaseDistrict(district)"
-                    :label="district"
-            >
+              group="somegroup1"
+              class="drawer-item-expand-2"
+              v-for="(district, index) in districts"
+              :key="index"
+              @click="setSelectedLeaseDistrict(district)"
+              :label="district">
               <q-item
-              v-for="(lease, index) in filteredLease" :key="index"
-              clickable :to="`/for-lease/${lease.slug}`"
-              class="drawer-item-child-2">
+                v-for="(lease, index) in filteredLease" :key="index"
+                clickable :to="`/for-lease/${lease.slug}`"
+                class="drawer-item-child-2">
                 <q-item-section>{{ lease.name }}</q-item-section>
               </q-item>
             </q-expansion-item>
@@ -248,10 +239,9 @@
             <q-item-section>Awards</q-item-section>
           </q-item>
           <q-expansion-item
-          group="somegroup"
-          label="Investor & Media"
-          class="drawer-item-expand"
-          >
+            group="somegroup"
+            label="Investor & Media"
+            class="drawer-item-expand">
             <q-item clickable to="/investor-centre" class="drawer-item-child">
               <q-item-section>Investor Centre</q-item-section>
             </q-item>
@@ -269,7 +259,7 @@
       </q-scroll-area>
     </q-drawer>
     <q-page-container>
-      <q-page :style="{ backgroundColor: '#ffffed', }">
+      <q-page :style="{ backgroundColor: '#ffeedd', }">
         <router-view @toggle-header="toggleHeader"/> <!-- This is where the content of your pages will be inserted -->
       </q-page>
     </q-page-container>
@@ -280,8 +270,8 @@
         <!-- Left Section -->
         <div class="footer-left">
           <div class="logo-container">
-            <img src="src/assets/icons/logo-32X32.png" alt="Company Logo" class="footer-logo">
-            <span class="footer-logo-text">MIRACLE LAND</span>
+            <img src="src/assets/logotext.png" alt="Company Logo" class="footer-logo">
+            <!-- <span class="footer-logo-text">MIRACLE LAND</span> -->
           </div>
           <div class="footer-address">
             <p>No. 1, Tingkat Basement, Jalan Dagang 2,<br>
@@ -312,8 +302,7 @@
           </div>
         </div>
         <div class="footer-copyright">
-          <p>© 2025 Miracle Land Holdings Berhad (1111981-P). All rights reserved.
-          </p>
+          <p>© 2025 Miracle Land Holdings Berhad (1111981-P). All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -530,6 +519,7 @@ onUnmounted(() => {
   font-family: 'Times New Roman', Times, serif;
   transition: color 0.4s ease-in-out;
   padding-top: 10px;
+  margin-top: 10px;
   color: black;
 }
 /* Navigation Buttons Group */
@@ -548,7 +538,7 @@ onUnmounted(() => {
 
 .nav-card-section {
   padding: 5px;
-  font-size: 1rem; /* Adjust font size */
+  font-size: 16px; /* Adjust font size */
   font-weight: 500; /* Adjust font weight */
   font-family: 'TitilliumWebSemiBold';
   transition: color 0.3s ease-in-out;
@@ -614,6 +604,7 @@ onUnmounted(() => {
 .district-list ul {
   list-style: none;
   font-family: 'TitilliumWebRegular';
+  font-size: 14px;
   padding-left: 20px;
 }
 
@@ -672,7 +663,7 @@ position: relative;
   padding-top: 15px;
   margin-bottom: -5px;
   text-align: center;
-  font-size: 0.75rem;
+  font-size: 12px;
 }
 
 .overlay p {
@@ -875,7 +866,7 @@ color:#00B398;
 }
 
 .footer-logo {
-  width: 25px; /* Smaller logo size */
+  width: 190px; /* Smaller logo size */
   filter: brightness(0) invert(1); /* White logo */
   margin-top: 30px;
 }
@@ -1035,10 +1026,6 @@ color:#00B398;
   .logo-container {
     margin-left: -7px;
     margin-top: -20px;
-  }
-
-  .footer-logo {
-    width: 40px;
   }
 
   .footer-logo-text {

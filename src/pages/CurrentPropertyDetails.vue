@@ -861,11 +861,6 @@ const loadMore = () => {
   transition-delay: 0.8s;
 }
 
-.property-hero{
-  font-family: Arial, sans-serif;
-  color: #333;
-}
-
 .before-hero-section {
   position:static;
   display: flex;
@@ -1149,7 +1144,7 @@ const loadMore = () => {
 }
 
 .description-section {
-  margin: 30px 40px;
+  margin: 30px 0;
   text-align: center;
   padding-top: 20px;
 }
@@ -1166,15 +1161,15 @@ const loadMore = () => {
   font-family: 'TitilliumWebRegular';
   font-size: 18px;
   line-height: 27px;
-  padding: 10px 150px;
+  padding: 10px 10%;
 }
 
 @media (max-width: 1024px) {
 
-.description-section p {
+/* .description-section p {
   padding-left: 110px;
   padding-right: 110px;
-}
+} */
 }
 
 @media (max-width: 768px) {
@@ -1184,10 +1179,10 @@ const loadMore = () => {
   line-height: 50px;
 }
 
-.description-section p {
+/* .description-section p {
   padding-left: 20px;
   padding-right: 20px;
-}
+} */
 }
 
 @media (max-width: 520px) {
@@ -1195,13 +1190,13 @@ const loadMore = () => {
     font-size: 32px;
   }
 
-  .description-section p {
+  /* .description-section p {
     padding-left: 0px;
     padding-right: 0px;
     margin-left: -20px;
     margin-right: -20px;
 
-  }
+  } */
 }
 
 .line-holder {
@@ -1332,7 +1327,7 @@ const loadMore = () => {
 }
 
 .visit-gallery-btn:hover {
-  background-color: #08463c;
+  background-color: #a39f1a;
   color: white;
 }
 

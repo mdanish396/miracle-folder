@@ -294,7 +294,7 @@
                     <i :class="getCategoryIcon(category)" style="color: white; font-size: 18px;"></i>
                   </q-item-section>
                   <q-item-section>
-                    <span class="text-white">{{ capitalizeFirstLetter(category) }}</span>
+                    <span>{{ capitalizeFirstLetter(category) }}</span>
                   </q-item-section>
                 </template>
                 <q-separator color="white"/>
@@ -794,7 +794,7 @@ const capitalizeFirstLetter = (string) => {
   font-size: 18px;
   font-family: 'TitilliumWebBold';
   line-height: 29px;
-  color: rgb(235, 235, 235);
+  color: rgb(255, 255, 255);
   text-align: center;
   height: 100px;
 }
@@ -1325,7 +1325,7 @@ line-height: 20px;
 
   .amenities-expand {
     font-size: 16px;
-    color: antiquewhite;
+    color: white;
     font-family: 'TitilliumWebSemiBold';
     line-height: 24px;
   }
@@ -1333,6 +1333,8 @@ line-height: 20px;
   .amenities-child {
     font-size: 16px;
     line-height: 24px;
+    color: antiquewhite;
+    font-family: 'TitilliumWebSemiBold';
     cursor: default;
   }
 

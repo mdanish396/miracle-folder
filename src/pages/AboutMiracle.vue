@@ -268,16 +268,26 @@ onBeforeUnmount(() => {
 </script>
 <style scoped>
 /* General Font Definitions */
-@font-face {
-  font-family: 'GeographWebMedium';
-  src: url('src/assets/fonts/geograph/geographwebmedium.ttf') format('truetype');
-  font-weight: bold;
-}
 
 @font-face {
   font-family: 'TitilliumWebRegular';
   src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
+}
+@font-face {
+  font-family: 'AvenirMedium';
+  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'TitilliumWebSemiBold';
+  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'TitilliumWebBold';
+  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -538,9 +548,9 @@ padding-inline: 20px;
 
 /* Vision Section */
 .vision-section {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), /* Gradient overlay */
-    url('src/assets/career3.jpg'); /* Background image */
+  background-color: rgba(255, 255, 255, 0.4); /* Background color */
+  background-image: url('src/assets/career3.jpg'); /* Background image */
+  background-blend-mode: overlay;  /* Background image */
   background-size: cover; /* Ensure the image covers the section */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent image repetition */  color: #333;
@@ -948,6 +958,11 @@ padding-inline: 20px;
   gap: 10px;
 }
 
+.register-form input {
+  font-size: 14px;
+  font-family: 'TitilliumWebRegular';
+}
+
 .register-form input,
 .register-form textarea,
 .register-form select {
@@ -965,8 +980,9 @@ padding-inline: 20px;
 }
 
 .register-form select {
-  font-size: 0.9rem;
+  font-size: 14px;
   cursor: pointer;
+  font-family: 'TitilliumWebRegular';
 }
 
 .submit-btn {
@@ -975,7 +991,8 @@ padding-inline: 20px;
   color: #fff;
   border: none;
   cursor: pointer;
-  font-weight: bold;
+font-size: 14px;
+  font-family: 'AvenirMedium';
   text-transform: uppercase;
 }
 

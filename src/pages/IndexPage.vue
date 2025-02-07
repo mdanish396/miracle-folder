@@ -329,7 +329,7 @@ const navigateToDevelopmentDetails = (slug) => {
 
 /* Logo Starter */
 .startup-image {
-  width: 80px;
+  width: 60px;
   position: relative;
 }
 
@@ -337,6 +337,8 @@ const navigateToDevelopmentDetails = (slug) => {
 .startup-overlay h4{
   font-family: 'Times New Roman', Times, serif;
   color: #fffbfb;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 /* Slide Up Overlay Animation */
@@ -382,7 +384,7 @@ const navigateToDevelopmentDetails = (slug) => {
 }
 
 .video-text-overlay h1 {
-  font-size: 4rem; /* Adjust as needed */
+  font-size: 64px; /* Adjust as needed */
 }
 
 .vertical-branding {
@@ -435,7 +437,6 @@ const navigateToDevelopmentDetails = (slug) => {
   /*Development Section*/
   .developments-section {
   padding: 60px 20px;
-  background-color: #ffffed;
   text-align: center;
 }
 
@@ -606,6 +607,7 @@ const navigateToDevelopmentDetails = (slug) => {
 .development-info p {
   margin: 2px 0;
   font-family: 'TitilliumWebRegular';
+  font-size: 18px;
   color: #666;
 }
 
@@ -722,7 +724,7 @@ const navigateToDevelopmentDetails = (slug) => {
 
 .partners-section h3 {
   font-family: 'RecklessNeueMedium';
-  font-size: 40px;
+  font-size: 42px;
   color: #000000;
 }
 
