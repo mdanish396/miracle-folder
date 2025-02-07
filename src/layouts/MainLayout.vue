@@ -312,15 +312,30 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useQuasar } from 'quasar'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 import { leasedevelopments } from 'src/components/Lease/LeaseData.vue'
-
+import { useHead } from '@vueuse/head'
 const displayedDevelopments = ref(developments)
 const selectedDistrict = ref('')
 const displayedLeaseDevelopments = ref(leasedevelopments)
 const selectedLeaseDistrict = ref('')
 const showHeader = ref(true)
+
+const route = useRoute()
+
+useHead({
+  title: 'Miracle Land | Property Development',
+  meta: [
+    { name: 'description', content: 'Miracle Land is a premier property development company in Malaysia' },
+    { name: 'keywords', content: 'property, development, real estate, Malaysia, Miracle Land, Pahang' },
+    { name: 'author', content: 'Miracle Land Holdings Berhad' },
+    { property: 'og:title', content: 'Miracle Land | Property Development' },
+    { property: 'og:description', content: 'Miracle Land is a premier property development company in Malaysia' },
+    { property: 'og:image', content: 'https://yourdomain.com/assets/logotext.png' }, // Use a full URL
+    { property: 'og:url', content: `https://yourdomain.com${route.fullPath}` } // Corrected for SSR
+  ]
+})
 
 const toggleHeader = (value) => {
   showHeader.value = value

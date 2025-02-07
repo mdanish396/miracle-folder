@@ -1153,7 +1153,7 @@ const loadMore = () => {
   font-size: 48px;
   line-height: 56px;
   font-family: 'TitilliumWebBold';
-  color: #777777;
+  color: #666666;
   text-transform: uppercase;
 }
 
@@ -2139,7 +2139,6 @@ const loadMore = () => {
   text-align: center;
   padding-top: 20px;
   padding-bottom: 130px;
-  background-color: #e8e1d3;
 }
 
 .products-section h2 {

@@ -469,7 +469,7 @@ padding-inline: 20px;
 
 .past-developments-section {
   padding: 60px 20px;
-  background-color: #ebe3d5;
+  background-color: #ebe4d8;
   text-align: center;
 }
 

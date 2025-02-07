@@ -9,7 +9,6 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 import { configure } from 'quasar/wrappers'
-import 'vue-lazyload'
 
 export default configure(function (/* ctx */) {
   return {
@@ -20,6 +19,7 @@ export default configure(function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
+      'head'
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
@@ -147,7 +147,7 @@ export default configure(function (/* ctx */) {
       // useFilenameHashes: true,
       // extendGenerateSWOptions (cfg) {}
       // extendInjectManifestOptions (cfg) {},
-      // extendManifestJson (json) {}
+      // extendManifestJson (json) {},
       // extendPWACustomSWConf (esbuildConf) {}
     },
 
@@ -196,7 +196,6 @@ export default configure(function (/* ctx */) {
       contentScripts: [
         'my-content-script'
       ]
-
       // extendBexScriptsConf (esbuildConf) {}
       // extendBexManifestJson (json) {}
     }

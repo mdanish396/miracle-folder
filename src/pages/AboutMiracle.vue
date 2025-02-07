@@ -500,7 +500,7 @@ padding-inline: 20px;
   font-family: 'RecklessNeueMedium';
   font-size: 48px;
   margin-bottom: 50px;
-  color: rgb(0, 26, 43);
+  color: #000;
 }
 
 .company-background p {
@@ -553,7 +553,8 @@ padding-inline: 20px;
   background-blend-mode: overlay;  /* Background image */
   background-size: cover; /* Ensure the image covers the section */
   background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent image repetition */  color: #333;
+  background-repeat: no-repeat; /* Prevent image repetition */
+  color: #000;
   padding: 60px 20px;
   text-align: center;
   align-items: center;

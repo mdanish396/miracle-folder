@@ -157,11 +157,13 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
+import { useHead } from '@vueuse/head'
 
 const showLoader = ref(true)
 const router = useRouter()
+const route = useRoute()
 const allDevelopments = ref(developments.filter((d) => d.status === 'New Launch'))
 const visibleCount = ref(4)
 const displayedDevelopments = ref(allDevelopments.value.slice(0, visibleCount.value))
@@ -169,6 +171,19 @@ const showAllDevelopments = ref(false)
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+
+useHead({
+  title: 'Miracle Land | Property Development', // Page title
+  meta: [
+    { name: 'description', content: 'Miracle Land is a premier property development company in Malaysia' },
+    { name: 'keywords', content: 'property, development, real estate, Malaysia, Miracle Land, Pahang' },
+    { name: 'author', content: 'Miracle Land Holdings Berhad' },
+    { property: 'og:title', content: 'Miracle Land | Property Development' },
+    { property: 'og:description', content: 'Miracle Land is a premier property development company in Malaysia' },
+    { property: 'og:image', content: '/src/assets/logotext.png' },
+    { property: 'og:url', content: `https://miracleland.com${route.fullPath}` } // Update with your actual domain
+  ]
+})
 
 const updateLayout = () => {
   const container = document.querySelector('.developments-container')
