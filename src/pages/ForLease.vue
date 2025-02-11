@@ -39,7 +39,7 @@
         <!-- Intro Section -->
       <div class="intro-section">
         <div class="text-content">
-            <h1 class="main-heading fade-up">{{ development.name }}</h1>
+          <h1 class="main-heading fade-up">{{ development.name }}</h1>
           <div class="line-holder fade-up delay-1">
             <div class="line">
               <div class="line-1">
@@ -51,7 +51,7 @@
         </div>
 
         <!-- Highlight Section -->
-        <div class="card-section section">
+        <div class="card-section">
           <div class="card-grid">
             <div class="card" v-for="(image, index) in development.gallerydevelopment" :key="index">
               <img :src="image.url" class="card-image fade-up" alt="Gallery Image">
@@ -67,7 +67,7 @@
     <div class="rectangle-section"></div>
 
     <!-- Our Product Section-->
-    <div class="products-section section">
+    <div class="products-section">
       <h2 class="fade-up">Our Products</h2>
       <div class="line-holder fade-up delay-1">
         <div class="line">
@@ -294,7 +294,7 @@
                     <i :class="getCategoryIcon(category)" style="color: white; font-size: 18px;"></i>
                   </q-item-section>
                   <q-item-section>
-                    <span class="text-white">{{ capitalizeFirstLetter(category) }}</span>
+                    <span>{{ capitalizeFirstLetter(category) }}</span>
                   </q-item-section>
                 </template>
                 <q-separator color="white"/>
@@ -514,12 +514,9 @@ const capitalizeFirstLetter = (string) => {
 .fade-up.delay-2 {
   transition-delay: 0.4s;
 }
+
 .fade-up.delay-3 {
   transition-delay: 0.6s;
-}
-
-.fade-up.delay-4 {
-  transition-delay: 0.8s;
 }
 
 .hero-section {
@@ -742,6 +739,11 @@ const capitalizeFirstLetter = (string) => {
     left: 50%;
   }
 
+  .info-details {
+    width: 90vw;
+    height:auto;
+  }
+
   .logo-image {
   width: 60px;
 }
@@ -793,7 +795,7 @@ const capitalizeFirstLetter = (string) => {
   font-size: 18px;
   font-family: 'TitilliumWebBold';
   line-height: 29px;
-  color: rgb(235, 235, 235);
+  color: rgb(255, 255, 255);
   text-align: center;
   height: 100px;
 }
@@ -1209,6 +1211,11 @@ line-height: 20px;
 }
 
 @media (max-width: 600px) {
+  .gallery-grid {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
   .gallery-grid .gallery-item:nth-child(2) {
   height: 300px;
 }
@@ -1220,7 +1227,7 @@ line-height: 20px;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1319,7 +1326,7 @@ line-height: 20px;
 
   .amenities-expand {
     font-size: 16px;
-    color: antiquewhite;
+    color: white;
     font-family: 'TitilliumWebSemiBold';
     line-height: 24px;
   }
@@ -1327,6 +1334,8 @@ line-height: 20px;
   .amenities-child {
     font-size: 16px;
     line-height: 24px;
+    color: antiquewhite;
+    font-family: 'TitilliumWebSemiBold';
     cursor: default;
   }
 

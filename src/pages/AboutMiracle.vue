@@ -227,6 +227,23 @@
               <!-- Submit Button -->
               <button type="submit" class="submit-btn">SEND</button>
             </form>
+            <div class="career">
+              <h2 class="fade-up delay-1">Career Opportunities</h2>
+              <div class="register-line-holder fade-up delay-2">
+                <div class="register-line">
+                  <div class="register-line-1"></div>
+                </div>
+              </div>
+              <p class="fade-up delay-3">We are hiring talented, responsible, and hardworking individuals to join our dynamic team. Explore our career opportunities and grow with us!</p>
+              <div class="fade-up delay-2">
+                <q-btn
+                  flat
+                  label="APPLY NOW"
+                  class="career-btn"
+                  to="career-opportunities"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -236,10 +253,26 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useHead } from '@vueuse/head'
+import { useRoute } from 'vue-router'
 
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+const route = useRoute()
+
+useHead({
+  title: 'About Miracle Land | Tentang Miracle Land',
+  meta: [
+    { name: 'description', content: 'Learn about Miracle Land Holdings Berhad (MLHB), a trusted property developer in Malaysia. Ketahui tentang MLHB, pemaju hartanah dipercayai di Malaysia.' },
+    { name: 'keywords', content: 'Miracle Land, pemaju hartanah, pembangunan hartanah, beli rumah, beli kedai, hartanah Malaysia, property developer, real estate Malaysia, investment property' },
+    { name: 'author', content: 'Miracle Land Holdings Berhad' },
+    { property: 'og:title', content: 'About Miracle Land | Tentang Miracle Land' },
+    { property: 'og:description', content: 'Ketahui lebih lanjut mengenai Miracle Land Holdings Berhad, pakar pembangunan hartanah di Malaysia. Learn more about MLHB, a leading property developer.' },
+    { property: 'og:image', content: '/src/assets/logotext.png' },
+    { property: 'og:url', content: `https://miracleland.com${route.fullPath}` }
+  ]
+})
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -995,6 +1028,31 @@ padding-inline: 20px;
 font-size: 14px;
   font-family: 'AvenirMedium';
   text-transform: uppercase;
+}
+
+.career {
+  padding-top: 20px;
+}
+
+.career-btn{
+  background-color: transparent;
+  border: 2px solid black;
+  color: #000000;
+  font-family: 'AvenirMedium';
+  font-size: 17px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  width: 100%;
+  height: 60px;
+  border-radius: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.career-btn:hover {
+  background-color: #a39f1a;
+  border: none;
+  color: #fff;
+  transform: translateY(-3px);
 }
 
 @media (min-width: 900px){

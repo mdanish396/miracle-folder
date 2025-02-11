@@ -129,6 +129,23 @@
               <!-- Submit Button -->
               <button type="submit" class="submit-btn">SEND</button>
             </form>
+            <div class="career">
+              <h2 class="fade-up delay-1">Career Opportunities</h2>
+              <div class="register-line-holder fade-up delay-2">
+                <div class="register-line">
+                  <div class="register-line-1"></div>
+                </div>
+              </div>
+              <p class="fade-up delay-3">We are hiring talented, responsible, and hardworking individuals to join our dynamic team. Explore our career opportunities and grow with us!</p>
+              <div class="fade-up delay-2">
+                <q-btn
+                  flat
+                  label="APPLY NOW"
+                  class="career-btn"
+                  to="career-opportunities"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -648,6 +665,31 @@ padding-inline: 20px;
   cursor: pointer;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.career {
+  padding-top: 20px;
+}
+
+.career-btn{
+  background-color: transparent;
+  border: 2px solid black;
+  color: #000000;
+  font-family: 'AvenirMedium';
+  font-size: 17px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  width: 100%;
+  height: 60px;
+  border-radius: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.career-btn:hover {
+  background-color: #a39f1a;
+  border: none;
+  color: #fff;
+  transform: translateY(-3px);
 }
 
 @media (min-width: 900px){

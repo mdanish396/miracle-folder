@@ -139,7 +139,7 @@
           />
         </div>
         <div class="btn-more-1" v-if="visibleCount > 3">
-            <q-btn
+          <q-btn
             flat
             label="Show Less"
             class="load-more-btn"
@@ -328,6 +328,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 import { properties } from 'src/components/Properties/CurrentProperties/CurrentPropertiesData.vue'
 import { nearbyAmenities } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentAmenitiesData.vue'
+import { useHead } from '@unhead/vue'
 
 const route = useRoute()
 const developmentSlug = route.params.slug
@@ -338,6 +339,43 @@ const currentImage = ref(0)
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+const selectedDevelopment = developments.find(dev => dev.slug === route.params.slug) || developments[0]
+
+useHead({
+  title: selectedDevelopment.name + ' | Miracle Land',
+  meta: [
+    { name: 'description', content: selectedDevelopment.shortdescription },
+    { name: 'keywords', content: 'property for sale, ' + selectedDevelopment.location + ', ' + selectedDevelopment.type },
+    { property: 'og:title', content: selectedDevelopment.name },
+    { property: 'og:description', content: selectedDevelopment.shortdescription },
+    { property: 'og:image', content: selectedDevelopment.bannerimage },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://yourwebsite.com/for-sale/' + selectedDevelopment.slug },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: selectedDevelopment.name },
+    { name: 'twitter:description', content: selectedDevelopment.shortdescription },
+    { name: 'twitter:image', content: selectedDevelopment.bannerimage }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'RealEstateAgent',
+        name: selectedDevelopment.name,
+        image: selectedDevelopment.bannerimage,
+        url: 'https://yourwebsite.com/for-sale/' + selectedDevelopment.slug,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: selectedDevelopment.location,
+          addressRegion: selectedDevelopment.state,
+          addressCountry: 'Malaysia'
+        },
+        priceRange: selectedDevelopment.price
+      })
+    }
+  ]
+})
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -707,6 +745,7 @@ const capitalizeFirstLetter = (string) => {
   font-size: 42px;
   line-height: 50px;
 }
+
 .logo-image {
   width: 80px;
 }

@@ -292,7 +292,7 @@
                     <i :class="getCategoryIcon(category)" style="color: white; font-size: 18px;"></i>
                   </q-item-section>
                   <q-item-section>
-                    <span class="text-white">{{ capitalizeFirstLetter(category) }}</span>
+                    <span>{{ capitalizeFirstLetter(category) }}</span>
                   </q-item-section>
                 </template>
                 <q-separator color="white"/>
@@ -326,6 +326,7 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { onBeforeRouteUpdate, useRoute /* , useRouter */ } from 'vue-router'
 // import { pastproperties } from 'src/components/Properties/PastPropertiesData.vue'
 import { nearbyAmenities } from 'src/components/Properties/PastProperties/PastDevelopmentAmenitiesData.vue'
+import { useHead } from '@unhead/vue'
 
 const route = useRoute()
 const developmentSlug = route.params.slug
@@ -336,6 +337,42 @@ const currentImage = ref(0)
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+const selectedDevelopment = pastdevelopments.find(dev => dev.slug === route.params.slug) || pastdevelopments[0]
+
+useHead({
+  title: selectedDevelopment.name + ' | Miracle Land',
+  meta: [
+    { name: 'description', content: selectedDevelopment.shortdescription },
+    { name: 'keywords', content: 'past property, ' + selectedDevelopment.location + ', ' + selectedDevelopment.type },
+    { property: 'og:title', content: selectedDevelopment.name },
+    { property: 'og:description', content: selectedDevelopment.shortdescription },
+    { property: 'og:image', content: selectedDevelopment.bannerimage },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://yourwebsite.com/past-development/' + selectedDevelopment.slug },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: selectedDevelopment.name },
+    { name: 'twitter:description', content: selectedDevelopment.shortdescription },
+    { name: 'twitter:image', content: selectedDevelopment.bannerimage }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'RealEstateAgent',
+        name: selectedDevelopment.name,
+        image: selectedDevelopment.bannerimage,
+        url: 'https://yourwebsite.com/past-development/' + selectedDevelopment.slug,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: selectedDevelopment.location,
+          addressRegion: selectedDevelopment.state,
+          addressCountry: 'Malaysia'
+        }
+      })
+    }
+  ]
+})
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -791,7 +828,7 @@ const capitalizeFirstLetter = (string) => {
   font-size: 18px;
   font-family: 'TitilliumWebBold';
   line-height: 29px;
-  color: rgb(235, 235, 235);
+  color: rgb(255, 255, 255);
   text-align: center;
   height: 100px;
 }
@@ -1207,6 +1244,10 @@ line-height: 20px;
 }
 
 @media (max-width: 600px) {
+  .gallery-grid {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
   .gallery-grid .gallery-item:nth-child(2) {
   height: 300px;
 }
@@ -1318,7 +1359,7 @@ line-height: 20px;
 
   .amenities-expand {
     font-size: 16px;
-    color: antiquewhite;
+    color: white;
     font-family: 'TitilliumWebSemiBold';
     line-height: 24px;
   }
@@ -1326,6 +1367,8 @@ line-height: 20px;
   .amenities-child {
     font-size: 16px;
     line-height: 24px;
+    color: antiquewhite;
+    font-family: 'TitilliumWebSemiBold';
     cursor: default;
   }
 

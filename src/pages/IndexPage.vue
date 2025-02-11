@@ -23,7 +23,7 @@
 
       <!-- Text Overlay in Video (centered) -->
       <div class="video-text-overlay">
-        <h1>MIRACLE FOR YOU FOREVER</h1>
+        <h1>MIRACLES MADE FOR YOU <br> - FOREVER</h1>
       </div>
 
       <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
@@ -34,7 +34,7 @@
         </video>
       </div>
       <!-- Vertical Branding -->
-      <div class="vertical-branding">MIRACLE LAND</div>
+      <!-- <div class="vertical-branding">MIRACLE LAND</div> -->
     </div>
 
     <!-- Current Developments Section -->
@@ -124,34 +124,37 @@
 
     <!-- About Section -->
     <div class="about-section">
-      <div class="about-wrapper">
-        <ul>
-          <h2 class="fade-up">Founder's Track Record</h2>
-          <div class="line-holde fade-up delay-1">
-            <div class="line">
-              <div class="line-1">
-                <div class="line-2"></div>
+      <div class="content-container">
+        <!-- Text Content Section -->
+        <div class="text-content">
+          <div class="text fade-up delay-1">
+            <h2 class="text-above">Founder's Track Record</h2>
+            <div class="line-holders fade-up">
+              <div class="line-3">
+                <div class="line-4">
+                  <div class="line-5"></div>
+                </div>
               </div>
             </div>
+            <p class="text-below">From a family’s dream home to an entrepreneur’s aspiration, we strive to build sustainable communities through creativity and dedication at heart.</p>
+            <div class="fade-up delay-2">
+              <q-btn
+                flat
+                label="About Us"
+                class="about-btn"
+                to="/about-miracle"
+              />
+            </div>
           </div>
-          <li class="fade-up delay-2">
-              From a family’s dream home to an entrepreneur’s aspiration, we strive to build sustainable communities through creativity and dedication at heart.
-          </li>
-        </ul>
+        </div>
 
-        <div class="about-image-container fade-up delay-3">
+        <!-- Image Section -->
+        <div class="about-image-container fade-up">
           <img src="src/assets/currentproject/house1.jpg" class="about-image" />
         </div>
       </div>
-      <div class="fade-up delay-2">
-        <q-btn
-          flat
-          label="About Us"
-          class="about-btn"
-          to="/about-miracle"
-        />
-      </div>
     </div>
+
   </q-page>
 </template>
 
@@ -173,10 +176,10 @@ const fadeItems = ref([])
 let observer = null
 
 useHead({
-  title: 'Miracle Land | Property Development', // Page title
+  title: 'Miracle Land | Developer in Pahang', // Page title
   meta: [
-    { name: 'description', content: 'Miracle Land is a premier property development company in Malaysia' },
-    { name: 'keywords', content: 'property, development, real estate, Malaysia, Miracle Land, Pahang' },
+    { name: 'description', content: 'Miracle Land is a property development company in Pahang, Malaysia' },
+    { name: 'keywords', content: 'property, development, real estate, Malaysia, Miracle Land, Pahang, Jengka, Mentakab, New Launch' },
     { name: 'author', content: 'Miracle Land Holdings Berhad' },
     { property: 'og:title', content: 'Miracle Land | Property Development' },
     { property: 'og:description', content: 'Miracle Land is a premier property development company in Malaysia' },
@@ -389,17 +392,17 @@ const navigateToDevelopmentDetails = (slug) => {
 .video-text-overlay {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 49%;
   transform: translate(-50%, -50%);
   color: rgb(238, 238, 238);
   text-align: center;
   font-family: 'RecklessNeueMedium';
-  z-index: 1000;
+  z-index: 1;
   cursor: default;
 }
 
 .video-text-overlay h1 {
-  font-size: 64px; /* Adjust as needed */
+  font-size: 50px; /* Adjust as needed */
 }
 
 .vertical-branding {
@@ -452,7 +455,9 @@ const navigateToDevelopmentDetails = (slug) => {
   /*Development Section*/
   .developments-section {
   padding: 60px 20px;
+  padding-bottom: 40px;
   text-align: center;
+  background-color: #fff;
 }
 
 .developments-section h2 {
@@ -481,7 +486,7 @@ const navigateToDevelopmentDetails = (slug) => {
   height: 1px; /* Height of the line */
   background-color: #a7a4a4; /* Gold accent */
   margin-top: 1px; /* Space between the line and text */
-  padding-inline-end: 200px;
+  padding-inline-end: 220px;
   margin-inline-start: 40px;
 }
 
@@ -734,7 +739,8 @@ const navigateToDevelopmentDetails = (slug) => {
   text-align: center;
   opacity: 0;
   animation: fadeInUp 1s ease forwards;
-  margin-top: -20px;
+  padding-top: 60px;
+  padding-bottom: 130px;
 }
 
 .partners-section h3 {
@@ -790,53 +796,85 @@ const navigateToDevelopmentDetails = (slug) => {
 }
 
 /* About Section */
+.line-holders {
+  position: static;
+  margin-top: -30px;
+}
+
+.line-3 {
+  display: inline-block;
+  width: 12px; /* Thickness of the line */
+  height: 3px; /* Height of the line */
+  background-color: #08463c; /* Gold accent */
+  padding-inline: 40px;
+
+}
+
+.line-4 {
+  display: inline-block;
+  width: 50px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-top: 1px; /* Space between the line and text */
+  padding-inline-end: 220px;
+  margin-inline-start: 40px;
+}
+
+.line-5 {
+  display: inline-block;
+  width: 220px; /* Thickness of the line */
+  height: 1px; /* Height of the line */
+  background-color: #a7a4a4; /* Gold accent */
+  margin-bottom: 20px; /* Space between the line and text */
+  padding-inline-start: -100px;
+  margin-inline-start: -380px;
+}
+
 .about-section {
-  padding: 100px 20px;
-  padding-bottom: 0px;
-  text-align: center;
-}
-
-.about-section h2 {
-  font-family: 'RecklessNeueMedium';
-  font-size: 46px;
-  align-items: flex-start;
-  color: #000;
-}
-
-.about-wrapper {
+  background-color: #fff;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
 
-.about-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-}
-
-.about-section li {
-  font-family: 'TitilliumWebRegular';
-  margin-bottom: 20px;
-  font-size: 19px;
-  line-height: 35px;
-  text-align: justify;
+.content-container {
   display: flex;
-  align-items: flex-start;
-  padding-right: 140px;
-  padding-left: 100px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-.about-image-container {
-  flex: 1; /* Adjusts the width for the image section to make it more than half the screen width */
-  display:flex;
-  justify-content: center;
-  padding-right: 90px;
+.text-content {
+  flex: 1;
+  text-align: center;
 }
 
-.about-image {
-  width: 500px;
+.text {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.text-above {
+  font-family: 'RecklessNeueMedium';
+  font-size: 48px;
+  color: #000000;
+}
+
+.text-below {
+  font-family: 'TitilliumWebRegular';
+  font-size: 20px;
+  color: #000000;
+}
+
+.about-btn{  width: 500px;
   height: 400px;
+}
+
+.about-btn:hover {
+  background-color: #a39f1a;
+  border: none;
+  color: #fff;
+  transform: translateY(-3px);
 }
 
 .about-btn{
@@ -853,64 +891,114 @@ const navigateToDevelopmentDetails = (slug) => {
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-.about-btn:hover {
-  background-color: #a39f1a;
-  border: none;
-  color: #fff;
-  transform: translateY(-3px);
+/* Image Section */
+.about-image-container {
+  flex: 1; /* Adjusts the width for the image section to make it more than half the screen width */
+  display:flex;
+  justify-content: flex-end;
+  align-items:flex-end;
+  width: 50%;
 }
 
-/* Responsive Design */
-@media (min-width: 1200px) {
-  .about-section h2 {
-    margin-left: -25px;
-  }
-
-  .about-btn{
-    right: 25%;
-    bottom: 160px;
-  }
-
-  .about-section ul {
-    margin-top: -110px;
-  }
+.about-image {
+  width: 50vw;
+  height: 71vh;
+  object-fit: cover;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1260px) {
+
+.text-above{
+  font-size: 36px;
+}
+
+.line-3 {
+padding-inline: 20px;
+}
+
+.line-4 {
+  padding-inline-end: 180px;
+  margin-inline-start: 20px;
+}
+.line-5 {
+  width: 180px;
+  margin-inline-start: -250px;
+}
+
+/* .about-image {
+  width: 500px;
+} */
+}
+
+/* @media (max-width: 1024px) {
+  .about-image {
+  width: 500px;
+}
+} */
+/*
+@media (max-width: 910px) {
+  .about-image {
+  width: 500px;
+}
+} */
+
+@media (max-width: 960px) {
+
   .about-section {
-    padding-bottom: 80px;
-  }
+    padding-bottom: 60px;
+}
 
-  .about-wrapper {
+  .content-container {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .about-image-container {
-  margin: 20px auto; /* Adds spacing and centers the container */
-  padding-right: 0px;
-}
-}
-
-@media (max-width: 1024px) {
-
-  .about-section h2 {
-    font-size: 36px;
+    order: -1; /* Ensures image comes first */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .about-wrapper {
-    flex-direction: column;
+  .text-content {
+    order:1;
   }
 
-  .about-section li {
-    padding-right: 40px;
-    padding-left: 40px;
-    font-size: 18px;
+.about-image {
+  width: 800px;
+  height: 49vh;
+  }
+}
+
+@media (max-width: 540x) {
+  .about-image-container {
+    top: 0%;
+  }
+
+  .text-content {
+    padding-top: 324px;
+  }
+}
+/* @media (max-width: 520px) {
+
+  .about-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -460px;
+  }
+
+  .text-content {
+    padding-left: 0px;
+    padding-top: 190px;
   }
 
   .about-image {
-    width: 400px;
-    height: 300px;
+  width: 100%;
+  height: 49vh;
   }
-}
+} */
 
 </style>

@@ -283,7 +283,8 @@
         <div class="footer-right">
           <div class="footer-navigation">
             <router-link to="/contacts" class="footer-link">Contact Us</router-link>
-            <router-link to="/career" class="footer-link">Careers</router-link>
+            <!-- <router-link to="/career" class="footer-link">Careers</router-link> -->
+            <router-link to="/career-opportunities" class="footer-link">Careers</router-link>
             <p class="footer-time">Mon - Sat, 9AM - 5PM</p>
           </div>
           <div class="social-icons">
@@ -325,15 +326,35 @@ const showHeader = ref(true)
 const route = useRoute()
 
 useHead({
-  title: 'Miracle Land | Property Development',
+  title: 'Miracle Land | Pembangunan Hartanah', // Malay version
   meta: [
+    // English metadata
     { name: 'description', content: 'Miracle Land is a premier property development company in Malaysia' },
     { name: 'keywords', content: 'property, development, real estate, Malaysia, Miracle Land, Pahang' },
     { name: 'author', content: 'Miracle Land Holdings Berhad' },
-    { property: 'og:title', content: 'Miracle Land | Property Development' },
-    { property: 'og:description', content: 'Miracle Land is a premier property development company in Malaysia' },
-    { property: 'og:image', content: 'https://yourdomain.com/assets/logotext.png' }, // Use a full URL
-    { property: 'og:url', content: `https://yourdomain.com${route.fullPath}` } // Corrected for SSR
+
+    // Malay metadata
+    { name: 'description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia' },
+    { name: 'keywords', content: 'hartanah, pembangunan, real estate, Malaysia, Miracle Land, Pahang' },
+    { name: 'author', content: 'Miracle Land Holdings Berhad' },
+    { name: 'description', content: 'Miracle Land adalah syarikat pembangunan hartanah di Malaysia. Beli rumah dan kedai di Pahang, termasuk Mentakab & Bukit Bendera.' },
+    { name: 'keywords', content: 'beli rumah, beli kedai, hartanah Malaysia, pembangunan hartanah, Pahang, Mentakab, Bukit Bendera' },
+    { name: 'author', content: 'Miracle Land Holdings Berhad' },
+
+    // Open Graph (OG) - Facebook Sharing
+    { property: 'og:title', content: 'Miracle Land | Pembangunan Hartanah' },
+    { property: 'og:description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia' },
+    { property: 'og:image', content: 'https://yourdomain.com/assets/logotext.png' }, // Ensure full URL
+    { property: 'og:url', content: `https://yourdomain.com${route.fullPath}` },
+
+    // Twitter Card
+    { name: 'twitter:title', content: 'Miracle Land | Pembangunan Hartanah' },
+    { name: 'twitter:description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia' },
+    { name: 'twitter:image', content: 'https://yourdomain.com/assets/logotext.png' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+
+    // Language specification
+    { name: 'language', content: 'ms-MY' } // Malay (Malaysia)
   ]
 })
 
@@ -451,11 +472,11 @@ const handleLogoClick = () => {
 
 // Social media handlers
 const openFacebook = () => {
-  window.open('https://www.facebook.com/dynaton.property', '_blank')
+  window.open('https://www.facebook.com/miraclelandholdingsberhad/', '_blank')
 }
 
 const openInstagram = () => {
-  window.open('https://www.instagram.com/dynaton.property', '_blank')
+  window.open('https://www.instagram.com/miraclelandofficial/', '_blank')
 }
 
 const openYoutube = () => {
