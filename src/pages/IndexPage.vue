@@ -10,7 +10,8 @@
 
     <!-- Hero Section -->
     <div class="hero-section">
-      <video
+      <img src="src/assets/index.png" alt="Hero Image" class="hero-video" />
+      <!-- <video
         autoplay
         loop
         muted
@@ -19,7 +20,7 @@
         preload="auto">
         <source src="src/assets/landscape3.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+      </video> -->
 
       <!-- Text Overlay in Video (centered) -->
       <div class="video-text-overlay">
@@ -116,7 +117,7 @@
         </div>
       </div>
       <div class="logo-container fade-up delay-2">
-        <img src="src/assets/logo.png" alt="Partner 1" class="partner-logo" />
+        <img src="src/assets/interplan.png" alt="Partner 1" class="partner-logo" />
         <img src="src/assets/logo.png" alt="Partner 2" class="partner-logo" />
         <img src="src/assets/logo.png" alt="Partner 3" class="partner-logo" />
       </div>
@@ -337,7 +338,7 @@ const navigateToDevelopmentDetails = (slug) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #3d1c1c;
+  background-color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -392,7 +393,7 @@ const navigateToDevelopmentDetails = (slug) => {
 .video-text-overlay {
   position: absolute;
   top: 50%;
-  left: 49%;
+  left: 50%;
   transform: translate(-50%, -50%);
   color: rgb(238, 238, 238);
   text-align: center;
@@ -403,6 +404,14 @@ const navigateToDevelopmentDetails = (slug) => {
 
 .video-text-overlay h1 {
   font-size: 50px; /* Adjust as needed */
+  white-space: nowrap;
+  font-weight: bolder;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  line-height: 70px;
 }
 
 .vertical-branding {
@@ -423,14 +432,24 @@ const navigateToDevelopmentDetails = (slug) => {
 /* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: 20px;
-  left: 48%;
+  bottom: 0px;
+  left: 50%;
   transform: translateX(-50%);
-  color: white;
-  z-index: 1100; /* Ensure it appears above the video but below the top bar */
-  animation: bounce 3s infinite;
+  background: linear-gradient(rgb(0,0,0,0.05), rgb(0,0,0,0.5)); /* Dark semi-transparent background */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 80px;
+  z-index: 1100; /* Ensures it's above the video but below the top bar */
 }
 
+.mouse-animation {
+  padding-top: 10px;
+  width: 48px;
+  height: auto;
+  animation: bounce 3s infinite;
+}
 /* Animation for the scroll indicator */
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
@@ -441,12 +460,16 @@ const navigateToDevelopmentDetails = (slug) => {
   }
 
 }
-.mouse-animation {
-  width: 48px;
-  height: auto;
-}
 
+@media (max-width: 768px) {
+  .video-text-overlay h1 {
+    font-size: 40px;
+  }
+}
 @media (max-width: 540px) {
+  .video-text-overlay h1 {
+    font-size: 35px;
+  }
   .vertical-branding {
     right: 0%;
   }
@@ -759,14 +782,10 @@ const navigateToDevelopmentDetails = (slug) => {
 .partner-logo {
   width: 100px;
   height: auto;
-  transition: filter 0.5s ease-in-out, transform 0.5s ease-in-out;
-  filter: grayscale(100%);
-  opacity: 0.8;
+  transition: transform 0.5s ease-in-out;
 }
 
 .partner-logo:hover {
-  filter: grayscale(0);
-  opacity: 1;
   transform: scale(1.1);
 }
 
@@ -969,6 +988,12 @@ padding-inline: 20px;
 .about-image {
   width: 800px;
   height: 49vh;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-image {
+    width: 98vw;
   }
 }
 

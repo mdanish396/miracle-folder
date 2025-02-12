@@ -149,7 +149,7 @@ export const properties = {
     bedroom: 5,
     bathroom: 4,
     plan: 'src/assets/currentproject/house3.jpg',
-    brochure: 'src/assets/reports/brochure.pdf'
+    brochure: 'src/assets/reports/BILL GATES AND MICROSOFT.pdf'
   },
   {
     id: 3,

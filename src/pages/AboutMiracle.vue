@@ -154,17 +154,17 @@
             <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <span class="email-address">
+              <a class="email-address" href="mailto:kevin@interplandesigns.com">
                 kevin@interplandesigns.com
-              </span>
+              </a>
             </div>
             <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
             <p class="email-subtitle fade-up delay-2">We're always on the lookout for talented people - please send us <br> your CV and portfolio (no larger than 5MB) to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <span class="email-address">
+              <a class="email-address" href="mailto:kevin@interplandesigns.com">
                 hmnrs.md3@gmail.com
-              </span>
+              </a>
               <div>
                 <i class="fa fa-phone phone-icon"></i>
                 <span class="contact-no">
@@ -176,9 +176,9 @@
             <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <span class="email-address">
+              <a class="email-address" href="mailto:kevin@interplandesigns.com">
                 kevin@interplandesigns.com
-              </span>
+              </a>
             </div>
             <h5 class="business-title fade-up delay-2">Business Hours</h5>
             <div class="fade-up delay-3">
@@ -273,6 +273,10 @@ useHead({
     { property: 'og:url', content: `https://miracleland.com${route.fullPath}` }
   ]
 })
+
+const gotofullmap = () => {
+  window.open('https://maps.app.goo.gl/XcCFgR9Lg8vpdLfh7', '_blank')
+}
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -939,9 +943,15 @@ padding-inline: 20px;
 .email-address {
   font-family: 'TitilliumWebRegular';
   font-style: normal;
+  text-decoration: none;
+  color: inherit;
   margin-bottom: 15px;
   font-size: 16px;
   line-height: 21px;
+}
+
+.email-address:hover {
+  color: #08463c;
 }
 
 .email-subtitle br {
