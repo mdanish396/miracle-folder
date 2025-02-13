@@ -68,7 +68,7 @@
               <div class="development-info">
                 <h3>{{ development.name }}</h3>
                 <p>{{ development.location }}</p>
-                <p>From RM {{ development.price }}</p>
+                <p>From {{ development.price }}</p>
               </div>
               <!-- Hover Development Card Information -->
               <div class="development-hover-overlay">

@@ -20,7 +20,7 @@ export const pastdevelopments = [
     id: 1,
     name: 'Dynaton Bukit Angin',
     slug: generateSlug('Dynaton Bukit Angin'),
-    bannerimage: '/assets/Development/Dynaton Bukit Angin/bukit_angin_05.jpg',
+    bannerimage: '/assets/Development/Dynaton Bukit Angin/bukit_angin_05.JPG',
     logo: '/assets/Development/Dynaton Bukit Angin/logo.svg',
     location: 'Temerloh, Pahang',
     districts: 'Temerloh',
@@ -28,7 +28,7 @@ export const pastdevelopments = [
     type: 'Commercial',
     housetype: '2-Storey Terrace & Semi-D',
     status: 'Completed',
-    image: '/assets/Development/Dynaton Bukit Angin/bukit_angin_01.jpg',
+    image: '/assets/Development/Dynaton Bukit Angin/bukit_angin_01.JPG',
     features: ['Exclusive Amenities', 'Spacious Homes', 'Green Spaces'],
     shortdescription: 'Wow',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -47,7 +47,7 @@ export const pastdevelopments = [
     lotsize: '26` x 76`',
     gallerydevelopment: [
       {
-        url: '/assets/Development/Dynaton Bukit Angin/bukit_angin_03.jpg',
+        url: '/assets/Development/Dynaton Bukit Angin/bukit_angin_03.JPG',
         description: 'Living in Harmony with Nature'
       },
       {
@@ -55,17 +55,17 @@ export const pastdevelopments = [
         description: 'Doorstep Lifestyle and Retail Convenience'
       },
       {
-        url: '/assets/Development/Dynaton Bukit Angin/bukit_angin_02.jpg',
+        url: '/assets/Development/Dynaton Bukit Angin/bukit_angin_02.JPG',
         description: 'Exciting Placemaking Experience'
       }
     ],
     galleryImages: [
-      '/assets/Development/Dynaton Bukit Angin/bukit_angin_01.jpg',
+      '/assets/Development/Dynaton Bukit Angin/bukit_angin_01.JPG',
       '/assets/Development/Dynaton Bukit Angin/bukit_angin_06.png',
-      '/assets/Development/Dynaton Bukit Angin/bukit_angin_05.jpg',
-      '/assets/Development/Dynaton Bukit Angin/bukit_angin_07.jpg',
-      '/assets/Development/Dynaton Bukit Angin/bukit_angin_03.jpg',
-      '/assets/Development/Dynaton Bukit Angin/bukit_angin_02.jpg',
+      '/assets/Development/Dynaton Bukit Angin/bukit_angin_05.JPG',
+      '/assets/Development/Dynaton Bukit Angin/bukit_angin_07.JPG',
+      '/assets/Development/Dynaton Bukit Angin/bukit_angin_03.JPG',
+      '/assets/Development/Dynaton Bukit Angin/bukit_angin_02.JPG',
       '/assets/Development/Dynaton Bukit Angin/bukit_angin_08.png'
     ],
     map: 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3982.6261178882855!2d102.41706707438674!3d3.4407829965336987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwMjYnMjYuOCJOIDEwMsKwMjUnMTAuNyJF!5e0!3m2!1sen!2smy!4v1737527338884!5m2!1sen!2smy',
@@ -75,7 +75,7 @@ export const pastdevelopments = [
     id: 2,
     name: 'Kawasan Industri Seberang Temerloh',
     slug: generateSlug('Kawasan Industri Seberang Temerloh'),
-    bannerimage: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.jpg',
+    bannerimage: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.JPG',
     logo: '/assets/Development/Kawasan Industri Seberang Temerloh/logo.svg',
     location: 'Seberang Temerloh, Pahang',
     districts: 'Temerloh',
@@ -83,7 +83,7 @@ export const pastdevelopments = [
     type: 'Light Industrial',
     housetype: '2-Storey Terrace & Semi-D',
     status: 'Completed',
-    image: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.jpg',
+    image: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.JPG',
     features: ['Exclusive Amenities', 'Spacious Homes', 'Green Spaces'],
     shortdescription: 'Wow',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -102,17 +102,17 @@ export const pastdevelopments = [
     lotsize: '26` x 76`',
     gallerydevelopment: [
       {
-        url: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.jpg',
+        url: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.JPG',
         description: 'Living in Harmony with Nature'
       },
       {
-        url: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_01.jpg',
+        url: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_01.JPG',
         description: 'Doorstep Lifestyle and Retail Convenience'
       }
     ],
     galleryImages: [
-      '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.jpg',
-      '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_01.jpg',
+      '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.JPG',
+      '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_01.JPG',
       '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_04.png',
       '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_03.png'
     ],
@@ -123,7 +123,7 @@ export const pastdevelopments = [
     id: 3,
     name: 'Pusat Perniagaan Chengal',
     slug: generateSlug('Pusat Perniagaan Chengal'),
-    bannerimage: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.jpg',
+    bannerimage: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.JPG',
     logo: '/assets/Development/Pusat Perniagaan Chengal/logo.svg',
     location: 'Jalan Temerloh-Mentakab, Pahang',
     districts: 'Temerloh',
@@ -131,7 +131,7 @@ export const pastdevelopments = [
     type: 'Commercial',
     housetype: 'Bungalow',
     status: 'Completed',
-    image: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.jpg',
+    image: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.JPG',
     features: ['Luxury Living', 'Green Spaces'],
     shortdescription: 'Wow',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -150,11 +150,11 @@ export const pastdevelopments = [
     lotsize: '36` x 86`',
     gallerydevelopment: [
       {
-        url: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.jpg',
+        url: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.JPG',
         description: 'Living in Harmony with Nature'
       },
       {
-        url: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-02.jpg',
+        url: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-02.JPG',
         description: 'Doorstep Lifestyle and Retail Convenience'
       },
       {
@@ -163,8 +163,8 @@ export const pastdevelopments = [
       }
     ],
     galleryImages: [
-      '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.jpg',
-      '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-02.jpg',
+      '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.JPG',
+      '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-02.JPG',
       '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-03.jpg',
       '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-04.jpg'
     ],
@@ -175,7 +175,7 @@ export const pastdevelopments = [
     id: 4,
     name: 'Pusat Perniagaan Chengal 1',
     slug: generateSlug('Pusat Perniagaan Chengal 1'),
-    bannerimage: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.jpg',
+    bannerimage: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.JPG',
     logo: '/assets/Development/Pusat Perniagaan Chengal 1/logo.svg',
     location: 'Jalan Temerloh-Mentakab, Pahang',
     districts: 'Temerloh',
@@ -183,7 +183,7 @@ export const pastdevelopments = [
     type: 'Commercial',
     housetype: '2 Storey Terrace',
     status: 'Completed',
-    image: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.jpg',
+    image: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.JPG',
     features: ['Luxury Living', 'Lakeside'],
     shortdescription: 'Wow',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -202,19 +202,19 @@ export const pastdevelopments = [
     lotsize: '37` x 77`',
     gallerydevelopment: [
       {
-        url: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.jpg',
+        url: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.JPG',
         description: 'Living in Harmony with Nature'
       },
       {
-        url: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.jpg',
+        url: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.JPG',
         description: 'Doorstep Lifestyle and Retail Convenience'
       }
     ],
     galleryImages: [
-      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.jpg',
-      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.jpg',
-      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.jpg',
-      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.jpg'
+      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.JPG',
+      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.JPG',
+      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.JPG',
+      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.JPG'
     ],
     map: 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3982.5456970083414!2d102.3982028744327!3d3.459972196514456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwMjcnMzUuOSJOIDEwMsKwMjQnMDIuOCJF!5e0!3m2!1sen!2smy!4v1737442338896!5m2!1sen!2smy',
     link: '/past-development/'
@@ -434,7 +434,7 @@ export const pastdevelopments = [
     type: 'Residential',
     housetype: '2 Storey Terrace',
     status: 'Completed',
-    image: '/assets/Development/Dynaton Izona/izona_05.jpg',
+    image: '/assets/Development/Dynaton Izona/izona_05.JPG',
     features: ['Luxury Living', 'Lakeside'],
     shortdescription: 'Wow',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -461,13 +461,13 @@ export const pastdevelopments = [
         description: 'Doorstep Lifestyle and Retail Convenience'
       },
       {
-        url: '/assets/Development/Dynaton Izona/izona_03.jpg',
+        url: '/assets/Development/Dynaton Izona/izona_03.JPG',
         description: 'Doorstep Lifestyle and Retail Convenience'
       }
     ],
     galleryImages: [
-      '/assets/Development/Dynaton Izona/izona_03.jpg',
-      '/assets/Development/Dynaton Izona/izona_05.jpg',
+      '/assets/Development/Dynaton Izona/izona_03.JPG',
+      '/assets/Development/Dynaton Izona/izona_05.JPG',
       '/assets/Development/Dynaton Izona/izona_01.jpg',
       '/assets/Development/Dynaton Izona/izona_02.jpg',
       '/assets/Development/Dynaton Izona/izona_04.jpg',

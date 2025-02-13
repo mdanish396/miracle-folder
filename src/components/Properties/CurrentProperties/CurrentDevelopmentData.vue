@@ -103,7 +103,7 @@ export const developments = [
     lotsize: '36` x 86`',
     gallerydevelopment: [
       {
-        url: '/assets/Development/Casa Hill/casa_hill_05.jpg',
+        url: '/assets/Development/Casa Hill/casa_hill_05.JPG',
         description: 'Living in Harmony with Nature'
       },
       {
@@ -118,9 +118,9 @@ export const developments = [
     galleryImages: [
       '/assets/Development/Casa Hill/casa_hill_01.png',
       '/assets/Development/Casa Hill/casa_hill_08.jpg',
-      '/assets/Development/Casa Hill/casa_hill_06.jpg',
+      '/assets/Development/Casa Hill/casa_hill_06.JPG',
       '/assets/Development/Casa Hill/casa_hill_04.jpg',
-      '/assets/Development/Casa Hill/casa_hill_05.jpg',
+      '/assets/Development/Casa Hill/casa_hill_05.JPG',
       '/assets/Development/Casa Hill/casa_hill_07.jpg',
       '/assets/Development/Casa Hill/casa_hill_02.png',
       '/assets/Development/Casa Hill/casa_hill_03.jpg'

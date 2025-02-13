@@ -160,7 +160,7 @@ export const properties = {
     housetype: 'Bungalow',
     status: 'New Launch',
     price: 'RM 6XX,XXX*',
-    image: '/assets/Development/Casa Hill/type_c_01.jpg',
+    image: '/assets/Development/Casa Hill/type_c_01.JPG',
     features: ['Exclusive Amenities', 'Spacious Homes'],
     description: `Miracle Gardens is an 810-acre township
       fusing lifestyle and nature, featuring rolling hills and
