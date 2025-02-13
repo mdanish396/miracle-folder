@@ -18,7 +18,7 @@
 
         <!-- Image Section -->
         <div class="award-image-container">
-          <img src="src/assets/currentproject/house1.jpg" class="top-image" />
+          <img src="/assets/currentproject/house1.jpg" class="top-image" />
         </div>
       </div>
     </div>
@@ -78,29 +78,29 @@ onBeforeUnmount(() => {
 <style scoped>
 @font-face {
   font-family: 'TitilliumWebRegular';
-  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'TitilliumWebSemiBold';
-  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'RecklessNeueMedium';
-  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+  src: url('/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'TitilliumWebBold';
-  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'AvenirMedium';
-  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+  src: url('/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
   font-weight: bold;
 }
 

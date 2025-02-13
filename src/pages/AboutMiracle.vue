@@ -17,7 +17,7 @@
 
         <!-- Image Section -->
         <div class="about-image-container">
-          <img src="src/assets/currentproject/house1.jpg" class="about-image" />
+          <img src="/assets/currentproject/house1.jpg" class="about-image" />
         </div>
       </div>
     </div>
@@ -114,7 +114,7 @@
           </ul>
 
           <div class="mission-image-container">
-            <img src="src/assets/about2.png" class="mission-image" />
+            <img src="/assets/about2.png" class="mission-image" />
           </div>
         </div>
       </div>
@@ -139,7 +139,7 @@
 
             <div class="map-button fade-up delay-2">
               <button @click="gotofullmap" class="btn view-full-map-btn">
-                <img src="src/assets/brochure.svg" alt="Download" />
+                <img src="/assets/brochure.svg" alt="Download" />
                   View Full Map
               </button>
             </div>
@@ -269,7 +269,7 @@ useHead({
     { name: 'author', content: 'Miracle Land Holdings Berhad' },
     { property: 'og:title', content: 'About Miracle Land | Tentang Miracle Land' },
     { property: 'og:description', content: 'Ketahui lebih lanjut mengenai Miracle Land Holdings Berhad, pakar pembangunan hartanah di Malaysia. Learn more about MLHB, a leading property developer.' },
-    { property: 'og:image', content: '/src/assets/logotext.png' },
+    { property: 'og:image', content: '//assets/logotext.png' },
     { property: 'og:url', content: `https://miracleland.com${route.fullPath}` }
   ]
 })
@@ -308,28 +308,28 @@ onBeforeUnmount(() => {
 
 @font-face {
   font-family: 'TitilliumWebRegular';
-  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 @font-face {
   font-family: 'AvenirMedium';
-  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+  src: url('/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
 }
 
 @font-face {
   font-family: 'TitilliumWebSemiBold';
-  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'TitilliumWebBold';
-  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'RecklessNeueMedium';
-  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+  src: url('/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
 }
 
 .section {
@@ -586,7 +586,7 @@ padding-inline: 20px;
 /* Vision Section */
 .vision-section {
   background-color: rgba(255, 255, 255, 0.4); /* Background color */
-  background-image: url('src/assets/career3.jpg'); /* Background image */
+  background-image: url('/assets/career3.jpg'); /* Background image */
   background-blend-mode: overlay;  /* Background image */
   background-size: cover; /* Ensure the image covers the section */
   background-position: center; /* Center the image */

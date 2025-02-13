@@ -20,7 +20,7 @@
 
         <!-- Image Section -->
         <div class="career-image-container">
-          <img src="src/assets/currentproject/house1.jpg" class="top-image" />
+          <img src="/assets/currentproject/house1.jpg" class="top-image" />
         </div>
       </div>
     </div>
@@ -30,19 +30,19 @@
         <h2 class="fade-up">What We Offer</h2>
         <div class="fade-up delay-1">
           <div class="text-list">
-            <img src="src/assets/handshake.png" class="icon-image"/>
+            <img src="/assets/handshake.png" class="icon-image"/>
             <span class="offer-text">
               Competitive pay
             </span>
           </div>
           <div class="text-list">
-            <img src="src/assets/handshake.png" class="icon-image"/>
+            <img src="/assets/handshake.png" class="icon-image"/>
             <span class="offer-text">
               Comprehensive training
             </span>
           </div>
           <div class="text-list">
-            <img src="src/assets/handshake.png" class="icon-image"/>
+            <img src="/assets/handshake.png" class="icon-image"/>
             <span class="offer-text">
               Friendly and supportive work environment
             </span>
@@ -142,7 +142,7 @@
           </div>
         </template>
         <q-fab-action @click="onClick" color="white" style="border-radius: 1%;" >
-          <img src="src/assets/qr-career.png" alt="QR Code" class="qr-img"/>
+          <img src="/assets/qr-career.png" alt="QR Code" class="qr-img"/>
         </q-fab-action>
       </q-fab>
     </q-page-sticky>
@@ -239,29 +239,29 @@ onBeforeUnmount(() => {
 
 @font-face {
   font-family: 'TitilliumWebRegular';
-  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'TitilliumWebSemiBold';
-  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'RecklessNeueMedium';
-  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+  src: url('/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'TitilliumWebBold';
-  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'AvenirMedium';
-  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+  src: url('/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
 }
 
 .section {

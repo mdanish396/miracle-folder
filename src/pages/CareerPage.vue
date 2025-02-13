@@ -18,7 +18,7 @@
 
         <!-- Image Section -->
         <div class="career-image-container">
-          <img src="src/assets/currentproject/house1.jpg" class="top-image" />
+          <img src="/assets/currentproject/house1.jpg" class="top-image" />
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
         </div>
         <div class="image-container">
           <!-- Image -->
-          <img src="src/assets/career3.jpg" alt="Why Join Us" class="career-image" />
+          <img src="/assets/career3.jpg" alt="Why Join Us" class="career-image" />
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
       <div class="content-container">
         <div class="image-container">
           <!-- Image -->
-          <img src="src/assets/career3.jpg" alt="Why Join Us" class="career-image" />
+          <img src="/assets/career3.jpg" alt="Why Join Us" class="career-image" />
         </div>
         <div class="text-content-2">
           <h2 class="fade-up">Why Teamwork Matters</h2>
@@ -73,7 +73,7 @@
         </div>
         <div class="image-container">
           <!-- Image -->
-          <img src="src/assets/career2.png" alt="Why Join Us" class="career-image" />
+          <img src="/assets/career2.png" alt="Why Join Us" class="career-image" />
         </div>
       </div>
     </div>
@@ -119,29 +119,29 @@ onBeforeUnmount(() => {
 
 @font-face {
   font-family: 'TitilliumWebRegular';
-  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'TitilliumWebSemiBold';
-  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'RecklessNeueMedium';
-  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+  src: url('/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'TitilliumWebBold';
-  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'AvenirMedium';
-  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+  src: url('/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
 }
 
 .section {

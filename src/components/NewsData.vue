@@ -19,16 +19,16 @@ export const newsItems = ref([
     day: '26',
     month: 'Jan',
     year: '2024',
-    imagetitle: 'src/assets/career3.jpg',
+    imagetitle: '/assets/career3.jpg',
     descriptionimagetitle: 'Highlighting the latest innovations in real estate development.',
     images: ['', // first paragraph got no image
       { //  second has image
-        url: 'src/assets/career3.jpg',
+        url: '/assets/career3.jpg',
         description: 'Highlighting the latest innovations in real estate development.'
       },
       '', // third paragraph got no image
       { // fourth has image
-        url: 'src/assets/career1.png'
+        url: '/assets/career1.png'
       }
     ],
     content: [
@@ -56,7 +56,7 @@ export const newsItems = ref([
     ],
     images: ['', // there are no image in first paragraph. Need to add this '' before each paragraph that has no image
       { // this image is in second pragraph
-        url: 'src/assets/career2.png',
+        url: '/assets/career2.png',
         description: 'Highlighting the latest innovations in real estate development.'
       }],
     source: 'The Star',
@@ -69,7 +69,7 @@ export const newsItems = ref([
     day: '01',
     month: 'Feb',
     year: '2024',
-    imagetitle: 'src/assets/career1.png',
+    imagetitle: '/assets/career1.png',
     content: [
       `Discover how our latest innovations are reshaping the real estate industry.
       Learn more about our journey to transform the future of property development.

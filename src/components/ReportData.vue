@@ -17,7 +17,7 @@ export const reportsItems = {
     {
       id: 1,
       title: '2023 Annual Report',
-      file: 'src/assets/reports/BILL GATES AND MICROSOFT.pdf'
+      file: '/assets/reports/BILL GATES AND MICROSOFT.pdf'
     },
     {
       id: 2,

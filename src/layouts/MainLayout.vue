@@ -6,7 +6,7 @@
       <q-toolbar class="toolbar">
         <!-- Left-aligned: Logo and Title -->
         <router-link to="/" class="logo-title-group" @click="handleLogoClick">
-          <img src="src/assets/logotext.png" alt="Logo" class="logo" />
+          <img src="/assets/logotext.png" alt="Logo" class="logo" />
           <!-- <q-toolbar-title class="toolbar-title">
             MIRACLE LAND
           </q-toolbar-title> -->
@@ -270,7 +270,7 @@
         <!-- Left Section -->
         <div class="footer-left">
           <div class="logo-container">
-            <img src="src/assets/logotext.png" alt="Company Logo" class="footer-logo">
+            <img src="/assets/logotext.png" alt="Company Logo" class="footer-logo">
             <!-- <span class="footer-logo-text">MIRACLE LAND</span> -->
           </div>
           <div class="footer-address">
@@ -298,7 +298,7 @@
               <i class="mdi mdi-instagram"></i>
             </button>
             <button class="social-btn-tiktok" aria-label="TikTok" @click="openTiktok">
-              <img class="tiktok" src="src\assets\tiktok3.svg" alt="Tiktok">
+              <img class="tiktok" src="/assets/tiktok3.svg" alt="Tiktok">
             </button>
           </div>
         </div>
@@ -503,29 +503,29 @@ onUnmounted(() => {
 
 @font-face {
   font-family: 'TitilliumWebRegular';
-  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'TitilliumWebSemiBold';
-  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'RecklessNeueMedium';
-  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+  src: url('/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'TitilliumWebBold';
-  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'AvenirMedium';
-  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+  src: url('/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
 }
 /* Logo */
 .logo {

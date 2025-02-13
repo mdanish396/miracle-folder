@@ -57,7 +57,7 @@
                         flat
                         @click="open(property.vr)"
                         class="property-btn">
-                        <img src="src/assets/vr camera.svg" class="icon-2">
+                        <img src="/assets/vr camera.svg" class="icon-2">
                         <span class="text-btn">VIRTUAL TOUR</span>
                       </q-btn>
 
@@ -66,7 +66,7 @@
                         flat
                         @click="scrollToFloorplan"
                         class="property-btn">
-                        <img src="src/assets/floor.svg" class="icon-2">
+                        <img src="/assets/floor.svg" class="icon-2">
                         <span class="text-btn">FLOOR PLANS</span>
                       </q-btn>
 
@@ -75,7 +75,7 @@
                         flat
                         @click="scrollToGallery"
                         class="property-btn">
-                        <img src="src/assets/gallery.svg" class="icon-2">
+                        <img src="/assets/gallery.svg" class="icon-2">
                         <span class="text-btn">GALLERY</span>
                       </q-btn>
                     </div>
@@ -230,17 +230,17 @@
                 <div class="details-grid fade-up delay-2">
                   <!-- Bedrooms -->
                   <div class="details-item">
-                    <img src="src/assets/bed.png" alt="Area" class="icon-3" />
+                    <img src="/assets/bed.png" alt="Area" class="icon-3" />
                     <p>{{ property.bedroom }} Bedrooms</p>
                   </div>
                   <!-- Bathrooms -->
                   <div class="details-item">
-                    <img src="src/assets/bathroom.svg" alt="Area" class="icon-3" />
+                    <img src="/assets/bathroom.svg" alt="Area" class="icon-3" />
                     <p>{{ property.bathroom }} Bathrooms</p>
                   </div>
                   <!-- Area -->
                   <div class="details-item">
-                    <img src="src/assets/area.svg" alt="Area" class="icon-3" />
+                    <img src="/assets/area.svg" alt="Area" class="icon-3" />
                     <p>{{ property.area }}</p>
                   </div>
                 </div>
@@ -248,11 +248,11 @@
                 <!-- Buttons Section -->
                 <div class="floorplan-buttons fade-up delay-3">
                   <button @click="downloadBrochure(property.brochure)" class="btn download-btn">
-                    <img src="src/assets/brochure.svg" alt="Download" />
+                    <img src="/assets/brochure.svg" alt="Download" />
                     Download Brochure
                   </button>
                   <button @click="openImage(property.plan)" class="btn view-btn">
-                    <img src="src/assets/area.svg" alt="View" />
+                    <img src="/assets/area.svg" alt="View" />
                     View Floorplan
                   </button>
                 </div>
@@ -374,7 +374,7 @@
 
             <div class="map-button fade-up delay-2">
               <button @click="gotofullmap" class="btn view-full-map-btn">
-                <img src="src/assets/brochure.svg" alt="Map" />
+                <img src="/assets/brochure.svg" alt="Map" />
                 View Full Map
               </button>
             </div>
@@ -821,29 +821,29 @@ const loadMore = () => {
 
 @font-face {
   font-family: 'TitilliumWebRegular';
-  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'TitilliumWebSemiBold';
-  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'RecklessNeueMedium';
-  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+  src: url('/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'TitilliumWebBold';
-  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'TitilliumWebBoldItalic';
-  src: url('src/assets/fonts/TitilliumWeb-BoldItalic.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-BoldItalic.ttf') format('truetype');
 }
 
 .section {

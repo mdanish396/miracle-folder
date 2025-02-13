@@ -20,8 +20,8 @@ export const developments = [
     id: 1,
     name: 'Miracle Sentral',
     slug: generateSlug('Miracle Sentral'),
-    bannerimage: 'src/assets/Development/Miracle Sentral/miracle_sentral_12.png',
-    logo: 'src/assets/Development/Miracle Sentral/logo.png',
+    bannerimage: '/assets/Development/Miracle Sentral/miracle_sentral_12.png',
+    logo: '/assets/Development/Miracle Sentral/logo.png',
     location: 'Jengka, Pahang',
     districts: 'Jengka',
     state: 'Pahang',
@@ -29,7 +29,7 @@ export const developments = [
     price: 'RM 5XX,XXX*',
     status: 'New Launch',
     statusbuyer: 'New Launch',
-    image: 'src/assets/Development/Miracle Sentral/miracle_sentral_09.png',
+    image: '/assets/Development/Miracle Sentral/miracle_sentral_09.png',
     features: ['Exclusive Amenities', 'Spacious Homes', 'Green Spaces'],
     shortdescription: 'home to your nature',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -50,24 +50,24 @@ export const developments = [
     lotsize: '26` x 76`',
     gallerydevelopment: [ // 3 image only no less no more
       {
-        url: 'src/assets/Development/Miracle Sentral/miracle_sentral_10.png',
+        url: '/assets/Development/Miracle Sentral/miracle_sentral_10.png',
         description: 'Living in Harmony with Nature'
       },
       {
-        url: 'src/assets/Development/Miracle Sentral/miracle_sentral_13.jpg',
+        url: '/assets/Development/Miracle Sentral/miracle_sentral_13.jpg',
         description: 'Doorstep Lifestyle and Retail Convenience'
       },
       {
-        url: 'src/assets/Development/Miracle Sentral/miracle_sentral_09.png',
+        url: '/assets/Development/Miracle Sentral/miracle_sentral_09.png',
         description: 'Exciting Placemaking Experience'
       }
     ],
     galleryImages: [
-      'src/assets/Development/Miracle Sentral/miracle_sentral_15.png',
-      'src/assets/Development/Miracle Sentral/miracle_sentral_04.jpeg',
-      'src/assets/Development/Miracle Sentral/miracle_sentral_03.jpg',
-      'src/assets/Development/Miracle Sentral/miracle_sentral_14.png',
-      'src/assets/Development/Miracle Sentral/miracle_sentral_10.png'
+      '/assets/Development/Miracle Sentral/miracle_sentral_15.png',
+      '/assets/Development/Miracle Sentral/miracle_sentral_04.jpeg',
+      '/assets/Development/Miracle Sentral/miracle_sentral_03.jpg',
+      '/assets/Development/Miracle Sentral/miracle_sentral_14.png',
+      '/assets/Development/Miracle Sentral/miracle_sentral_10.png'
     ],
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
   },
@@ -75,8 +75,8 @@ export const developments = [
     id: 2,
     name: 'Casa Hill',
     slug: generateSlug('Casa Hill'),
-    bannerimage: 'src/assets/Development/Casa Hill/casa_hill_01.png',
-    logo: 'src/assets/Development/Casa Hill/logo.png',
+    bannerimage: '/assets/Development/Casa Hill/casa_hill_01.png',
+    logo: '/assets/Development/Casa Hill/logo.png',
     location: 'Mentakab, Temerloh',
     districts: 'Temerloh',
     state: 'Pahang',
@@ -84,7 +84,7 @@ export const developments = [
     price: 'RM 6XX,XXX*',
     status: 'New Launch',
     statusbuyer: 'New Launch',
-    image: 'src/assets/Development/Casa Hill/casa_hill_02.png',
+    image: '/assets/Development/Casa Hill/casa_hill_02.png',
     features: ['Luxury Living', 'Green Spaces'],
     shortdescription: 'home to your nature',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -103,27 +103,27 @@ export const developments = [
     lotsize: '36` x 86`',
     gallerydevelopment: [
       {
-        url: 'src/assets/Development/Casa Hill/casa_hill_05.jpg',
+        url: '/assets/Development/Casa Hill/casa_hill_05.jpg',
         description: 'Living in Harmony with Nature'
       },
       {
-        url: 'src/assets/Development/Casa Hill/casa_hill_03.jpg',
+        url: '/assets/Development/Casa Hill/casa_hill_03.jpg',
         description: 'Doorstep Lifestyle and Retail Convenience'
       },
       {
-        url: 'src/assets/Development/Casa Hill/casa_hill_04.jpg',
+        url: '/assets/Development/Casa Hill/casa_hill_04.jpg',
         description: 'Exciting Placemaking Experience'
       }
     ],
     galleryImages: [
-      'src/assets/Development/Casa Hill/casa_hill_01.png',
-      'src/assets/Development/Casa Hill/casa_hill_08.jpg',
-      'src/assets/Development/Casa Hill/casa_hill_06.jpg',
-      'src/assets/Development/Casa Hill/casa_hill_04.jpg',
-      'src/assets/Development/Casa Hill/casa_hill_05.jpg',
-      'src/assets/Development/Casa Hill/casa_hill_07.jpg',
-      'src/assets/Development/Casa Hill/casa_hill_02.png',
-      'src/assets/Development/Casa Hill/casa_hill_03.jpg'
+      '/assets/Development/Casa Hill/casa_hill_01.png',
+      '/assets/Development/Casa Hill/casa_hill_08.jpg',
+      '/assets/Development/Casa Hill/casa_hill_06.jpg',
+      '/assets/Development/Casa Hill/casa_hill_04.jpg',
+      '/assets/Development/Casa Hill/casa_hill_05.jpg',
+      '/assets/Development/Casa Hill/casa_hill_07.jpg',
+      '/assets/Development/Casa Hill/casa_hill_02.png',
+      '/assets/Development/Casa Hill/casa_hill_03.jpg'
     ],
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.4411082928295!2d102.33912939999999!3d3.4847702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba1bc23fa6b7%3A0xfe72a6be37126111!2sDynaton%20Casa%20Hill!5e0!3m2!1sen!2smy!4v1737941338360!5m2!1sen!2smy'
   }

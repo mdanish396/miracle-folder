@@ -20,8 +20,8 @@ export const leasedevelopments = [
     id: 1,
     name: 'Monarc Cove',
     slug: generateSlug('Monarc Cove'),
-    bannerimage: 'src/assets/building.png',
-    logo: 'src/assets/currentproject/house1.jpg',
+    bannerimage: '/assets/building.png',
+    logo: '/assets/currentproject/house1.jpg',
     location: 'Kalimantan, Mana',
     district: 'Jengka',
     state: 'Pahang',
@@ -29,7 +29,7 @@ export const leasedevelopments = [
     price: '5,000',
     status: 'Available',
     statuslease: 'Available',
-    image: 'src/assets/currentproject/house1.jpg',
+    image: '/assets/currentproject/house1.jpg',
     features: ['Exclusive Amenities', 'Spacious Homes', 'Green Spaces'],
     shortdescription: 'home to your nature',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -50,22 +50,22 @@ export const leasedevelopments = [
     lotsize: '26` x 76`',
     gallerydevelopment: [ // 3 image only no less no more
       {
-        url: 'src/assets/currentproject/house1.jpg',
+        url: '/assets/currentproject/house1.jpg',
         description: 'Living in Harmony with Nature'
       },
       {
-        url: 'src/assets/award1.png',
+        url: '/assets/award1.png',
         description: 'Doorstep Lifestyle and Retail Convenience'
       },
       {
-        url: 'src/assets/currentproject/house3.jpg',
+        url: '/assets/currentproject/house3.jpg',
         description: 'Exciting Placemaking Experience'
       }
     ],
     galleryImages: [
-      'src/assets/currentproject/house2.jpg',
-      'src/assets/currentproject/house3.jpg',
-      'src/assets/currentproject/house1.jpg',
+      '/assets/currentproject/house2.jpg',
+      '/assets/currentproject/house3.jpg',
+      '/assets/currentproject/house1.jpg',
       'https://picsum.photos/200/300'
     ],
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
@@ -74,8 +74,8 @@ export const leasedevelopments = [
     id: 2,
     name: 'Connaught Cove',
     slug: generateSlug('Connaught Cove'),
-    bannerimage: 'src/assets/building.png',
-    logo: 'src/assets/currentproject/house1.jpg',
+    bannerimage: '/assets/building.png',
+    logo: '/assets/currentproject/house1.jpg',
     location: 'Mert, Temerloh',
     district: 'Jengka',
     state: 'Pahang',
@@ -83,7 +83,7 @@ export const leasedevelopments = [
     price: '6000',
     status: 'Current',
     statuslease: 'Available',
-    image: 'src/assets/currentproject/house2.jpg',
+    image: '/assets/currentproject/house2.jpg',
     features: ['Luxury Living', 'Green Spaces'],
     shortdescription: 'home to your nature',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -102,15 +102,15 @@ export const leasedevelopments = [
     lotsize: '36` x 86`',
     gallerydevelopment: [
       {
-        url: 'src/assets/currentproject/house3.jpg',
+        url: '/assets/currentproject/house3.jpg',
         description: 'Living in Harmony with Nature'
       },
       {
-        url: 'src/assets/award2.png',
+        url: '/assets/award2.png',
         description: 'Doorstep Lifestyle and Retail Convenience'
       },
       {
-        url: 'src/assets/currentproject/house2.jpg',
+        url: '/assets/currentproject/house2.jpg',
         description: 'Exciting Placemaking Experience'
       }
     ],
@@ -127,8 +127,8 @@ export const leasedevelopments = [
     id: 3,
     name: 'ZIG House',
     slug: generateSlug('ZIG House'),
-    bannerimage: 'src/assets/building.png',
-    logo: 'src/assets/currentproject/house3.jpg',
+    bannerimage: '/assets/building.png',
+    logo: '/assets/currentproject/house3.jpg',
     location: 'Greater Kuala Lumpur',
     district: 'Temerloh',
     state: 'Pahang',
@@ -136,7 +136,7 @@ export const leasedevelopments = [
     price: '5000',
     status: 'Current',
     statuslease: 'Available',
-    image: 'src/assets/currentproject/house3.jpg',
+    image: '/assets/currentproject/house3.jpg',
     features: ['Luxury Living', 'Lakeside'],
     shortdescription: 'home to your nature',
     description: `The Camellia, your home at Wetlands Estates, the
@@ -155,15 +155,15 @@ export const leasedevelopments = [
     lotsize: '36` x 76`',
     gallerydevelopment: [
       {
-        url: 'src/assets/currentproject/house1.jpg',
+        url: '/assets/currentproject/house1.jpg',
         description: 'Living in Harmony with Nature'
       },
       {
-        url: 'src/assets/award2.png',
+        url: '/assets/award2.png',
         description: 'Doorstep Lifestyle and Retail Convenience'
       },
       {
-        url: 'src/assets/currentproject/house2.jpg',
+        url: '/assets/currentproject/house2.jpg',
         description: 'Exciting Placemaking Experience'
       }
     ],

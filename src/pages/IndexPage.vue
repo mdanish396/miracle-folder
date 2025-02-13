@@ -3,14 +3,14 @@
     <!-- Startup Animation Overlay -->
     <div v-if="showLoader" class="startup-overlay">
       <div>
-        <img src="src/assets/logo.png" class="startup-image">
+        <img src="/assets/logo.png" class="startup-image">
       </div>
       <h4>MIRACLE LAND</h4>
     </div>
 
     <!-- Hero Section -->
     <div class="hero-section">
-      <img src="src/assets/index.png" alt="Hero Image" class="hero-video" />
+      <img src="/assets/index.png" alt="Hero Image" class="hero-video" />
       <!-- <video
         autoplay
         loop
@@ -18,7 +18,7 @@
         class="hero-video"
         playsinline
         preload="auto">
-        <source src="src/assets/landscape3.mp4" type="video/mp4" />
+        <source src="/assets/landscape3.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video> -->
 
@@ -30,7 +30,7 @@
       <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
       <div class="scroll-indicator">
         <video autoplay loop muted class="mouse-animation" playsinline>
-          <source src="src/assets/mouse.webm" type="video/webm" />
+          <source src="/assets/mouse.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -117,9 +117,9 @@
         </div>
       </div>
       <div class="logo-container fade-up delay-2">
-        <img src="src/assets/interplan.png" alt="Partner 1" class="partner-logo" />
-        <img src="src/assets/logo.png" alt="Partner 2" class="partner-logo" />
-        <img src="src/assets/logo.png" alt="Partner 3" class="partner-logo" />
+        <img src="/assets/interplan.png" alt="Partner 1" class="partner-logo" />
+        <img src="/assets/logo.png" alt="Partner 2" class="partner-logo" />
+        <img src="/assets/logo.png" alt="Partner 3" class="partner-logo" />
       </div>
     </div>
 
@@ -151,7 +151,7 @@
 
         <!-- Image Section -->
         <div class="about-image-container fade-up">
-          <img src="src/assets/currentproject/house1.jpg" class="about-image" />
+          <img src="/assets/currentproject/house1.jpg" class="about-image" />
         </div>
       </div>
     </div>
@@ -184,7 +184,7 @@ useHead({
     { name: 'author', content: 'Miracle Land Holdings Berhad' },
     { property: 'og:title', content: 'Miracle Land | Property Development' },
     { property: 'og:description', content: 'Miracle Land is a premier property development company in Malaysia' },
-    { property: 'og:image', content: '/src/assets/logotext.png' },
+    { property: 'og:image', content: '//assets/logotext.png' },
     { property: 'og:url', content: `https://miracleland.com${route.fullPath}` } // Update with your actual domain
   ]
 })
@@ -266,29 +266,29 @@ const navigateToDevelopmentDetails = (slug) => {
 
 @font-face {
   font-family: 'TitilliumWebRegular';
-  src: url('src/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'TitilliumWebSemiBold';
-  src: url('src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'RecklessNeueMedium';
-  src: url('src/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
+  src: url('/assets/fonts/RecklessNeue-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'TitilliumWebBold';
-  src: url('src/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+  src: url('/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'AvenirMedium';
-  src: url('src/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+  src: url('/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
 }
 
 .section {
