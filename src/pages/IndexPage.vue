@@ -177,15 +177,23 @@ const fadeItems = ref([])
 let observer = null
 
 useHead({
-  title: 'Miracle Land | Developer in Pahang', // Page title
+  title: 'Miracle Land | Pemaju Hartanah di Pahang', // Malay + English
   meta: [
-    { name: 'description', content: 'Miracle Land is a property development company in Pahang, Malaysia' },
-    { name: 'keywords', content: 'property, development, real estate, Malaysia, Miracle Land, Pahang, Jengka, Mentakab, New Launch' },
+    { name: 'description', content: 'Miracle Land ialah sebuah syarikat pembangunan hartanah di Pahang, Malaysia. Menawarkan pelaburan hartanah terbaik untuk rumah dan premis perniagaan.' },
+    { name: 'keywords', content: 'hartanah, pembangunan, pelaburan, rumah, kedai, Malaysia, Miracle Land, Pahang, Jengka, Mentakab, projek baru' },
     { name: 'author', content: 'Miracle Land Holdings Berhad' },
-    { property: 'og:title', content: 'Miracle Land | Property Development' },
-    { property: 'og:description', content: 'Miracle Land is a premier property development company in Malaysia' },
-    { property: 'og:image', content: '//assets/logotext.png' },
-    { property: 'og:url', content: `https://miracleland.com${route.fullPath}` } // Update with your actual domain
+
+    // Open Graph (OG) for Social Media
+    { property: 'og:title', content: 'Miracle Land | Pemaju Hartanah Malaysia' },
+    { property: 'og:description', content: 'Miracle Land ialah pemaju hartanah terkemuka di Malaysia, menawarkan projek rumah dan komersial yang inovatif dan berkualiti.' },
+    { property: 'og:image', content: 'https://miracleland.co/assets/logotext.png' },
+    { property: 'og:url', content: `https://miracleland.co${route.fullPath}` },
+
+    // Twitter Meta Tags
+    { name: 'twitter:title', content: 'Miracle Land | Pembangunan Hartanah' },
+    { name: 'twitter:description', content: 'Miracle Land ialah pemaju hartanah di Malaysia dengan projek inovatif di Pahang, termasuk Jengka dan Mentakab.' },
+    { name: 'twitter:image', content: 'https://miracleland.co/assets/logotext.png' },
+    { name: 'twitter:card', content: 'summary_large_image' }
   ]
 })
 

@@ -350,7 +350,7 @@ useHead({
     { property: 'og:description', content: selectedDevelopment.shortdescription },
     { property: 'og:image', content: selectedDevelopment.bannerimage },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://yourwebsite.com/for-sale/' + selectedDevelopment.slug },
+    { property: 'og:url', content: 'https://miracleland.co/for-sale/' + selectedDevelopment.slug },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: selectedDevelopment.name },
     { name: 'twitter:description', content: selectedDevelopment.shortdescription },
@@ -364,7 +364,7 @@ useHead({
         '@type': 'RealEstateAgent',
         name: selectedDevelopment.name,
         image: selectedDevelopment.bannerimage,
-        url: 'https://yourwebsite.com/for-sale/' + selectedDevelopment.slug,
+        url: 'https://miracleland.co/for-sale/' + selectedDevelopment.slug,
         address: {
           '@type': 'PostalAddress',
           addressLocality: selectedDevelopment.location,

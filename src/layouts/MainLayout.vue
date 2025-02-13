@@ -317,6 +317,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 import { leasedevelopments } from 'src/components/Lease/LeaseData.vue'
 import { useHead } from '@vueuse/head'
+
 const displayedDevelopments = ref(developments)
 const selectedDistrict = ref('')
 const displayedLeaseDevelopments = ref(leasedevelopments)
@@ -344,13 +345,13 @@ useHead({
     // Open Graph (OG) - Facebook Sharing
     { property: 'og:title', content: 'Miracle Land | Pembangunan Hartanah' },
     { property: 'og:description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia' },
-    { property: 'og:image', content: 'https://yourdomain.com/assets/logotext.png' }, // Ensure full URL
-    { property: 'og:url', content: `https://yourdomain.com${route.fullPath}` },
+    { property: 'og:image', content: 'https://miracleland.co/assets/logotext.png' }, // Ensure full URL
+    { property: 'og:url', content: `https://miracleland.co${route.fullPath}` },
 
     // Twitter Card
     { name: 'twitter:title', content: 'Miracle Land | Pembangunan Hartanah' },
     { name: 'twitter:description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia' },
-    { name: 'twitter:image', content: 'https://yourdomain.com/assets/logotext.png' },
+    { name: 'twitter:image', content: 'https://miracleland.co/assets/logotext.png' },
     { name: 'twitter:card', content: 'summary_large_image' },
 
     // Language specification

@@ -348,7 +348,7 @@ useHead({
     { property: 'og:description', content: selectedDevelopment.shortdescription },
     { property: 'og:image', content: selectedDevelopment.bannerimage },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://yourwebsite.com/past-development/' + selectedDevelopment.slug },
+    { property: 'og:url', content: 'https://miracleland.co/past-development/' + selectedDevelopment.slug },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: selectedDevelopment.name },
     { name: 'twitter:description', content: selectedDevelopment.shortdescription },
@@ -362,7 +362,7 @@ useHead({
         '@type': 'RealEstateAgent',
         name: selectedDevelopment.name,
         image: selectedDevelopment.bannerimage,
-        url: 'https://yourwebsite.com/past-development/' + selectedDevelopment.slug,
+        url: 'https://miracleland.co/past-development/' + selectedDevelopment.slug,
         address: {
           '@type': 'PostalAddress',
           addressLocality: selectedDevelopment.location,

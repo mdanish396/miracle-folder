@@ -12,8 +12,8 @@ export const floorplan = {
           area: '1,800 sqft',
           bedroom: 4,
           bathroom: 3,
-          plan: 'src/assets/currentproject/house1.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house1.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ],
       '2 Storey Terrace B': [
@@ -21,8 +21,8 @@ export const floorplan = {
           area: '2,800 sqft',
           bedroom: 5,
           bathroom: 4,
-          plan: 'src/assets/currentproject/house3.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house3.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ],
       '2 Storey Semi-D A': [
@@ -30,8 +30,8 @@ export const floorplan = {
           area: '1,800 sqft',
           bedroom: 4,
           bathroom: 3,
-          plan: 'src/assets/currentproject/house1.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house1.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ],
       '2 Storey Semi-D B': [
@@ -39,8 +39,8 @@ export const floorplan = {
           area: '2,800 sqft',
           bedroom: 5,
           bathroom: 4,
-          plan: 'src/assets/currentproject/house3.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house3.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ]
     }
@@ -52,8 +52,8 @@ export const floorplan = {
           area: '2,800 sqft',
           bedroom: 4,
           bathroom: 3,
-          plan: 'src/assets/currentproject/house2.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house2.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ],
       'Bungalow B': [
@@ -61,8 +61,8 @@ export const floorplan = {
           area: '3,800 sqft',
           bedroom: 5,
           bathroom: 4,
-          plan: 'src/assets/currentproject/house1.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house1.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ]
     }
@@ -74,8 +74,8 @@ export const floorplan = {
           area: '2,800 sqft',
           bedroom: 4,
           bathroom: 3,
-          plan: 'src/assets/currentproject/house2.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house2.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ],
       'Bungalow B': [
@@ -83,8 +83,8 @@ export const floorplan = {
           area: '3,800 sqft',
           bedroom: 5,
           bathroom: 4,
-          plan: 'src/assets/currentproject/house1.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house1.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ],
       'Bungalow C': [
@@ -92,8 +92,8 @@ export const floorplan = {
           area: '3,300 sqft',
           bedroom: 4,
           bathroom: 4,
-          plan: 'src/assets/currentproject/house1.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house1.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ]
     }
@@ -105,8 +105,8 @@ export const floorplan = {
           area: '1,800 sqft',
           bedroom: 3,
           bathroom: 2,
-          plan: 'src/assets/currentproject/house1.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house1.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ],
       '2 Storey Terrace B': [
@@ -114,8 +114,8 @@ export const floorplan = {
           area: '2,800 sqft',
           bedroom: 4,
           bathroom: 3,
-          plan: 'src/assets/currentproject/house3.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house3.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ]
     }
@@ -127,8 +127,8 @@ export const floorplan = {
           area: '1,800 sqft',
           bedroom: 3,
           bathroom: 2,
-          plan: 'src/assets/currentproject/house1.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house1.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ],
       'Double Storey B': [
@@ -136,8 +136,8 @@ export const floorplan = {
           area: '2,800 sqft',
           bedroom: 4,
           bathroom: 3,
-          plan: 'src/assets/currentproject/house3.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house3.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ]
     }
@@ -149,8 +149,8 @@ export const floorplan = {
           area: '1,800 sqft',
           bedroom: 3,
           bathroom: 2,
-          plan: 'src/assets/currentproject/house1.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house1.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ],
       '2 Storey Terrace B': [
@@ -158,8 +158,8 @@ export const floorplan = {
           area: '2,800 sqft',
           bedroom: 4,
           bathroom: 3,
-          plan: 'src/assets/currentproject/house3.jpg',
-          brochure: 'src/assets/reports/brochure.pdf'
+          plan: '/assets/currentproject/house3.jpg',
+          brochure: '/assets/reports/brochure.pdf'
         }
       ]
     }
