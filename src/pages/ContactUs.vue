@@ -41,45 +41,45 @@
             <div class="map-button fade-up delay-2">
               <button @click="gotofullmap" class="btn view-full-map-btn">
                 <img src="/assets/brochure.svg" alt="Download" />
-                View Full Map
+                  View Full Map
               </button>
             </div>
             <h5 class="contact-title fade-up delay-2">Contact Number</h5>
             <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
-              <span class="contact-no">
+              <a class="contact-no" href="tel:+60192966666">
                 +60 19 296 6666
-              </span>
+              </a>
             </div>
             <h5 class="email-title fade-up delay-2">General Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <span class="email-address">
+              <a class="email-address" href="mailto:kevin@interplandesigns.com">
                 kevin@interplandesigns.com
-              </span>
+              </a>
             </div>
             <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
             <p class="email-subtitle fade-up delay-2">We're always on the lookout for talented people - please send us <br> your CV and portfolio (no larger than 5MB) to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <span class="email-address">
+              <a class="email-address" href="mailto:hmnrs.md3@gmail.com">
                 hmnrs.md3@gmail.com
-              </span>
+              </a>
               <div>
                 <i class="fa fa-phone phone-icon"></i>
-                <span class="contact-no">
+                <a class="contact-no" href="tel:+601169999888">
                   +60 116 9999 888
-                </span>
+                </a>
               </div>
             </div>
             <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <span class="email-address">
+              <a class="email-address" href="mailto:kevin@interplandesigns.com">
                 kevin@interplandesigns.com
-              </span>
+              </a>
             </div>
             <h5 class="business-title fade-up delay-2">Business Hours</h5>
             <div class="fade-up delay-3">
@@ -103,7 +103,6 @@
               action="https://formspree.io/f/myzkjkew"
               method="POST"
               class="register-form fade-up delay-4">
-
               <!-- Name Field -->
               <input type="text" name="name" placeholder="Name*" required>
 
@@ -159,6 +158,10 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+
+const gotofullmap = () => {
+  window.open('https://maps.app.goo.gl/XcCFgR9Lg8vpdLfh7', '_blank')
+}
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -275,8 +278,7 @@ onBeforeUnmount(() => {
 
 .line-hero-holder {
   position: static;
-  margin-top: -20px;
-  padding-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .line-hero {
@@ -321,7 +323,7 @@ onBeforeUnmount(() => {
 }
 
 .top-image {
-  width: 850px;
+  width: 65vw;
   height: 71vh;
   object-fit: cover;
 }
@@ -330,7 +332,7 @@ onBeforeUnmount(() => {
 
   .text-above,
 .text-below {
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .line-hero {
@@ -341,13 +343,9 @@ padding-inline: 20px;
   padding-inline-end: 100px;
   margin-inline-start: 20px;
 }
-
-.top-image {
-  width: 700px;
-}
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .top-image {
   width: 600px;
 }
@@ -357,9 +355,9 @@ padding-inline: 20px;
   .top-image {
   width: 500px;
 }
-}
+} */
 
-@media (max-width: 820px) {
+@media (max-width: 880px) {
 
   .contact-container {
     display: flex;
@@ -372,12 +370,12 @@ padding-inline: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -455px;
+    order: -1;
   }
 
   .text-content {
-    padding-left: 0px;
-    padding-top: 185px;
+    order: 1;
+    padding-left: 0;
   }
 
 .line-hero-holder {
@@ -385,27 +383,16 @@ padding-inline: 20px;
 }
 
 .top-image {
-  width: 500px;
-  height: 49vh;
+  width: 70vw;
+  height: 50vh;
+  margin-top: -22px;
   }
 }
 @media (max-width: 520px) {
-
-  .contact-image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -460px;
-  }
-
-  .text-content {
-    padding-left: 0px;
-    padding-top: 190px;
-  }
-
   .top-image {
-  width: 100%;
-  height: 49vh;
+    margin-top: -40px;
+    margin-bottom: 20px;
+    width: 100vw;
   }
 }
 
@@ -413,9 +400,9 @@ padding-inline: 20px;
 .register {
   color: #000;
   background-color: white;
-  padding: 40px 100px;
+  padding: 40px 6%;
   padding-top: 0px;
-  padding-bottom: 40px;
+  padding-bottom: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -449,8 +436,8 @@ padding-inline: 20px;
   flex-direction: column;
   padding: 10px;
   padding-bottom: 60px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 2%;
+  padding-right: 2%;
   position: relative;
   overflow: hidden;
 }
@@ -469,7 +456,6 @@ padding-inline: 20px;
 
 .register-left {
   padding: 0px 10px;
-  padding-left: 30px;
 }
 
 .register-left .register-title {
@@ -554,6 +540,8 @@ padding-inline: 20px;
 .contact-no {
   font-family: 'TitilliumWebRegular';
   font-style: normal;
+  text-decoration: none;
+  color: inherit;
   margin-bottom: 15px;
   font-size: 16px;
   line-height: 21px;
@@ -583,9 +571,15 @@ padding-inline: 20px;
 .email-address {
   font-family: 'TitilliumWebRegular';
   font-style: normal;
+  text-decoration: none;
+  color: inherit;
   margin-bottom: 15px;
   font-size: 16px;
   line-height: 21px;
+}
+
+.email-address:hover {
+  color: #08463c;
 }
 
 .email-subtitle br {
@@ -636,6 +630,11 @@ padding-inline: 20px;
   gap: 10px;
 }
 
+.register-form input {
+  font-size: 14px;
+  font-family: 'TitilliumWebRegular';
+}
+
 .register-form input,
 .register-form textarea,
 .register-form select {
@@ -653,8 +652,9 @@ padding-inline: 20px;
 }
 
 .register-form select {
-  font-size: 0.9rem;
+  font-size: 14px;
   cursor: pointer;
+  font-family: 'TitilliumWebRegular';
 }
 
 .submit-btn {
@@ -663,7 +663,8 @@ padding-inline: 20px;
   color: #fff;
   border: none;
   cursor: pointer;
-  font-weight: bold;
+font-size: 14px;
+  font-family: 'AvenirMedium';
   text-transform: uppercase;
 }
 
@@ -717,7 +718,7 @@ padding-inline: 20px;
 @media (max-width: 786px){
 
   .register {
-  padding: 40px 20px;
+  padding: 40px 2%;
 }
 
 }
@@ -731,6 +732,10 @@ padding-inline: 20px;
     font-size: 34px;
   }
 
+  .register-right h2 {
+    font-size: 32px;
+  }
+
   .address-title {
   font-size: 17px;
 }
@@ -741,5 +746,4 @@ padding-inline: 20px;
     gap: 150px;
   }
 }
-
 </style>
