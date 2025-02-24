@@ -320,8 +320,7 @@ const navigateToPastDevelopmentDetails = (slug) => {
 
 .line-hero-holder {
   position: static;
-  margin-top: -20px;
-  padding-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .line-hero {
@@ -366,7 +365,7 @@ const navigateToPastDevelopmentDetails = (slug) => {
 }
 
 .top-image {
-  width: 850px;
+  width: 65vw;
   height: 71vh;
   object-fit: cover;
 }
@@ -375,7 +374,7 @@ const navigateToPastDevelopmentDetails = (slug) => {
 
 .text-above,
 .text-below {
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .line-hero {
@@ -387,12 +386,9 @@ padding-inline: 20px;
   margin-inline-start: 20px;
 }
 
-.top-image {
-  width: 700px;
-}
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .about-image {
   width: 600px;
 }
@@ -402,9 +398,9 @@ padding-inline: 20px;
   .about-image {
   width: 500px;
 }
-}
+} */
 
-@media (max-width: 820px) {
+@media (max-width: 880px) {
 
   .content-container {
     display: flex;
@@ -417,12 +413,12 @@ padding-inline: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -455px;
+    order: -1;
   }
 
   .text-content {
-    padding-left: 0px;
-    padding-top: 185px;
+    order: 1;
+  padding-left: 0;
   }
 
   .text-above,
@@ -435,28 +431,17 @@ padding-inline: 20px;
 }
 
 .top-image {
-  width: 100%;
-  max-width: 500px;
-  height: 47vh;
+  width: 70vw;
+  height: 50vh;
+  margin-top: -22px;
   }
 }
 @media (max-width: 520px) {
 
-  .development-image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -460px;
-  }
-
-  .text-content {
-    padding-left: 0px;
-    padding-top: 190px;
-  }
-
   .top-image {
-  width: 100%;
-  height: 49vh;
+    margin-top: -40px;
+    margin-bottom: 20px;
+    width: 100vw;
   }
 }
 
@@ -475,13 +460,13 @@ padding-inline: 20px;
 
 .developments-section h2 {
   font-family: 'RecklessNeueMedium';
-  font-size: 42px;
+  font-size: 48px;
   color: #000000;
 }
 
 .past-developments-section h2 {
   font-family: 'RecklessNeueMedium';
-  font-size: 42px;
+  font-size: 48px;
   color: #000000;
 }
 
@@ -521,11 +506,11 @@ padding-inline: 20px;
 
 @media (max-width: 768px) {
 
-.development-section h2 {
+.developments-section h2 {
   font-size: 40px;
 }
 
-.past-development-section h2 {
+.past-developments-section h2 {
   font-size: 40px;
 }
 
@@ -547,12 +532,12 @@ padding-inline: 20px;
 
 @media (max-width: 540px) {
 
-  .development-section h2 {
-    font-size: 32px;
+  .developments-section h2 {
+    font-size: 30px;
   }
 
-  .past-development-section h2 {
-    font-size: 32px;
+  .past-developments-section h2 {
+    font-size: 30px;
   }
 
 .line {
