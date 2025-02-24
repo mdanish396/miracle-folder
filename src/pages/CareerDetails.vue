@@ -53,17 +53,17 @@
       <div class="contact-apply fade-up delay-2">
         <div class="contact-info">
           <p>Send your resume</p>
-          <p class="info">
+          <a href="mailto:hmnrs.md3@gmail.com" class="info">
             <i class="fa fa-envelope icons"></i>
             hmnrs.md3@gmail.com
-          </p>
+          </a>
         </div>
         <div class="contact-info">
           <p>Contact us</p>
-          <p class="info">
+          <a href="tel:+601169999888" class="info">
             <i class="fas fa-phone-alt icons"></i>
-            +60 11 6999 9888
-          </p>
+            +60 116 9999 888
+          </a>
         </div>
       </div>
     </div>
@@ -73,7 +73,7 @@
         <!-- Department Selector -->
         <q-select
           v-model="selectedDepartment"
-          :options="['All Departments', ...departments.map(dept => dept.department)]"          outlined
+          :options="['All Departments', ...departments.map(dept => dept.department)]" outlined
           dense
           emit-value
           map-options
@@ -83,7 +83,7 @@
         <!-- Location Selector -->
         <q-select
           v-model="selectedLocation"
-          :options="['All Locations', ...locations.map(loc => loc.location)]"          outlined
+          :options="['All Locations', ...locations.map(loc => loc.location)]" outlined
           dense
           class="select"
           emit-value
@@ -116,7 +116,7 @@
         <p class="fade-up delay-1">The Miracle Land Company has a strong presence in Pahang,
           with offices in Temerloh, Kuantan, and Jengka. If you haven't
           found the job vacancy on our site today, you can submit your
-          details prospectively with us and one of our team will get in touch with you
+          details prospectively with us and one of our team will get in touch with you.
         </p>
       </div>
       <div class="career-link fade-up delay-2">
@@ -126,26 +126,35 @@
         <strong>Be fraud aware:</strong> Fraudulent job advertisements can circulate online and falsely
           claim to be associated with The Miracle Land Company. Genuine
           correspondence from The Miracle Land Company will always come
-          from the official website [www.miracleland.com].We will never
+          from the official website <a class="second-web" href="https://www.miracleland.co" target="_blank">www.miracleland.co</a>. We will never
           request sensitive or personal financial information during the
           recruitment process. If you suspect that you have been contacted
           by someone misrepresenting The Miracle Land Company, please
-          contact us at hmnrs.md3@gmail.com.
+          contact us at <a class="second-mail" href="mailto:hmnrs.md3@gmail.com">hmnrs.md3@gmail.com</a>.
       </div>
     </div>
 
-    <q-page-sticky position="bottom-right" :offset="[35, 50]">
-      <q-fab direction="up" color="dark grey" icon="keyboard_arrow_up" label-position="left">
-        <template v-slot:label="{ opened }">
-          <div :class="{ 'example-fab-animate--hover': opened !== true }">
-            {{ opened !== true ? 'Click for QR Code' : 'Scan to Apply Now' }}
-          </div>
-        </template>
-        <q-fab-action @click="onClick" color="white" style="border-radius: 1%;" >
-          <img src="/assets/qr-career.png" alt="QR Code" class="qr-img"/>
-        </q-fab-action>
-      </q-fab>
-    </q-page-sticky>
+<!-- Draggable FAB with QR Code -->
+<q-page-sticky position="bottom-right" :offset="fabPos">
+            <q-fab
+              direction="up"
+              color="dark grey"
+              icon="keyboard_arrow_up"
+              label-position="left"
+              :disable="draggingFab"
+              v-touch-pan.prevent.mouse="moveFab"
+            >
+              <template v-slot:label="{ opened }">
+                <div :class="{ 'example-fab-animate--hover': opened !== true }">
+                  {{ opened !== true ? 'Click for QR Code' : 'Scan to Apply Now' }}
+                </div>
+              </template>
+
+              <q-fab-action @click="onClick" color="white" style="border-radius: 1%;" >
+                <img src="/assets/qr-career.png" alt="QR Code" class="qr-img"/>
+              </q-fab-action>
+            </q-fab>
+          </q-page-sticky>
   </q-page>
 </template>
 
@@ -232,6 +241,22 @@ onBeforeUnmount(() => {
   // Clean up observer
   if (observer) observer.disconnect()
 })
+
+const fabPos = ref([18, 18])
+const draggingFab = ref(false)
+
+const onClick = () => {
+  console.log('FAB Action Clicked')
+}
+
+const moveFab = (ev) => {
+  draggingFab.value = ev.isFirst !== true && ev.isFinal !== true
+
+  fabPos.value = [
+    fabPos.value[0] - ev.delta.x,
+    fabPos.value[1] - ev.delta.y
+  ]
+}
 
 </script>
 
@@ -320,8 +345,7 @@ onBeforeUnmount(() => {
 
 .line-hero-holder {
   position: static;
-  margin-top: -20px;
-  padding-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .line-hero {
@@ -352,7 +376,7 @@ onBeforeUnmount(() => {
   font-family: 'TitilliumWebRegular';
   font-size: 16px;
   padding-top: 20px;
-  padding-right: 40px;
+  padding-right: 20px;
   color: #fff;
 }
 
@@ -369,7 +393,7 @@ onBeforeUnmount(() => {
 }
 
 .top-image {
-  width: 850px;
+  width: 65vw;
   height: 71vh;
   object-fit: cover;
 }
@@ -377,7 +401,7 @@ onBeforeUnmount(() => {
 @media (max-width: 1260px) {
 
 .text-above {
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .text-below {
@@ -393,12 +417,9 @@ padding-inline: 20px;
   margin-inline-start: 20px;
 }
 
-.top-image {
-  width: 700px;
-}
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .top-image {
   width: 600px;
 }
@@ -408,9 +429,9 @@ padding-inline: 20px;
   .top-image {
   width: 500px;
 }
-}
+} */
 
-@media (max-width: 820px) {
+@media (max-width: 880px) {
 
   .new-container {
     display: flex;
@@ -423,17 +444,13 @@ padding-inline: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -460px;
+    order: -1;
   }
 
   .text-content {
-    padding-left: 0px;
-    padding-top: 175px;
+    order: 1;
+  padding-left: 0;
   }
-
-  .text-above {
-  font-size: 30px;
-}
 
 .text-below {
   padding-right: 0px;
@@ -445,37 +462,25 @@ padding-inline: 20px;
 }
 
 .top-image {
-  width: 100%;
-  max-width: 500px;
-  height: 47vh;
+  width: 70vw;
+  height: 50vh;
+  margin-top: -22px;
   }
 }
 @media (max-width: 520px) {
-
-  .career-image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -450px;
-  }
-
-  .text-content {
-    padding-left: 0px;
-    padding-top: 168px;
-  }
-
   .text-above {
     margin-bottom: -20px;
   }
 
   .top-image {
-  width: 100%;
-  height: 49vh;
+    margin-top: -40px;
+    margin-bottom: 20px;
+    width: 100vw;
   }
 }
 
 .contact {
-  padding: 20px 15%;
+  padding: 20px 10%;
   padding-bottom: 50px;
   display: flex;
   justify-content: space-between;
@@ -548,6 +553,8 @@ padding-inline: 20px;
 
 .info {
   font-family: 'TitilliumWebBold';
+  text-decoration: none;
+  color: inherit;
 }
 
 .icons {
@@ -557,6 +564,10 @@ padding-right: 10px;
 @media (max-width: 768px) {
   .contact {
     flex-direction: column;
+  }
+
+  .contact-apply {
+    padding-left: 0;
   }
 }
 
@@ -627,6 +638,7 @@ padding-right: 10px;
 
 .career-first p {
   font-size: 17px;
+  text-align: justify;
   font-family: 'TitilliumWebRegular';
 }
 
@@ -655,8 +667,27 @@ padding-right: 10px;
   font-family: 'TitilliumWebSemiBold';
 }
 
+.second-web {
+  text-decoration: none;
+  color: inherit;
+}
+
+.second-web:hover {
+  color: #a39f1a;
+}
+
+.second-mail {
+  text-decoration: none;
+  color: inherit;
+}
+
+.second-mail:hover {
+  color: #a39f1a;
+}
+
 .career-second {
   font-size: 17px;
+  text-align: justify;
   font-family: 'TitilliumWebRegular';
 }
 
