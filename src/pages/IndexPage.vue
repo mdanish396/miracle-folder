@@ -350,7 +350,7 @@ const navigateToDevelopmentDetails = (slug) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
+  z-index: 3;
   animation: slideUpOverlay 1.5s ease-in-out forwards 0.4s; /* Slide up after 2 seconds */
 }
 
@@ -382,6 +382,9 @@ const navigateToDevelopmentDetails = (slug) => {
 .hero-section {
   position: relative;
   height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
@@ -389,12 +392,6 @@ const navigateToDevelopmentDetails = (slug) => {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensures the video covers the entire hero section */
-}
-
-@media (max-width: 480px) {
-  .hero-section {
-    height: 102vh;
-}
 }
 
 /* Text Overlay in Video */
@@ -411,7 +408,7 @@ const navigateToDevelopmentDetails = (slug) => {
 }
 
 .video-text-overlay h1 {
-  font-size: 50px; /* Adjust as needed */
+  font-size: 4vw; /* Adjust as needed */
   white-space: nowrap;
   font-weight: bolder;
   text-shadow:
@@ -419,7 +416,7 @@ const navigateToDevelopmentDetails = (slug) => {
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;
-  line-height: 70px;
+  line-height: 1.2;
 }
 
 .vertical-branding {
@@ -449,7 +446,7 @@ const navigateToDevelopmentDetails = (slug) => {
   text-align: center;
   width: 100%;
   height: 80px;
-  z-index: 1100; /* Ensures it's above the video but below the top bar */
+  z-index: 2; /* Ensures it's above the video but below the top bar */
 }
 
 .mouse-animation {
@@ -466,26 +463,23 @@ const navigateToDevelopmentDetails = (slug) => {
   80% {
     transform: translateY(10px);
   }
+}
 
+@media (max-width: 1024px) {
+  .video-text-overlay h1 {
+    font-size: 5vw;
+  }
 }
 
 @media (max-width: 768px) {
   .video-text-overlay h1 {
-    font-size: 40px;
-  }
-}
-@media (max-width: 540px) {
-  .video-text-overlay h1 {
-    font-size: 35px;
-  }
-  .vertical-branding {
-    right: 0%;
+    font-size: 6.5vw;
   }
 }
 
   /*Development Section*/
   .developments-section {
-  padding: 60px 20px;
+  padding: 60px 5%;
   padding-bottom: 40px;
   text-align: center;
   background-color: #fff;
@@ -533,7 +527,7 @@ const navigateToDevelopmentDetails = (slug) => {
 
 @media (max-width: 768px) {
 
-.development-section h2 {
+.developments-section h2 {
   font-size: 40px;
 }
 
@@ -555,8 +549,8 @@ const navigateToDevelopmentDetails = (slug) => {
 
 @media (max-width: 540px) {
 
-  .development-section h2 {
-    font-size: 32px;
+  .developments-section h2 {
+    font-size: 30px;
   }
 
 .line {
@@ -596,19 +590,19 @@ const navigateToDevelopmentDetails = (slug) => {
   justify-content: center; /* Center the grid within the container */
 }
 
-@media (max-width: 1224px) {
+@media (max-width: 1024px) {
   .developments-container {
     grid-template-columns: repeat(3, minmax(280px, 1fr));
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
   .developments-container {
     grid-template-columns: repeat(2, minmax(280px, 1fr));
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 480px) {
   .developments-container {
     grid-template-columns: repeat(1, minmax(280px, 1fr));
   }
@@ -784,7 +778,7 @@ const navigateToDevelopmentDetails = (slug) => {
   padding-top: 40px;
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
 }
 
 .partner-logo {
@@ -809,17 +803,23 @@ const navigateToDevelopmentDetails = (slug) => {
   }
 }
 
+@media (max-width: 768px) {
+  .partners-section h3 {
+    font-size: 40px;
+  }
+
+  .partner-logo {
+    width: 80px;
+  }
+}
+
 /* Further adjust for small screen */
 @media (max-width: 480px) {
 
   .partners-section h3 {
-    font-size: 36px;
-    padding-left: 20px;
+    font-size: 30px;
   }
 
-  .logo-container {
-    padding-left: 20px;
-  }
 }
 
 /* About Section */
@@ -933,10 +933,10 @@ const navigateToDevelopmentDetails = (slug) => {
   object-fit: cover;
 }
 
-@media (max-width: 1260px) {
+@media (max-width: 1240px) {
 
 .text-above{
-  font-size: 36px;
+  font-size: 40px;
 }
 
 .line-3 {
@@ -949,7 +949,7 @@ padding-inline: 20px;
 }
 .line-5 {
   width: 180px;
-  margin-inline-start: -250px;
+  margin-inline-start: -260px;
 }
 
 /* .about-image {
@@ -999,21 +999,35 @@ padding-inline: 20px;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .about-image {
     width: 98vw;
   }
-}
 
-@media (max-width: 540x) {
-  .about-image-container {
-    top: 0%;
-  }
-
-  .text-content {
-    padding-top: 324px;
+  .text-above {
+    font-size: 40px;
   }
 }
+
+@media (max-width: 540px) {
+  .text-above {
+    font-size: 30px;
+  }
+
+  .line-3 {
+padding-inline: 15px;
+}
+
+.line-4 {
+  padding-inline-end: 140px;
+  margin-inline-start: 15px;
+}
+.line-5 {
+  width: 140px;
+  margin-inline-start: -200px;
+}
+}
+
 /* @media (max-width: 520px) {
 
   .about-image-container {
