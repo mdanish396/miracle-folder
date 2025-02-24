@@ -71,7 +71,7 @@
             </q-menu>
           </q-card>
 
-          <q-card class="nav-button flat-card"
+          <!-- <q-card class="nav-button flat-card"
             @mouseover="showDropdown('lease')"
             @mouseleave="hideDropdown('lease')">
             <q-card-section class="nav-card-section">For Lease
@@ -84,8 +84,8 @@
               @mouseover="showDropdown('lease')"
               @mouseleave="hideDropdown('lease')"
               class="dropdown-container">
-              <div class="dropdown-content">
-                <!-- district list -->
+              <div class="dropdown-content"> -->
+                <!-- district list
                 <div v-for="(districts, state) in groupedLeaseDevelopments" :key="state" class="district-list">
                   <h6>{{ state }}</h6>
                   <ul>
@@ -99,9 +99,9 @@
                       {{ district }}
                     </li>
                   </ul>
-                </div>
+                </div> -->
 
-                <!-- Images Grid -->
+                <!-- Images Grid
                 <div class="image-grid">
                   <div class="grid-item" v-for="(lease, index) in filteredLease" :key="index">
                     <div class="image-container"
@@ -115,7 +115,7 @@
                 </div>
               </div>
             </q-menu>
-          </q-card>
+          </q-card> -->
 
           <q-card class="nav-button flat-card" clickable @click="$router.push('/contacts')">
             <q-card-section class="nav-card-section">Contact Us</q-card-section>
@@ -171,7 +171,6 @@
 
     <!-- Drawer for small screens -->
     <q-drawer v-model="drawerVisible" side="right"
-      :width="350"
       :breakpoint="300"
       overlay
       bordered
@@ -209,7 +208,7 @@
             </q-expansion-item>
           </q-expansion-item>
 
-          <q-expansion-item
+          <!-- <q-expansion-item
             group="somegroup"
             label="For Lease"
             class="drawer-item-expand"
@@ -231,7 +230,7 @@
                 <q-item-section>{{ lease.name }}</q-item-section>
               </q-item>
             </q-expansion-item>
-          </q-expansion-item>
+          </q-expansion-item> -->
           <q-item clickable to="/contacts" class="drawer-item" v-ripple>
             <q-item-section>Contact Us</q-item-section>
           </q-item>
@@ -315,13 +314,13 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useQuasar } from 'quasar'
 import { useRouter, useRoute } from 'vue-router'
 import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
-import { leasedevelopments } from 'src/components/Lease/LeaseData.vue'
+// import { leasedevelopments } from 'src/components/Lease/LeaseData.vue'
 import { useHead } from '@vueuse/head'
 
 const displayedDevelopments = ref(developments)
 const selectedDistrict = ref('')
-const displayedLeaseDevelopments = ref(leasedevelopments)
-const selectedLeaseDistrict = ref('')
+// const displayedLeaseDevelopments = ref(leasedevelopments)
+// const selectedLeaseDistrict = ref('')
 const showHeader = ref(true)
 
 const route = useRoute()
@@ -401,32 +400,32 @@ const navigateToSlug = (slug) => {
   router.push(`/for-sale/${slug}`).catch(() => {})
 }
 
-const groupedLeaseDevelopments = computed(() => {
-  return leasedevelopments.reduce((acc, dev) => {
-    if (!acc[dev.state]) {
-      acc[dev.state] = []
-    }
-    if (!acc[dev.state].includes(dev.district)) {
-      acc[dev.state].push(dev.district)
-    }
-    return acc
-  }, {})
-})
+// const groupedLeaseDevelopments = computed(() => {
+//   return leasedevelopments.reduce((acc, dev) => {
+//     if (!acc[dev.state]) {
+//       acc[dev.state] = []
+//     }
+//     if (!acc[dev.state].includes(dev.district)) {
+//       acc[dev.state].push(dev.district)
+//     }
+//     return acc
+//   }, {})
+// })
 
-const filteredLease = computed(() => {
-  return displayedLeaseDevelopments.value.filter(
-    (dev) => dev.district === selectedLeaseDistrict.value
-  )
-}
-)
+// const filteredLease = computed(() => {
+//   return displayedLeaseDevelopments.value.filter(
+//     (dev) => dev.district === selectedLeaseDistrict.value
+//   )
+// }
+// )
 
-const setSelectedLeaseDistrict = (districts) => {
-  selectedLeaseDistrict.value = districts
-}
+// const setSelectedLeaseDistrict = (districts) => {
+//   selectedLeaseDistrict.value = districts
+// }
 
-const navigateToLeaseSlug = (slug) => {
-  router.push(`/for-lease/${slug}`).catch(() => {})
-}
+// const navigateToLeaseSlug = (slug) => {
+//   router.push(`/for-lease/${slug}`).catch(() => {})
+// }
 
 const $q = useQuasar() // Get the $q object
 const router = useRouter()
@@ -723,7 +722,7 @@ color:#00B398;
   left: 0;
   right: 0;
   color: #ffffff;
-  z-index: 1200;
+  z-index: 3;
   padding: 10px 20px;
   background-color: #fff;
   box-shadow: 0px 1px 8px rgb(139, 139, 139); /* Soft shadow for elevation */
@@ -741,7 +740,7 @@ color:#00B398;
 /* Style for drawer items */
 .drawer-item {
   font-family: 'TitilliumWebRegular';
-  font-size: 15px;
+  font-size: 18px;
   padding: 0px 15px;
   margin-bottom: -10px;
 }
@@ -756,7 +755,7 @@ color:#00B398;
 
 .drawer-item-expand {
   font-family: 'TitilliumWebBold';
-  font-size: 15px;
+  font-size: 18px;
   padding: 0px 0px;
   margin-bottom: -10px;
 }
@@ -769,7 +768,7 @@ color:#00B398;
 .drawer-item-child {
   padding: 0px 25px;
   font-family: 'TitilliumWebRegular';
-  font-size: 13.5px;
+  font-size: 15px;
   color: #3d3c3c;
   margin-top: -10px;
 }
@@ -781,7 +780,7 @@ color:#00B398;
 .drawer-item-child-1 {
   padding: 0px 25px;
   font-family: 'TitilliumWebRegular';
-  font-size: 14px;
+  font-size: 17px;
   cursor:default;
   margin-bottom: -10px;
   margin-top: -10px;
@@ -790,7 +789,7 @@ color:#00B398;
 
 .drawer-item-expand-2 {
   font-family: 'TitilliumWebSemiBold';
-  font-size: 15px;
+  font-size: 17px;
   font-weight: bold;
   padding-left: 20px;
   margin-bottom: -10px;
@@ -800,7 +799,7 @@ color:#00B398;
 .drawer-item-child-2 {
   padding: 0px 30px;
   font-family: 'TitilliumWebSemiBold';
-  font-size: 13px;
+  font-size: 16px;
   font-weight: bold;
   margin-top: -10px;
   margin-bottom: -10px;
@@ -812,7 +811,7 @@ color:#00B398;
 }
 
 /* Responsive Adjustments */
-@media (max-width: 1090px) {
+@media (max-width: 1024px) {
   /* Adjust toolbar for tablet screens */
   .logo {
   height: 35px;
@@ -830,6 +829,9 @@ color:#00B398;
 }
 
 @media (max-width: 768px) {
+  .logo {
+    height: 30px; /* Reduce logo size */
+  }
 
   /* Adjust toolbar for smartphone screens */
   .navigation-bar {
@@ -855,31 +857,11 @@ color:#00B398;
   }
 }
 
-@media (max-width: 480px) {
-
-  /* Further adjustments for very small screens */
-  .toolbar-title {
-    font-size: 1rem;
-  }
-
-  .logo {
-    height: 25px; /* Reduce logo size */
-  }
-
-  .nav-buttons {
-    gap: 2px;
-  }
-
-  .navigation-bar {
-    padding: 5px;
-  }
-}
-
 /* Footer Styling */
 .footer {
   background-color: #58595B; /* Dark gray background */
   color: #fff; /* White text */
-  padding: 0 120px; /* Smaller footer padding */
+  padding: 0 9%; /* Smaller footer padding */
   padding-top: 8px;
   padding-bottom: 30px;
   font-family: 'TitilliumWebRegular';
@@ -1055,14 +1037,17 @@ color:#00B398;
 @media (max-width: 768px) {
 
   .footer-content {
+    display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
+    position: relative;
   }
 
   .logo-container {
     margin-left: -7px;
     margin-top: -20px;
+    justify-content: center;
   }
 
   .footer-logo-text {
@@ -1070,11 +1055,15 @@ color:#00B398;
   }
 
   .footer-address {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .footer-address br:last-child {
     display: none;
+  }
+
+  .footer-link {
+    font-size: 17px;
   }
 
   .footer-right {
@@ -1082,11 +1071,11 @@ color:#00B398;
     margin-top: 5px;
   }
 
-  .footer-copyright {
-    right: 40%;
-    bottom: 0%;
-    text-align: left;
-    font-size: 9px;
+  .footer-left {
+    order:-2;
+  }
+  .footer-right {
+    order:-1;
   }
 
   .footer-navigation {
@@ -1111,46 +1100,19 @@ color:#00B398;
     display: flex;
     justify-content: center;
     margin-top: 10px;
-    margin-bottom: 10px;
     margin-left: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .footer-logo {
-    margin-left: -8px;
-  }
-
-  .footer-content {
-    margin-left: -10px;
-    margin-right: -17px;
-  }
-
-  .footer-address {
-    margin-left: -8px;
-  }
-
-  .footer-logo {
-    width: 38px;
-  }
-
-  .footer-logo-text {
-    font-size: 22px;
-  }
-
-  .footer-navigation {
-    margin-left: -8px;
-  }
-
-  .social-icons {
-    margin-left: 18px;
   }
 
   .footer-copyright {
+    order: 3; /* Moves it to the bottom */
+    text-align: left; /* Align text to the left */
+    font-size: 9px;
     white-space: nowrap;
-    right: 35%;
-    top: 0;
+    width: 100%; /* Make it span full width */
+    position: static;
+    margin-top: 0px;
+    margin-bottom: -30px;
+
   }
 }
 
