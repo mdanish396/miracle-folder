@@ -146,9 +146,9 @@
             <h5 class="contact-title fade-up delay-2">Contact Number</h5>
             <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
-              <span class="contact-no">
+              <a class="contact-no" href="tel:+60192966666">
                 +60 19 296 6666
-              </span>
+              </a>
             </div>
             <h5 class="email-title fade-up delay-2">General Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
@@ -162,14 +162,14 @@
             <p class="email-subtitle fade-up delay-2">We're always on the lookout for talented people - please send us <br> your CV and portfolio (no larger than 5MB) to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <a class="email-address" href="mailto:kevin@interplandesigns.com">
+              <a class="email-address" href="mailto:hmnrs.md3@gmail.com">
                 hmnrs.md3@gmail.com
               </a>
               <div>
                 <i class="fa fa-phone phone-icon"></i>
-                <span class="contact-no">
+                <a class="contact-no" href="tel:+601169999888">
                   +60 116 9999 888
-                </span>
+                </a>
               </div>
             </div>
             <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
@@ -392,8 +392,7 @@ onBeforeUnmount(() => {
 
 .line-holder {
   position: static;
-  margin-top: -20px;
-  padding-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .line {
@@ -438,7 +437,7 @@ onBeforeUnmount(() => {
 }
 
 .about-image {
-  width: 850px;
+  width: 65vw;
   height: 71vh;
   object-fit: cover;
 }
@@ -447,7 +446,7 @@ onBeforeUnmount(() => {
 
 .text-above,
 .text-below {
-  font-size: 36px;
+  font-size: 40px;
 }
 
 .line {
@@ -459,24 +458,24 @@ padding-inline: 20px;
   margin-inline-start: 20px;
 }
 
-.about-image {
+/* .about-image {
   width: 700px;
-}
+} */
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .about-image {
   width: 600px;
 }
-}
+} */
 
-@media (max-width: 910px) {
+/* @media (max-width: 910px) {
   .about-image {
   width: 500px;
 }
-}
+} */
 
-@media (max-width: 820px) {
+@media (max-width: 880px) {
 
   .content-container {
     display: flex;
@@ -489,46 +488,35 @@ padding-inline: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -455px;
+    order: -1;
   }
 
   .text-content {
-    padding-left: 0px;
-    padding-top: 185px;
-  }
+    order: 1;
+  padding-left: 0;
+}
 
 .line-holder {
   display: none;
 }
 
 .about-image {
-  width: 500px;
-  height: 49vh;
+  width: 70vw;
+  height: 50vh;
+  margin-top: -22px;
   }
 }
 @media (max-width: 520px) {
-
-  .about-image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -460px;
-  }
-
-  .text-content {
-    padding-left: 0px;
-    padding-top: 190px;
-  }
-
   .about-image {
-  width: 100%;
-  height: 49vh;
+    margin-top: -40px;
+    margin-bottom: 20px;
+    width: 100vw; /* Allows image to take more space */
   }
 }
 /* Company Background Section */
 .company-background {
   background: #fff;
-  padding: 40px 20px;
+  padding: 40px 5%;
   padding-bottom: 80px;
   text-align: center;
 }
@@ -626,9 +614,8 @@ padding-inline: 20px;
 }
 
 .content-wrapper {
-  padding: 20px;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 80px;
+  padding-right: 80px;
 }
 }
 
@@ -637,6 +624,11 @@ padding-inline: 20px;
   .vision-text h2 {
     font-size: 30px;
     margin-bottom: 10px;
+}
+
+.content-wrapper {
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .vision-text p {
@@ -648,7 +640,7 @@ padding-inline: 20px;
 /* Mission Section */
 .mission-section {
   background: #ebe4d8;
-  padding: 40px 20px;
+  padding: 40px 2%;
   padding-bottom: 80px;
   text-align: center;
 }
@@ -703,8 +695,8 @@ padding-inline: 20px;
 }
 
 .mission-image {
-  width: 500px;
-  height: 500px;
+  width: 40vw;
+  height: 75vh;
 }
 
 /* Responsive Design */
@@ -722,8 +714,8 @@ padding-inline: 20px;
   }
 
   .mission-image {
-    width: 400px;
-    height: 400px;
+    width: 50vw;
+    height: 50vh;
   }
 
   .mission-image-container {
@@ -733,9 +725,6 @@ padding-inline: 20px;
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 10px;
-  }
 
   .mission-section h2 {
     font-size: 40px;
@@ -753,8 +742,8 @@ padding-inline: 20px;
   }
 
   .mission-image {
-    width: 300px;
-    height: 300px;
+    width: 60vw;
+    height: 40vw;
   }
 }
 
@@ -764,8 +753,8 @@ padding-inline: 20px;
   }
 
   .mission-image {
-    width: 250px;
-    height: 250px;
+    width: 90vw;
+    height: 40vh;
   }
 }
 
@@ -773,7 +762,7 @@ padding-inline: 20px;
 .register {
   color: #000;
   background-color: white;
-  padding: 40px 100px;
+  padding: 40px 6%;
   padding-top: 0px;
   padding-bottom: 100px;
   display: flex;
@@ -809,8 +798,8 @@ padding-inline: 20px;
   flex-direction: column;
   padding: 10px;
   padding-bottom: 60px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 2%;
+  padding-right: 2%;
   position: relative;
   overflow: hidden;
 }
@@ -829,7 +818,6 @@ padding-inline: 20px;
 
 .register-left {
   padding: 0px 10px;
-  padding-left: 30px;
 }
 
 .register-left .register-title {
@@ -914,6 +902,8 @@ padding-inline: 20px;
 .contact-no {
   font-family: 'TitilliumWebRegular';
   font-style: normal;
+  text-decoration: none;
+  color: inherit;
   margin-bottom: 15px;
   font-size: 16px;
   line-height: 21px;
@@ -1090,7 +1080,7 @@ font-size: 14px;
 @media (max-width: 786px){
 
   .register {
-  padding: 40px 20px;
+  padding: 40px 2%;
 }
 
 }
@@ -1102,6 +1092,10 @@ font-size: 14px;
 
   .register-left .register-title {
     font-size: 34px;
+  }
+
+  .register-right h2 {
+    font-size: 32px;
   }
 
   .address-title {
