@@ -290,9 +290,9 @@
             <button class="social-btn facebook" aria-label="Facebook" @click="openFacebook">
               <i class="mdi mdi-facebook"></i>
             </button>
-            <button class="social-btn youtube" aria-label="YouTube" @click="openYoutube">
+            <!-- <button class="social-btn youtube" aria-label="YouTube" @click="openYoutube">
               <i class="mdi mdi-youtube"></i>
-            </button>
+            </button> -->
             <button class="social-btn instagram" aria-label="Instagram" @click="openInstagram">
               <i class="mdi mdi-instagram"></i>
             </button>
@@ -479,9 +479,9 @@ const openInstagram = () => {
   window.open('https://www.instagram.com/miraclelandofficial/', '_blank')
 }
 
-const openYoutube = () => {
-  window.open('https://www.youtube.com/channel/dynaton.property', '_blank')
-}
+// const openYoutube = () => {
+//   window.open('https://www.youtube.com/channel/dynaton.property', '_blank')
+// }
 
 const openTiktok = () => {
   window.open('https://www.tiktok.com/@dynaton.property', '_blank')
