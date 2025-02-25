@@ -117,9 +117,9 @@
         </div>
       </div>
       <div class="logo-container fade-up delay-2">
+        <img src="/assets/wf.png" alt="Partner 2" class="partner-logo1" />
         <img src="/assets/interplan.png" alt="Partner 1" class="partner-logo" />
-        <img src="/assets/logo.png" alt="Partner 2" class="partner-logo" />
-        <img src="/assets/logo.png" alt="Partner 3" class="partner-logo" />
+        <img src="/assets/ag.png" alt="Partner 3" class="partner-logo1" />
       </div>
     </div>
 
@@ -774,7 +774,6 @@ const navigateToDevelopmentDetails = (slug) => {
 /* Partners' Logos Section */
 .partners-section {
   text-align: center;
-  opacity: 0;
   animation: fadeInUp 1s ease forwards;
   padding-top: 60px;
   padding-bottom: 130px;
@@ -789,8 +788,21 @@ const navigateToDevelopmentDetails = (slug) => {
 .logo-container {
   padding-top: 40px;
   display: flex;
-  justify-content: center;
-  gap: 30px;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the start */
+  gap: 40px; /* Space between logos */
+  width: 100%; /* Full width */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevents wrapping */
+  padding-left: 5%;
+  padding-right: 5%;
+  margin: 0 auto;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE & Edge */
+}
+
+.logo-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari */
 }
 
 .partner-logo {
@@ -799,7 +811,13 @@ const navigateToDevelopmentDetails = (slug) => {
   transition: transform 0.5s ease-in-out;
 }
 
-.partner-logo:hover {
+.partner-logo1 {
+  width: auto;
+  height: 100px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.partner-logo:hover, .partner-logo1:hover {
   transform: scale(1.1);
 }
 
@@ -819,14 +837,10 @@ const navigateToDevelopmentDetails = (slug) => {
   .partners-section h3 {
     font-size: 40px;
   }
-
-  .partner-logo {
-    width: 80px;
-  }
 }
 
 /* Further adjust for small screen */
-@media (max-width: 480px) {
+@media (max-width: 540px) {
 
   .partners-section h3 {
     font-size: 30px;
