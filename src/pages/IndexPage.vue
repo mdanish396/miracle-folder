@@ -3,9 +3,9 @@
     <!-- Startup Animation Overlay -->
     <div v-if="showLoader" class="startup-overlay">
       <div>
-        <img src="/assets/logo.png" class="startup-image">
+        <img src="/assets/logotext-white.png" class="startup-image">
       </div>
-      <h4>MIRACLE LAND</h4>
+      <!-- <h4>MIRACLE LAND</h4> -->
     </div>
 
     <!-- Hero Section -->
@@ -356,8 +356,20 @@ const navigateToDevelopmentDetails = (slug) => {
 
 /* Logo Starter */
 .startup-image {
-  width: 60px;
+  width: 35vw;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .startup-image {
+  width: 40vw;
+}
+}
+
+@media (max-width: 480px) {
+  .startup-image {
+  width: 50vw;
+}
 }
 
 /*Text Startup Overlay */

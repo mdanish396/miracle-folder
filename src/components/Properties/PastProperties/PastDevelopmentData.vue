@@ -426,7 +426,7 @@ export const pastdevelopments = [
   },
   {
     id: 9,
-    name: 'Dynaton Izona (Phase 1, 2, 3, 3b)',
+    name: 'Dynaton Izona',
     slug: generateSlug('Dynaton Izona'),
     bannerimage: '/assets/Development/Dynaton Izona/izona_01.jpg',
     logo: '/assets/Development/Dynaton Izona/logo.svg',
