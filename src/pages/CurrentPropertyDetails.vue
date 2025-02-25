@@ -55,7 +55,8 @@
                       <q-btn
                         stack
                         flat
-                        @click="open(property.vr)"
+                        :disable="!property.vr"
+                        @click="property.vr ? open(property.vr) : null"
                         class="property-btn">
                         <img src="/assets/vr camera.svg" class="icon-2">
                         <span class="text-btn">VIRTUAL TOUR</span>
@@ -64,8 +65,8 @@
                       <q-btn
                         stack
                         flat
-                        @click="scrollToFloorplan"
-                        class="property-btn">
+                        :disable="!property.plan"
+                        @click="property.plan ? scrollToFloorplan() : null"                        class="property-btn">
                         <img src="/assets/floor.svg" class="icon-2">
                         <span class="text-btn">FLOOR PLANS</span>
                       </q-btn>
@@ -186,11 +187,13 @@
               swipeable
               transition-prev="slide-right"
               transition-next="slide-left"
+              style="background: none !important;"
               class="carousel">
               <q-carousel-slide
                 v-for="(image, index) in property.gallery"
                 :key="index"
-                :name="index">
+                :name="index"
+                style="padding: 0; margin: 0; display: flex; align-items: center; justify-content: center;">
                 <img :src="image" alt="Carousel Image" class="carousel-image" />
               </q-carousel-slide>
             </q-carousel>
@@ -200,7 +203,7 @@
     </div>
 
     <!-- Floor Plan Section -->
-    <div class="floorplan-section" id="section-floorplan">
+    <div v-if="property.plan" class="floorplan-section" id="section-floorplan">
       <h2 class="floorplan-title fade-up">Floorplan</h2>
       <div class="line-holder fade-up delay-1">
         <div class="line">
@@ -351,7 +354,7 @@
       </div>
     </div>
 
-    <div class="register" id="section-register">
+    <div class="register" id="section-contact">
       <div class="register-container">
         <div class="register-wrapper">
           <!-- Left Section -->
@@ -370,46 +373,46 @@
 
             <div class="map-button fade-up delay-2">
               <button @click="gotofullmap" class="btn view-full-map-btn">
-                <img src="/assets/brochure.svg" alt="Map" />
-                View Full Map
+                <img src="/assets/brochure.svg" alt="Download" />
+                  View Full Map
               </button>
             </div>
             <h5 class="contact-title fade-up delay-2">Contact Number</h5>
             <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
-                <span class="contact-no">
-                  +60 19 296 6666
-                </span>
+              <a class="contact-no" href="tel:+60192966666">
+                +60 19 296 6666
+              </a>
             </div>
             <h5 class="email-title fade-up delay-2">General Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <span class="email-address">
+              <a class="email-address" href="mailto:kevin@interplandesigns.com">
                 kevin@interplandesigns.com
-              </span>
+              </a>
             </div>
             <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
             <p class="email-subtitle fade-up delay-2">We're always on the lookout for talented people - please send us <br> your CV and portfolio (no larger than 5MB) to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <span class="email-address">
+              <a class="email-address" href="mailto:hmnrs.md3@gmail.com">
                 hmnrs.md3@gmail.com
-              </span>
+              </a>
               <div>
                 <i class="fa fa-phone phone-icon"></i>
-                <span class="contact-no">
+                <a class="contact-no" href="tel:+601169999888">
                   +60 116 9999 888
-                </span>
+                </a>
               </div>
             </div>
             <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <span class="email-address">
+              <a class="email-address" href="mailto:kevin@interplandesigns.com">
                 kevin@interplandesigns.com
-              </span>
+              </a>
             </div>
             <h5 class="business-title fade-up delay-2">Business Hours</h5>
             <div class="fade-up delay-3">
@@ -490,8 +493,8 @@
           </div>
         </div>
       </div>
-      <div class="product-grid">
-        <div class="products-grid fade-up delay-2">
+      <div class="product-grid fade-up delay-2">
+        <div class="products-grid" :class="{ 'flex-layout': visibleSimilarProperties.length < 3 }">
           <div class="product-card" v-for="property in similarProperties" :key="property.id">
             <img :src="property.image" alt="Product Image" class="product-image"/>
             <q-separator/>
@@ -629,6 +632,8 @@ onUnmounted(() => {
 })
 
 const open = (vr) => {
+  if (!property.value.vr) return
+
   window.open(vr, '_blank')
 }
 
@@ -641,6 +646,8 @@ const scrollToGallery = () => {
 }
 
 const scrollToFloorplan = () => {
+  if (!property.value.plan) return
+
   const floorplanSection = document.getElementById('section-floorplan')
 
   if (floorplanSection) {
@@ -665,6 +672,7 @@ const downloadBrochure = (file) => {
 }
 
 const openImage = (plan) => {
+  if (!plan) return
   selectedPlanImage.value = plan
   showPopup.value = true
   resetImagePosition()
@@ -803,7 +811,10 @@ onBeforeRouteUpdate((to, from, next) => {
   const newProperty = flattenedProperties.find(item => item.slug === newSlug) || null
   if (newProperty) {
     property.value = newProperty
-  }next()
+  } else {
+    router.push('/not-found') // Redirect if property not found
+  }
+  next()
 })
 
 const loadMore = () => {
@@ -883,19 +894,18 @@ const loadMore = () => {
   display: flex;
   height: 65vh;
   background-color: #08463c;
-  margin-left: -20px;
-  margin-right: -20px;
+  margin-left: -40px;
+  margin-right: -40px;
 }
 
 .hero-section-1{
-  padding: 20px 20px;
+  padding: 20px 1.5%;
   margin-top: -20px;
   overflow-x: hidden;
 }
 
 .hero-section {
   position: relative;
-  width: 100%;
   height: 87vh;
   margin-top: -420px;
   display: flex;
@@ -907,31 +917,29 @@ const loadMore = () => {
 
 .hero-image {
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 1.5%;
   padding-bottom: 20px;
   width: 46vw;
-  height: 80vh;
+  height: 83vh;
   max-width: min-content;
   border-radius: 2px;
 }
 
 .property-section{
-  padding: 0px 50px;
-  overflow-x: hidden;
+  padding: 0px 2%;
 }
 
 .property-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  padding: 0 20px;
+  padding: 0 2%;
   width: 100%;
   margin-top: 0px;
 }
 
 .property-card {
   text-align: center;
-  overflow: hidden;
 }
 
 .property-info h3 {
@@ -1066,6 +1074,25 @@ const loadMore = () => {
   filter: invert(1); /* Invert the icon color when button is hovered */
 }
 
+.property-btn:disabled .icon-2 {
+  filter: none; /* Remove any filter effect */
+  opacity: 0.5; /* Optionally make the icon look faded */
+}
+
+.property-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #686868; /* Keep text light gray */
+  background-color: transparent; /* Ensure background remains transparent */
+}
+
+/* Prevent hover effects on disabled buttons */
+.property-btn:disabled:hover {
+  color: #686868; /* Keep text color unchanged */
+  background-color: transparent; /* Keep background transparent */
+  filter: none; /* Ensure no filters affect disabled state */
+}
+
 .register-button {
   padding-top: 20px;
 }
@@ -1106,7 +1133,7 @@ const loadMore = () => {
 
 }
 
-@media (max-width: 1104px) {
+@media (max-width: 1024px) {
   .hero-section {
     flex-direction: column;
     height: auto;
@@ -1130,16 +1157,18 @@ const loadMore = () => {
 
 @media (max-width: 560px) {
 
-  .before-hero-section {
-  height: 106vh;
+  .property-section, .property-grid, .property-toolbar {
+    padding-left: 1%; /* Ensures equal spacing on left and right */
+    padding-right: 1%;
+  }
+
+.hero-section-1 {
+  padding: 20px 4%;
 }
 
-.hero-section {
-  margin-top: -700px;
-}
-
-.property-section{
-  padding: 20px 10px;
+.hero-image {
+  padding-bottom: 0;
+  margin-top: 10px;
 }
 
   .property-toolbar {
@@ -1157,6 +1186,31 @@ const loadMore = () => {
   white-space: normal;
   overflow: visible;
   text-overflow: unset;
+}
+
+.icon-2 {
+  width: 30px;
+  height: 30px;
+}
+
+.text-btn {
+  font-size: 12px;
+}
+
+.property-btn {
+  width: 120px;
+}
+}
+
+@media (max-width: 480px) {
+
+.hero-section {
+  margin-top: -500px;
+}
+
+.property-btn {
+  width: 105px;
+  height: 80px;
 }
 }
 
@@ -1340,6 +1394,7 @@ const loadMore = () => {
   border: none;
   cursor: pointer;
   font-size: 24px;
+  font-family: 'AvenirMedium';
   transition: background-color 0.3s ease;
 }
 
@@ -1366,16 +1421,13 @@ const loadMore = () => {
 }
 
 .gallery-grid {
-  padding-left: 70px;
-  padding-right: 70px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 }
 
 @media (max-width: 600px) {
-  .gallery-grid {
-  padding-left: 40px;
-  padding-right: 40px;
-}
+
   .gallery-grid .gallery-item:nth-child(2) {
   height: 300px;
 }
@@ -1406,7 +1458,7 @@ const loadMore = () => {
 }
 
 .carousel-image {
-  width: 75vw;
+  width: 90vw;
   height: 80vh;
   max-width: min-content;
   max-height: min-content;
@@ -1428,6 +1480,27 @@ const loadMore = () => {
 
 .popup-close:hover {
   background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 480px) {
+  .carousel-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-image {
+    width: 90vw;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensures the image is fully visible */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+  }
+
+  .popup-close {
+  top: 5px;
+  right: 5px;
+}
 }
 
  /*Floorplan Section */
@@ -1711,8 +1784,8 @@ const loadMore = () => {
   flex-direction: row; /* Arrange items in a row */
   padding-top: 10px;
   padding-bottom: 40px;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
   .location-map iframe {
@@ -1873,7 +1946,7 @@ const loadMore = () => {
 .register {
   color: #000;
   background-color: white;
-  padding: 40px 100px;
+  padding: 40px 6%;
   padding-top: 0px;
   padding-bottom: 100px;
   display: flex;
@@ -1909,8 +1982,8 @@ const loadMore = () => {
   flex-direction: column;
   padding: 10px;
   padding-bottom: 60px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 2%;
+  padding-right: 2%;
   position: relative;
   overflow: hidden;
 }
@@ -1929,7 +2002,6 @@ const loadMore = () => {
 
 .register-left {
   padding: 0px 10px;
-  padding-left: 30px;
 }
 
 .register-left .register-title {
@@ -1958,6 +2030,31 @@ const loadMore = () => {
   margin-bottom: 0px;
   font-size: 16px;
   line-height: 21px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+  width: 200px;
+  cursor: pointer;
+  font-family: 'TitilliumWebBold';
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.btn img {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+.btn:hover {
+  background-color: #08463c;
+  color: white;
 }
 
 .map-button {
@@ -1989,6 +2086,8 @@ const loadMore = () => {
 .contact-no {
   font-family: 'TitilliumWebRegular';
   font-style: normal;
+  text-decoration: none;
+  color: inherit;
   margin-bottom: 15px;
   font-size: 16px;
   line-height: 21px;
@@ -2018,9 +2117,15 @@ const loadMore = () => {
 .email-address {
   font-family: 'TitilliumWebRegular';
   font-style: normal;
+  text-decoration: none;
+  color: inherit;
   margin-bottom: 15px;
   font-size: 16px;
   line-height: 21px;
+}
+
+.email-address:hover {
+  color: #08463c;
 }
 
 .email-subtitle br {
@@ -2071,6 +2176,11 @@ const loadMore = () => {
   gap: 10px;
 }
 
+.register-form input {
+  font-size: 14px;
+  font-family: 'TitilliumWebRegular';
+}
+
 .register-form input,
 .register-form textarea,
 .register-form select {
@@ -2088,8 +2198,9 @@ const loadMore = () => {
 }
 
 .register-form select {
-  font-size: 0.9rem;
+  font-size: 14px;
   cursor: pointer;
+  font-family: 'TitilliumWebRegular';
 }
 
 .submit-btn {
@@ -2098,7 +2209,8 @@ const loadMore = () => {
   color: #fff;
   border: none;
   cursor: pointer;
-  font-weight: bold;
+font-size: 14px;
+  font-family: 'AvenirMedium';
   text-transform: uppercase;
 }
 
@@ -2152,7 +2264,7 @@ const loadMore = () => {
 @media (max-width: 786px){
 
   .register {
-  padding: 40px 20px;
+  padding: 40px 2%;
 }
 
 }
@@ -2164,6 +2276,10 @@ const loadMore = () => {
 
   .register-left .register-title {
     font-size: 34px;
+  }
+
+  .register-right h2 {
+    font-size: 32px;
   }
 
   .address-title {
@@ -2198,24 +2314,28 @@ justify-content: center;
 
 .products-grid {
 display: grid;
-gap: 5px;
-grid-template-columns: repeat(3, minmax(340px, 1fr)); /* Responsive grid */
+gap: 20px;
+grid-template-columns: repeat(3, minmax(400px, 1fr)); /* Responsive grid */
 justify-content: center; /* Center the grid within the container */
-padding-left: 10%;
-padding-right: 10%;
 padding-top: 10px;
 }
 
 @media (max-width: 1180px) {
 .products-grid {
-  grid-template-columns: repeat(2, minmax(340px, 1fr));
+  grid-template-columns: repeat(2, minmax(400px, 1fr));
 }
 }
 
 @media (max-width: 800px) {
 .products-grid {
-  grid-template-columns: repeat(1, minmax(340px, 1fr));
+  grid-template-columns: repeat(1, minmax(400px, 1fr));
 }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+  }
 }
 
 .product-card {
@@ -2224,14 +2344,20 @@ padding-top: 10px;
   align-items: center;
   font-family: 'TitilliumWebRegular';
   overflow: hidden;
-  width: 340px;
+  width: 380px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.products-grid.flex-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .product-image {
   width: 100%;
-  height: 250px;
+  height: 230px;
   object-fit: cover;
   margin-bottom: -6px;
 }
@@ -2359,6 +2485,7 @@ padding-top: 10px;
   margin-top: -10px;
   margin-bottom: -10px;
   border-radius: 0;
+  width: 300px;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
@@ -2388,12 +2515,17 @@ padding-top: 10px;
 
 /* Extra small screens (480px and below) */
 @media (max-width: 480px) {
-  .products-section h2 {
-    font-size: 32px;
-  }
 
-  .learn-more-btn {
-    font-size: 14px;
-  }
+.product-card {
+  width: 90vw;
+}
+.products-section h2 {
+  font-size: 32px;
+}
+
+.learn-more-btn {
+  font-size: 14px;
+  padding: 20px 16px;
+}
 }
 </style>

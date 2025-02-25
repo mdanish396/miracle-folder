@@ -7,16 +7,16 @@
           <!-- Banner Image -->
           <img class="overview-image" :src="development.bannerimage" alt="Banner Image">
           <div class="gradient-overlay"></div>
+          <!-- Logo Section -->
+          <div class="logo-container fade-up delay-1">
+            <img class="logo-image" :src="development.logo" alt="Logo">
+          </div>
         </div>
 
         <!-- Information Overlay -->
         <div class="information-overlay">
           <div class="info-overlay fade-up">
             <div class="info-details">
-              <!-- Logo Section -->
-              <div class="logo-container fade-up delay-1">
-                <img class="logo-image" :src="development.logo" alt="Logo">
-              </div>
               <div class="info-item fade-up delay-1">
                 <h4>Type</h4>
                 <p>{{ development.type }}</p>
@@ -236,12 +236,14 @@
             swipeable
             transition-prev="slide-right"
             transition-next="slide-left"
+            style="background: none !important;"
             class="carousel">
 
             <q-carousel-slide
               v-for="(image, index) in development.galleryImages"
               :key="index"
-              :name="index">
+              :name="index"
+              style="padding: 0; margin: 0; display: flex; align-items: center; justify-content: center;">
               <img :src="image" alt="Carousel Image" class="carousel-image" />
             </q-carousel-slide>
           </q-carousel>
@@ -556,44 +558,64 @@ const capitalizeFirstLetter = (string) => {
 .hero-section {
   position: relative;
   height: 60vh; /* Full-screen height */
-  overflow: hidden;
-  margin-top: -70px;
 }
 
 .overview-section {
-  position: sticky;
-  height: 63vh;
-  overflow: hidden;
+  position: relative;
+  height: 70vh;
   width: 100%;
-  margin-top: -80px;
+  display: flex;
+  justify-content: center; /* Center logo horizontally */
+  align-items: center; /* Center logo vertically */
 }
+
 .overview-image{
   height: 100%;
   width: 100%;
   object-fit: cover;
-}
-
-.gradient-overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+}
+
+.gradient-overlay {
+  background-color: rgba(0, 0, 0, 0.1);
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
-  z-index: 2;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.logo-container {
+  position: relative;
+  z-index: 2; /* Ensure it's above the background image */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px); /* Applies a blur effect */
+  -webkit-backdrop-filter: blur(2px); /* For Safari support */
+  padding: 10px;
+  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-image {
+  width: 120px;
+  height: auto;
 }
 
 .information-overlay {
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-  }
-
-.logo-image {
-  width: 100px;
-  margin-top: -12px;
+  position: relative; /* Changed from absolute to relative */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -40px;
+  z-index: 2; /* Still above the gradient overlay */
 }
 
 .info-overlay {
@@ -601,28 +623,28 @@ const capitalizeFirstLetter = (string) => {
   flex-direction: column;
   color: black;
   align-items: center;
+  justify-content: center;
   gap: 20px;
 }
 
 .info-details {
   display: flex;
   background: white;
-  height: 120px;
+  height: auto;
+  width: 60vw;
   border-radius: 2px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 0 20px;
   overflow:visible;
 }
 
 .info-item{
-  padding: 0 20px;
+  padding: 0 10px;
   width: 320px;
   text-align: center;
 }
 
 .info-item-1{
-  padding: 0 20px;
-  padding-right: 110px;
+  padding: 0 10px;
 }
 
 .info-item h4 {
@@ -646,12 +668,13 @@ const capitalizeFirstLetter = (string) => {
 
 .intro-section {
   text-align: center;
-  padding: 0px 20px;
+  padding: 0px 1%;
+  padding-top: 150px;
   margin-top: -10px;
 }
 
 .main-heading {
-  font-size: 52px;
+  font-size: 48px;
   font-family: 'RecklessNeueMedium';
   margin-bottom: 30px;
   color: #1e1e1e;
@@ -702,104 +725,47 @@ const capitalizeFirstLetter = (string) => {
   margin: 0 auto;
 }
 
-@media (max-width: 1100px) {
-.information-overlay {
-  bottom: 89.7%;
-  }
-
-.info-item{
-  width: 230px;
-  }
-
-.logo-image {
-  width:85px;
-  }
-
-.main-heading {
-  font-size: 52px;
-  line-height: 60px;
-  margin-bottom: 40px;
-}
-
-.sub-heading {
-  font-size: 18px;
-}
-}
-
-@media (max-width: 790px) {
-
-.info-item{
-  width: 180px;
-}
-
-.info-item-1{
-  padding-right: 0px;
-}
-
-.main-heading {
-  font-size: 42px;
-  line-height: 50px;
-}
-
-.logo-image {
-  width: 80px;
-}
-}
-
-@media (max-width: 640px) {
-
-.info-item{
-  width: 150px;
-}
+@media (max-width: 768px) {
 
 .info-item p{
   font-size: 14px;
 }
 
-.logo-image {
-  width: 75px;
+.info-details {
+    width: 80vw;
+    height:auto;
+  }
+
+.main-heading {
+  font-size: 40px;
 }
 }
 
 @media (max-width: 550px) {
 
-.overview-section {
-  height: 50vh;
-}
-
-.information-overlay {
-    top: 45%;
-    left: 50%;
+  .intro-section {
+    padding-top: 180px;
   }
-
-  .info-details {
+.info-details {
     width: 90vw;
     height:auto;
   }
 
-.logo-image {
-  width: 60px;
-}
-
-.info-item-1{
-  padding: 0;
-  padding-right: 0;
-}
-
-.intro-section {
-  padding-top: 0px;
-  margin-top: -70px;
-}
-
 .main-heading {
   font-size: 32px;
-  line-height: 32px;
+  line-height: 40px;
 }
+}
+
+@media (max-width: 480px) {
+  .intro-section {
+    padding-top: 200px;
+  }
 }
 
 .card-section {
   text-align: center;
-  padding: 20px;
+  padding: 20px 1%;
 }
 
 .card-grid {
@@ -853,7 +819,7 @@ const capitalizeFirstLetter = (string) => {
 }
 }
 
-@media (max-width: 695px) {
+@media (max-width: 768px) {
 
 .card img {
   width: 75vw;
@@ -869,12 +835,20 @@ line-height: 20px;
 }
 }
 
+@media (max-width: 480px) {
+
+.card img {
+  width: 80vw;
+  height: 35vh;
+}
+}
+
 .rectangle-section {
   position:static;
   display: flex;
   width: 100%;
   height: 230px;
-  margin-top: -230px;
+  margin-top: -260px;
   background-color: #08463c;
 }
 
@@ -899,23 +873,26 @@ line-height: 20px;
 
 .products-grid {
   display: grid;
-  gap: 5px;
-  grid-template-columns: repeat(3, minmax(340px, 1fr)); /* Responsive grid */
+  gap: 20px;
+  grid-template-columns: repeat(3, minmax(400px, 1fr)); /* Responsive grid */
   justify-content: center; /* Center the grid within the container */
-  padding-left: 10%;
-  padding-right: 10%;
   padding-top: 10px;
 }
 
 @media (max-width: 1180px) {
   .products-grid {
-    grid-template-columns: repeat(2, minmax(340px, 1fr));
+    grid-template-columns: repeat(2, minmax(400px, 1fr));
   }
 }
 
 @media (max-width: 800px) {
   .products-grid {
-    grid-template-columns: repeat(1, minmax(340px, 1fr));
+    grid-template-columns: repeat(1, minmax(400px, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
   }
 }
 
@@ -925,14 +902,14 @@ line-height: 20px;
   align-items: center;
   font-family: 'TitilliumWebRegular';
   overflow: hidden;
-  width: 340px;
+  width: 380px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .product-image {
   width: 100%;
-  height: 250px;
+  height: 230px;
   object-fit: cover;
   margin-bottom: -6px;
 }
@@ -1059,6 +1036,7 @@ line-height: 20px;
   padding: 15px 60px;
   margin-top: -10px;
   margin-bottom: -10px;
+  width: 300px;
   border-radius: 0;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
@@ -1101,13 +1079,17 @@ line-height: 20px;
 
 /* Extra small screens (480px and below) */
 @media (max-width: 480px) {
+
+  .product-card {
+    width: 90vw;
+  }
   .products-section h2 {
     font-size: 32px;
   }
 
   .learn-more-btn {
     font-size: 14px;
-    padding: 8px 16px;
+    padding: 20px 16px;
   }
 }
 
@@ -1238,16 +1220,12 @@ line-height: 20px;
 }
 
 .gallery-grid {
-  padding-left: 70px;
-  padding-right: 70px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 }
 
 @media (max-width: 600px) {
-  .gallery-grid {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
   .gallery-grid .gallery-item:nth-child(2) {
   height: 300px;
 }
@@ -1278,7 +1256,7 @@ line-height: 20px;
 }
 
 .carousel-image {
-  width: 75vw;
+  width: 90vw;
   height: 80vh;
   max-width: min-content;
   max-height: min-content;
@@ -1300,6 +1278,27 @@ line-height: 20px;
 
 .popup-close:hover {
   background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 480px) {
+  .carousel-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-image {
+    width: 90vw;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensures the image is fully visible */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+  }
+
+  .popup-close {
+  top:5px;
+  right: 5px;
+}
 }
 
 .location-section {
@@ -1325,8 +1324,8 @@ line-height: 20px;
   flex-direction: row; /* Arrange items in a row */
   padding-top: 10px;
   padding-bottom: 40px;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
   .location-map iframe {
@@ -1452,10 +1451,9 @@ line-height: 20px;
   }
 
   .location-container {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
   }
-
 }
 
 @media (max-width: 540px) {
