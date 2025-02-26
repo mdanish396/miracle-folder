@@ -22,6 +22,11 @@
       </div>
     </div>
 
+    <!-- <q-breadcrumbs class="breadcrumbs">
+      <q-breadcrumbs-el label="Home" to="/" />
+      <q-breadcrumbs-el label="Our Development" />
+    </q-breadcrumbs> -->
+
     <!-- Current Developments Section -->
     <div class="developments-section">
       <h2 class="fade-up">Current Developments</h2>
@@ -296,6 +301,29 @@ const navigateToPastDevelopmentDetails = (slug) => {
 
 .fade-up.delay-3 {
   transition-delay: 0.6s;
+}
+
+.breadcrumbs {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  font-family: 'TitilliumWebRegular';
+}
+
+.breadcrumbs a {
+  text-decoration: underline;
+  color: black;
+}
+
+.breadcrumbs a:hover {
+  color:#a39f1a;
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    font-size: 14px;
+  }
 }
 
 .development-section {

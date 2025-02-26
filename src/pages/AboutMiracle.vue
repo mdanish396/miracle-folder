@@ -22,6 +22,11 @@
       </div>
     </div>
 
+    <!-- <q-breadcrumbs class="breadcrumbs">
+      <q-breadcrumbs-el label="Home" to="/" />
+      <q-breadcrumbs-el label="About Miracle Land" />
+    </q-breadcrumbs> -->
+
     <!-- Company Background Section -->
     <section class="company-background">
       <div class="container">
@@ -368,6 +373,29 @@ onBeforeUnmount(() => {
 
 .fade-up.delay-4 {
   transition-delay: 0.8s;
+}
+
+.breadcrumbs {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  font-family: 'TitilliumWebRegular';
+}
+
+.breadcrumbs a {
+  text-decoration: underline;
+  color: black;
+}
+
+.breadcrumbs a:hover {
+  color:#a39f1a;
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    font-size: 14px;
+  }
 }
 
 .about-section {
@@ -907,6 +935,10 @@ padding-inline: 20px;
   margin-bottom: 15px;
   font-size: 16px;
   line-height: 21px;
+}
+
+.contact-no:hover {
+  color: #08463c;
 }
 
 .email-title {

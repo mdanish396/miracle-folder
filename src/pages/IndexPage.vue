@@ -797,6 +797,7 @@ const navigateToDevelopmentDetails = (slug) => {
   padding-left: 5%;
   padding-right: 5%;
   margin: 0 auto;
+  padding-bottom: 20px;
   scrollbar-width: none; /* Hide scrollbar for Firefox */
   -ms-overflow-style: none; /* Hide scrollbar for IE & Edge */
 }
@@ -831,6 +832,12 @@ const navigateToDevelopmentDetails = (slug) => {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@media (min-width: 769px) {
+  .logo-container {
+  justify-content: center;
+}
 }
 
 @media (max-width: 768px) {

@@ -11,7 +11,7 @@
               <div class="line-hero-1"></div>
             </div>
           </div>
-          <h2 class="text-above fade-up delay-1">Career</h2>
+          <h2 class="text-above fade-up delay-1">Careers</h2>
           <p class="text-below fade-up delay-2">
             Explore our current job opportunities.
             <i class="fa fa-bullhorn" style="font-size:larger; color: beige;"></i>
@@ -24,6 +24,11 @@
         </div>
       </div>
     </div>
+
+    <!-- <q-breadcrumbs class="breadcrumbs">
+      <q-breadcrumbs-el label="Home" to="/" />
+      <q-breadcrumbs-el label="Careers" />
+    </q-breadcrumbs> -->
 
     <div class="contact">
       <div class="contact-offer">
@@ -323,6 +328,29 @@ const moveFab = (ev) => {
   transition-delay: 0.6s;
 }
 
+.breadcrumbs {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  font-family: 'TitilliumWebRegular';
+}
+
+.breadcrumbs a {
+  text-decoration: underline;
+  color: black;
+}
+
+.breadcrumbs a:hover {
+  color:#a39f1a;
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    font-size: 14px;
+  }
+}
+
 .new-hero {
   background-color: #0d182b;
   display: flex;
@@ -473,7 +501,7 @@ padding-inline: 20px;
   }
 
   .top-image {
-    margin-top: -40px;
+    margin-top: -50px;
     margin-bottom: 20px;
     width: 100vw;
   }

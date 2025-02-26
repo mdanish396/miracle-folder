@@ -1,12 +1,23 @@
 <template>
   <q-page>
     <div v-if="development">
+
       <!-- Hero Section -->
       <div class="hero-section">
+        <!-- Breadcrumbs overlay -->
+        <div class="breadcrumbs-container">
+          <q-breadcrumbs class="breadcrumbs">
+            <q-breadcrumbs-el label="Home" to="/" />
+            <q-breadcrumbs-el label="Our Development" to="/development" />
+            <q-breadcrumbs-el :label="truncateLabel(development.name)" >
+              <q-tooltip v-if="$q.screen.lt.md">{{ development.name }}</q-tooltip>
+            </q-breadcrumbs-el>
+          </q-breadcrumbs>
+        </div>
         <div class="overview-section">
           <!-- Banner Image -->
           <img class="overview-image" :src="development.bannerimage" alt="Banner Image">
-          <div class="gradient-overlay"></div>
+          <!-- <div class="gradient-overlay"></div> -->
           <!-- Logo Section -->
           <div class="logo-container fade-up delay-1">
             <img class="logo-image" :src="development.logo" alt="Logo">
@@ -329,8 +340,10 @@ import { onBeforeRouteUpdate, useRoute /* , useRouter */ } from 'vue-router'
 // import { pastproperties } from 'src/components/Properties/PastPropertiesData.vue'
 import { nearbyAmenities } from 'src/components/Properties/PastProperties/PastDevelopmentAmenitiesData.vue'
 import { useHead } from '@unhead/vue'
+import { useQuasar } from 'quasar'
 
 const route = useRoute()
+const $q = useQuasar()
 const developmentSlug = route.params.slug
 const development = ref(pastdevelopments.find(item => item.slug === developmentSlug) || null)
 // const visibleCount = ref(3)
@@ -375,6 +388,10 @@ useHead({
     }
   ]
 })
+
+const truncateLabel = (text, length = 20) => {
+  return $q.screen.lt.sm && text.length > length ? text.substring(0, length) + '...' : text
+}
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -555,6 +572,38 @@ const capitalizeFirstLetter = (string) => {
 .fade-up.delay-3 {
   transition-delay: 0.6s;
 }
+
+.breadcrumbs-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+  z-index: 1;
+}
+
+.breadcrumbs {
+  font-size: 16px;
+  font-family: 'TitilliumWebRegular';
+  color: white; /* Breadcrumb text color */
+}
+
+.breadcrumbs a {
+  text-decoration: underline;
+  color: white;
+}
+
+.breadcrumbs a:hover {
+  color:#a39f1a;
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    font-size: 14px;
+  }
+}
+
 .hero-section {
   position: relative;
   height: 60vh; /* Full-screen height */

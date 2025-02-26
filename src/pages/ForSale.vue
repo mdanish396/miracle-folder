@@ -3,10 +3,18 @@
     <div v-if="development">
       <!-- Hero Section -->
       <div class="hero-section">
+        <!-- Breadcrumbs overlay -->
+        <div class="breadcrumbs-container">
+          <q-breadcrumbs class="breadcrumbs">
+            <q-breadcrumbs-el label="Home" to="/" />
+            <q-breadcrumbs-el label="Our Development" to="/development" />
+            <q-breadcrumbs-el :label="development.name" />
+          </q-breadcrumbs>
+        </div>
         <div class="overview-section">
           <!-- Banner Image -->
           <img class="overview-image" :src="development.bannerimage" alt="Banner Image">
-          <div class="gradient-overlay"></div>
+          <!-- <div class="gradient-overlay"></div> -->
           <!-- Logo Section -->
           <div class="logo-container fade-up delay-1">
             <img class="logo-image" :src="development.logo" alt="Logo">
@@ -584,6 +592,37 @@ const capitalizeFirstLetter = (string) => {
 
 .fade-up.delay-3 {
   transition-delay: 0.6s;
+}
+
+.breadcrumbs-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+  z-index: 1;
+}
+
+.breadcrumbs {
+  font-size: 16px;
+  font-family: 'TitilliumWebRegular';
+  color: white; /* Breadcrumb text color */
+}
+
+.breadcrumbs a {
+  text-decoration: underline;
+  color: white;
+}
+
+.breadcrumbs a:hover {
+  color:#a39f1a;
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    font-size: 14px;
+  }
 }
 
 .hero-section {

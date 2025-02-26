@@ -21,6 +21,11 @@
       </div>
     </div>
 
+    <!-- <q-breadcrumbs class="breadcrumbs">
+      <q-breadcrumbs-el label="Home" to="/" />
+      <q-breadcrumbs-el label="Contact Miracle Land" />
+    </q-breadcrumbs> -->
+
     <div class="register" id="section-contact">
       <div class="register-container">
         <div class="register-wrapper">
@@ -218,6 +223,29 @@ onBeforeUnmount(() => {
   font-family: 'AvenirMedium';
   src: url('/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
   font-weight: bold;
+}
+
+.breadcrumbs {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  font-family: 'TitilliumWebRegular';
+}
+
+.breadcrumbs a {
+  text-decoration: underline;
+  color: black;
+}
+
+.breadcrumbs a:hover {
+  color:#a39f1a;
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    font-size: 14px;
+  }
 }
 
 .section {
@@ -545,6 +573,10 @@ padding-inline: 20px;
   margin-bottom: 15px;
   font-size: 16px;
   line-height: 21px;
+}
+
+.contact-no:hover {
+  color: #08463c;
 }
 
 .email-title {

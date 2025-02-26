@@ -2,6 +2,17 @@
   <q-page class="property-details-page">
     <div class="property-hero">
       <div v-if="property">
+        <q-breadcrumbs class="breadcrumbs">
+          <q-breadcrumbs-el label="Home" to="/" />
+          <q-breadcrumbs-el
+            :label="truncateLabel(property.place)"
+            :to="`/for-sale/${developmentSlug}`">
+            <q-tooltip v-if="$q.screen.lt.sm">{{ property.place }}</q-tooltip>
+          </q-breadcrumbs-el>
+          <q-breadcrumbs-el :label="truncateLabel(property.name)" >
+            <q-tooltip v-if="$q.screen.lt.sm">{{ property.name }}</q-tooltip>
+          </q-breadcrumbs-el>
+        </q-breadcrumbs>
         <div class="hero-section-1">
           <div class="before-hero-section"></div>
           <div class="hero-section">
@@ -562,9 +573,12 @@ import { onMounted, onUnmounted, ref, onBeforeUnmount, computed } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import { properties } from 'src/components/Properties/CurrentProperties/CurrentPropertiesData.vue'
 import { nearbyAmenities } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentAmenitiesData.vue'
+import { useQuasar } from 'quasar'
+import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 
 // Assuming you have a store or an API to fetch properties
 const route = useRoute()
+const $q = useQuasar()
 const router = useRouter()
 const propertySlug = route.params.slug
 const flattenedProperties = Object.values(properties).flat()
@@ -603,6 +617,16 @@ onMounted(() => {
 
   sections.value.forEach((section) => observer.observe(section))
   fadeItems.value.forEach((item) => observer.observe(item))
+})
+
+const truncateLabel = (text, length = 20) => {
+  return $q.screen.lt.sm && text.length > length ? text.substring(0, length) + '...' : text
+}
+
+// Find the matching development slug from the developments array
+const developmentSlug = computed(() => {
+  const development = developments.find(dev => dev.name === property.value.place)
+  return development ? development.slug : ''
 })
 
 onBeforeUnmount(() => {
@@ -887,6 +911,34 @@ const loadMore = () => {
 }
 .fade-up.delay-4 {
   transition-delay: 0.8s;
+}
+
+.breadcrumbs {
+  padding: 10px 20px;
+  padding-bottom: 0;
+  font-size: 16px;
+  background-color: #08463c;
+  font-family: 'TitilliumWebRegular';
+  max-width: 100%;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.breadcrumbs a {
+  text-decoration: underline;
+  color: white;
+}
+
+.breadcrumbs a:hover {
+  color:#a39f1a;
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    font-size: 14px;
+  }
 }
 
 .before-hero-section {
@@ -2091,6 +2143,10 @@ const loadMore = () => {
   margin-bottom: 15px;
   font-size: 16px;
   line-height: 21px;
+}
+
+.contact-no:hover {
+  color: #08463c;
 }
 
 .email-title {
