@@ -60,17 +60,56 @@
               <img
                 :src="development.image"
                 :alt="development.name"
-                class="development-image"
+                class="development-image clickable"
+                @click="navigateToDevelopmentDetails(development.slug)"
               />
               <div class="status">
                 {{ development.status }}
               </div>
               <div class="development-info">
                 <h3>{{ development.name }}</h3>
-                <p>{{ development.location }}</p>
-                <p>From {{ development.price }}</p>
+                <div class="development-location">
+                  <i class="fas fa-map-marker-alt icon"></i>
+                  <span class="text-development-location">
+                    {{ development.location }}
+                  </span>
+                </div>
+                <q-separator/>
+                <div class="development-item">
+                  <h4>Type</h4>
+                  <p>{{ development.type }}</p>
+                </div>
+                <q-separator/>
+                <q-toolbar class="development-toolbar">
+                  <div class="development-item">
+                    <h4>From</h4>
+                    <p>{{ development.price }}</p>
+                  </div>
+
+                  <div class="development-item-1">
+                    <h4>Up to</h4>
+                    <p>{{ development.size }}</p>
+                  </div>
+                </q-toolbar>
+                <q-separator/>
               </div>
-              <!-- Hover Development Card Information -->
+              <div class="development-feature-list">
+                <div
+                  v-for="feature in development.features"
+                  :key="feature"
+                  class="development-feature-item">
+                  <i class="far fa-dot-circle icon1"></i>
+                  <span class="development-feature">
+                    {{ feature }}
+                  </span>
+                </div>
+              </div>
+              <div class="actions">
+                <q-btn flat class="action-btn" @click="navigateToDevelopmentDetails(development.slug)">
+                  <q-icon name="fas fa-arrow-right" class="arrow-icon" />
+                </q-btn>
+              </div>
+              <!-- Hover Development Card Information
               <div class="development-hover-overlay">
                 <span class="status-current">
                   {{ development.status }}
@@ -81,7 +120,7 @@
                 <div class="actions">
                   <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(development.slug)"/>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -209,7 +248,7 @@ const updateLayout = () => {
     container.style.flexWrap = 'wrap'
   } else {
     container.style.display = 'grid'
-    container.style.gridTemplateColumns = 'repeat(4, minmax(280px, 1fr))'
+    container.style.gridTemplateColumns = 'repeat(3, minmax(280px, 1fr))'
   }
 }
 
@@ -260,7 +299,7 @@ const showMoreDevelopments = () => {
 }
 
 const showLessDevelopments = () => {
-  displayedDevelopments.value = allDevelopments.value.slice(0, 4) // Show only the first 2 developments
+  displayedDevelopments.value = allDevelopments.value.slice(0, 3) // Show only the first 2 developments
   showAllDevelopments.value = false
 }
 
@@ -491,7 +530,7 @@ const navigateToDevelopmentDetails = (slug) => {
 
   /*Development Section*/
   .developments-section {
-  padding: 60px 5%;
+  padding: 60px 10%;
   padding-bottom: 40px;
   text-align: center;
   background-color: #fff;
@@ -597,26 +636,30 @@ const navigateToDevelopmentDetails = (slug) => {
 .developments-container {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(4, minmax(280px, 1fr)); /* Responsive grid */
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); /* Responsive grid */
   padding-bottom: 80px;
   justify-content: center; /* Center the grid within the container */
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1441px) {
   .developments-container {
-    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 }
 
 @media (max-width: 768px) {
   .developments-container {
-    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    width: 100%;
+  }
+
+  .developments-section {
+    padding: 60px 5%;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .developments-container {
-    grid-template-columns: repeat(1, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Allow 2 per row if possible */
   }
 }
 
@@ -628,23 +671,29 @@ const navigateToDevelopmentDetails = (slug) => {
 
 .development-card {
   position: relative;
-  min-width: 280px;
-  max-width: 300px;
   background-color: white;
-  border-radius: 8px;
+  border-radius: 8px 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  flex-grow: 1;
+  height: 100%;
+  margin: 20px 0; /* Add vertical spacing between cards */
 }
 
-.development-card:hover {
-  transform: translateY(-5px);
+@media (max-width: 768px) {
+  .development-card {
+    max-width: 100%;
+  }
 }
 
 .development-image {
   width: 100%;
-  height: 225px;
+  height: 295px;
   object-fit: cover;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
 }
 
 .development-info {
@@ -655,21 +704,119 @@ const navigateToDevelopmentDetails = (slug) => {
 .development-info h3 {
   font-size: 21px;
   font-family: 'TitilliumWebSemiBold';
-  margin-bottom: 5px;
-  margin-top: -10px;
-  height: 60px;
+  margin-top: 3px;
   line-height: 31px;
 }
 
-.development-info p {
+.development-location {
+  text-align: left;
+  margin-top: -18px;
+  margin-bottom: 13px;
+}
+
+.icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.icon1 {
+  font-size: 12px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.text-development-location {
+  font-size: 16px;
+  line-height: 24px;
+  color: rgb(51, 51, 51);
+}
+
+.development-item h4 {
+  font-size: 13px;
+  color: rgb(84, 89, 95);
+  margin-bottom: 0px;
+  margin-top: -2px;
+  white-space: nowrap;
+  font-family: 'TitilliumWebRegular';
+}
+
+.development-item p {
+  font-size: 17px;
+  font-family: 'TitilliumWebRegular';
+  color: rgb(51, 51, 51);
+  margin-top: -7px;
+  white-space: nowrap;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.development-toolbar {
+  display: flex; /* Ensures elements are placed in a row */
+  align-items: center; /* Centers content vertically */
+  padding: 0; /* Optional: Adjust padding to create space around */
+}
+
+.development-item,
+.development-item-1 {
+  flex: 1; /* Makes both items take up equal space */
+  text-align: left; /* Optional: Center-aligns content */
+}
+
+.development-item-1 h4 {
+  font-size: 13px;
+  color: rgb(84, 89, 95);
+  margin-bottom: 0px;
+  margin-top: -2px;
+  white-space: nowrap;
+  font-family: 'TitilliumWebRegular';
+}
+
+.development-item-1 p {
+  font-size: 17px;
+  font-family: 'TitilliumWebRegular';
+  color: rgb(51, 51, 51);
+  margin-top: -7px;
+  white-space: nowrap;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.q-separator {
+  margin: 0 -15px; /* Extend beyond the padding */
+}
+
+.development-feature-list {
+  padding-left: 15px;
+  padding-top: 0;
+  height: 218px;
+  text-align: left;
+}
+
+.development-feature-item {
+  display: flex;
+  padding: 5px 0;
+  padding-bottom: 15px;
+  align-items: center;
+}
+
+.development-feature {
+  font-size: 18px;
+  line-height: 24px;
+  margin-left: 10px;
+  font-family: 'TitilliumWebRegular';
+  color: rgb(51, 51, 51);
+}
+
+/* .development-info p {
   margin: 2px 0;
   font-family: 'TitilliumWebRegular';
   font-size: 18px;
   color: #666;
-}
+} */
 
 /* Hover Overlay */
-.development-hover-overlay {
+/* .development-hover-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -688,23 +835,29 @@ const navigateToDevelopmentDetails = (slug) => {
 
 .development-card:hover .development-hover-overlay {
   opacity: 1;
-}
+} */
 
 /* Conditional Status Badge */
 .status {
   position: absolute;
-  top: 12px;
-  left: -62px;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 5px 10px;
+  top: 0;
+  left: 0;
+  padding: 8px 20px;
+  color: #fff;
+  border-bottom-right-radius: 25px;
+  border-top-left-radius: 8px;
   font-size: 13px;
-  width: 200px;
   font-family: 'TitilliumWebBold';
-  text-transform: uppercase;
-  transform: rotate(-30deg);
+  text-transform:capitalize;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background: #B31921;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
+/*
 .status-current {
   position: absolute;
   top: 12px;
@@ -718,7 +871,7 @@ const navigateToDevelopmentDetails = (slug) => {
   transform: rotate(-30deg);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     background: #4caf50;
-  }
+  } */
 
 .description {
   font-size: 18px;
@@ -728,24 +881,36 @@ const navigateToDevelopmentDetails = (slug) => {
 }
 
 .actions {
+  position: absolute;
+  bottom: -30px; /* Moves button below the border */
+  left: 50%;
+  transform: translateX(-50%); /* Centers horizontally */
   display: flex;
-  gap: 10px;
+  justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .action-btn {
-  background-color: transparent;
+  background-color: #a39f1a; /* Match card background */
   border: 1px solid #a39f1a;
   color: white;
   padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 50%; /* Makes it a circle */
   font-size: 16px;
   text-transform: uppercase;
   font-family: 'AvenirMedium';
+  width: 64px; /* Ensure round shape */
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional shadow */
 }
 
 .action-btn:hover {
-  background-color: #a39f1a;
+  background-color: white;
+  color: #a39f1a;
 }
 
 /* view all button */

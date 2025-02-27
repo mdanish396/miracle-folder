@@ -85,11 +85,11 @@ export const properties = {
     slug: generateSlug('Casa Hill Type A'),
     location: 'Mentakab, Temerloh',
     place: 'Casa Hill',
-    housetype: 'Bungalow',
+    housetype: '2-Storey Bungalow',
     status: 'New Launch',
     price: 'RM 6XX,XXX*',
     image: '/assets/Development/Casa Hill/type_a_01.jpg',
-    features: ['Exclusive Amenities', 'Spacious Homes'],
+    features: ['Exclusive Amenities', 'Spacious Homes', 'Next To SplashMania Waterpark'],
     description: `Miracle Gardens is an 810-acre township
       fusing lifestyle and nature, featuring rolling hills and
       five cascading lakes leading to the 50-acre, pet-friendly Central Park.

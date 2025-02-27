@@ -88,7 +88,6 @@
         <div class="products-grid" :class="{ 'flex-layout': visibleProperties.length < 3 }">
           <div class="product-card" v-for="property in visibleProperties" :key="property.id">
             <img :src="property.image" alt="Product Image" class="product-image"/>
-            <q-separator/>
             <div class="product-info">
               <h3>{{ property.name }}</h3>
               <div class="product-location">
@@ -121,7 +120,7 @@
                   v-for="feature in property.features"
                   :key="feature"
                   class="product-feature-item">
-                  <i class="fas fa-check-circle icon"></i>
+                  <i class="fas fa-check-circle icon1"></i>
                   <span class="product-feature">
                     {{ feature }}
                   </span>
@@ -662,7 +661,7 @@ const capitalizeFirstLetter = (string) => {
 .logo-container {
   position: relative;
   z-index: 2; /* Ensure it's above the background image */
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(2px); /* Applies a blur effect */
   -webkit-backdrop-filter: blur(2px); /* For Safari support */
   padding: 10px;
@@ -934,20 +933,26 @@ line-height: 20px;
 .products-grid {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(3, minmax(400px, 1fr)); /* Responsive grid */
+  grid-template-columns: repeat(3, minmax(370px, 1fr)); /* Responsive grid */
   justify-content: center; /* Center the grid within the container */
   padding-top: 10px;
 }
 
-@media (max-width: 1180px) {
+@media (min-width: 1441px) {
   .products-grid {
-    grid-template-columns: repeat(2, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(370px, 1fr));
   }
 }
 
 @media (max-width: 800px) {
   .products-grid {
-    grid-template-columns: repeat(1, minmax(400px, 1fr));
+    grid-template-columns: repeat(1, minmax(370px, 1fr));
   }
 }
 
@@ -963,9 +968,17 @@ line-height: 20px;
   align-items: center;
   font-family: 'TitilliumWebRegular';
   overflow: hidden;
-  width: 380px;
+  width: 370px;
+  flex-grow: 1;
   background-color: white;
+  margin: 10px 0; /* Add vertical spacing between cards */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    max-width: 100%;
+  }
 }
 
 .card-grid.flex-layout {
@@ -976,29 +989,30 @@ line-height: 20px;
 
 .product-image {
   width: 100%;
-  height: 230px;
+  height: 242px;
   object-fit: cover;
-  margin-bottom: -6px;
+}
+
+.product-info {
+  padding: 15px;
+  text-align: left;
 }
 
 .product-info h3 {
-  font-size: 20px;
-  line-height: 26px;
-  font-family: 'TitilliumWebBold';
-  color: #1e1e1e;
-  text-align: left;
-  padding-left: 10px;
+  font-size: 21px;
+  font-family: 'TitilliumWebSemiBold';
+  margin-top: -3px;
+  line-height: 31px;
 }
 
 .product-location {
   text-align: left;
-  padding-left: 20px;
   margin-top: -10px;
-  margin-bottom: 20px;
+  margin-bottom: 19px;
 }
 
 .icon {
-  font-size: 16px;
+  font-size: 20px;
   color: #08463c;
   margin-right: 10px;
 }
@@ -1006,13 +1020,18 @@ line-height: 20px;
 .text-product-location {
   font-size: 16px;
   line-height: 24px;
-  color: #424040;
+  color: #000;
+}
+
+.q-separator {
+  margin: 0 -15px; /* Extend beyond the padding */
 }
 
 .product-toolbar {
   display: flex; /* Ensures elements are placed in a row */
   align-items: center; /* Centers content vertically */
-  padding: 0 10px; /* Optional: Adjust padding to create space around */
+  padding: 0; /* Optional: Adjust padding to create space around */
+  margin-bottom: -7px;
 }
 
 .product-item,
@@ -1023,18 +1042,16 @@ line-height: 20px;
 
 .product-item h4 {
   font-size: 16px;
-  line-height: 24px;
   color: rgb(109, 114, 120);
   margin-bottom: 0px;
-  padding-left: 10px;
+  margin-top: 4px;
   white-space: nowrap;
 }
 
 .product-item p {
   font-size: 16px;
-  line-height: 24px;
   color: black;
-  padding-left: 10px;
+  margin-top: -10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1055,39 +1072,51 @@ line-height: 20px;
 
 .product-item-1 h4 {
   font-size: 16px;
-  line-height: 24px;
   color: rgb(109, 114, 120);
   margin-bottom: 0px;
+  margin-top: 0px;
   padding-left: 30px;
 }
 
 .product-item-1 p {
   font-size: 16px;
-  line-height: 24px;
   padding-left: 30px;
+  margin-top: -6px;
   color: black;
 }
 
+.icon1 {
+  font-size: 17px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
 .product-feature-list {
-  padding: 20px 30px;
-  height: 200px;
+  padding: 20px 0;
+  padding-top: 15px;
+  height: 162px;
   text-align: left;
 }
 
 .product-feature-item {
   display: flex;
   padding: 5px 0;
+  padding-bottom: 7px;
   align-items: center;
 }
 
 .product-feature {
   font-size: 16px;
   line-height: 24px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .btn-more {
-  padding: 40px 0;
+  padding: 30px 0;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 14px;
 }
 
 .btn-more-1 {
@@ -1096,15 +1125,16 @@ line-height: 20px;
 
 .learn-more-btn {
   background-color: transparent;
-  border: 2px solid black;
+  border: 1px solid black;
   color: #000000;
   font-family: 'AvenirMedium';
   font-size: 15px;
-  padding: 15px 60px;
+  padding: 11px 60px;
   margin-top: -10px;
   margin-bottom: -10px;
-  width: 300px;
+  width: 185px;
   border-radius: 0;
+  white-space: nowrap;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
@@ -1122,7 +1152,8 @@ line-height: 20px;
   font-family: 'AvenirMedium';
   font-size: 17px;
   padding: 10px 20px;
-  width: 300px;
+  white-space: nowrap;
+  width: 175px;
   height: 60px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -1141,22 +1172,6 @@ line-height: 20px;
 
   .product-info h3 {
     font-size: 18px;
-  }
-}
-
-/* Extra small screens (480px and below) */
-@media (max-width: 480px) {
-
-  .product-card {
-    width: 90vw;
-  }
-  .products-section h2 {
-    font-size: 32px;
-  }
-
-  .learn-more-btn {
-    font-size: 14px;
-    padding: 20px 16px;
   }
 }
 

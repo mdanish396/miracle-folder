@@ -971,14 +971,15 @@ const loadMore = () => {
   margin-top: 20px;
   margin-left: 1.5%;
   padding-bottom: 20px;
-  width: 46vw;
-  height: 83vh;
+  width: 650px;
+  height: 565px;
   max-width: min-content;
   border-radius: 2px;
 }
 
 .property-section{
   padding: 0px 2%;
+  overflow: hidden;
 }
 
 .property-grid {
