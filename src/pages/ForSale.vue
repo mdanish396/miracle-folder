@@ -1,4 +1,5 @@
 <template>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <q-page>
     <div v-if="development">
       <!-- Hero Section -->
@@ -15,16 +16,18 @@
           <!-- Banner Image -->
           <img class="overview-image" :src="development.bannerimage" alt="Banner Image">
           <!-- <div class="gradient-overlay"></div> -->
-          <!-- Logo Section -->
-          <div class="logo-container fade-up delay-1">
-            <img class="logo-image" :src="development.logo" alt="Logo">
-          </div>
         </div>
+      </div>
 
-        <!-- Information Overlay -->
-        <div class="information-overlay">
-          <div class="info-overlay fade-up">
-            <div class="info-details">
+      <!-- Information Overlay -->
+      <div class="information-overlay">
+        <div class="info-overlay fade-up">
+          <div class="info-details">
+            <!-- Logo Section -->
+            <div class="logo-container fade-up delay-1">
+              <img class="logo-image" :src="development.logo" alt="Logo">
+            </div>
+            <div class="info-content">
               <div class="info-item fade-up delay-1">
                 <h4>Type</h4>
                 <p>{{ development.type }}</p>
@@ -57,22 +60,21 @@
           </div>
           <p class="sub-heading fade-up delay-2">{{ development.description }}</p>
         </div>
-
-        <!-- Highlight Section -->
-        <div class="card-section">
-          <div class="card-grid">
-            <div class="card" v-for="(image, index) in development.gallerydevelopment" :key="index">
-              <img :src="image.url" class="card-image fade-up" alt="Gallery Image">
-              <div class="card-title fade-up delay-1">
-                <p>{{ image.description }}</p>
-              </div>
+      </div>
+      <!-- Highlight Section -->
+      <div class="card-section">
+        <div class="card-grid">
+          <div class="card" v-for="(image, index) in development.gallerydevelopment" :key="index">
+            <img :src="image.url" class="card-image fade-up" alt="Gallery Image">
+            <div class="card-title fade-up delay-1">
+              <p>{{ image.description }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="rectangle-section"></div>
+    <!-- <div class="rectangle-section"></div> -->
 
     <!-- Our Product Section-->
     <div class="products-section">
@@ -195,7 +197,9 @@
               alt="Center Image"
             />
             <div class="gallery-overlay">
-              <button class="visit-gallery-btn" @click="openPopup(1)">Visit Gallery</button>
+              <button class="visit-gallery-btn" @click="openPopup(1)">Visit Gallery
+                <i class="fas fa-arrow-right icon-4"></i>
+              </button>
             </div>
           </div>
 
@@ -210,7 +214,9 @@
               alt="Center Image"
             />
             <div class="gallery-overlay">
-              <button class="visit-gallery-btn" @click="openPopup(2)">Visit Gallery</button>
+              <button class="visit-gallery-btn" @click="openPopup(2)">Visit Gallery
+                <i class="fas fa-arrow-right"></i>
+              </button>
             </div>
           </div>
 
@@ -626,7 +632,7 @@ const capitalizeFirstLetter = (string) => {
 
 .hero-section {
   position: relative;
-  height: 60vh; /* Full-screen height */
+  height: 62vh; /* Full-screen height */
 }
 
 .overview-section {
@@ -658,33 +664,12 @@ const capitalizeFirstLetter = (string) => {
   z-index: 1;
 }
 
-.logo-container {
-  position: relative;
-  z-index: 2; /* Ensure it's above the background image */
-  background: rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(2px); /* Applies a blur effect */
-  -webkit-backdrop-filter: blur(2px); /* For Safari support */
-  padding: 10px;
-  box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo-image {
-  width: 120px;
-  height: auto;
-}
-
 .information-overlay {
-  position: relative; /* Changed from absolute to relative */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: -40px;
-  z-index: 2; /* Still above the gradient overlay */
+  width:100%;
 }
 
 .info-overlay {
@@ -693,22 +678,62 @@ const capitalizeFirstLetter = (string) => {
   color: black;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  width: 100%;
 }
 
 .info-details {
+  position: relative;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: white;
-  height: auto;
-  width: 60vw;
+  height: auto; /* Allow it to expand */
+  min-height: 105px;
+  width: 59.6%;
   border-radius: 2px;
+  padding: 0 1%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow:visible;
+}
+
+.info-details .info-item {
+  overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+
+  .info-details {
+    width: 90%;
+  }
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 130px;
+  background-color: white;
+  height: 130px;
+  margin-top: -50px;
+  border-radius: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.logo-image {
+  width: 110px;
+  height: auto;
+}
+
+.info-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  text-align: center;
 }
 
 .info-item{
-  padding: 0 10px;
-  width: 320px;
+  flex: 1;
+  padding: 0 5px;
   text-align: center;
 }
 
@@ -721,6 +746,7 @@ const capitalizeFirstLetter = (string) => {
   font-family: 'TitilliumWebBold';
   color: #666;
   margin-bottom: -10px;
+  margin-top: 0;
 }
 
 .info-item p {
@@ -732,13 +758,39 @@ const capitalizeFirstLetter = (string) => {
 .divider {
   width: 2px;
   background-color: #00B398;
-  margin: 15px 0;
+  height: 70px;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 60vh;
+  }
+
+  .overview-section {
+    height: 60vh;
+  }
+
+  .info-details {
+    flex-direction: column;
+  }
+
+  .info-content {
+    padding-top: 30px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .logo-container {
+    margin-top: -70px;
+  }
 }
 
 .intro-section {
   text-align: center;
   padding: 0px 1%;
-  padding-top: 150px;
+  padding-top: 20px;
   margin-top: -10px;
 }
 
@@ -800,22 +852,12 @@ const capitalizeFirstLetter = (string) => {
   font-size: 14px;
 }
 
-.info-details {
-    width: 80vw;
-    height:auto;
-  }
-
 .main-heading {
   font-size: 40px;
 }
 }
 
 @media (max-width: 550px) {
-
-.info-details {
-    width: 90vw;
-    height:auto;
-  }
 
 .main-heading {
   font-size: 32px;
@@ -825,6 +867,10 @@ const capitalizeFirstLetter = (string) => {
 .card-section {
   text-align: center;
   padding: 20px 1%;
+  width: 100%;
+  padding-bottom: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 46%, #08463c 54%);
 }
 
 .card-grid {
@@ -832,6 +878,8 @@ const capitalizeFirstLetter = (string) => {
   grid-template-columns: (3, 1fr);
   gap: 30px;
   align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
   justify-content: center;
 }
 
@@ -839,19 +887,23 @@ const capitalizeFirstLetter = (string) => {
   border-radius: 3px;
   background: transparent;
   transition: transform 0.3s;
+  width: 280px;
+  height: 100%;
+  flex-grow: 1;
 }
 
 .card img {
-  width: 30vw;
-  height: 45vh;
-  max-width: min-content;
-  max-width: min-content;
+  width: 100%;
+  height: 280px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
   border-bottom: 3px solid #759403;
 }
 
 .card-title {
-  font-size: 18px;
-  font-family: 'TitilliumWebBold';
+  font-size: 19px;
+  font-family: 'RecklessNeueMedium';
+  margin-top: 15px;
   line-height: 29px;
   color: rgb(255, 255, 255);
   text-align: center;
@@ -868,10 +920,6 @@ const capitalizeFirstLetter = (string) => {
   display: none;
 }
 
-.card img {
-  width: 45vw;
-}
-
 .card-title {
   font-size: 16px;
   line-height: 24px;
@@ -880,8 +928,8 @@ const capitalizeFirstLetter = (string) => {
 
 @media (max-width: 768px) {
 
-.card img {
-  width: 75vw;
+.card {
+  max-width: 100%;
 }
 
 .card-grid .card:nth-child(2) {
@@ -891,14 +939,6 @@ const capitalizeFirstLetter = (string) => {
 .card-title {
 font-size: 16px;
 line-height: 20px;
-}
-}
-
-@media (max-width: 480px) {
-
-.card img {
-  width: 80vw;
-  height: 35vh;
 }
 }
 
@@ -1224,26 +1264,26 @@ line-height: 20px;
 .gallery-grid .gallery-item:nth-child(1) {
   flex: 1;
   max-width: 35%;
-  height: 550px;
+  height: 500px;
   clip-path: inset(0 0 0 0);
 }
 
 .gallery-grid .gallery-item:nth-child(2) {
   flex: 2;
   max-width: 50%;
-  height: 550px;
+  height: 500px;
 }
 
 .gallery-grid .gallery-item:nth-child(3) {
   flex: 2;
   max-width: 50%;
-  height: 550px;
+  height: 500px;
 }
 
 .gallery-grid .gallery-item:nth-child(4) {
   flex: 1;
   width: 25%;
-  height: 550px;
+  height: 500px;
   clip-path: inset(0 0 0 0);
 }
 
@@ -1272,16 +1312,25 @@ line-height: 20px;
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
   padding: 10px 20px;
-  width: 200px;
+  width: 220px;
+  height: 50px;
   border: none;
   cursor: pointer;
-  font-size: 24px;
+  text-align: center;
+  font-size: 19px;
+  border: 1px solid white;
   font-family: 'AvenirMedium';
   transition: background-color 0.3s ease;
 }
 
 .visit-gallery-btn:hover {
   background-color: #a39f1a;
+  border: 1px solid #a39f1a;
+}
+
+.icon-4 {
+  padding-left: 6px;
+  font-size: 20px;
 }
 
 @media (max-width: 900px) {

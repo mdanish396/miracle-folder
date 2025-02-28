@@ -242,12 +242,12 @@
                 <div class="details-grid fade-up delay-2">
                   <!-- Bedrooms -->
                   <div class="details-item">
-                    <img src="/assets/bed.png" alt="Area" class="icon-3" />
+                    <img src="/assets/bed.png" alt="Area" class="icon-5" />
                     <p>{{ property.bedroom }} Bedrooms</p>
                   </div>
                   <!-- Bathrooms -->
                   <div class="details-item">
-                    <img src="/assets/bathroom.svg" alt="Area" class="icon-3" />
+                    <img src="/assets/bathroom.svg" alt="Area" class="icon-4" />
                     <p>{{ property.bathroom }} Bathrooms</p>
                   </div>
                   <!-- Area -->
@@ -259,10 +259,10 @@
 
                 <!-- Buttons Section -->
                 <div class="floorplan-buttons fade-up delay-3">
-                  <button @click="downloadBrochure(property.brochure)" class="btn download-btn">
+                  <!-- <button @click="downloadBrochure(property.brochure)" class="btn download-btn">
                     <img src="/assets/brochure.svg" alt="Download" />
                     Download Brochure
-                  </button>
+                  </button> -->
                   <button @click="openImage(property.plan)" class="btn view-btn">
                     <img src="/assets/area.svg" alt="View" />
                     View Floorplan
@@ -508,7 +508,6 @@
         <div class="products-grid" :class="{ 'flex-layout': visibleSimilarProperties.length < 3 }">
           <div class="product-card" v-for="property in similarProperties" :key="property.id">
             <img :src="property.image" alt="Product Image" class="product-image"/>
-            <q-separator/>
             <div class="product-info">
               <h3>{{ property.name }}</h3>
               <div class="product-location">
@@ -569,7 +568,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref, onBeforeUnmount, computed } from 'vue'
+import { onMounted, onUnmounted, ref, onBeforeUnmount, computed, nextTick } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import { properties } from 'src/components/Properties/CurrentProperties/CurrentPropertiesData.vue'
 import { nearbyAmenities } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentAmenitiesData.vue'
@@ -609,6 +608,33 @@ onMounted(() => {
         entry.target.classList.remove('visible')
       }
     })
+  })
+
+  const updateLayout = () => {
+    const container = document.querySelector('.products-grid')
+    const cards = document.querySelectorAll('.product-card')
+
+    if (!container) return // Prevent errors if container doesn't exist
+
+    if (cards.length < 3) {
+      container.style.display = 'flex'
+      container.style.justifyContent = 'center'
+      container.style.flexWrap = 'wrap'
+    } else {
+      container.style.display = 'grid'
+      container.style.gridTemplateColumns = 'repeat(3, minmax(400px, 1fr))'
+    }
+  }
+
+  onMounted(() => {
+    nextTick(() => {
+      updateLayout() // Ensure layout updates after DOM is rendered
+      window.addEventListener('resize', updateLayout)
+    })
+  })
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('resize', updateLayout)
   })
 
   // Observe all sections
@@ -691,9 +717,9 @@ const gotofullmap = () => {
   window.open('https://maps.app.goo.gl/XcCFgR9Lg8vpdLfh7', '_blank')
 }
 
-const downloadBrochure = (file) => {
-  window.open(file, '_blank')
-}
+// const downloadBrochure = (file) => {
+//   window.open(file, '_blank')
+// }
 
 const openImage = (plan) => {
   if (!plan) return
@@ -1559,9 +1585,13 @@ const loadMore = () => {
  /*Floorplan Section */
 .floorplan-section {
   margin-top: 60px;
-  padding: 20px 200px;
+  padding: 20px 10%;
   text-align: center;
   background-color:#fff;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .floorplan-title {
@@ -1573,15 +1603,24 @@ const loadMore = () => {
 
 .floorplan-container {
   background-color: white;
+  width: 100%;
+  min-height: 375px;
+  height: auto;
   border: 1px solid #ddd;
   padding-bottom: 20px;
 }
 
+@media (min-width: 1200px) {
+  .floorplan-container {
+    width:765px;
+  }
+}
 .floorplan-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  height: auto;
+  min-height: 78px;
   background-color: #08463c;
   color: white;
 }
@@ -1589,7 +1628,7 @@ const loadMore = () => {
 .plan-select {
   font-family: 'TitilliumWebRegular';
   padding: 10px 5%;
-  font-size: 17px;
+  font-size: 18px;
   color: white;
 }
 
@@ -1597,15 +1636,14 @@ const loadMore = () => {
   font-family: 'TitilliumWebRegular';
   white-space: nowrap;
   padding: 10px 5%;
-  font-size: 17px;
-  line-height: 27px;
+  font-size: 18px;
 }
 
 .floorplan-details {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 50px;
   flex-wrap: nowrap;
 }
 
@@ -1624,7 +1662,7 @@ const loadMore = () => {
   align-items: center;
   padding:20px;
   width: 190px;
-  min-height: 200px;
+  height: 120px;
 }
 
 .details-item p {
@@ -1635,28 +1673,41 @@ const loadMore = () => {
 }
 
 .icon-3 {
-  width: 60px;
+  width: 48px;
   margin-bottom: 10px;
 }
 
+.icon-4 {
+  height: 45px;
+  margin-bottom: 10px;
+}
+
+.icon-5 {
+  height: 50px;
+  margin-bottom: 5px;
+}
+
 .floorplan-buttons {
-  margin-top: 20px;
+  margin-top: 35px;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 10px 0;
   border: 1px solid #ccc;
   background: #fff;
-  width: 200px;
+  min-width: 220px;
+  max-width: 100%;
+  height: 50px;
   cursor: pointer;
   font-family: 'TitilliumWebBold';
-  font-size: 14px;
+  font-size: 17px !important;
   white-space: nowrap;
 }
 
@@ -1685,17 +1736,13 @@ const loadMore = () => {
 .view-btn:hover img {
   filter: invert(1);
 }
-
-@media (max-width: 1000px) {
-  .floorplan-section {
-  padding: 20px 110px;
-}
+@media (max-width: 1200px) {
+  .floorplan-section{
+    padding: 20px 5%;
+  }
 }
 
 @media (max-width: 768px) {
-  .floorplan-section {
-  padding: 20px 20px;
-}
 
   .floorplan-header {
     flex-direction: column;
@@ -1709,15 +1756,14 @@ const loadMore = () => {
     justify-content: center;
     gap: 10px;
 }
-.floorplan-buttons {
+/* .floorplan-buttons {
   margin-top: -20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-}
+} */
 .btn {
-  width: 250px;
   justify-content: center;
 }
 }
@@ -2370,23 +2416,29 @@ justify-content: center;
 }
 
 .products-grid {
-display: grid;
-gap: 20px;
-grid-template-columns: repeat(3, minmax(400px, 1fr)); /* Responsive grid */
-justify-content: center; /* Center the grid within the container */
-padding-top: 10px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, minmax(370px, 1fr)); /* Responsive grid */
+  justify-content: center; /* Center the grid within the container */
+  padding-top: 10px;
 }
 
-@media (max-width: 1180px) {
-.products-grid {
-  grid-template-columns: repeat(2, minmax(400px, 1fr));
+@media (min-width: 1441px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  }
 }
+
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(370px, 1fr));
+  }
 }
 
 @media (max-width: 800px) {
-.products-grid {
-  grid-template-columns: repeat(1, minmax(400px, 1fr));
-}
+  .products-grid {
+    grid-template-columns: repeat(1, minmax(370px, 1fr));
+  }
 }
 
 @media (max-width: 480px) {
@@ -2401,9 +2453,17 @@ padding-top: 10px;
   align-items: center;
   font-family: 'TitilliumWebRegular';
   overflow: hidden;
-  width: 380px;
+  width: 370px;
+  flex-grow: 1;
   background-color: white;
+  margin: 10px 0; /* Add vertical spacing between cards */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    max-width: 100%;
+  }
 }
 
 .products-grid.flex-layout {
@@ -2414,29 +2474,30 @@ padding-top: 10px;
 
 .product-image {
   width: 100%;
-  height: 230px;
+  height: 242px;
   object-fit: cover;
-  margin-bottom: -6px;
+}
+
+.product-info {
+  padding: 15px;
+  text-align: left;
 }
 
 .product-info h3 {
-  font-size: 20px;
-  line-height: 26px;
-  font-family: 'TitilliumWebBold';
-  color: #1e1e1e;
-  text-align: left;
-  padding-left: 10px;
+  font-size: 21px;
+  font-family: 'TitilliumWebSemiBold';
+  margin-top: -3px;
+  line-height: 31px;
 }
 
 .product-location {
   text-align: left;
-  padding-left: 20px;
   margin-top: -10px;
-  margin-bottom: 20px;
+  margin-bottom: 19px;
 }
 
 .icon {
-  font-size: 16px;
+  font-size: 20px;
   color: #08463c;
   margin-right: 10px;
 }
@@ -2444,13 +2505,18 @@ padding-top: 10px;
 .text-product-location {
   font-size: 16px;
   line-height: 24px;
-  color: #424040;
+  color: #000;
+}
+
+.q-separator {
+  margin: 0 -15px; /* Extend beyond the padding */
 }
 
 .product-toolbar {
   display: flex; /* Ensures elements are placed in a row */
   align-items: center; /* Centers content vertically */
-  padding: 0 10px; /* Optional: Adjust padding to create space around */
+  padding: 0; /* Optional: Adjust padding to create space around */
+  margin-bottom: -7px;
 }
 
 .product-item,
@@ -2461,18 +2527,16 @@ padding-top: 10px;
 
 .product-item h4 {
   font-size: 16px;
-  line-height: 24px;
   color: rgb(109, 114, 120);
   margin-bottom: 0px;
-  padding-left: 10px;
+  margin-top: 4px;
   white-space: nowrap;
 }
 
 .product-item p {
   font-size: 16px;
-  line-height: 24px;
   color: black;
-  padding-left: 10px;
+  margin-top: -10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2493,39 +2557,51 @@ padding-top: 10px;
 
 .product-item-1 h4 {
   font-size: 16px;
-  line-height: 24px;
   color: rgb(109, 114, 120);
   margin-bottom: 0px;
+  margin-top: 0px;
   padding-left: 30px;
 }
 
 .product-item-1 p {
   font-size: 16px;
-  line-height: 24px;
   padding-left: 30px;
+  margin-top: -6px;
   color: black;
 }
 
+.icon1 {
+  font-size: 17px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
 .product-feature-list {
-  padding: 20px 30px;
-  height: 200px;
+  padding: 20px 0;
+  padding-top: 15px;
+  height: 162px;
   text-align: left;
 }
 
 .product-feature-item {
   display: flex;
   padding: 5px 0;
+  padding-bottom: 7px;
   align-items: center;
 }
 
 .product-feature {
   font-size: 16px;
   line-height: 24px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .btn-more {
-  padding: 40px 0;
+  padding: 30px 0;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 14px;
 }
 
 .btn-more-1 {
@@ -2534,19 +2610,43 @@ padding-top: 10px;
 
 .learn-more-btn {
   background-color: transparent;
-  border: 2px solid black;
+  border: 1px solid black;
   color: #000000;
   font-family: 'AvenirMedium';
   font-size: 15px;
-  padding: 15px 60px;
+  padding: 11px 60px;
   margin-top: -10px;
   margin-bottom: -10px;
+  width: 185px;
   border-radius: 0;
-  width: 300px;
+  white-space: nowrap;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .learn-more-btn:hover {
+  background-color: #a39f1a;
+  border: 2px solid #a39f1a;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.load-more-btn{
+  background-color: transparent;
+  border: 2px solid black;
+  color: #000000;
+  font-family: 'AvenirMedium';
+  font-size: 17px;
+  padding: 10px 20px;
+  white-space: nowrap;
+  width: 175px;
+  height: 60px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.load-more-btn:hover {
   background-color: #a39f1a;
   border: 2px solid #a39f1a;
   color: #fff;
@@ -2558,31 +2658,5 @@ padding-top: 10px;
   .product-info h3 {
     font-size: 18px;
   }
-
-}
-
-/* Small screens (768px and below) */
-@media (max-width: 768px) {
-
-  .product-info h3 {
-    font-size: 18px;
-  }
-
-}
-
-/* Extra small screens (480px and below) */
-@media (max-width: 480px) {
-
-.product-card {
-  width: 90vw;
-}
-.products-section h2 {
-  font-size: 32px;
-}
-
-.learn-more-btn {
-  font-size: 14px;
-  padding: 20px 16px;
-}
 }
 </style>
