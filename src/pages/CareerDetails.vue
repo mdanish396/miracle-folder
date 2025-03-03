@@ -600,7 +600,7 @@ padding-right: 10px;
 }
 
 .job-filter-container {
-  padding: 80px 5%;
+  padding: 80px 3%;
   background-color: #f9f9f9;
 }
 
@@ -619,15 +619,15 @@ padding-right: 10px;
 
 .job-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+  gap: 40px;
 }
 
 .job-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 16px;
+  padding: 20px 13px;
 }
 
 .job-location {
