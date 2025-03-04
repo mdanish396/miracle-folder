@@ -37,10 +37,9 @@
           </div>
         </div>
       </div>
-      <p class="fade-up delay-2">Explore our current developments and find your dream home.</p>
+      <p class="fade-up delay-2">Explore our current developments and find your dream home or shop.</p>
       <div class="fade-up delay-3">
-        <div class="development-flex">
-          <div class="developments-container" :class="{ 'flex-layout': displayedDevelopments.length < 4 }">
+        <div :class="['developments-container', displayedDevelopments.length >= 2 ? 'grid-layout' : 'flex-layout']">
             <!-- Scrollable Development Card -->
             <div
               class="development-card"
@@ -49,118 +48,127 @@
               <img
                 :src="development.image"
                 :alt="development.name"
-                class="development-image"
+                class="development-image clickable"
+                @click="navigateToDevelopmentDetails(development.slug)"
               />
               <div class="status">
                 {{ development.status }}
               </div>
               <div class="development-info">
                 <h3>{{ development.name }}</h3>
-                <p>{{ development.location }}</p>
-                <p>From {{ development.price }}</p>
+                <div class="development-location">
+                  <i class="fas fa-map-marker-alt icon"></i>
+                  <span class="text-development-location">
+                    {{ development.location }}
+                  </span>
+                </div>
+                <q-separator/>
+                <div class="development-item">
+                  <h4>Type</h4>
+                  <p>{{ development.type }}</p>
+                </div>
+                <q-separator/>
+                <q-toolbar class="development-toolbar">
+                  <div class="development-item">
+                    <h4>From</h4>
+                    <p>{{ development.price }}</p>
+                  </div>
+                  <div class="development-item-1">
+                    <h4>Up to</h4>
+                    <p>{{ development.size }}</p>
+                  </div>
+                </q-toolbar>
+                <q-separator/>
               </div>
-              <!-- Hover Development Card Information -->
-              <div class="development-hover-overlay">
-                <span class="status-current">
-                  {{ development.status }}
-                </span>
-                <div class="description">
-                  {{ development.shortdescription }}
+              <div class="development-feature-list">
+                <div
+                  v-for="feature in development.features"
+                  :key="feature"
+                  class="development-feature-item">
+                  <i class="far fa-dot-circle icon1"></i>
+                  <span class="development-feature">
+                    {{ feature }}
+                  </span>
                 </div>
-                <div class="actions">
-                  <q-btn flat label="Open Details" class="action-btn" @click="navigateToDevelopmentDetails(development.slug)"/>
-                </div>
+              </div>
+              <div class="actions">
+                <q-btn flat class="action-btn" @click="navigateToDevelopmentDetails(development.slug)">
+                  <q-icon name="fas fa-arrow-right" class="arrow-icon" />
+                </q-btn>
               </div>
             </div>
           </div>
         </div>
-        <!-- <div v-if="allDevelopments.length > visibleCount">
-          <div v-if="!showAllDevelopments">
-            <q-btn
-              flat
-              label="Show More"
-              class="view-all-btn"
-              @click="showMoreDevelopments"
-            />
-          </div>
-        </div>
-        <div v-if="showAllDevelopments">
-          <q-btn
-            flat
-            label="Show Less"
-            class="view-all-btn"
-            @click="showLessDevelopments"
-          />
-        </div> -->
-      </div>
     </div>
 
     <!-- Past Developments Section -->
     <div class="past-developments-section">
-      <h2 class="fade-up">Past Developments</h2>
-      <div class="line-holder fade-up delay-1">
-        <div class="line">
-          <div class="line-1">
-            <div class="line-2"></div>
-          </div>
-        </div>
-      </div>
-      <p class="fade-up delay-2">Explore our past developments and build your confidence.</p>
-      <div class=" fade-up delay-3">
-        <div class="development-flex">
-          <div class="developments-container" :class="{ 'flex-layout': displayedPastDevelopments.length < 4 }">
-            <!-- Scrollable Development Card -->
-            <div
-              class="development-card"
-              v-for="pastdevelopments in displayedPastDevelopments"
-              :key="pastdevelopments.id">
-              <img
-                :src="pastdevelopments.image"
-                :alt="pastdevelopments.name"
-                class="development-image"
-              />
-              <div class="status">
-                {{ pastdevelopments.status }}
-              </div>
-              <div class="development-info">
-                <h3>{{ pastdevelopments.name }}</h3>
-                <p>{{ pastdevelopments.location }}</p>
-              </div>
-              <!-- Hover Development Card Information -->
-              <div class="development-hover-overlay">
-                <span class="status-completed">
-                  {{ pastdevelopments.status }}
-                </span>
-                <div class="description">
-                  {{ pastdevelopments.shortdescription }}
-                </div>
-                <div class="actions">
-                  <q-btn flat label="Open Details" class="action-btn" @click="navigateToPastDevelopmentDetails(pastdevelopments.slug)" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <div v-if="allPastDevelopments.length > visibleCount">
-          <div v-if="!showAllPastDevelopments">
-            <q-btn
-              flat
-              label="Show More"
-              class="view-all-btn"
-              @click="showMorePastDevelopments"
-            />
-          </div>
-        </div>
-        <div v-if="showAllPastDevelopments">
-          <q-btn
-            flat
-            label="Show Less Developments"
-            class="view-all-btn"
-            @click="showLessPastDevelopments"
-          />
-        </div> -->
+  <h2 class="fade-up">Past Developments</h2>
+  <div class="line-holder fade-up delay-1">
+    <div class="line">
+      <div class="line-1">
+        <div class="line-2"></div>
       </div>
     </div>
+  </div>
+  <p class="fade-up delay-2">Explore our past developments and build your confidence.</p>
+  <div class="fade-up delay-3">
+    <div :class="['developments-container', displayedPastDevelopments.length >= 3 ? 'grid-layout' : 'flex-layout']">
+      <div
+        class="development-card"
+        v-for="pastdevelopments in displayedPastDevelopments"
+        :key="pastdevelopments.id">
+        <img
+          :src="pastdevelopments.image"
+          :alt="pastdevelopments.name"
+          class="development-image clickable"
+          @click="navigateToPastDevelopmentDetails(pastdevelopments.slug)"
+        />
+        <div class="status">{{ pastdevelopments.status }}</div>
+        <div class="development-info">
+          <h3>{{ pastdevelopments.name }}</h3>
+          <div class="development-location">
+            <i class="fas fa-map-marker-alt icon"></i>
+            <span class="text-development-location">
+              {{ pastdevelopments.location }}
+            </span>
+          </div>
+          <q-separator />
+          <div class="development-item">
+            <h4>Type</h4>
+            <p>{{ pastdevelopments.type }}</p>
+          </div>
+          <q-separator />
+          <q-toolbar class="development-toolbar">
+            <div class="development-item">
+              <h4>From</h4>
+              <p>-</p>
+            </div>
+            <div class="development-item-1">
+              <h4>Up to</h4>
+              <p>{{ pastdevelopments.size }}</p>
+            </div>
+          </q-toolbar>
+          <q-separator />
+        </div>
+        <div class="development-feature-list">
+          <div
+            v-for="feature in pastdevelopments.features"
+            :key="feature"
+            class="development-feature-item">
+            <i class="far fa-dot-circle icon1"></i>
+            <span class="development-feature">{{ feature }}</span>
+          </div>
+        </div>
+        <div class="actions">
+          <q-btn flat class="action-btn" @click="navigateToPastDevelopmentDetails(pastdevelopments.slug)">
+            <q-icon name="fas fa-arrow-right" class="arrow-icon" />
+          </q-btn>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   </q-page>
 </template>
 
@@ -170,9 +178,9 @@ import { useRouter } from 'vue-router'
 import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 import { pastdevelopments } from 'src/components/Properties/PastProperties/PastDevelopmentData.vue'
 
-const allDevelopments = ref(developments.filter((d) => d.status === 'New Launch'))
+const allDevelopments = ref(developments /* .filter((d) => d.status === 'New Launch') */)
 // const visibleCount = ref(4)
-const allPastDevelopments = ref(pastdevelopments.filter((d) => d.status === 'Completed'))
+const allPastDevelopments = ref(pastdevelopments /* .filter((d) => d.status === 'Completed') */)
 const displayedDevelopments = ref(allDevelopments.value /* .slice(0, visibleCount.value) */)
 const displayedPastDevelopments = ref(allPastDevelopments.value /* .slice(0, visibleCount.value) */)
 // const showAllDevelopments = ref(false)
@@ -474,27 +482,29 @@ padding-inline: 20px;
 }
 
 .developments-section {
-  padding: 60px 20px;
+  padding: 60px 10%;
   background-color: #ffffed;
   text-align: center;
   padding-bottom: 80px;
 }
 
 .past-developments-section {
-  padding: 60px 20px;
+  padding: 60px 5%;
+  align-items: center;
+  justify-content: center;
   background-color: #ebe4d8;
   text-align: center;
 }
 
 .developments-section h2 {
   font-family: 'RecklessNeueMedium';
-  font-size: 48px;
+  font-size: 42px;
   color: #000000;
 }
 
 .past-developments-section h2 {
   font-family: 'RecklessNeueMedium';
-  font-size: 48px;
+  font-size: 42px;
   color: #000000;
 }
 
@@ -518,7 +528,7 @@ padding-inline: 20px;
   height: 1px; /* Height of the line */
   background-color: #a7a4a4; /* Gold accent */
   margin-top: 1px; /* Space between the line and text */
-  padding-inline-end: 200px;
+  padding-inline-end: 220px;
   margin-inline-start: 40px;
 }
 
@@ -599,59 +609,59 @@ padding-inline: 20px;
 
 .development-flex {
   display: flex;
-  justify-content: center;
-}
-
-.developments-container {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(4, minmax(280px, 1fr)); /* Responsive grid */
-  padding-bottom: 80px;
-  justify-content: center; /* Center the grid within the container */
-}
-@media (max-width: 1224px) {
-  .developments-container {
-    grid-template-columns: repeat(3, minmax(280px, 1fr));
-  }
-}
-
-@media (max-width: 1000px) {
-  .developments-container {
-    grid-template-columns: repeat(2, minmax(280px, 1fr));
-  }
-}
-
-@media (max-width: 650px) {
-  .developments-container {
-    grid-template-columns: repeat(1, minmax(280px, 1fr));
-  }
-}
-
-.developments-container.flex-layout {
-  display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 80px;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+
+  .developments-section {
+    padding: 60px 5%;
+  }
 }
 
 .development-card {
   position: relative;
-  min-width: 280px;
-  max-width: 300px;
   background-color: white;
-  border-radius: 8px;
+  border-radius: 8px 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 830px;
+  margin: 20px 0; /* Center align */
 }
 
-.development-card:hover {
-  transform: translateY(-5px);
+@media (max-width: 1440px) {
+  .development-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 827px) {
+  .development-card {
+    max-width: 100%;
+  }
 }
 
 .development-image {
   width: 100%;
-  height: 225px;
+  height: 295px;
   object-fit: cover;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
 }
 
 .development-info {
@@ -661,21 +671,120 @@ padding-inline: 20px;
 
 .development-info h3 {
   font-size: 21px;
-  line-height: 31px;
   font-family: 'TitilliumWebSemiBold';
-  margin-bottom: 5px;
-  margin-top: -10px;
-  height: 60px;
+  margin-top: 3px;
+  line-height: 31px;
 }
 
-.development-info p {
+.development-location {
+  text-align: left;
+  margin-top: -18px;
+  margin-bottom: 13px;
+}
+
+.icon {
+  font-size: 16px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.icon1 {
+  font-size: 12px;
+  color: #08463c;
+  margin-right: 10px;
+}
+
+.text-development-location {
+  font-size: 16px;
+  line-height: 24px;
+  color: rgb(51, 51, 51);
+}
+
+.development-item h4 {
+  font-size: 13px;
+  color: rgb(84, 89, 95);
+  margin-bottom: 0px;
+  margin-top: -2px;
+  white-space: nowrap;
+  font-family: 'TitilliumWebRegular';
+}
+
+.development-item p {
+  font-size: 17px;
+  font-family: 'TitilliumWebRegular';
+  color: rgb(51, 51, 51);
+  margin-top: -7px;
+  white-space: nowrap;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.development-toolbar {
+  display: flex; /* Ensures elements are placed in a row */
+  align-items: center; /* Centers content vertically */
+  padding: 0; /* Optional: Adjust padding to create space around */
+}
+
+.development-item,
+.development-item-1 {
+  flex: 1; /* Makes both items take up equal space */
+  text-align: left; /* Optional: Center-aligns content */
+}
+
+.development-item-1 h4 {
+  font-size: 13px;
+  color: rgb(84, 89, 95);
+  margin-bottom: 0px;
+  margin-top: -2px;
+  white-space: nowrap;
+  font-family: 'TitilliumWebRegular';
+}
+
+.development-item-1 p {
+  font-size: 17px;
+  font-family: 'TitilliumWebRegular';
+  color: rgb(51, 51, 51);
+  margin-top: -7px;
+  white-space: nowrap;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.q-separator {
+  margin: 0 -15px; /* Extend beyond the padding */
+}
+
+.development-feature-list {
+  padding-left: 15px;
+  padding-top: 0;
+  height: 218px;
+  text-align: left;
+}
+
+.development-feature-item {
+  display: flex;
+  padding: 5px 0;
+  padding-bottom: 15px;
+  align-items: center;
+}
+
+.development-feature {
+  font-size: 18px;
+  line-height: 24px;
+  margin-left: 10px;
+  font-family: 'TitilliumWebRegular';
+  color: rgb(51, 51, 51);
+}
+
+/* .development-info p {
   margin: 2px 0;
   font-family: 'TitilliumWebRegular';
+  font-size: 18px;
   color: #666;
-}
+} */
 
 /* Hover Overlay */
-.development-hover-overlay {
+/* .development-hover-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -694,27 +803,33 @@ padding-inline: 20px;
 
 .development-card:hover .development-hover-overlay {
   opacity: 1;
-}
+} */
 
 /* Conditional Status Badge */
 .status {
   position: absolute;
-  top: 10px;
-  left: -65px;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 5px 10px;
+  top: 0;
+  left: 0;
+  padding: 8px 20px;
+  color: #fff;
+  border-bottom-right-radius: 25px;
+  border-top-left-radius: 8px;
   font-size: 13px;
-  width: 200px;
   font-family: 'TitilliumWebBold';
-  text-transform: uppercase;
-  transform: rotate(-30deg);
+  text-transform:capitalize;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background: #B31921;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
+/*
 .status-current {
   position: absolute;
-  top: 10px;
-  left: -65px;
+  top: 12px;
+  left: -62px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 5px 10px;
   font-size: 13px;
@@ -724,22 +839,7 @@ padding-inline: 20px;
   transform: rotate(-30deg);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     background: #4caf50;
-  }
-
-  .status-completed {
-  position: absolute;
-  top: 10px;
-  left: -65px;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 5px 10px;
-  font-size: 13px;
-  width: 200px;
-  font-family: 'TitilliumWebBold';
-  text-transform: uppercase;
-  transform: rotate(-30deg);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    background: #e53935;
-  }
+  } */
 
 .description {
   font-size: 18px;
@@ -749,24 +849,36 @@ padding-inline: 20px;
 }
 
 .actions {
+  position: absolute;
+  bottom: -30px; /* Moves button below the border */
+  left: 50%;
+  transform: translateX(-50%); /* Centers horizontally */
   display: flex;
-  gap: 10px;
+  justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .action-btn {
-  background-color: transparent;
+  background-color: #a39f1a; /* Match card background */
   border: 1px solid #a39f1a;
   color: white;
   padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 50%; /* Makes it a circle */
   font-size: 16px;
   text-transform: uppercase;
   font-family: 'AvenirMedium';
+  width: 64px; /* Ensure round shape */
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional shadow */
 }
 
 .action-btn:hover {
-  background-color: #a39f1a;
+  background-color: white;
+  color: #a39f1a;
 }
 
 /* view all button */
