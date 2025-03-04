@@ -1,106 +1,104 @@
 <template>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <q-page class="property-details-page">
-    <div class="property-hero">
+    <div>
       <div v-if="property">
-        <q-breadcrumbs class="breadcrumbs">
-          <q-breadcrumbs-el label="Home" to="/" />
-          <q-breadcrumbs-el
-            :label="truncateLabel(property.place)"
-            :to="`/for-sale/${developmentSlug}`">
-            <q-tooltip v-if="$q.screen.lt.sm">{{ property.place }}</q-tooltip>
-          </q-breadcrumbs-el>
-          <q-breadcrumbs-el :label="truncateLabel(property.name)" >
-            <q-tooltip v-if="$q.screen.lt.sm">{{ property.name }}</q-tooltip>
-          </q-breadcrumbs-el>
-        </q-breadcrumbs>
-        <div class="hero-section-1">
-          <div class="before-hero-section"></div>
-          <div class="hero-section">
-            <img :src="property.image" alt="Property Image" class="hero-image fade-up" />
-            <div class="property-section">
-              <div class="property-grid">
-                <div class="property-card">
-                  <div class="property-info">
-                    <h3 class="property-name fade-up">{{ property.name }}</h3>
-                    <div class="property-location fade-up">
-                      <i class="fas fa-map-marker-alt icon"></i>
-                      <span class="text-property-location">
-                        {{ property.location }}
-                      </span>
+        <div class="property-hero">
+          <q-breadcrumbs class="breadcrumbs">
+            <q-breadcrumbs-el label="Home" to="/" />
+            <q-breadcrumbs-el
+              :label="truncateLabel(property.place)"
+              :to="`/for-sale/${developmentSlug}`">
+              <q-tooltip v-if="$q.screen.lt.sm">{{ property.place }}</q-tooltip>
+            </q-breadcrumbs-el>
+            <q-breadcrumbs-el :label="truncateLabel(property.name)" >
+              <q-tooltip v-if="$q.screen.lt.sm">{{ property.name }}</q-tooltip>
+            </q-breadcrumbs-el>
+          </q-breadcrumbs>
+          <div class="property-hero-container">
+            <div class="property-hero-image">
+              <img :src="property.image" alt="Property Image" class="hero-image fade-up" />
+            </div>
+            <div class="property-hero-content">
+              <div class="property-hero-info">
+                <h3 class="property-name fade-up">{{ property.name }}</h3>
+                <div class="property-location fade-up">
+                   <i class="fas fa-map-marker-alt icon"></i>
+                    <span class="text-property-location">
+                      {{ property.location }}
+                    </span>
+                </div>
+                <q-separator />
+                <div class="property-toolbar-wrapper">
+                  <div class="property-toolbar fade-up delay-1">
+                    <div class="property-item">
+                      <h4>Type</h4>
+                      <p class="truncated-text">
+                        {{ property.housetype }}
+                        <q-tooltip>{{ property.housetype }}</q-tooltip>
+                      </p>
                     </div>
-                    <q-separator/>
-                    <q-toolbar class="property-toolbar fade-up delay-1">
-                      <div class="property-item ">
-                        <h4>Type</h4>
-                        <p class="truncated-text">{{ property.housetype }}
-                          <q-tooltip v-if="!screenBelow540px">
-                            {{ property.housetype }}
-                          </q-tooltip>
-                        </p>
-                      </div>
-
-                      <div class="property-item">
-                        <h4>From</h4>
-                        <p>{{ property.price }}</p>
-                      </div>
-
-                      <div class="property-item">
-                        <h4>Status</h4>
-                        <p>{{ property.status }}</p>
-                      </div>
-                    </q-toolbar>
-                    <q-separator/>
-                    <div class="property-feature-list fade-up delay-2">
-                      <div
-                        v-for="feature in property.features"
-                        :key="feature"
-                        class="property-feature-item">
-                        <i class="fas fa-check-circle icon-1"></i>
-                        <span class="property-feature">
-                          {{ feature }}
-                        </span>
-                      </div>
+                    <div class="property-item">
+                      <h4>From</h4>
+                      <p>{{ property.price }}</p>
                     </div>
-
-                    <div class="property-button fade-up delay-3">
-                      <q-btn
-                        stack
-                        flat
-                        :disable="!property.vr"
-                        @click="property.vr ? open(property.vr) : null"
-                        class="property-btn">
-                        <img src="/assets/vr camera.svg" class="icon-2">
-                        <span class="text-btn">VIRTUAL TOUR</span>
-                      </q-btn>
-
-                      <q-btn
-                        stack
-                        flat
-                        :disable="!property.plan"
-                        @click="property.plan ? scrollToFloorplan() : null"                        class="property-btn">
-                        <img src="/assets/floor.svg" class="icon-2">
-                        <span class="text-btn">FLOOR PLANS</span>
-                      </q-btn>
-
-                      <q-btn
-                        stack
-                        flat
-                        @click="scrollToGallery"
-                        class="property-btn">
-                        <img src="/assets/gallery.svg" class="icon-2">
-                        <span class="text-btn">GALLERY</span>
-                      </q-btn>
-                    </div>
-                    <div class="register-button fade-up delay-4">
-                      <q-btn flat @click="scrollToRegister" class="register-btn">
-                        <span class="register-text-btn">Register Now</span>
-                      </q-btn>
+                    <div class="property-item">
+                      <h4>Status</h4>
+                      <p>{{ property.status }}</p>
                     </div>
                   </div>
+                </div>
+
+                <q-separator />
+                <div class="property-feature-list fade-up delay-2">
+                  <div
+                    v-for="feature in property.features"
+                    :key="feature"
+                    class="property-feature-item">
+                    <i class="fa fa-check-circle-o icon-1"></i>
+                    <span class="property-feature">
+                      {{ feature }}
+                    </span>
+                  </div>
+                </div>
+                <div class="property-button fade-up delay-3">
+                  <q-btn
+                    stack
+                    flat
+                    :disable="!property.vr"
+                    @click="property.vr ? open(property.vr) : null"
+                    class="property-btn">
+                    <img src="/assets/vr camera.svg" class="icon-2">
+                    <span class="text-btn">VIRTUAL TOUR</span>
+                  </q-btn>
+
+                  <q-btn
+                    stack
+                    flat
+                    :disable="!property.plan"
+                    @click="property.plan ? scrollToFloorplan() : null" class="property-btn">
+                    <img src="/assets/floor.svg" class="icon-2">
+                    <span class="text-btn">FLOOR PLANS</span>
+                  </q-btn>
+
+                  <q-btn
+                    stack
+                    flat
+                    @click="scrollToGallery"
+                    class="property-btn">
+                    <img src="/assets/gallery.svg" class="icon-2">
+                    <span class="text-btn">GALLERY</span>
+                  </q-btn>
+                </div>
+                <div class="register-button fade-up delay-4">
+                  <q-btn flat @click="scrollToRegister" class="register-btn">
+                    <span class="register-text-btn">Register Now</span>
+                  </q-btn>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -681,37 +679,37 @@ onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
 })
 
-const open = (vr) => {
-  if (!property.value.vr) return
+// const open = (vr) => {
+//   if (!property.value.vr) return
 
-  window.open(vr, '_blank')
-}
+//   window.open(vr, '_blank')
+// }
 
-const scrollToGallery = () => {
-  const gallerySection = document.getElementById('section-gallery')
+// const scrollToGallery = () => {
+//   const gallerySection = document.getElementById('section-gallery')
 
-  if (gallerySection) {
-    gallerySection.scrollIntoView({ behavior: 'smooth' })
-  }
-}
+//   if (gallerySection) {
+//     gallerySection.scrollIntoView({ behavior: 'smooth' })
+//   }
+// }
 
-const scrollToFloorplan = () => {
-  if (!property.value.plan) return
+// const scrollToFloorplan = () => {
+//   if (!property.value.plan) return
 
-  const floorplanSection = document.getElementById('section-floorplan')
+//   const floorplanSection = document.getElementById('section-floorplan')
 
-  if (floorplanSection) {
-    floorplanSection.scrollIntoView({ behavior: 'smooth' })
-  }
-}
+//   if (floorplanSection) {
+//     floorplanSection.scrollIntoView({ behavior: 'smooth' })
+//   }
+// }
 
-const scrollToRegister = () => {
-  const registerSection = document.getElementById('section-register')
+// const scrollToRegister = () => {
+//   const registerSection = document.getElementById('section-register')
 
-  if (registerSection) {
-    registerSection.scrollIntoView({ behavior: 'smooth' })
-  }
-}
+//   if (registerSection) {
+//     registerSection.scrollIntoView({ behavior: 'smooth' })
+//   }
+// }
 
 const gotofullmap = () => {
   window.open('https://maps.app.goo.gl/XcCFgR9Lg8vpdLfh7', '_blank')
@@ -939,11 +937,17 @@ const loadMore = () => {
   transition-delay: 0.8s;
 }
 
+.property-hero {
+  padding: 20px 5%;
+  min-height: 100vh;
+  background: linear-gradient(to top, #fefefe 50%, #08463c 50%);
+}
+
 .breadcrumbs {
-  padding: 10px 20px;
-  padding-bottom: 0;
+  padding: 0;
+  padding-bottom: 20px;
   font-size: 16px;
-  background-color: #08463c;
+  background-color: transparent;
   font-family: 'TitilliumWebRegular';
   max-width: 100%;
   color: white;
@@ -967,72 +971,40 @@ const loadMore = () => {
   }
 }
 
-.before-hero-section {
-  position:static;
-  display: flex;
-  height: 65vh;
-  background-color: #08463c;
-  margin-left: -40px;
-  margin-right: -40px;
-}
-
-.hero-section-1{
-  padding: 20px 1.5%;
-  margin-top: -20px;
-  overflow-x: hidden;
-}
-
-.hero-section {
-  position: relative;
-  height: 87vh;
-  margin-top: -420px;
-  display: flex;
-  flex-direction: row;
+.property-hero-container {
   background-color: white;
-  border-radius: 6px;
   border: 1px solid #ddd;
+  padding: 20px;
+}
+
+.property-hero-image {
+  display: flex;
+  min-width: 60%;
+  max-height: 535px;
 }
 
 .hero-image {
-  margin-top: 20px;
-  margin-left: 1.5%;
-  padding-bottom: 20px;
-  width: 650px;
-  height: 565px;
-  max-width: min-content;
-  border-radius: 2px;
-}
-
-.property-section{
-  padding: 0px 2%;
-  overflow: hidden;
-}
-
-.property-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  padding: 0 2%;
   width: 100%;
-  margin-top: 0px;
+  height: 100%;
+  object-fit: cover;
 }
 
-.property-card {
-  text-align: center;
+.property-hero-content {
+  padding: 0 10px;
 }
 
-.property-info h3 {
-  font-size: 30px;
+.property-hero-info {
+  text-align: left;
+}
+
+.property-hero-info h3 {
+  font-size: 26px;
   font-family: 'TitilliumWebSemiBold';
   color: #1e1e1e;
-  text-align: left;
-  padding-left: 20px;
 }
 
 .property-location {
-  text-align: left;
-  padding-left: 20px;
-  margin-top: -20px;
+  margin-top: -25px;
   margin-bottom: 20px;
 }
 
@@ -1043,44 +1015,27 @@ const loadMore = () => {
 }
 
 .text-property-location {
-  font-size: 17px;
+  font-size: 16px;
   font-family: 'TitilliumWebRegular';
-  color: #424040;
+  color: black;
 }
 
 .property-toolbar {
-  display: flex; /* Ensures elements are placed in a row */
+  display: flex;
+  align-items: center; /* Centers content vertically */
+  gap: 15px;
+  justify-content: center;
   flex-wrap: nowrap;
-  justify-content: space-between; /* Distributes elements evenly */
-  align-items: center;
-  padding: 0 10px; /* Optional: Adjust padding to create space around */
-  cursor: default;
-  gap: 70px;
-  white-space: nowrap;  /*all text in this will be in straight line */
+  max-height: 120px;
+  height: 95px;
+  padding: 0; /* Optional: Adjust padding to create space around */
 }
 
 .property-item {
-  text-align: left;
-}
-
-.property-item h4 {
-  font-family: 'TitilliumWebRegular';
-  font-size: 18px;
-  line-height: 27px;
-  color: rgb(109, 114, 120);
-  margin-bottom: 0px;
-  padding-left: 10px;
-}
-
-.property-item p {
-  font-family: 'TitilliumWebSemiBold';
-  font-size: 17px;
-  line-height: 26px;
-  font-weight: bold;
-  color: black;
-  padding-left: 10px;
-  overflow: hidden;
-  max-width: 150px;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  min-width: 140px;
 }
 
 .truncated-text {
@@ -1089,26 +1044,45 @@ const loadMore = () => {
   text-overflow: ellipsis;
 }
 
+.property-item h4 {
+  font-size: 18px;
+  color: rgb(84, 89, 95);
+  margin-bottom: 0px;
+  margin-top: -2px;
+  white-space: nowrap;
+  font-family: 'TitilliumWebRegular';
+}
+
+.property-item p {
+  font-size: 18px;
+  font-family: 'TitilliumWebSemiBold';
+  color: rgb(51, 51, 51);
+  margin-top: -10px;
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .icon-1 {
-  font-size: 16px;
+  font-size: 20px;
   color: #08463c;
   margin-right: 5px;
 }
 
 .property-feature-list {
-  padding: 20px 20px;
   text-align: left;
+  padding: 20px 0;
 }
 
 .property-feature-item {
   display: flex;
-  padding: 5px 0;
+  padding: 1px 0;
   align-items: center;
 }
 
 .property-feature {
   font-family: 'TitilliumWebRegular';
-  font-size: 15px;
+  font-size: 16px;
   line-height: 23px;
   margin-left: 10px;
   color: #000;
@@ -1119,18 +1093,17 @@ const loadMore = () => {
   justify-content: center;
   gap: 10px;
   flex-wrap: nowrap;
-  white-space: nowrap;
 }
 
 .icon-2 {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   transition: filter 0.3s ease; /* Smooth transition */
 }
 
 .text-btn {
   font-family: 'TitilliumWebSemiBold';
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .property-btn {
@@ -1139,7 +1112,8 @@ const loadMore = () => {
   color: #000000;
   padding: 0px 10px;
   border-radius: 0;
-  width: 140px;
+  max-width: 120px;
+  width: 100%;
   height: 90px;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
@@ -1195,104 +1169,133 @@ const loadMore = () => {
 }
 
 .register-text-btn {
-  font-size: 14px;
+  font-size: 17px;
   font-family: 'TitilliumWebSemiBold';
-
 }
 
 .q-tooltip {
   display: inline-block;
 }
 
-@media (max-width: 1252px) {
-
-  .property-toolbar {
-    gap: 30px;
+@media (min-width: 1025px) {
+  .property-hero-container {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 40px;
   }
 
+  .property-hero-image {
+  min-width: 54%;
+  max-height: 420px;
+  margin: auto; /* Center horizontally */
+}
+
+  .property-hero-content {
+    width: 46%;
+    margin-top: -10px;
+    padding-left: 60px;
+    padding-right: 20px;
+  }
+
+  .property-toolbar {
+  max-height: 180px;
+  height: 120px;
+}
+
+  .property-item {
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  min-width: 50px;
+}
+
+.property-btn {
+    max-width: 300px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+
+  .property-hero-content {
+    width: 40%;
+    margin-top: -10px;
+    padding-left: 60px;
+    padding-right: 20px;
+  }
+
+.property-hero-image {
+min-width: 60%;
+max-height: 536px;
+}
 }
 
 @media (max-width: 1024px) {
-  .hero-section {
-    flex-direction: column;
-    height: auto;
+  .property-btn {
+    max-width: 300px;
+    width: 100%;
   }
 
-  .hero-image {
-    margin: 20px auto;
-    width: 96%;
-    height: 300px;
-  }
+  .property-hero-info h3 {
+  font-size: 36px;
+}
 
-  .property-grid {
-    padding: 30px 30px;
-    margin-top: -40px;
+  .property-hero-image {
+    height:310px;
   }
-
-  .property-toolbar {
-    gap: 10px;
+  .property-image {
+    height: 310px;
   }
 }
 
-@media (max-width: 560px) {
-
-  .property-section, .property-grid, .property-toolbar {
-    padding-left: 1%; /* Ensures equal spacing on left and right */
-    padding-right: 1%;
+@media (max-width: 640px) {
+  .property-hero-container {
+    padding: 0px;
+    padding-bottom: 20px;
+    margin: 0;
+    border: none;
   }
 
-.hero-section-1 {
-  padding: 20px 4%;
+  .property-hero-info h3 {
+  font-size: 26px;
 }
 
-.hero-image {
-  padding-bottom: 0;
-  margin-top: 10px;
+  .property-toolbar-wrapper {
+  display: table;
+  width: 100%;
+  padding: 15px 0; /* Top & bottom padding */
 }
 
-  .property-toolbar {
-    flex-direction: column;
-    gap: 0px;
-    align-items: flex-start;
+.property-toolbar {
+  display: table-row;
+  white-space: nowrap;
+  min-height: 120px;
+}
+
+.property-item {
+  align-items: center;
+  justify-content: center;
+  max-height:150px;
+  width:auto;
+  max-width: 100%;
+  height: 70px;
+}
+
+  .property-hero-content {
+  padding: 0 20px;
+  margin-top: -10px;
+  padding-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+  .property-hero-image {
+    height:270px;
+  }
+  .property-image {
+    height: 270px;
   }
 
-  .property-item {
-    margin-top: -10px;
-    padding-right: 0px;
 }
-
-.truncated-text {
-  white-space: normal;
-  overflow: visible;
-  text-overflow: unset;
-}
-
-.icon-2 {
-  width: 30px;
-  height: 30px;
-}
-
-.text-btn {
-  font-size: 12px;
-}
-
-.property-btn {
-  width: 120px;
-}
-}
-
-@media (max-width: 480px) {
-
-.hero-section {
-  margin-top: -500px;
-}
-
-.property-btn {
-  width: 105px;
-  height: 80px;
-}
-}
-
 .description-section {
   margin: 30px 0;
   text-align: center;
