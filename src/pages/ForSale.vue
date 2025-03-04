@@ -158,7 +158,7 @@
       </div>
     </div>
 
-    <div class="rectangle-section-1"></div>
+    <!-- <div class="rectangle-section-1"></div> -->
 
     <!-- Gallery section-->
     <div class="gallery-section" v-if="development">
@@ -799,8 +799,9 @@ const capitalizeFirstLetter = (string) => {
 
 .main-heading {
   font-size: 48px;
+  line-height: 40px;
   font-family: 'RecklessNeueMedium';
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   color: #1e1e1e;
 }
 
@@ -1229,8 +1230,8 @@ line-height: 20px;
 
 .gallery-section {
   padding: 0px;
-  margin-top: -400px;
   text-align: center;
+  background: linear-gradient(to bottom, white 54%, transparent 46%);
 }
 
 .gallery-section h2 {
