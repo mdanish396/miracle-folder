@@ -1021,7 +1021,7 @@ color:#00B398;
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
   /* Adjust toolbar for tablet screens */
-  .footer-address br:last-child {
+  .footer-address br:last-child, .footer-address br:first-child {
     display: none;
   }
 
@@ -1041,9 +1041,13 @@ color:#00B398;
     position: relative;
   }
 
+  .footer-address br:first-child {
+    display: inline;
+  }
+
   .logo-container {
     margin-left: -7px;
-    margin-top: -20px;
+    margin-top: -10px;
     justify-content: center;
   }
 
@@ -1107,9 +1111,7 @@ color:#00B398;
     white-space: nowrap;
     width: 100%; /* Make it span full width */
     position: static;
-    margin-top: 0px;
-    margin-bottom: -30px;
-
+    margin-bottom: -20px;
   }
 }
 
