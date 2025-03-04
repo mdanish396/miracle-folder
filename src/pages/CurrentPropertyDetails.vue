@@ -1104,6 +1104,7 @@ const loadMore = () => {
 .text-btn {
   font-family: 'TitilliumWebSemiBold';
   font-size: 12px;
+  line-height: 16px;
 }
 
 .property-btn {
@@ -2402,6 +2403,8 @@ font-size: 14px;
 .products-section {
   text-align: center;
   padding-top: 20px;
+  padding-left: 5%;
+  padding-right: 5%;
   padding-bottom: 130px;
 }
 

@@ -748,4 +748,9 @@ padding-right: 10px;
   }
 }
 
+@media (max-width: 640px) {
+  .job-cards {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+}
 </style>

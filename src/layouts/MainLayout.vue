@@ -861,9 +861,9 @@ color:#00B398;
 .footer {
   background-color: #58595B; /* Dark gray background */
   color: #fff; /* White text */
-  padding: 0 9%; /* Smaller footer padding */
-  padding-top: 8px;
-  padding-bottom: 30px;
+  padding: 0 8.5%; /* Smaller footer padding */
+  padding-top: 0px;
+  padding-bottom: 25px;
   font-family: 'TitilliumWebRegular';
   position: relative; /* Set position for nested elements */
 }
@@ -879,13 +879,11 @@ color:#00B398;
 .logo-container {
   display: flex;
   align-items: center;
-  margin-bottom: -15px;
   padding-top: 0px;
-  gap: 8px; /* Smaller spacing between logo and text */
 }
 
 .footer-logo {
-  width: 190px; /* Smaller logo size */
+  width: 150px; /* Smaller logo size */
   filter: brightness(0) invert(1); /* White logo */
   margin-top: 30px;
 }
@@ -900,7 +898,7 @@ color:#00B398;
 
 /* Footer Links */
 .footer-address {
-  margin-top: 30px;
+  margin-top: 15px;
   line-height: 1.2; /* Compact line height */
   font-size: 12px; /* Smaller address text */
 }
@@ -910,8 +908,8 @@ color:#00B398;
   font-size: 12px; /* Smaller copyright text */
   color: #fff; /* Light gray for less emphasis */
   position: absolute;
+  bottom: 5%;
   text-align: left; /* Center-align text across the footer */
-  margin-top: 120px;
 }
 
 /* Right Section */
@@ -924,16 +922,15 @@ color:#00B398;
     display: flex;
     justify-content: right;
     flex-wrap: wrap;
-    margin-top: 42px;
+    margin-top: 30px;
     gap: 20px;
   }
 
 .footer-link {
   color: #fff; /* White links */
   font-size: 16px; /* Smaller link size */
-  margin-right: 20px;
-  gap: 40px;
   text-decoration: none;
+  margin-right: 10px;
   transition: color 0.3s ease;
   font-family: 'AvenirMedium';
 }
@@ -1016,7 +1013,7 @@ color:#00B398;
 
 /* Responsive Design */
 @media (min-width: 1025px) {
-  .footer-address br:first-child {
+  .footer-address br:first-child, .footer-address br:last-child {
     display: none;
   }
 }
