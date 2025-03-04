@@ -525,7 +525,7 @@
                   </p>
                 </div>
 
-                <q-separator vertical/>
+                  <q-separator vertical/>
                 <div class="product-item-1">
                   <h4>From</h4>
                   <p>{{ property.price }}</p>
@@ -2513,6 +2513,10 @@ justify-content: center;
 
 .q-separator {
   margin: 0 -15px; /* Extend beyond the padding */
+}
+
+q-separator.vertical {
+  height: 90%;
 }
 
 .product-toolbar {

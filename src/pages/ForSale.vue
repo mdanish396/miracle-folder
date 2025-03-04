@@ -604,9 +604,12 @@ const capitalizeFirstLetter = (string) => {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 10px 20px;
-  background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+  height: 60px;
+  padding: 10px 5%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
   z-index: 1;
+  display: flex; /* Enable flexbox */
+  align-items: center; /* Center vertically */
 }
 
 .breadcrumbs {
@@ -616,12 +619,12 @@ const capitalizeFirstLetter = (string) => {
 }
 
 .breadcrumbs a {
-  text-decoration: underline;
   color: white;
 }
 
 .breadcrumbs a:hover {
   color:#a39f1a;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -757,7 +760,7 @@ const capitalizeFirstLetter = (string) => {
 
 .divider {
   width: 2px;
-  background-color: #00B398;
+  background: linear-gradient(to top, #e0dfdf 50%, #08463c 50%);
   height: 70px;
 }
 
