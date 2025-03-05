@@ -50,49 +50,48 @@
       </div>
       <p class="fade-up delay-2">Explore our current developments and find your dream home or shop.</p>
       <div class="container fade-up delay-3">
-        <div class="development-flex">
-          <div class="developments-container" :class="{ 'flex-layout': displayedDevelopments.length < 4 }">
-            <!-- Scrollable Development Card -->
-            <div
-              class="development-card"
-              v-for="development in displayedDevelopments"
-              :key="development.id">
-              <img
-                :src="development.image"
-                :alt="development.name"
-                class="development-image clickable"
-                @click="navigateToDevelopmentDetails(development.slug)"
-              />
-              <div class="status">
-                {{ development.status }}
+        <div :class="['developments-container', displayedDevelopments.length >= 3 ? 'grid-layout' : 'flex-layout']">
+          <!-- Scrollable Development Card -->
+          <div
+            class="development-card"
+            v-for="development in displayedDevelopments"
+            :key="development.id">
+            <img
+              :src="development.image"
+              :alt="development.name"
+              class="development-image clickable"
+              @click="navigateToDevelopmentDetails(development.slug)"
+            />
+            <div class="status">
+              {{ development.status }}
+            </div>
+            <div class="development-info">
+              <h3>{{ development.name }}</h3>
+              <div class="development-location">
+                <i class="fas fa-map-marker-alt icon"></i>
+                <span class="text-development-location">
+                  {{ development.location }}
+                </span>
               </div>
-              <div class="development-info">
-                <h3>{{ development.name }}</h3>
-                <div class="development-location">
-                  <i class="fas fa-map-marker-alt icon"></i>
-                  <span class="text-development-location">
-                    {{ development.location }}
-                  </span>
-                </div>
-                <q-separator/>
+              <q-separator/>
+              <div class="development-item">
+                <h4>Type</h4>
+                <p>{{ development.type }}</p>
+              </div>
+              <q-separator/>
+              <q-toolbar class="development-toolbar">
                 <div class="development-item">
-                  <h4>Type</h4>
-                  <p>{{ development.type }}</p>
+                  <h4>From</h4>
+                  <p>{{ development.price }}</p>
                 </div>
-                <q-separator/>
-                <q-toolbar class="development-toolbar">
-                  <div class="development-item">
-                    <h4>From</h4>
-                    <p>{{ development.price }}</p>
-                  </div>
 
-                  <div class="development-item-1">
-                    <h4>Up to</h4>
-                    <p>{{ development.size }}</p>
-                  </div>
-                </q-toolbar>
-                <q-separator/>
-              </div>
+                <div class="development-item-1">
+                  <h4>Up to</h4>
+                  <p>{{ development.size }}</p>
+                </div>
+              </q-toolbar>
+              <q-separator/>
+            </div>
               <div class="development-feature-list">
                 <div
                   v-for="feature in development.features"
@@ -123,7 +122,6 @@
               </div> -->
             </div>
           </div>
-        </div>
         <div v-if="allDevelopments.length > visibleCount">
           <div v-if="!showAllDevelopments">
             <q-btn
@@ -198,7 +196,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 import { useHead } from '@vueuse/head'
@@ -249,32 +247,6 @@ useHead({
   ]
 })
 
-const updateLayout = () => {
-  const container = document.querySelector('.developments-container')
-  const cards = document.querySelectorAll('.development-card')
-
-  if (!container) return // Prevent errors if container doesn't exist
-
-  if (cards.length < 4) {
-    container.style.display = 'flex'
-    container.style.justifyContent = 'center'
-    container.style.flexWrap = 'wrap'
-  } else {
-    container.style.display = 'grid'
-    container.style.gridTemplateColumns = 'repeat(3, minmax(280px, 1fr))'
-  }
-}
-
-onMounted(() => {
-  nextTick(() => {
-    updateLayout() // Ensure layout updates after DOM is rendered
-    window.addEventListener('resize', updateLayout)
-  })
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateLayout)
-})
 onMounted(() => {
   setTimeout(() => {
     showLoader.value = false
@@ -639,47 +611,20 @@ const navigateToDevelopmentDetails = (slug) => {
   margin-bottom: 60px;
 }
 
-.development-flex {
-  display: flex;
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-}
-
-.developments-container {
-  display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); /* Responsive grid */
   padding-bottom: 80px;
-  justify-content: center; /* Center the grid within the container */
-}
-
-@media (min-width: 1441px) {
-  .developments-container {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
 }
 
 @media (max-width: 768px) {
-  .developments-container {
-    width: 100%;
-  }
 
-  .developments-section {
-    padding: 60px 5%;
-  }
+.developments-section {
+  padding: 60px 5%;
 }
-
-@media (max-width: 768px) {
-  .developments-container {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Allow 2 per row if possible */
-  }
-}
-
-.developments-container.flex-layout {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .development-card {
@@ -689,17 +634,48 @@ const navigateToDevelopmentDetails = (slug) => {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  width: 360px;
   flex-grow: 1;
-  height: 100%;
-  margin: 20px 0; /* Add vertical spacing between cards */
+  height: 830px;
+  margin: 20px 0; /* Center align */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1440px) {
   .development-card {
     max-width: 100%;
   }
 }
+
+@media (max-width: 827px) {
+  .development-card {
+    max-width: 100%;
+  }
+}
+
+/* ✅ Default layout: Centered for 1-2 cards */
+.flex-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 80px;
+}
+
+  .flex-layout .development-card {
+    width: 360px !important;
+    min-width: 360px;
+    max-width: 360px;
+    flex: 0 0 360px; /* Prevents flex from resizing */
+  }
+
+  @media (max-width: 1250px) {
+    .flex-layout .development-card {
+    width: auto !important;
+    min-width: 320px;
+    max-width: 100%;
+    flex: 1; /* Prevents flex from resizing */
+  }
+  }
 
 .development-image {
   width: 100%;
@@ -863,7 +839,7 @@ const navigateToDevelopmentDetails = (slug) => {
   font-family: 'TitilliumWebBold';
   text-transform:capitalize;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  background: #B31921;
+  background: #a39f1a;
 }
 
 .clickable {

@@ -610,7 +610,7 @@ const capitalizeFirstLetter = (string) => {
   width: 100%;
   height: 60px;
   padding: 10px 5%;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  background: rgba(0, 0, 0, 0.45); /* Dark overlay */
   z-index: 1;
   display: flex; /* Enable flexbox */
   align-items: center; /* Center vertically */
@@ -639,12 +639,12 @@ const capitalizeFirstLetter = (string) => {
 
 .hero-section {
   position: relative;
-  height: 62vh; /* Full-screen height */
+  height: 68vh; /* Full-screen height */
 }
 
 .overview-section {
   position: relative;
-  height: 70vh;
+  height: 76vh;
   width: 100%;
   display: flex;
   justify-content: center; /* Center logo horizontally */
@@ -655,6 +655,7 @@ const capitalizeFirstLetter = (string) => {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  object-position: center;
   position: absolute;
   top: 0;
   left: 0;

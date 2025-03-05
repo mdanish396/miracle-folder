@@ -39,7 +39,7 @@
       </div>
       <p class="fade-up delay-2">Explore our current developments and find your dream home or shop.</p>
       <div class="fade-up delay-3">
-        <div :class="['developments-container', displayedDevelopments.length >= 2 ? 'grid-layout' : 'flex-layout']">
+        <div :class="['developments-container', displayedDevelopments.length >= 3 ? 'grid-layout' : 'flex-layout']">
             <!-- Scrollable Development Card -->
             <div
               class="development-card"
@@ -627,15 +627,6 @@ padding-inline: 20px;
   margin-bottom: 60px;
 }
 
-.development-flex {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding-bottom: 80px;
-}
-
 .grid-layout {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
@@ -675,6 +666,32 @@ padding-inline: 20px;
     max-width: 100%;
   }
 }
+
+/* ✅ Default layout: Centered for 1-2 cards */
+.flex-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 80px;
+}
+
+  .flex-layout .development-card {
+    width: 360px !important;
+    min-width: 360px;
+    max-width: 360px;
+    flex: 0 0 360px; /* Prevents flex from resizing */
+  }
+
+  @media (max-width: 1250px) {
+    .flex-layout .development-card {
+    width: auto !important;
+    min-width: 320px;
+    max-width: 100%;
+    flex: 1; /* Prevents flex from resizing */
+  }
+  }
 
 .development-image {
   width: 100%;
@@ -838,7 +855,7 @@ padding-inline: 20px;
   font-family: 'TitilliumWebBold';
   text-transform:capitalize;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  background: #B31921;
+  background: #a39f1a;
 }
 
 .clickable {

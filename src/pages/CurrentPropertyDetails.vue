@@ -1149,7 +1149,7 @@ const loadMore = () => {
 
 .property-btn {
   background-color: transparent;
-  border: 2px solid #08463c;
+  border: 1px solid #E5E7EB;
   color: #000000;
   padding: 0px 10px;
   border-radius: 0;
@@ -1160,7 +1160,7 @@ const loadMore = () => {
 }
 
 .property-btn:hover {
-  background-color: #5e5c5c;
+  background-color: #08463c;
   color: white;
 }
 
@@ -1192,9 +1192,8 @@ const loadMore = () => {
 }
 
 .register-btn {
-  background-color: transparent;
-  border: 2px solid #08463c;
-  color: #000000;
+  background-color: #08463c;
+  color: #ffff;
   font-weight: bold;
   padding: 0px;
   border-radius: 0;
@@ -1258,16 +1257,24 @@ const loadMore = () => {
 
 @media (min-width: 1280px) {
 
+  .property-hero-container {
+    padding-bottom: 20px;
+  }
+
   .property-hero-content {
-    width: 40%;
+    width: 36.5%;
     margin-top: -10px;
     padding-left: 60px;
     padding-right: 20px;
   }
 
 .property-hero-image {
-min-width: 60%;
+max-width: 63.5%;
 max-height: 536px;
+}
+
+.hero-image {
+  height: auto;
 }
 }
 
