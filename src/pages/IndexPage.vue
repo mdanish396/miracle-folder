@@ -182,7 +182,7 @@
                 flat
                 label="About Us"
                 class="about-btn"
-                to="/about-miracle"
+                to="/about-miracle-land"
               />
             </div>
           </div>
@@ -194,7 +194,6 @@
         </div>
       </div>
     </div>
-
   </q-page>
 </template>
 
@@ -216,23 +215,37 @@ const fadeItems = ref([])
 let observer = null
 
 useHead({
-  title: 'Miracle Land | Pemaju Hartanah di Pahang', // Malay + English
+  title: 'Miracle Land | Premier Property Development in Malaysia',
   meta: [
-    { name: 'description', content: 'Miracle Land ialah sebuah syarikat pembangunan hartanah di Pahang, Malaysia. Menawarkan pelaburan hartanah terbaik untuk rumah dan premis perniagaan.' },
-    { name: 'keywords', content: 'hartanah, pembangunan, pelaburan, rumah, kedai, Malaysia, Miracle Land, Pahang, Jengka, Mentakab, projek baru' },
+    // English Meta Tags
+    { name: 'description', content: 'Discover high-quality property developments by Miracle Land Holdings Berhad. Explore our latest projects in Pahang, Malaysia, including houses and shops for sale.' },
+    { name: 'keywords', content: 'property development, real estate, buy house, buy shop, Malaysia, Pahang, Miracle Land, Mentakab, Bukit Bendera, Jengka' },
     { name: 'author', content: 'Miracle Land Holdings Berhad' },
 
-    // Open Graph (OG) for Social Media
-    { property: 'og:title', content: 'Miracle Land | Pemaju Hartanah Malaysia' },
-    { property: 'og:description', content: 'Miracle Land ialah pemaju hartanah terkemuka di Malaysia, menawarkan projek rumah dan komersial yang inovatif dan berkualiti.' },
+    // Malay Meta Tags
+    { name: 'description', content: 'Temui pembangunan hartanah berkualiti tinggi oleh Miracle Land. Dapatkan rumah dan kedai untuk dijual di Pahang, Malaysia.' },
+    { name: 'keywords', content: 'hartanah, beli rumah, beli kedai, pembangunan hartanah, Malaysia, Pahang, Miracle Land, Mentakab, Bukit Bendera, Jengka' },
+
+    // Open Graph (OG) - Facebook & Social Media
+    { property: 'og:title', content: 'Miracle Land | Pembangunan Hartanah di Malaysia' },
+    { property: 'og:description', content: 'Miracle Land Holdings Berhad adalah syarikat pembangunan hartanah terkemuka. Jelajahi projek terbaru kami di Pahang, Malaysia.' },
     { property: 'og:image', content: 'https://miracleland.co/assets/logotext.png' },
     { property: 'og:url', content: `https://miracleland.co${route.fullPath}` },
+    { property: 'og:type', content: 'website' },
 
-    // Twitter Meta Tags
-    { name: 'twitter:title', content: 'Miracle Land | Pembangunan Hartanah' },
-    { name: 'twitter:description', content: 'Miracle Land ialah pemaju hartanah di Malaysia dengan projek inovatif di Pahang, termasuk Jengka dan Mentakab.' },
+    // Twitter Card
+    { name: 'twitter:title', content: 'Miracle Land | Pembangunan Hartanah di Malaysia' },
+    { name: 'twitter:description', content: 'Jelajahi projek terbaru Miracle Land di Malaysia, termasuk rumah dan kedai untuk dijual.' },
     { name: 'twitter:image', content: 'https://miracleland.co/assets/logotext.png' },
-    { name: 'twitter:card', content: 'summary_large_image' }
+    { name: 'twitter:card', content: 'summary_large_image' },
+
+    // Geo & Language Targeting
+    { name: 'language', content: 'ms-MY' }, // Malay (Malaysia)
+    { name: 'geo.region', content: 'MY' }, // Malaysia
+    { name: 'geo.placename', content: 'Pahang, Malaysia' },
+
+    // Canonical URL (Prevents duplicate content issues)
+    { rel: 'canonical', href: `https://miracleland.co${route.fullPath}` }
   ]
 })
 

@@ -15,7 +15,7 @@
         <!-- Right-aligned: Navigation Buttons for larger screens -->
         <q-space v-if="!drawerVisible" />
         <div class="nav-buttons q-mr-md" v-if="!isSmallScreen">
-          <q-card class="nav-button flat-card" clickable @click="$router.push('/about-miracle')">
+          <q-card class="nav-button flat-card" clickable @click="$router.push('/about-miracle-land')">
             <q-card-section class="nav-card-section">About Miracle</q-card-section>
           </q-card>
           <q-card
@@ -178,7 +178,7 @@
       v-if="isSmallScreen">
       <q-scroll-area class="fit">
         <q-list>
-          <q-item clickable to="/about-miracle" class="drawer-item" v-ripple>
+          <q-item clickable to="/about-miracle-land" class="drawer-item" v-ripple>
             <q-item-section>About Miracle</q-item-section>
           </q-item>
           <q-item clickable to="/development" class="drawer-item" v-ripple>
@@ -326,35 +326,34 @@ const showHeader = ref(true)
 const route = useRoute()
 
 useHead({
-  title: 'Miracle Land | Pembangunan Hartanah', // Malay version
+  title: 'Miracle Land | Property Development in Malaysia', // English title for clarity
   meta: [
-    // English metadata
-    { name: 'description', content: 'Miracle Land is a premier property development company in Malaysia' },
-    { name: 'keywords', content: 'property, development, real estate, Malaysia, Miracle Land, Pahang' },
+    // English Metadata
+    { name: 'description', content: 'Miracle Land is a premier property development company in Malaysia. Buy houses and shops in Pahang, including Mentakab & Bukit Bendera.' },
+    { name: 'keywords', content: 'property development, real estate, Malaysia, buy house, buy shop, Pahang, Mentakab, Bukit Bendera' },
     { name: 'author', content: 'Miracle Land Holdings Berhad' },
 
-    // Malay metadata
-    { name: 'description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia' },
-    { name: 'keywords', content: 'hartanah, pembangunan, real estate, Malaysia, Miracle Land, Pahang' },
-    { name: 'author', content: 'Miracle Land Holdings Berhad' },
-    { name: 'description', content: 'Miracle Land adalah syarikat pembangunan hartanah di Malaysia. Beli rumah dan kedai di Pahang, termasuk Mentakab & Bukit Bendera.' },
-    { name: 'keywords', content: 'beli rumah, beli kedai, hartanah Malaysia, pembangunan hartanah, Pahang, Mentakab, Bukit Bendera' },
-    { name: 'author', content: 'Miracle Land Holdings Berhad' },
+    // Malay Metadata
+    { name: 'description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia. Beli rumah dan kedai di Pahang, termasuk Mentakab & Bukit Bendera.' },
+    { name: 'keywords', content: 'hartanah, pembangunan hartanah, beli rumah, beli kedai, Malaysia, Pahang, Mentakab, Bukit Bendera' },
 
     // Open Graph (OG) - Facebook Sharing
     { property: 'og:title', content: 'Miracle Land | Pembangunan Hartanah' },
-    { property: 'og:description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia' },
+    { property: 'og:description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia.' },
     { property: 'og:image', content: 'https://miracleland.co/assets/logotext.png' }, // Ensure full URL
     { property: 'og:url', content: `https://miracleland.co${route.fullPath}` },
+    { property: 'og:type', content: 'website' },
 
     // Twitter Card
     { name: 'twitter:title', content: 'Miracle Land | Pembangunan Hartanah' },
-    { name: 'twitter:description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia' },
+    { name: 'twitter:description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia.' },
     { name: 'twitter:image', content: 'https://miracleland.co/assets/logotext.png' },
     { name: 'twitter:card', content: 'summary_large_image' },
 
-    // Language specification
-    { name: 'language', content: 'ms-MY' } // Malay (Malaysia)
+    // Language & Region
+    { name: 'language', content: 'ms-MY' }, // Malay (Malaysia)
+    { name: 'geo.region', content: 'MY' }, // Malaysia
+    { name: 'geo.placename', content: 'Pahang, Malaysia' }
   ]
 })
 
