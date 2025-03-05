@@ -8,7 +8,7 @@
         <div class="breadcrumbs-container">
           <q-breadcrumbs class="breadcrumbs">
             <q-breadcrumbs-el label="Home" to="/" />
-            <q-breadcrumbs-el label="Our Development" to="/development" />
+            <q-breadcrumbs-el label="Our Development" to="/developments" />
             <q-breadcrumbs-el :label="development.name" />
           </q-breadcrumbs>
         </div>
@@ -361,15 +361,19 @@ useHead({
   meta: [
     { name: 'description', content: selectedDevelopment.shortdescription },
     { name: 'keywords', content: 'property for sale, ' + selectedDevelopment.location + ', ' + selectedDevelopment.type },
+    { name: 'geo.region', content: 'MY-' + selectedDevelopment.state }, // Geo-targeting for Malaysia
+    { name: 'geo.placename', content: selectedDevelopment.location }, // Geo-targeting for the specific place
+    { name: 'robots', content: 'index, follow' }, // Ensures search engines index the page
     { property: 'og:title', content: selectedDevelopment.name },
     { property: 'og:description', content: selectedDevelopment.shortdescription },
     { property: 'og:image', content: selectedDevelopment.bannerimage },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://miracleland.co/for-sale/' + selectedDevelopment.slug },
+    { property: 'og:url', content: 'https://miracleland.co/developments/' + selectedDevelopment.slug },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: selectedDevelopment.name },
     { name: 'twitter:description', content: selectedDevelopment.shortdescription },
-    { name: 'twitter:image', content: selectedDevelopment.bannerimage }
+    { name: 'twitter:image', content: selectedDevelopment.bannerimage },
+    { rel: 'canonical', href: 'https://miracleland.co/developments/' + selectedDevelopment.slug } // Prevents duplicate content issues
   ],
   script: [
     {
@@ -379,7 +383,7 @@ useHead({
         '@type': 'RealEstateAgent',
         name: selectedDevelopment.name,
         image: selectedDevelopment.bannerimage,
-        url: 'https://miracleland.co/for-sale/' + selectedDevelopment.slug,
+        url: 'https://miracleland.co/developments/' + selectedDevelopment.slug,
         address: {
           '@type': 'PostalAddress',
           addressLocality: selectedDevelopment.location,
@@ -461,7 +465,7 @@ const filteredProperties = computed(() => {
 const router = useRouter()
 
 const navigateToPropertyDetails = (slug) => {
-  router.push({ path: `/property/${slug}` })
+  router.push({ path: `/developments/property/${slug}` })
 }
 
 const loadMore = () => {

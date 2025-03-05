@@ -8,7 +8,7 @@
             <q-breadcrumbs-el label="Home" to="/" />
             <q-breadcrumbs-el
               :label="truncateLabel(property.place)"
-              :to="`/for-sale/${developmentSlug}`">
+              :to="`/developments/${developmentSlug}`">
               <q-tooltip v-if="$q.screen.lt.sm">{{ property.place }}</q-tooltip>
             </q-breadcrumbs-el>
             <q-breadcrumbs-el :label="truncateLabel(property.name)" >
@@ -363,7 +363,7 @@
       </div>
     </div>
 
-    <div class="register" id="section-contact">
+    <div class="register" id="section-register">
       <div class="register-container">
         <div class="register-wrapper">
           <!-- Left Section -->
@@ -483,7 +483,7 @@
                   flat
                   label="APPLY NOW"
                   class="career-btn"
-                  to="career-opportunities"
+                  to="/careers"
                 />
               </div>
             </div>
@@ -572,6 +572,7 @@ import { properties } from 'src/components/Properties/CurrentProperties/CurrentP
 import { nearbyAmenities } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentAmenitiesData.vue'
 import { useQuasar } from 'quasar'
 import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
+import { useHead } from '@vueuse/head'
 
 // Assuming you have a store or an API to fetch properties
 const route = useRoute()
@@ -595,6 +596,45 @@ const visibleCount = ref(3)
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+
+useHead({
+  title: property.value.name + ' | Miracle Land',
+  meta: [
+    { name: 'description', content: property.value.description },
+    { name: 'keywords', content: 'property for sale, ' + property.value.location + ', ' + property.value.housetype },
+    { name: 'geo.region', content: 'MY-' }, // Geo-targeting for Malaysia
+    { name: 'geo.placename', content: property.value.location }, // Geo-targeting for the specific place
+    { name: 'robots', content: 'index, follow' }, // Ensures search engines index the page
+    { property: 'og:title', content: property.value.name },
+    { property: 'og:description', content: property.value.description },
+    { property: 'og:image', content: property.value.image },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://miracleland.co/developments/property/' + property.value.slug },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: property.value.name },
+    { name: 'twitter:description', content: property.value.description },
+    { name: 'twitter:image', content: property.value.image },
+    { rel: 'canonical', href: 'https://miracleland.co/developments/property/' + property.value.slug } // Prevents duplicate content issues
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'RealEstateAgent',
+        name: property.value.name,
+        image: property.value.image,
+        url: 'https://miracleland.co/developments/property/' + property.value.slug,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: property.value.location,
+          addressCountry: 'Malaysia'
+        },
+        priceRange: property.value.price
+      })
+    }
+  ]
+})
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -679,37 +719,37 @@ onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
 })
 
-// const open = (vr) => {
-//   if (!property.value.vr) return
+const open = (vr) => {
+  if (!property.value.vr) return
 
-//   window.open(vr, '_blank')
-// }
+  window.open(vr, '_blank')
+}
 
-// const scrollToGallery = () => {
-//   const gallerySection = document.getElementById('section-gallery')
+const scrollToGallery = () => {
+  const gallerySection = document.getElementById('section-gallery')
 
-//   if (gallerySection) {
-//     gallerySection.scrollIntoView({ behavior: 'smooth' })
-//   }
-// }
+  if (gallerySection) {
+    gallerySection.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 
-// const scrollToFloorplan = () => {
-//   if (!property.value.plan) return
+const scrollToFloorplan = () => {
+  if (!property.value.plan) return
 
-//   const floorplanSection = document.getElementById('section-floorplan')
+  const floorplanSection = document.getElementById('section-floorplan')
 
-//   if (floorplanSection) {
-//     floorplanSection.scrollIntoView({ behavior: 'smooth' })
-//   }
-// }
+  if (floorplanSection) {
+    floorplanSection.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 
-// const scrollToRegister = () => {
-//   const registerSection = document.getElementById('section-register')
+const scrollToRegister = () => {
+  const registerSection = document.getElementById('section-register')
 
-//   if (registerSection) {
-//     registerSection.scrollIntoView({ behavior: 'smooth' })
-//   }
-// }
+  if (registerSection) {
+    registerSection.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 
 const gotofullmap = () => {
   window.open('https://maps.app.goo.gl/XcCFgR9Lg8vpdLfh7', '_blank')
@@ -851,7 +891,7 @@ const visibleSimilarProperties = computed(() => {
 })
 
 const navigateToPropertyDetails = (slug) => {
-  router.push({ path: `/property/${slug}` })
+  router.push({ path: `/developments/property/${slug}` })
 }
 
 onBeforeRouteUpdate((to, from, next) => {

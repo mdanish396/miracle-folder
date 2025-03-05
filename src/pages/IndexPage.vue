@@ -318,7 +318,7 @@ const showLessDevelopments = () => {
 
 // Function to open the link
 const navigateToDevelopmentDetails = (slug) => {
-  router.push({ path: `/for-sale/${slug}` })
+  router.push({ path: `/developments/${slug}` })
 }
 </script>
 

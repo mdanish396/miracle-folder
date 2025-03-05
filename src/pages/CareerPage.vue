@@ -113,7 +113,8 @@ onMounted(() => {
 onBeforeUnmount(() => {
   // Clean up observer
   if (observer) observer.disconnect()
-})</script>
+})
+</script>
 
 <style scoped>
 

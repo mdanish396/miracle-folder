@@ -166,6 +166,7 @@
 <script setup>
 import { departments, locations, jobposition } from 'src/components/CareerData.vue'
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { useHead } from '@vueuse/head'
 
 const sections = ref([])
 const fadeItems = ref([])
@@ -212,6 +213,27 @@ const filteredJobs = computed(() => {
   }
 
   return jobs.sort((a, b) => a.position.localeCompare(b.position, undefined, { numeric: true }))
+})
+
+useHead({
+  title: 'Careers at Miracle Land - Join Our Team',
+  meta: [
+    { name: 'description', content: 'Explore job opportunities at Miracle Land. We offer competitive pay, training, and a friendly work environment. Apply now!' },
+    { name: 'keywords', content: 'Miracle Land careers, jobs in Malaysia, property jobs, work in Pahang, real estate careers' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Careers at Miracle Land - Join Our Team' },
+    { property: 'og:description', content: 'Explore job opportunities at Miracle Land. Apply now for a rewarding career in real estate development.' },
+    { property: 'og:image', content: 'https://miracleland.co/assets/career-banner.jpg' },
+    { property: 'og:url', content: 'https://miracleland.co/careers' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:title', content: 'Careers at Miracle Land - Join Our Team' },
+    { name: 'twitter:description', content: 'Find exciting job opportunities with Miracle Land. Apply today!' },
+    { name: 'twitter:image', content: 'https://miracleland.co/assets/career-banner.jpg' },
+    { name: 'twitter:card', content: 'summary_large_image' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://miracleland.co/careers' }
+  ]
 })
 
 const filterJobs = () => {

@@ -267,15 +267,26 @@ let observer = null
 const route = useRoute()
 
 useHead({
-  title: 'About Miracle Land | Tentang Miracle Land',
+  title: 'About Miracle Land - Trusted Property Developer in Malaysia',
   meta: [
-    { name: 'description', content: 'Learn about Miracle Land Holdings Berhad (MLHB), a trusted property developer in Malaysia. Ketahui tentang MLHB, pemaju hartanah dipercayai di Malaysia.' },
-    { name: 'keywords', content: 'Miracle Land, pemaju hartanah, pembangunan hartanah, beli rumah, beli kedai, hartanah Malaysia, property developer, real estate Malaysia, investment property' },
-    { name: 'author', content: 'Miracle Land Holdings Berhad' },
-    { property: 'og:title', content: 'About Miracle Land | Tentang Miracle Land' },
-    { property: 'og:description', content: 'Ketahui lebih lanjut mengenai Miracle Land Holdings Berhad, pakar pembangunan hartanah di Malaysia. Learn more about MLHB, a leading property developer.' },
-    { property: 'og:image', content: '//assets/logotext.png' },
-    { property: 'og:url', content: `https://miracleland.com${route.fullPath}` }
+    { name: 'description', content: 'Learn about Miracle Land Holdings Berhad (MLHB), a leading real estate developer in Malaysia. Explore our projects, mission, and vision for sustainable property development.' },
+    { property: 'og:title', content: 'About Miracle Land - Trusted Property Developer' },
+    { property: 'og:description', content: 'Miracle Land Holdings Berhad is a reputable property developer in Malaysia. Discover our vision, mission, and projects in Pahang and beyond.' },
+    { property: 'og:image', content: 'https://www.miracleland.com/assets/about-thumbnail.jpg' },
+    { property: 'og:url', content: 'https://www.miracleland.com/about-miracle-land' },
+    { name: 'keywords', content: 'property developer Malaysia, real estate Pahang, housing development, commercial properties' },
+    { name: 'robots', content: 'index, follow' },
+
+    // Geo & Language Targeting
+    { name: 'language', content: 'ms-MY' }, // Malay (Malaysia)
+    { name: 'geo.region', content: 'MY' }, // Malaysia
+    { name: 'geo.placename', content: 'Pahang, Malaysia' },
+
+    // Canonical URL (Prevents duplicate content issues)
+    { rel: 'canonical', href: `https://miracleland.co${route.fullPath}` }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://www.miracleland.com/about-miracle-land' }
   ]
 })
 

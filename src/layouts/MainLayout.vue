@@ -19,7 +19,7 @@
             <q-card-section class="nav-card-section">About Miracle</q-card-section>
           </q-card>
           <q-card
-            class="nav-button flat-card" clickable @click="$router.push('/development')">
+            class="nav-button flat-card" clickable @click="$router.push('/developments')">
             <q-card-section class="nav-card-section">Developments</q-card-section>
           </q-card>
 
@@ -117,7 +117,7 @@
             </q-menu>
           </q-card> -->
 
-          <q-card class="nav-button flat-card" clickable @click="$router.push('/contacts')">
+          <q-card class="nav-button flat-card" clickable @click="$router.push('/contact')">
             <q-card-section class="nav-card-section">Contact Us</q-card-section>
           </q-card>
           <!-- <q-card class="nav-button flat-card" clickable @click="$router.push('/awards')">
@@ -181,7 +181,7 @@
           <q-item clickable to="/about-miracle-land" class="drawer-item" v-ripple>
             <q-item-section>About Miracle</q-item-section>
           </q-item>
-          <q-item clickable to="/development" class="drawer-item" v-ripple>
+          <q-item clickable to="/developments" class="drawer-item" v-ripple>
             <q-item-section>Developments</q-item-section>
           </q-item>
           <q-expansion-item
@@ -201,7 +201,7 @@
               :label="district">
               <q-item
                 v-for="(project, index) in filteredProjects" :key="index"
-                clickable :to="`/for-sale/${project.slug}`"
+                clickable :to="`/developments/${project.slug}`"
                 class="drawer-item-child-2">
                 <q-item-section>{{ project.name }}</q-item-section>
               </q-item>
@@ -231,7 +231,7 @@
               </q-item>
             </q-expansion-item>
           </q-expansion-item> -->
-          <q-item clickable to="/contacts" class="drawer-item" v-ripple>
+          <q-item clickable to="/contact" class="drawer-item" v-ripple>
             <q-item-section>Contact Us</q-item-section>
           </q-item>
           <!-- <q-item clickable to="/awards" class="drawer-item">
@@ -281,9 +281,9 @@
         <!-- Right Section -->
         <div class="footer-right">
           <div class="footer-navigation">
-            <router-link to="/contacts" class="footer-link">Contact Us</router-link>
+            <router-link to="/contact" class="footer-link">Contact Us</router-link>
             <!-- <router-link to="/career" class="footer-link">Careers</router-link> -->
-            <router-link to="/career-opportunities" class="footer-link">Careers</router-link>
+            <router-link to="/careers" class="footer-link">Careers</router-link>
             <p class="footer-time">Mon - Sat, 9AM - 5PM</p>
           </div>
           <div class="social-icons">
@@ -396,7 +396,7 @@ const setSelectedDistrict = (district) => {
 }
 
 const navigateToSlug = (slug) => {
-  router.push(`/for-sale/${slug}`).catch(() => {})
+  router.push(`/developments/${slug}`).catch(() => {})
 }
 
 // const groupedLeaseDevelopments = computed(() => {

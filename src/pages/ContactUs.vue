@@ -146,7 +146,7 @@
                   flat
                   label="APPLY NOW"
                   class="career-btn"
-                  to="career-opportunities"
+                  to="/careers"
                 />
               </div>
             </div>
@@ -159,10 +159,48 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useHead } from '@vueuse/head'
 
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+
+useHead({
+  title: 'Contact Us | Miracle Land Holding Berhad',
+  meta: [
+    {
+      name: 'description',
+      content: 'Get in touch with Miracle Land Holding Berhad for general inquiries, job applications, and business opportunities. Located in Temerloh, Pahang, we are here to assist you.'
+    },
+    {
+      name: 'keywords',
+      content: 'Miracle Land, contact Miracle Land, property developer Malaysia, real estate Malaysia, buy property in Pahang, investment in Jengka'
+    },
+    {
+      property: 'og:title',
+      content: 'Contact Us | Miracle Land Holding Berhad'
+    },
+    {
+      property: 'og:description',
+      content: 'Reach out to Miracle Land Holding Berhad for inquiries about property development, career opportunities, and business partnerships in Malaysia.'
+    },
+    {
+      property: 'og:image',
+      content: 'https://www.miracleland.co/assets/contact-us-banner.jpg' // Replace with actual image URL
+    },
+    {
+      property: 'og:url',
+      content: 'https://www.miracleland.co/contact'
+    },
+    {
+      name: 'robots',
+      content: 'index, follow'
+    }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://www.miracleland.co/contact' }
+  ]
+})
 
 const gotofullmap = () => {
   window.open('https://maps.app.goo.gl/XcCFgR9Lg8vpdLfh7', '_blank')

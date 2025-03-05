@@ -177,6 +177,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 import { pastdevelopments } from 'src/components/Properties/PastProperties/PastDevelopmentData.vue'
+import { useHead } from '@vueuse/head'
 
 const allDevelopments = ref(developments /* .filter((d) => d.status === 'New Launch') */)
 // const visibleCount = ref(4)
@@ -188,6 +189,25 @@ const displayedPastDevelopments = ref(allPastDevelopments.value /* .slice(0, vis
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+
+useHead({
+  title: 'Our Developments | Miracle Land',
+  meta: [
+    { name: 'description', content: 'Explore our current and past developments to find your dream property in Malaysia.' },
+    { name: 'keywords', content: 'property for sale, Malaysia real estate, new developments, past projects' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Our Developments | Miracle Land' },
+    { property: 'og:description', content: 'Explore our current and past developments to find your dream property in Malaysia.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://miracleland.co/our-developments' },
+    { property: 'og:image', content: '/assets/currentproject/house1.jpg' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Our Developments | Miracle Land' },
+    { name: 'twitter:description', content: 'Explore our current and past developments to find your dream property in Malaysia.' },
+    { name: 'twitter:image', content: '/assets/currentproject/house1.jpg' },
+    { rel: 'canonical', href: 'https://miracleland.co/our-developments' }
+  ]
+})
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -238,11 +258,11 @@ const router = useRouter()
 
 // Function to open the link
 const navigateToDevelopmentDetails = (slug) => {
-  router.push({ path: `/for-sale/${slug}` })
+  router.push({ path: `/developments/${slug}` })
 }
 
 const navigateToPastDevelopmentDetails = (slug) => {
-  router.push({ path: `/past-development/${slug}` })
+  router.push({ path: `/past-developments/${slug}` })
 }
 
 </script>
