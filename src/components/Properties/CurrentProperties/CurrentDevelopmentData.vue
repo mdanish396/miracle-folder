@@ -36,7 +36,7 @@ export const developments = [
     private enclave in Gamuda Cove. The Camellia, your home at Wetlands
     Estates, the private enclave in Gamuda Cove. The Camellia, your home at
     Wetlands Estates, the private enclave in Gamuda Cove.`,
-    size: '1021 - 1,500 sqft',
+    size: '20 x 75 sqft',
     topic: 'In a Garden Where Happiness Lives',
     fulldescription: `Miracle Gardens is an 810-acre township
       fusing lifestyle and nature, featuring rolling hills and

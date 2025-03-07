@@ -204,7 +204,7 @@ import { useHead } from '@vueuse/head'
 const showLoader = ref(true)
 const router = useRouter()
 const route = useRoute()
-const allDevelopments = ref(developments.filter((d) => d.status === 'New Launch'))
+const allDevelopments = ref(developments.filter((d) => d.status === 'New Launch' || d.status === 'Under Construction'))
 const visibleCount = ref(4)
 const displayedDevelopments = ref(allDevelopments.value.slice(0, visibleCount.value))
 const showAllDevelopments = ref(false)
