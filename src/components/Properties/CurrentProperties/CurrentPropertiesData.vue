@@ -19,15 +19,15 @@ export const properties = {
 
   'Miracle Sentral': [{
     id: 1,
-    name: 'Miracle Sentral A',
-    slug: generateSlug('Miracle Sentral A'),
+    name: 'Shop Office',
+    slug: generateSlug('Shop Office'),
     location: 'Jengka, Pahang',
     place: 'Miracle Sentral',
-    housetype: '2-Storey Terrace & Semi-D',
-    status: 'New Launch',
-    price: 'RM 5XX,XXX*',
-    image: '/assets/currentproject/car.jpg',
-    features: ['Exclusive Amenities', 'Spacious Homes'],
+    housetype: '2-Storey Shop Office',
+    status: 'Under Development',
+    price: 'RM 5XX k*',
+    image: '/assets/Development/Miracle Sentral/Shop Office/miracle_sentral_01.png',
+    features: ['Dual frontage and flexible layouts.', 'Fastest - Growing economy in Pahang.', 'Fronting main road.'],
     description: `Miracle Gardens is an 810-acre township
       fusing lifestyle and nature, featuring rolling hills and
       five cascading lakes leading to the 50-acre, pet-friendly Central Park.
@@ -44,20 +44,21 @@ export const properties = {
       '/assets/award2.png',
       '/assets/career2.png'
     ],
-    builtup: '2,150 - 2,497 sqft',
+    area: '20 X 75 sqft',
+    plan: '/assets/Development/Miracle Sentral/Shop Office/Floor Plan_Miracle Sentral.png',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
   },
   {
     id: 2,
-    name: 'Miracle Sentral B',
-    slug: generateSlug('Miracle Sentral B'),
+    name: 'Shop Lot',
+    slug: generateSlug('Shop Lot'),
     location: 'Jengka, Pahang',
     place: 'Miracle Sentral',
-    housetype: '2-Storey Terrace',
-    status: 'New Launch',
-    price: 'RM 5XX,XXX*',
+    housetype: '2-Storey Shop Lot',
+    status: 'Under Development',
+    price: 'RM 5XX k*',
     image: 'https://picsum.photos/200/300',
-    features: ['Exclusive Amenities', 'Spacious Homes'],
+    features: ['Dual frontage and flexible layouts.', 'Fastest - Growing economy in Pahang.', 'Fronting main road.'],
     description: `Miracle Gardens is an 810-acre township
       fusing lifestyle and nature, featuring rolling hills and
       five cascading lakes leading to the 50-acre, pet-friendly Central Park.
@@ -74,8 +75,8 @@ export const properties = {
       '/assets/award2.png',
       '/assets/career2.png'
     ],
-    builtup: '2,150 - 2,497 sqft',
-    vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
+    area: '20 X 75 - 15 X 60 sqft',
+    plan: '/assets/Development/Miracle Sentral/Shop Office/Floor Plan_Miracle Sentral.png',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
   }
   ],

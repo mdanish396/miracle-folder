@@ -8,29 +8,28 @@ export const nearbyAmenities = {
   'Miracle Sentral': {
     amenities: {
       education: [
-        { name: 'Sk', distance: '3.4km' },
-        { name: 'SMK', distance: '2.1km ' }
+        { name: 'SMK Jengka Pusat', distance: '1.5km' },
+        { name: 'SMK Desa Jaya', distance: '1.5km ' },
+        { name: 'SMK Jengka Pusat 2', distance: '1.5km' },
+        { name: 'SK Jengka Pusat 2', distance: '1.5km' },
+        { name: 'SK Bandar Pusat Jengka', distance: '1.5' },
+        { name: 'SK Desa Jaya', distance: '1.5km' },
+        { name: 'Maahad As-Sultan Ahmad Shah Addini', distance: '1.5km' }
       ],
       healthcare: [
-        { name: 'Hospital', distance: '1.5km' },
-        { name: 'Clinic', distance: '1.0km' }
+        { name: 'Hospital Jengka', distance: '1.1km' }
       ],
       entertainment: [
-        { name: 'Cinema', distance: '3.4km' }
+        { name: 'Bandar Pusat Jengka', distance: '0.1km' }
       ],
       recreation: [
-        { name: 'Playground', distance: '2.1km' },
-        { name: 'Football-Field', distance: '1.5km' },
-        { name: 'Park', distance: '1.5km' }
+        { name: 'Taman Awam Jengka', distance: '0.7km' }
       ],
       transportation: [
-        { name: 'LRT', distance: '1.0km' },
-        { name: 'Bus', distance: '1.2km' }
+        { name: 'Jengka Sentral Bus Terminal', distance: '0.1km' }
       ],
       shopping: [
-        { name: 'Tesco', distance: '1.2km' },
-        { name: '7-Eleven', distance: '1.0km' },
-        { name: 'Mall', distance: '1.0km' }
+        { name: 'TF Mall', distance: '' }
       ]
     }
   },

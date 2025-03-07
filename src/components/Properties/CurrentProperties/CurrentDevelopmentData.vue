@@ -26,11 +26,11 @@ export const developments = [
     districts: 'Jengka',
     state: 'Pahang',
     type: 'Commercial',
-    price: 'RM 5XXk*',
-    status: 'New Launch',
+    price: 'RM 5XX k*',
+    status: 'Under Construction',
     statusbuyer: 'New Launch',
     image: '/assets/Development/Miracle Sentral/miracle_sentral_09.png',
-    features: ['Exclusive Amenities', 'Spacious Homes', 'Green Spaces'],
+    features: ['Dual frontage and flexible layouts.', ' Fastest - Growing economy in Pahang.', 'Fronting main road'],
     shortdescription: 'home to your nature',
     description: `The Camellia, your home at Wetlands Estates, the
     private enclave in Gamuda Cove. The Camellia, your home at Wetlands
@@ -51,11 +51,11 @@ export const developments = [
     gallerydevelopment: [ // 3 image only no less no more
       {
         url: '/assets/Development/Miracle Sentral/miracle_sentral_10.png',
-        description: 'Living in Harmony with Nature'
+        description: 'Located in the Centre of Jengka'
       },
       {
         url: '/assets/Development/Miracle Sentral/miracle_sentral_13.jpg',
-        description: 'Doorstep Lifestyle and Retail Convenience'
+        description: 'Lifestyle & Retail Conveniences'
       },
       {
         url: '/assets/Development/Miracle Sentral/miracle_sentral_09.png',
@@ -69,7 +69,7 @@ export const developments = [
       '/assets/Development/Miracle Sentral/miracle_sentral_14.png',
       '/assets/Development/Miracle Sentral/miracle_sentral_10.png'
     ],
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
+    map: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3981.1899270081403!2d102.5470679!3d3.7688108!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31c931adceacfb6d%3A0x9141d767665ffa22!2sMiracle%20Sentral%20Sales%20Gallery%20%40%20Jengka!5e0!3m2!1sen!2smy!4v1741226657416!5m2!1sen!2smy'
   },
   {
     id: 2,

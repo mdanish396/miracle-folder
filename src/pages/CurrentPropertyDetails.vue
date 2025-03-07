@@ -44,7 +44,7 @@
                     </div>
                     <div class="property-item">
                       <h4>Status</h4>
-                      <p>{{ property.status }}</p>
+                      <p class="space">{{ property.status }}</p>
                     </div>
                   </div>
                 </div>
@@ -239,17 +239,17 @@
               <div class="details-grid-items">
                 <div class="details-grid fade-up delay-2">
                   <!-- Bedrooms -->
-                  <div class="details-item">
-                    <img src="/assets/bed.png" alt="Area" class="icon-5" />
+                  <div class="details-item" v-if="property.bedroom">
+                    <img src="/assets/bed.png" alt="Bedroom" class="icon-5" />
                     <p>{{ property.bedroom }} Bedrooms</p>
                   </div>
                   <!-- Bathrooms -->
-                  <div class="details-item">
-                    <img src="/assets/bathroom.svg" alt="Area" class="icon-4" />
+                  <div class="details-item" v-if="property.bathroom">
+                    <img src="/assets/bathroom.svg" alt="Bathroom" class="icon-4" />
                     <p>{{ property.bathroom }} Bathrooms</p>
                   </div>
                   <!-- Area -->
-                  <div class="details-item">
+                  <div class="details-item" v-if="property.area">
                     <img src="/assets/area.svg" alt="Area" class="icon-3" />
                     <p>{{ property.area }}</p>
                   </div>
@@ -566,7 +566,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref, onBeforeUnmount, computed, nextTick } from 'vue'
+import { onMounted, onUnmounted, ref, onBeforeUnmount, computed } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import { properties } from 'src/components/Properties/CurrentProperties/CurrentPropertiesData.vue'
 import { nearbyAmenities } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentAmenitiesData.vue'
@@ -646,33 +646,6 @@ onMounted(() => {
         entry.target.classList.remove('visible')
       }
     })
-  })
-
-  const updateLayout = () => {
-    const container = document.querySelector('.products-grid')
-    const cards = document.querySelectorAll('.product-card')
-
-    if (!container) return // Prevent errors if container doesn't exist
-
-    if (cards.length < 3) {
-      container.style.display = 'flex'
-      container.style.justifyContent = 'center'
-      container.style.flexWrap = 'wrap'
-    } else {
-      container.style.display = 'grid'
-      container.style.gridTemplateColumns = 'repeat(3, minmax(400px, 1fr))'
-    }
-  }
-
-  onMounted(() => {
-    nextTick(() => {
-      updateLayout() // Ensure layout updates after DOM is rendered
-      window.addEventListener('resize', updateLayout)
-    })
-  })
-
-  onBeforeUnmount(() => {
-    window.removeEventListener('resize', updateLayout)
   })
 
   // Observe all sections
@@ -1076,6 +1049,11 @@ const loadMore = () => {
   justify-content: center;
   width: 280px;
   min-width: 140px;
+}
+
+.property-item .space {
+  white-space: wrap;
+  overflow: visible;
 }
 
 .truncated-text {
@@ -1712,6 +1690,7 @@ max-height: 536px;
   flex-direction: column;
   align-items: center;
   padding:20px;
+  white-space: nowrap;
   width: 190px;
   height: 120px;
 }
@@ -1899,6 +1878,7 @@ max-height: 536px;
 .popup-image {
   width: 100%;
   height: 100%;
+  object-fit:none;
   max-width: min-content;
   max-height: min-content;
   transition: transform 0.2s ease-in-out;
