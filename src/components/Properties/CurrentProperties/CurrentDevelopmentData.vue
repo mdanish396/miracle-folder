@@ -26,48 +26,36 @@ export const developments = [
     districts: 'Jengka',
     state: 'Pahang',
     type: 'Commercial',
-    price: 'RM 5XX k*',
-    status: 'Under Construction',
-    statusbuyer: 'New Launch',
+    price: 'RM 865 k*',
+    status: 'Under Development',
     image: '/assets/Development/Miracle Sentral/miracle_sentral_09.png',
-    features: ['Dual frontage and flexible layouts.', ' Fastest - Growing economy in Pahang.', 'Fronting main road'],
-    shortdescription: 'home to your nature',
-    description: `The Camellia, your home at Wetlands Estates, the
-    private enclave in Gamuda Cove. The Camellia, your home at Wetlands
-    Estates, the private enclave in Gamuda Cove. The Camellia, your home at
-    Wetlands Estates, the private enclave in Gamuda Cove.`,
+    features: ['Low Investment, High Return (ROI) Up to 8%', 'Walking Distance to UiTM University Jengka', 'Located in the Centre of Jengka, the Fastest-Growing Economy in Pahang'],
+    description: 'Commercial Centre in Jengka Town.',
     size: '20 x 75 sqft',
-    topic: 'In a Garden Where Happiness Lives',
-    fulldescription: `Miracle Gardens is an 810-acre township
-      fusing lifestyle and nature, featuring rolling hills and
-      five cascading lakes leading to the 50-acre, pet-friendly Central Park.
-      The township includes a Waterfront Village offering a walkable retail
-      experience with various F&B options. Nearby the township, Gamuda Luge Gardens
-      hosts a mix of commercial and leisure spaces, including retail shops, FunPark
-      family-friendly park, Big Bucket Splash waterplay and Skyline Luge Kuala Lumpur.
-      This development is designed to be a vibrant hub that brings the community together.`,
-    builtup: '2,110 - 2,497 sqft',
-    lotsize: '26` x 76`',
     gallerydevelopment: [ // 3 image only no less no more
       {
-        url: '/assets/Development/Miracle Sentral/miracle_sentral_10.png',
-        description: 'Located in the Centre of Jengka'
+        url: '/assets/Development/Miracle Sentral/miracle_sentral_16.jpg', // assets/Development/Miracle Sentral/miracle_sentral_10.png
+        description: 'Located in the Centre of Jengka.'
       },
       {
-        url: '/assets/Development/Miracle Sentral/miracle_sentral_13.jpg',
-        description: 'Lifestyle & Retail Conveniences'
+        url: '/assets/Development/Miracle Sentral/miracle_sentral_17.png', // assets/Development/Miracle Sentral/miracle_sentral_13.jpg
+        description: 'Lifestyle & Retail Conveniences.'
       },
       {
-        url: '/assets/Development/Miracle Sentral/miracle_sentral_09.png',
-        description: 'Exciting Placemaking Experience'
+        url: '/assets/Development/Miracle Sentral/miracle_sentral_18.jpg', // assets/Development/Miracle Sentral/miracle_sentral_09.png
+        description: 'Exciting Placemaking Experiences.'
       }
     ],
     galleryImages: [
       '/assets/Development/Miracle Sentral/miracle_sentral_15.png',
       '/assets/Development/Miracle Sentral/miracle_sentral_04.jpeg',
-      '/assets/Development/Miracle Sentral/miracle_sentral_03.jpg',
+      '/assets/Development/Miracle Sentral/miracle_sentral_11.jpg',
       '/assets/Development/Miracle Sentral/miracle_sentral_14.png',
-      '/assets/Development/Miracle Sentral/miracle_sentral_10.png'
+      '/assets/Development/Miracle Sentral/miracle_sentral_16.jpg',
+      '/assets/Development/Miracle Sentral/miracle_sentral_17.png',
+      '/assets/Development/Miracle Sentral/miracle_sentral_18.jpg',
+      '/assets/Development/Miracle Sentral/miracle_sentral_20.jpg',
+      '/assets/Development/Miracle Sentral/miracle_sentral_21.png'
     ],
     map: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3981.1899270081403!2d102.5470679!3d3.7688108!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31c931adceacfb6d%3A0x9141d767665ffa22!2sMiracle%20Sentral%20Sales%20Gallery%20%40%20Jengka!5e0!3m2!1sen!2smy!4v1741226657416!5m2!1sen!2smy'
   },
@@ -83,7 +71,6 @@ export const developments = [
     type: 'Residential',
     price: 'RM 6XXK*',
     status: 'New Launch',
-    statusbuyer: 'New Launch',
     image: '/assets/Development/Casa Hill/casa_hill_02.png',
     features: ['Luxury Living', 'Green Spaces'],
     shortdescription: 'home to your nature',
@@ -104,15 +91,15 @@ export const developments = [
     gallerydevelopment: [
       {
         url: '/assets/Development/Casa Hill/casa_hill_05.JPG',
-        description: 'Living in Harmony with Nature'
+        description: 'Located in the Centre of Jengka'
       },
       {
         url: '/assets/Development/Casa Hill/casa_hill_03.jpg',
-        description: 'Doorstep Lifestyle and Retail Convenience'
+        description: 'Lifestyle and Retail Convenience'
       },
       {
         url: '/assets/Development/Casa Hill/casa_hill_04.jpg',
-        description: 'Exciting Placemaking Experience'
+        description: 'Exciting Placemaking Experiences'
       }
     ],
     galleryImages: [

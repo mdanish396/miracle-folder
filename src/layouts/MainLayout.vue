@@ -528,7 +528,7 @@ onUnmounted(() => {
 }
 /* Logo */
 .logo {
-  height: 40px;
+  height: 55px;
   margin-right: -5px;
   transition: filter 0.4s ease-in-out;
 }
@@ -813,7 +813,7 @@ color:#00B398;
 @media (max-width: 1024px) {
   /* Adjust toolbar for tablet screens */
   .logo {
-  height: 35px;
+  height: 50px;
   margin-top: -5px;
 }
 
@@ -829,7 +829,7 @@ color:#00B398;
 
 @media (max-width: 768px) {
   .logo {
-    height: 30px; /* Reduce logo size */
+    height: 45px; /* Reduce logo size */
   }
 
   /* Adjust toolbar for smartphone screens */
@@ -882,9 +882,9 @@ color:#00B398;
 }
 
 .footer-logo {
-  width: 150px; /* Smaller logo size */
+  width: 180px; /* Smaller logo size */
   filter: brightness(0) invert(1); /* White logo */
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .footer-logo-text {
@@ -1056,6 +1056,7 @@ color:#00B398;
 
   .footer-address {
     font-size: 13px;
+    margin-top: 0;
   }
 
   .footer-address br:last-child {
@@ -1110,7 +1111,7 @@ color:#00B398;
     white-space: nowrap;
     width: 100%; /* Make it span full width */
     position: static;
-    margin-bottom: -20px;
+    margin-bottom: -25px;
   }
 }
 

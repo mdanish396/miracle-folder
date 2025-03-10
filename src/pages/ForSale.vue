@@ -40,7 +40,7 @@
               <div class="divider"></div>
               <div class="info-item fade-up delay-1">
                 <h4>Status</h4>
-                <p>{{ development.statusbuyer }}</p>
+                <p>{{ development.status }}</p>
               </div>
             </div>
           </div>

@@ -25,17 +25,10 @@ export const properties = {
     place: 'Miracle Sentral',
     housetype: '2-Storey Shop Office',
     status: 'Under Development',
-    price: 'RM 5XX k*',
+    price: 'RM 865 k*',
     image: '/assets/Development/Miracle Sentral/Shop Office/miracle_sentral_01.png',
-    features: ['Dual frontage and flexible layouts.', 'Fastest - Growing economy in Pahang.', 'Fronting main road.'],
-    description: `Miracle Gardens is an 810-acre township
-      fusing lifestyle and nature, featuring rolling hills and
-      five cascading lakes leading to the 50-acre, pet-friendly Central Park.
-      The township includes a Waterfront Village offering a walkable retail
-      experience with various F&B options. Nearby the township, Gamuda Luge Gardens
-      hosts a mix of commercial and leisure spaces, including retail shops, FunPark
-      family-friendly park, Big Bucket Splash waterplay and Skyline Luge Kuala Lumpur.
-      This development is designed to be a vibrant hub that brings the community together.`,
+    features: ['Low Investment, High Return (ROI) Up to 8%', 'Walking Distance to UiTM University Jengka', 'Located in the Centre of Jengka, the Fastest-Growing Economy in Pahang. '],
+    description: 'Commercial Centre of Jengka Town.',
     gallery: [
       '/assets/currentproject/house1.jpg',
       '/assets/currentproject/house2.jpg',
@@ -45,7 +38,7 @@ export const properties = {
       '/assets/career2.png'
     ],
     area: '20 X 75 sqft',
-    plan: '/assets/Development/Miracle Sentral/Shop Office/Floor Plan_Miracle Sentral.png',
+    plan: '/assets/Development/Miracle Sentral/Floor Plan_Miracle Sentral.png',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
   },
   {
@@ -56,17 +49,10 @@ export const properties = {
     place: 'Miracle Sentral',
     housetype: '2-Storey Shop Lot',
     status: 'Under Development',
-    price: 'RM 5XX k*',
-    image: 'https://picsum.photos/200/300',
-    features: ['Dual frontage and flexible layouts.', 'Fastest - Growing economy in Pahang.', 'Fronting main road.'],
-    description: `Miracle Gardens is an 810-acre township
-      fusing lifestyle and nature, featuring rolling hills and
-      five cascading lakes leading to the 50-acre, pet-friendly Central Park.
-      The township includes a Waterfront Village offering a walkable retail
-      experience with various F&B options. Nearby the township, Gamuda Luge Gardens
-      hosts a mix of commercial and leisure spaces, including retail shops, FunPark
-      family-friendly park, Big Bucket Splash waterplay and Skyline Luge Kuala Lumpur.
-      This development is designed to be a vibrant hub that brings the community together.`,
+    price: 'RM 699 k*',
+    image: '/assets/Development/Miracle Sentral/miracle_sentral_02.png',
+    features: ['Low Investment, High Return (ROI) Up to 8%.', 'Walking Distance to UiTM University Jengka.', 'Located in the Centre of Jengka, the Fastest-Growing Economy in Pahang.'],
+    description: 'Commercial Centre of Jengka Town.',
     gallery: [
       '/assets/currentproject/house1.jpg',
       '/assets/currentproject/house2.jpg',
@@ -75,8 +61,8 @@ export const properties = {
       '/assets/award2.png',
       '/assets/career2.png'
     ],
-    area: '20 X 75 - 15 X 60 sqft',
-    plan: '/assets/Development/Miracle Sentral/Shop Office/Floor Plan_Miracle Sentral.png',
+    area: '15 X 60 sqft',
+    plan: '/assets/Development/Miracle Sentral/Floor Plan_Miracle Sentral.png',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
   }
   ],
