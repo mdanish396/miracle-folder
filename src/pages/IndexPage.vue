@@ -793,6 +793,7 @@ const navigateToDevelopmentDetails = (slug) => {
   font-size: 18px;
   line-height: 24px;
   margin-left: 10px;
+  padding-right: 5%;
   font-family: 'TitilliumWebRegular';
   color: rgb(51, 51, 51);
 }
