@@ -73,21 +73,9 @@ export const developments = [
     status: 'New Launch',
     image: '/assets/Development/Casa Hill/casa_hill_02.png',
     features: ['Luxury Living', 'Green Spaces'],
-    shortdescription: 'home to your nature',
     description: `The Camellia, your home at Wetlands Estates, the
     private enclave in Gamuda Cove.`,
-    size: '1,700 sqft',
-    topic: 'In a Garden Where Happiness Lives',
-    fulldescription: `Miracle Gardens is an 810-acre township
-      fusing lifestyle and nature, featuring rolling hills and
-      five cascading lakes leading to the 50-acre, pet-friendly Central Park.
-      The township includes a Waterfront Village offering a walkable retail
-      experience with various F&B options. Nearby the township, Gamuda Luge Gardens
-      hosts a mix of commercial and leisure spaces, including retail shops, FunPark
-      family-friendly park, Big Bucket Splash waterplay and Skyline Luge Kuala Lumpur.
-      This development is designed to be a vibrant hub that brings the community together.`,
-    builtup: '2,450 - 3,497 sqft',
-    lotsize: '36` x 86`',
+    size: '1400 x 1,700 sqft',
     gallerydevelopment: [
       {
         url: '/assets/Development/Casa Hill/casa_hill_05.JPG',
