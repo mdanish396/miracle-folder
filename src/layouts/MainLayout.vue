@@ -882,7 +882,7 @@ color:#00B398;
 }
 
 .footer-logo {
-  width: 180px; /* Smaller logo size */
+  width: 185px; /* Smaller logo size */
   filter: brightness(0) invert(1); /* White logo */
   margin-top: 20px;
 }

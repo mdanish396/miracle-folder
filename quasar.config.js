@@ -59,6 +59,11 @@ export default configure(function (/* ctx */) {
 
       publicPath: '/',
       assetsDir: 'assets',
+
+      vueCompiler: true,
+      chainWebpack (chain) {
+        chain.devtool('eval-source-map')
+      },
       // analyze: true,
       // env: {},
       // rawDefine: {}
