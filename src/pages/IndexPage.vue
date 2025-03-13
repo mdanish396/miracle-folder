@@ -10,7 +10,7 @@
 
     <!-- Hero Section -->
     <div class="hero-section">
-      <img src="/assets/index.png" alt="Hero Image" class="hero-video"/>
+      <img src="/assets/index.jpg" alt="Hero Image" class="hero-video"/>
       <!-- <video
         autoplay
         loop
@@ -444,6 +444,7 @@ const navigateToDevelopmentDetails = (slug) => {
 .hero-video {
   width: 100%;
   height: 100%;
+  object-position: top;
   object-fit: cover; /* Ensures the video covers the entire hero section */
 }
 
@@ -473,7 +474,7 @@ const navigateToDevelopmentDetails = (slug) => {
 }
 
 .video-text-overlay h1 {
-  font-size: 17.5VW; /* Adjust as needed */
+  font-size: 22VW; /* Adjust as needed */
   color: rgba(255, 255, 255, 0.3);
   font-family: 'PlusJakartaBold';
   letter-spacing: 10px;
@@ -980,7 +981,7 @@ const navigateToDevelopmentDetails = (slug) => {
   text-align: center;
   animation: fadeInUp 1s ease forwards;
   padding-top: 60px;
-  padding-bottom: 130px;
+  padding-bottom: 100px;
 }
 
 .partners-section h3 {
@@ -992,22 +993,17 @@ const navigateToDevelopmentDetails = (slug) => {
 .logo-container {
   padding-top: 40px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start; /* Align items to the start */
-  gap: 40px; /* Space between logos */
+  gap: 10%; /* Space between logos */
   width: 100%; /* Full width */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  white-space: nowrap; /* Prevents wrapping */
   padding-left: 5%;
   padding-right: 5%;
-  margin: 0 auto;
   padding-bottom: 20px;
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
-  -ms-overflow-style: none; /* Hide scrollbar for IE & Edge */
 }
 
-.logo-container::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome, Safari */
+.logo-container img {
+  margin-bottom: 30px; /* Adds vertical spacing between wrapped rows */
 }
 
 .partner-logo {
