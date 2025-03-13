@@ -101,13 +101,13 @@ const downloadReport = (file) => {
 
 @font-face {
   font-family: 'TitilliumWebRegular';
-  src: url('/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'TitilliumWebSemiBold';
-  src: url('/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  src: url('/assets/fonts/Titillium_Web/TitilliumWeb-SemiBold.ttf') format('truetype');
   font-weight: bold;
 }
 
@@ -118,7 +118,7 @@ const downloadReport = (file) => {
 
 @font-face {
   font-family: 'TitilliumWebBold';
-  src: url('/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+  src: url('/assets/fonts/Titillium_Web/TitilliumWeb-Bold.ttf') format('truetype');
 }
 
 @font-face {

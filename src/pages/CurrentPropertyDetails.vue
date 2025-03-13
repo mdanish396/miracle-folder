@@ -892,13 +892,13 @@ const loadMore = () => {
 
 @font-face {
   font-family: 'TitilliumWebRegular';
-  src: url('/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'TitilliumWebSemiBold';
-  src: url('/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  src: url('/assets/fonts/Titillium_Web/TitilliumWeb-SemiBold.ttf') format('truetype');
   font-weight: bold;
 }
 
@@ -909,12 +909,12 @@ const loadMore = () => {
 
 @font-face {
   font-family: 'TitilliumWebBold';
-  src: url('/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+  src: url('/assets/fonts/Titillium_Web/TitilliumWeb-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'TitilliumWebBoldItalic';
-  src: url('/assets/fonts/TitilliumWeb-BoldItalic.ttf') format('truetype');
+  src: url('/assets/fonts/Titillium_Web/TitilliumWeb-BoldItalic.ttf') format('truetype');
 }
 
 .section {
@@ -1698,7 +1698,7 @@ max-height: 536px;
   flex-grow: 1;
   white-space: nowrap;
   height: 120px;
-  border: 1px solid #ddd;
+  border: 2px solid rgb(221, 221, 221, 0.2);
 }
 
 .details-item h4 {
@@ -1797,7 +1797,6 @@ max-height: 536px;
     display: flex;
     flex-wrap:wrap;
     justify-content: center;
-    gap: 10px;
 }
 /* .floorplan-buttons {
   margin-top: -20px;
@@ -1812,10 +1811,6 @@ max-height: 536px;
 }
 
 @media (max-width: 580px) {
-
-  .details-grid {
-    gap: 0px;
-}
 
 .details-item {
   width: 170px;

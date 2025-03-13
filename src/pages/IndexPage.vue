@@ -24,7 +24,9 @@
 
       <!-- Text Overlay in Video (centered) -->
       <div class="video-text-overlay">
-        <h1>MIRACLES MADE FOR YOU <br> - FOREVER</h1>
+        <h1>MIRACLE</h1>
+        <h2>FOR YOU FOREVER</h2>
+        <!-- <h1>MIRACLES MADE FOR YOU <br> - FOREVER</h1> -->
       </div>
 
       <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
@@ -298,13 +300,13 @@ const navigateToDevelopmentDetails = (slug) => {
 
 @font-face {
   font-family: 'TitilliumWebRegular';
-  src: url('/assets/fonts/TitilliumWeb-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'TitilliumWebSemiBold';
-  src: url('/assets/fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+  src: url('/assets/fonts/Titillium_Web/TitilliumWeb-SemiBold.ttf') format('truetype');
   font-weight: bold;
 }
 
@@ -315,12 +317,27 @@ const navigateToDevelopmentDetails = (slug) => {
 
 @font-face {
   font-family: 'TitilliumWebBold';
-  src: url('/assets/fonts/TitilliumWeb-Bold.ttf') format('truetype');
+  src: url('/assets/fonts/Titillium_Web/TitilliumWeb-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'AvenirMedium';
   src: url('/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'PlusJakartaBold';
+  src: url('/assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PlusJakartaRegular';
+  src: url('/assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PlusJakartaSemiBold';
+  src: url('/assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBold.ttf') format('truetype');
 }
 
 .section {
@@ -433,26 +450,47 @@ const navigateToDevelopmentDetails = (slug) => {
 /* Text Overlay in Video */
 .video-text-overlay {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: rgb(238, 238, 238);
   text-align: center;
-  font-family: 'RecklessNeueMedium';
   z-index: 1;
   cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Ensures both elements start at the same point */
+}
+
+.video-text-overlay {
+  text-align: left; /* Aligns text to the left */
+}
+
+.video-text-overlay h1,
+.video-text-overlay h2 {
+  width: 100%; /* Makes sure both take up the same width */
+  text-align: left;
 }
 
 .video-text-overlay h1 {
-  font-size: 4vw; /* Adjust as needed */
-  white-space: nowrap;
-  font-weight: bolder;
-  text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
-  line-height: 1.2;
+  font-size: 17.5VW; /* Adjust as needed */
+  color: rgba(255, 255, 255, 0.3);
+  font-family: 'PlusJakartaBold';
+  letter-spacing: 10px;
+  margin-bottom: 0%;
+}
+
+.video-text-overlay h2{
+  padding-top: 4%;
+  font-size: 3VW; /* Adjust as needed */
+  color: rgba(255, 255, 255);
+  font-family: 'PlusJakartaSemiBold';
+  padding-left: 10%;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.2),
+  1px -1px 0 rgba(0, 0, 0, 0.2),
+  -1px 1px 0 rgba(0, 0, 0, 0.2),
+  1px 1px 0 rgba(0, 0, 0, 0.2);
+  white-space: none;
 }
 
 .vertical-branding {
@@ -501,6 +539,17 @@ const navigateToDevelopmentDetails = (slug) => {
   }
 }
 
+@media (max-width: 768px) {
+  .video-text-overlay {
+  top: 52%;
+}
+
+  .video-text-overlay h2 {
+    font-size: 5vw;
+    padding-top: 10%;
+  }
+}
+/*
 @media (max-width: 1024px) {
   .video-text-overlay h1 {
     font-size: 5vw;
@@ -511,7 +560,7 @@ const navigateToDevelopmentDetails = (slug) => {
   .video-text-overlay h1 {
     font-size: 6.5vw;
   }
-}
+} */
 
   /*Development Section*/
   .developments-section {
