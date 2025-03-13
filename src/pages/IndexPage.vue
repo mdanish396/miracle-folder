@@ -550,6 +550,13 @@ const navigateToDevelopmentDetails = (slug) => {
     padding-top: 10%;
   }
 }
+
+@media (max-width: 480px) {
+  .video-text-overlay h1 {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 19vw;
+  }
+}
 /*
 @media (max-width: 1024px) {
   .video-text-overlay h1 {

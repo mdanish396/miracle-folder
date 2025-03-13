@@ -290,7 +290,10 @@
           @mousedown="startDragging"
           @mousemove="dragImage"
           @mouseup="stopDragging"
-          @mouseleave="stopDragging">
+          @mouseleave="stopDragging"
+          @touchstart="startDragging"
+          @touchmove="dragImage"
+          @touchend="stopDragging">
           <img
             :src="property.plan"
             alt="Floorplan"
@@ -787,19 +790,27 @@ let animationFrameId = null
 
 const startDragging = (event) => {
   isDragging.value = true
-  lastMouseX.value = event.clientX
-  lastMouseY.value = event.clientY
-  event.preventDefault() // Prevents unwanted text selection
+
+  const clientX = event.type.includes('mouse') ? event.clientX : event.touches[0].clientX
+  const clientY = event.type.includes('mouse') ? event.clientY : event.touches[0].clientY
+
+  lastMouseX.value = clientX
+  lastMouseY.value = clientY
+
+  event.preventDefault() // Prevents unwanted text selection on desktop
 }
 
 const dragImage = (event) => {
   if (!isDragging.value) return
 
-  const deltaX = event.clientX - lastMouseX.value
-  const deltaY = event.clientY - lastMouseY.value
+  const clientX = event.type.includes('mouse') ? event.clientX : event.touches[0].clientX
+  const clientY = event.type.includes('mouse') ? event.clientY : event.touches[0].clientY
 
-  lastMouseX.value = event.clientX
-  lastMouseY.value = event.clientY
+  const deltaX = clientX - lastMouseX.value
+  const deltaY = clientY - lastMouseY.value
+
+  lastMouseX.value = clientX
+  lastMouseY.value = clientY
 
   if (animationFrameId) cancelAnimationFrame(animationFrameId)
 
