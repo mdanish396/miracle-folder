@@ -40,7 +40,7 @@
                     </div>
                     <div class="property-item">
                       <h4>From</h4>
-                      <p>{{ property.price }}</p>
+                      <p>{{ formatPrice(property.price) }}</p>
                     </div>
                     <div class="property-item">
                       <h4>Status</h4>
@@ -635,6 +635,10 @@ useHead({
     }
   ]
 })
+
+function formatPrice (price) {
+  return price.replace(/RM (\d+)k\*/, (match, p1) => `RM ${p1},000*`)
+}
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -1690,9 +1694,18 @@ max-height: 536px;
   flex-direction: column;
   align-items: center;
   padding:20px;
+  min-width: 190px;
+  flex-grow: 1;
   white-space: nowrap;
-  width: 190px;
   height: 120px;
+  border: 1px solid #ddd;
+}
+
+.details-item h4 {
+  font-family: 'TitilliumWebBold';
+  font-size: 17px;
+  line-height: 27px;
+  color: #0000
 }
 
 .details-item p {

@@ -29,7 +29,7 @@ export const nearbyAmenities = {
         { name: 'Jengka Sentral Bus Terminal', distance: '0.1km' }
       ],
       shopping: [
-        { name: 'TF Mall', distance: '' }
+        { name: 'TF Mall (within development)', distance: '' }
       ]
     }
   },

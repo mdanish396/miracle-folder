@@ -105,20 +105,19 @@
             </div>
             <p class="fade-up delay-3">Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
             <form
-              action="https://formspree.io/f/myzkjkew"
-              method="POST"
+              @submit.prevent="submitForm"
               class="register-form fade-up delay-4">
               <!-- Name Field -->
-              <input type="text" name="name" placeholder="Name*" required>
+              <input type="text" v-model="form.name" placeholder="Name*" required>
 
               <!-- Email Field -->
-              <input type="email" name="email" placeholder="Email*" required>
+              <input type="email" v-model="form.email" placeholder="Email*" required>
 
               <!-- Telephone Field -->
-              <input type="tel" name="telephone" placeholder="Telephone*" required>
+              <input type="tel" v-model="form.telephone" placeholder="Telephone*" required>
 
               <!-- Enquiry Type Dropdown -->
-              <select name="enquiryType" required>
+              <select  v-model="form.enquiryType" required>
                 <option disabled selected>Select enquiry type</option>
                 <option value="General">General</option>
                 <option value="Interested Project">Interested Project</option>
@@ -128,7 +127,7 @@
               </select>
 
               <!-- Message Field -->
-              <textarea name="message" placeholder="Questions/Comments*" required></textarea>
+              <textarea v-model="form.message" placeholder="Questions/Comments*" required></textarea>
 
               <!-- Submit Button -->
               <button type="submit" class="submit-btn">SEND</button>
@@ -164,6 +163,24 @@ import { useHead } from '@vueuse/head'
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+import axios from 'axios'
+
+const form = ref({
+  name: '',
+  email: '',
+  telephone: '',
+  enquiryType: '',
+  message: ''
+})
+
+const submitForm = async () => {
+  try {
+    const response = await axios.post('http://localhost/your-codeigniter-app/api/submit-form', form.value)
+    alert(response.data.message)
+  } catch (error) {
+    alert('Failed to submit. Please try again.')
+  }
+}
 
 useHead({
   title: 'Contact Us | Miracle Land Holding Berhad',

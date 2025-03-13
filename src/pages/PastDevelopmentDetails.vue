@@ -858,7 +858,7 @@ const capitalizeFirstLetter = (string) => {
   width: 100%;
   padding-bottom: 0;
   height: 100%;
-  background: linear-gradient(to bottom, transparent 46%, #08463c 54%);
+  background: linear-gradient(to bottom, transparent 48%, #08463c 48%);
 }
 
 .card-grid {

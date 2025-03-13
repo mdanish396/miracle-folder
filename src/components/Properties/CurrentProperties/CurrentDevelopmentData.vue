@@ -26,24 +26,24 @@ export const developments = [
     districts: 'Jengka',
     state: 'Pahang',
     type: 'Commercial',
-    price: 'RM 865 k*',
-    status: 'Under Development',
+    price: 'RM 699k*',
+    status: 'New Launch',
     image: '/assets/Development/Miracle Sentral/miracle_sentral_09.png',
     features: ['Low Investment, High Return (ROI) Up to 8%', 'Walking Distance to UiTM University Jengka', 'Located in the Centre of Jengka, the Fastest-Growing Economy in Pahang'],
-    description: 'Commercial Centre in Jengka Town.',
+    description: 'The biggest commercial centre in Jengka Town.',
     size: '20 x 75 sqft',
     gallerydevelopment: [ // 3 image only no less no more
       {
         url: '/assets/Development/Miracle Sentral/miracle_sentral_16.jpg', // assets/Development/Miracle Sentral/miracle_sentral_10.png
-        description: 'Located in the Centre of Jengka.'
+        description: 'Commercial Hub in the Heart of Jengka'
       },
       {
         url: '/assets/Development/Miracle Sentral/miracle_sentral_17.png', // assets/Development/Miracle Sentral/miracle_sentral_13.jpg
-        description: 'Lifestyle & Retail Conveniences.'
+        description: 'Lifestyle & Retail Conveniences'
       },
       {
         url: '/assets/Development/Miracle Sentral/miracle_sentral_18.jpg', // assets/Development/Miracle Sentral/miracle_sentral_09.png
-        description: 'Exciting Placemaking Experiences.'
+        description: 'Exciting Placemaking Experiences'
       }
     ],
     galleryImages: [
