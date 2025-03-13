@@ -36,29 +36,22 @@ export const nearbyAmenities = {
   'Casa Hill': {
     amenities: {
       education: [
-        { name: 'Sk', distance: '3.5km' },
-        { name: 'SMK', distance: '2.3km ' }
+        { name: 'SMk Hwa Lian', distance: '0.2km' }
       ],
       healthcare: [
-        { name: 'Hospital', distance: '1.9km' },
-        { name: 'Clinic', distance: '1.1km' }
+        { name: 'Klinik Kesihatan Mentakab', distance: '0.1km' }
       ],
       entertainment: [
-        { name: 'Cinema', distance: '3.4km' }
+        { name: 'Bandar Mentakab', distance: '1.0km' }
       ],
       recreation: [
-        { name: 'Playground', distance: '2.1km' },
-        { name: 'Football-Field', distance: '1.5km' },
-        { name: 'Park', distance: '1.5km' }
+        { name: 'Taman Tasok Chatin', distance: '1.9km' }
       ],
       transportation: [
-        { name: 'LRT', distance: '1.0km' },
-        { name: 'Bus', distance: '1.2km' }
+        { name: 'KTM Mentakab, link to ECRL', distance: '0.7km' }
       ],
       shopping: [
-        { name: 'Tesco', distance: '1.2km' },
-        { name: '7-Eleven', distance: '1.0km' },
-        { name: 'Mall', distance: '1.0km' }
+        { name: 'TF Value Mart', distance: '1.8km' }
       ]
     }
   }

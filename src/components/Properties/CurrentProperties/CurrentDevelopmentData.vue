@@ -65,29 +65,28 @@ export const developments = [
     slug: generateSlug('Casa Hill'),
     bannerimage: '/assets/Development/Casa Hill/casa_hill_01.png',
     logo: '/assets/Development/Casa Hill/logo.png',
-    location: 'Mentakab, Temerloh',
+    location: 'Mentakab, Pahang',
     districts: 'Temerloh',
     state: 'Pahang',
     type: 'Residential',
-    price: 'RM 6XXK*',
+    price: 'RM 1,063k**',
     status: 'New Launch',
     image: '/assets/Development/Casa Hill/casa_hill_02.png',
-    features: ['Luxury Living', 'Green Spaces'],
-    description: `The Camellia, your home at Wetlands Estates, the
-    private enclave in Gamuda Cove.`,
-    size: '1400 x 1,700 sqft',
+    features: ['Security for peace of mind', '40 ft width Backlane Garden', '+- 15ft height ceiling'],
+    description: 'The privilege of ownership.',
+    size: '4,004 - 5,769 sqft',
     gallerydevelopment: [
       {
-        url: '/assets/Development/Casa Hill/casa_hill_05.JPG',
-        description: 'Located in the Centre of Jengka'
+        url: '/assets/Development/Casa Hill/casa_hill_04.jpg',
+        description: 'Security for peace of mind'
       },
       {
         url: '/assets/Development/Casa Hill/casa_hill_03.jpg',
-        description: 'Lifestyle and Retail Convenience'
+        description: '2km Jogging Track'
       },
       {
-        url: '/assets/Development/Casa Hill/casa_hill_04.jpg',
-        description: 'Exciting Placemaking Experiences'
+        url: '/assets/Development/Casa Hill/casa_hill_05.JPG',
+        description: '+-15ft height floor level'
       }
     ],
     galleryImages: [

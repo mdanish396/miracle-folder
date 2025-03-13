@@ -281,7 +281,7 @@
           <div class="zoom-control">
             <button @click="zoomIn" class="close-btn"> <i class="fa fa-search-plus"></i></button>
             <button @click="zoomOut" class="close-btn"> <i class="fa fa-search-minus"></i></button>
-            <button class="close-btn" @click="ClosePopup"><i class="fa fa-times-circle"></i></button>
+            <button class="close-btn" @click="CloseImage"><i class="fa fa-times-circle"></i></button>
           </div>
         </div>
 
@@ -740,21 +740,33 @@ const openImage = (plan) => {
   if (!plan) return
   selectedPlanImage.value = plan
   showPopup.value = true
-  resetImagePosition()
+  setTimeout(() => { // Wait for popup to open, then reset zoom
+    resetImagePosition()
+  }, 50)
   document.body.style.overflow = 'hidden'
   emitToggleHeader(false) // Hide the header
 }
 
-const ClosePopup = () => {
+const CloseImage = () => {
   showPopup.value = false
   document.body.style.overflow = 'auto'
   emitToggleHeader(true)
 }
 
 const resetImagePosition = () => {
-  zoomLevel.value = 1
-  translateX.value = 0
-  translateY.value = 0
+  setTimeout(() => {
+    const popupContainer = document.querySelector('.popup-image-container')
+    const imgElement = document.querySelector('.popup-image')
+
+    if (!popupContainer || !imgElement) return
+
+    // Reset zoom level
+    zoomLevel.value = 1
+
+    // Center the image
+    translateX.value = 0
+    translateY.value = 0
+  }, 50) // Wait for popup to render
 }
 
 const zoomIn = () => {
@@ -771,25 +783,35 @@ const zoomOut = () => {
   }
 }
 
+let animationFrameId = null
+
 const startDragging = (event) => {
   isDragging.value = true
   lastMouseX.value = event.clientX
   lastMouseY.value = event.clientY
+  event.preventDefault() // Prevents unwanted text selection
 }
 
 const dragImage = (event) => {
-  if (isDragging.value) {
-    const deltaX = event.clientX - lastMouseX.value
-    const deltaY = event.clientY - lastMouseY.value
+  if (!isDragging.value) return
+
+  const deltaX = event.clientX - lastMouseX.value
+  const deltaY = event.clientY - lastMouseY.value
+
+  lastMouseX.value = event.clientX
+  lastMouseY.value = event.clientY
+
+  if (animationFrameId) cancelAnimationFrame(animationFrameId)
+
+  animationFrameId = requestAnimationFrame(() => {
     translateX.value += deltaX
     translateY.value += deltaY
-    lastMouseX.value = event.clientX
-    lastMouseY.value = event.clientY
-  }
+  })
 }
 
 const stopDragging = () => {
   isDragging.value = false
+  cancelAnimationFrame(animationFrameId)
 }
 
 const handleKeydown = (event) => {
@@ -1873,8 +1895,11 @@ max-height: 536px;
 }
 
 .popup-image-container {
-  position: relative;
-  flex: 1;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   cursor: grab;
 }
@@ -1884,11 +1909,9 @@ max-height: 536px;
 }
 
 .popup-image {
+  object-fit: contain;
   width: 100%;
   height: 100%;
-  object-fit:none;
-  max-width: min-content;
-  max-height: min-content;
   transition: transform 0.2s ease-in-out;
   transform-origin: center;
 }
