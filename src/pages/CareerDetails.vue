@@ -139,27 +139,26 @@
       </div>
     </div>
 
-<!-- Draggable FAB with QR Code -->
-<q-page-sticky position="bottom-right" :offset="fabPos">
-            <q-fab
-              direction="up"
-              color="dark grey"
-              icon="keyboard_arrow_up"
-              label-position="left"
-              :disable="draggingFab"
-              v-touch-pan.prevent.mouse="moveFab"
-            >
-              <template v-slot:label="{ opened }">
-                <div :class="{ 'example-fab-animate--hover': opened !== true }">
-                  {{ opened !== true ? 'Click for QR Code' : 'Scan to Apply Now' }}
-                </div>
-              </template>
+    <!-- Draggable FAB with QR Code -->
+    <q-page-sticky position="bottom-right" :offset="fabPos" style="z-index: 2;">
+      <q-fab
+        direction="up"
+        color="dark grey"
+        icon="keyboard_arrow_up"
+        label-position="left"
+        :disable="draggingFab"
+        v-touch-pan.prevent.mouse="moveFab">
+        <template v-slot:label="{ opened }">
+          <div :class="{ 'example-fab-animate--hover': opened !== true }">
+            {{ opened !== true ? 'Click for QR Code' : 'Scan to Apply Now' }}
+          </div>
+        </template>
 
-              <q-fab-action @click="onClick" color="white" style="border-radius: 1%;" >
-                <img src="/assets/qr-career.png" alt="QR Code" class="qr-img"/>
-              </q-fab-action>
-            </q-fab>
-          </q-page-sticky>
+        <q-fab-action @click="onClick" color="white" style="border-radius: 1%;" >
+          <img src="/assets/qr-career.png" alt="QR Code" class="qr-img"/>
+        </q-fab-action>
+      </q-fab>
+    </q-page-sticky>
   </q-page>
 </template>
 
@@ -269,19 +268,31 @@ onBeforeUnmount(() => {
   if (observer) observer.disconnect()
 })
 
-const fabPos = ref([18, 18])
+const fabPos = ref([18, 18]) // Initial position (X, Y)
 const draggingFab = ref(false)
-
-const onClick = () => {
-  console.log('FAB Action Clicked')
-}
 
 const moveFab = (ev) => {
   draggingFab.value = ev.isFirst !== true && ev.isFinal !== true
 
+  const screenWidth = window.innerWidth
+  const screenHeight = window.innerHeight
+
+  const fabWidth = 190
+
+  // Define movement limits (adjust if needed)
+  const minX = 10
+  const maxX = screenWidth - fabWidth // Adjust FAB size
+  const minY = 10
+  const maxY = screenHeight - 135 // Adjust for bottom margin
+
+  // Calculate new position
+  const newX = fabPos.value[0] - ev.delta.x
+  const newY = fabPos.value[1] - ev.delta.y
+
+  // Apply limits
   fabPos.value = [
-    fabPos.value[0] - ev.delta.x,
-    fabPos.value[1] - ev.delta.y
+    Math.min(maxX, Math.max(minX, newX)),
+    Math.min(maxY, Math.max(minY, newY))
   ]
 }
 
