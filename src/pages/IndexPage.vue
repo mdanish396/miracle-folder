@@ -249,7 +249,7 @@ useHead({
 
 onMounted(() => {
   setTimeout(() => {
-    showLoader.value = false
+    showLoader.value = true
   }, 3500)
 })
 
