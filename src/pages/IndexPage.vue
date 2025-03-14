@@ -540,15 +540,30 @@ const navigateToDevelopmentDetails = (slug) => {
   }
 }
 
-@media (max-width: 768px) {
-  .video-text-overlay {
-  top: 52%;
+@media (max-width: 1024px) {
+
+.video-text-overlay h1 {
+font-size: 21.5vw;
+}
 }
 
+@media (max-width: 768px) {
+
+  .video-text-overlay h1 {
+    margin-bottom: -10%;
+    font-size: 21vw;
+  }
   .video-text-overlay h2 {
     font-size: 5vw;
     padding-top: 10%;
   }
+}
+
+@media (max-width: 680px) {
+
+.video-text-overlay h1 {
+  font-size: 20.7vw;
+}
 }
 
 @media (max-width: 480px) {
