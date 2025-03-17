@@ -109,7 +109,7 @@
               <q-input v-model="form.name" label="Name*" outlined required />
 
               <!-- Email Field -->
-              <q-input v-model="form.email" label="Email*" type="email" outlined required />
+              <q-input v-model="form.email" label="Email*" type="email"     :rules="[(val) => validateEmail(val) || 'Must be a valid email']" outlined required />
 
               <!-- Telephone Field -->
               <q-input v-model="form.telephone" label="Telephone*" type="tel" outlined required />
@@ -159,6 +159,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useHead } from '@vueuse/head'
 import axios from 'axios'
 import { useQuasar } from 'quasar'
+import qs from 'qs'
 
 const sections = ref([])
 const fadeItems = ref([])
@@ -175,18 +176,26 @@ const form = ref({
 
 const isSubmitting = ref(false) // Track submission state
 
+const validateEmail = (email) => {
+  if (!email) {
+    return true
+  }
+  const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+  return emailRegex.test(email)
+}
+
 const submitForm = async () => {
   if (isSubmitting.value) return // Prevent multiple clicks
   isSubmitting.value = true
 
   try {
-    const response = await axios.post('http://localhost:8080/api/send-email', form.value, {
+    const response = await axios.post('http://localhost:8080/api/sendemail', qs.stringify(form.value), {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     })
 
-    console.log('Server Response:', response.data)
+    console.log('Server Response:', response)
 
-    if (response.data.status === 'success') {
+    if (response.status === 200 && response.data.status === 'success') {
       // Show success popup
       $q.dialog({
         title: 'Success ✅',
@@ -214,7 +223,7 @@ const submitForm = async () => {
     // Show error popup
     $q.dialog({
       title: 'Error ❌',
-      message: 'Failed to send email. Please try again.',
+      message: error.response?.data?.message || 'Failed to send email. Please try again.',
       ok: true
     })
   } finally {
