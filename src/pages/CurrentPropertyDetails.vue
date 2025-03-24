@@ -40,7 +40,7 @@
                     </div>
                     <div class="property-item">
                       <h4>From</h4>
-                      <p>{{ formatPrice(property.price) }}</p>
+                      <p >{{ formatPrice(property.price) }}</p>
                     </div>
                     <div class="property-item">
                       <h4>Status</h4>
@@ -401,7 +401,7 @@
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
               <a class="email-address" href="mailto:kevin@interplandesigns.com">
-                kevin@interplandesigns.com
+                info@miracleland.co <!-- kevin@interplandesigns.com -->
               </a>
             </div>
             <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
@@ -409,7 +409,7 @@
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
               <a class="email-address" href="mailto:hmnrs.md3@gmail.com">
-                hmnrs.md3@gmail.com
+                hr@miracleland.co <!-- hmnrs.md3@gmail.com -->
               </a>
               <div>
                 <i class="fa fa-phone phone-icon"></i>
@@ -418,19 +418,19 @@
                 </a>
               </div>
             </div>
-            <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
+            <!-- <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
               <a class="email-address" href="mailto:kevin@interplandesigns.com">
                 kevin@interplandesigns.com
               </a>
-            </div>
+            </div> -->
             <h5 class="business-title fade-up delay-2">Business Hours</h5>
             <div class="fade-up delay-3">
               <i class="fas fa-business-time calendar-icon"></i>
               <span class="business-hours">
-                Mon - Sat , 9am - 5pm
+                Mon - Sat , 9am - 6pm
               </span>
             </div>
           </div>
@@ -640,7 +640,7 @@ useHead({
 })
 
 function formatPrice (price) {
-  return price.replace(/RM (\d+)k\*/, (match, p1) => `RM ${p1},000*`)
+  return price.replace(/RM ([\d,]+)k\*/, (match, p1) => `RM ${p1},000*`)
 }
 
 onMounted(() => {
@@ -1087,10 +1087,24 @@ const loadMore = () => {
   width: 280px;
   min-width: 140px;
 }
-
-.property-item .space {
-  white-space: wrap;
+/* Ensure price does not wrap */
+.property-item:nth-child(2) p {
+  white-space: nowrap;
   overflow: visible;
+}
+
+.property-item:last-child {
+  width: 200px;
+}
+
+/* Allow status to wrap */
+.property-item:last-child p {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: visible;
+  white-space: wrap;
+  display: block;
+  max-width: 100%;
 }
 
 .truncated-text {
@@ -2120,7 +2134,7 @@ max-height: 536px;
   background-color: white;
   padding: 40px 6%;
   padding-top: 0px;
-  padding-bottom: 100px;
+  padding-bottom: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2471,7 +2485,7 @@ font-size: 14px;
 
 .products-section {
   text-align: center;
-  padding-top: 20px;
+  padding-top: 0px;
   padding-left: 5%;
   padding-right: 5%;
   padding-bottom: 130px;

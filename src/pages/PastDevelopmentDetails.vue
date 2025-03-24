@@ -885,7 +885,6 @@ const capitalizeFirstLetter = (string) => {
   height: 280px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-bottom: 3px solid #759403;
 }
 
 .card-title {

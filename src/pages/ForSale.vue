@@ -674,6 +674,7 @@ const capitalizeFirstLetter = (string) => {
 
 .information-overlay {
   display: flex;
+  background-color: white;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -797,6 +798,7 @@ const capitalizeFirstLetter = (string) => {
 
 .intro-section {
   text-align: center;
+  background-color: white;
   padding: 0px 1%;
   padding-top: 20px;
   margin-top: -10px;
@@ -879,7 +881,7 @@ const capitalizeFirstLetter = (string) => {
   width: 100%;
   padding-bottom: 0;
   height: 100%;
-  background: linear-gradient(to bottom, transparent 48%, #08463c 48%);
+  background: linear-gradient(to bottom, white 48%, #08463c 48%);
 }
 
 .card-grid {
@@ -906,7 +908,6 @@ const capitalizeFirstLetter = (string) => {
   height: 280px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-bottom: 3px solid #759403;
 }
 
 .card-title {
@@ -1236,7 +1237,7 @@ line-height: 20px;
 .gallery-section {
   padding: 0px;
   text-align: center;
-  background: linear-gradient(to bottom, white 54%, transparent 46%);
+  background: linear-gradient(to bottom, transparent 54%, transparent 46%);
 }
 
 .gallery-section h2 {

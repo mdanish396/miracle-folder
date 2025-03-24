@@ -258,7 +258,7 @@
       </q-scroll-area>
     </q-drawer>
     <q-page-container>
-      <q-page :style="{ backgroundColor: '#ffeedd', }">
+      <q-page :style="{ backgroundColor: '#ffff', }">
         <router-view @toggle-header="toggleHeader"/> <!-- This is where the content of your pages will be inserted -->
       </q-page>
     </q-page-container>
@@ -284,7 +284,7 @@
             <router-link to="/contact" class="footer-link">Contact Us</router-link>
             <!-- <router-link to="/career" class="footer-link">Careers</router-link> -->
             <router-link to="/careers" class="footer-link">Careers</router-link>
-            <p class="footer-time">Mon - Sat, 9AM - 5PM</p>
+            <p class="footer-time">Mon - Sat, 9AM - 6PM</p>
           </div>
           <div class="social-icons">
             <button class="social-btn facebook" aria-label="Facebook" @click="openFacebook">

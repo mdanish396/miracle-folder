@@ -17,7 +17,7 @@
 
         <!-- Image Section -->
         <div class="development-image-container">
-          <img src="/assets/currentproject/house1.jpg" class="top-image" />
+          <img src="/assets/development.png" class="top-image" />
         </div>
       </div>
     </div>
@@ -503,7 +503,6 @@ padding-inline: 20px;
 
 .developments-section {
   padding: 60px 10%;
-  background-color: #ffffed;
   text-align: center;
   padding-bottom: 80px;
 }

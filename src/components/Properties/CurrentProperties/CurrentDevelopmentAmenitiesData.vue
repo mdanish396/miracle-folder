@@ -12,7 +12,7 @@ export const nearbyAmenities = {
         { name: 'SMK Desa Jaya', distance: '1.5km ' },
         { name: 'SMK Jengka Pusat 2', distance: '1.5km' },
         { name: 'SK Jengka Pusat 2', distance: '1.5km' },
-        { name: 'SK Bandar Pusat Jengka', distance: '1.5' },
+        { name: 'SK Bandar Pusat Jengka', distance: '1.5km' },
         { name: 'SK Desa Jaya', distance: '1.5km' },
         { name: 'Maahad As-Sultan Ahmad Shah Addini', distance: '1.5km' }
       ],

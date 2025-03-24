@@ -168,7 +168,7 @@
         <!-- Text Content Section -->
         <div class="text-content">
           <div class="text fade-up delay-1">
-            <h2 class="text-above">Founder's Track Record</h2>
+            <h2 class="text-above">Our Track Record</h2>
             <div class="line-holders fade-up">
               <div class="line-3">
                 <div class="line-4">
@@ -190,7 +190,7 @@
 
         <!-- Image Section -->
         <div class="about-image-container fade-up">
-          <img src="/assets/currentproject/house1.jpg" class="about-image"/>
+          <img src="/assets/Development/Miracle Sentral/miracle_sentral_06.png" class="about-image"/>
         </div>
       </div>
     </div>
@@ -1003,7 +1003,8 @@ font-size: 21.5vw;
   text-align: center;
   animation: fadeInUp 1s ease forwards;
   padding-top: 60px;
-  padding-bottom: 100px;
+  background-color: #EAE9E6;
+  padding-bottom: 80px;
 }
 
 .partners-section h3 {

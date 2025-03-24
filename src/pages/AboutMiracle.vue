@@ -17,7 +17,7 @@
 
         <!-- Image Section -->
         <div class="about-image-container">
-          <img src="/assets/currentproject/house1.jpg" class="about-image" />
+          <img src="/assets/Development/Miracle Sentral/miracle_sentral_06.png" class="about-image" />
         </div>
       </div>
     </div>
@@ -160,7 +160,7 @@
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
               <a class="email-address" href="mailto:kevin@interplandesigns.com">
-                kevin@interplandesigns.com
+                info@miracleland.co <!-- kevin@interplandesigns.com -->
               </a>
             </div>
             <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
@@ -168,7 +168,7 @@
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
               <a class="email-address" href="mailto:hmnrs.md3@gmail.com">
-                hmnrs.md3@gmail.com
+                hr@miracleland.co <!-- hmnrs.md3@gmail.com -->
               </a>
               <div>
                 <i class="fa fa-phone phone-icon"></i>
@@ -177,19 +177,19 @@
                 </a>
               </div>
             </div>
-            <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
+            <!-- <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
               <a class="email-address" href="mailto:kevin@interplandesigns.com">
                 kevin@interplandesigns.com
               </a>
-            </div>
+            </div> -->
             <h5 class="business-title fade-up delay-2">Business Hours</h5>
             <div class="fade-up delay-3">
               <i class="fas fa-business-time calendar-icon"></i>
               <span class="business-hours">
-                Mon - Sat , 9am - 5pm
+                Mon - Sat , 9am - 6pm
               </span>
             </div>
           </div>
