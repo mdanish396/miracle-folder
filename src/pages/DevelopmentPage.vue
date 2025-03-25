@@ -17,7 +17,7 @@
 
         <!-- Image Section -->
         <div class="development-image-container">
-          <img src="/assets/development.png" class="top-image" />
+          <img src="/assets/development.jpg" class="top-image" />
         </div>
       </div>
     </div>
@@ -102,7 +102,7 @@
     </div>
 
     <!-- Past Developments Section -->
-    <div class="past-developments-section">
+    <div id="past-developments" class="past-developments-section">
   <h2 class="fade-up">Past Developments</h2>
   <div class="line-holder fade-up delay-1">
     <div class="line">
@@ -295,6 +295,10 @@ const navigateToPastDevelopmentDetails = (slug) => {
 @font-face {
   font-family: 'AvenirMedium';
   src: url('/assets/fonts/Avenir LT Std 65 Medium.otf') format('opentype');
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .section {

@@ -34,12 +34,12 @@ export const developments = [
     size: '20 x 75 sqft',
     gallerydevelopment: [ // 3 image only no less no more
       {
-        url: '/assets/Development/Miracle Sentral/miracle_sentral_03.jpg', // assets/Development/Miracle Sentral/miracle_sentral_10.png
-        description: 'Commercial Hub in the Heart of Jengka'
-      },
-      {
         url: '/assets/Development/Miracle Sentral/miracle_sentral_11.png', // assets/Development/Miracle Sentral/miracle_sentral_13.jpg
         description: 'Lifestyle & Retail Conveniences'
+      },
+      {
+        url: '/assets/Development/Miracle Sentral/miracle_sentral_03.jpg', // assets/Development/Miracle Sentral/miracle_sentral_10.png
+        description: 'Commercial Hub in the Heart of Jengka'
       },
       {
         url: '/assets/Development/Miracle Sentral/miracle_sentral_12.jpg', // assets/Development/Miracle Sentral/miracle_sentral_09.png
@@ -47,11 +47,11 @@ export const developments = [
       }
     ],
     galleryImages: [
-      '/assets/Development/Miracle Sentral/miracle_sentral_07.png',
       '/assets/Development/Miracle Sentral/miracle_sentral_04.jpeg',
+      '/assets/Development/Miracle Sentral/miracle_sentral_03.jpg',
       '/assets/Development/Miracle Sentral/miracle_sentral_05.jpg',
       '/assets/Development/Miracle Sentral/miracle_sentral_06.png',
-      '/assets/Development/Miracle Sentral/miracle_sentral_03.jpg',
+      '/assets/Development/Miracle Sentral/miracle_sentral_07.png',
       '/assets/Development/Miracle Sentral/miracle_sentral_11.png',
       '/assets/Development/Miracle Sentral/miracle_sentral_12.jpg',
       '/assets/Development/Miracle Sentral/miracle_sentral_09.jpg',

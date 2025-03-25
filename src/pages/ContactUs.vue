@@ -53,7 +53,7 @@
             <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
               <a class="contact-no" href="tel:+60192966666">
-                +60 19 296 6666
+                +609 2960 8888
               </a>
             </div>
             <h5 class="email-title fade-up delay-2">General Enquiries</h5>

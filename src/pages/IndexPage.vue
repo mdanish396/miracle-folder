@@ -156,9 +156,9 @@
         </div>
       </div>
       <div class="logo-container fade-up delay-2">
-        <img src="/assets/wf.png" alt="Partner 2" class="partner-logo1"/>
-        <img src="/assets/interplan.png" alt="Partner 1" class="partner-logo"/>
-        <img src="/assets/ag.png" alt="Partner 3" class="partner-logo1"/>
+        <img src="/assets/maybank.png" alt="Partner 2" class="partner-logo1"/>
+        <img src="/assets/cimb.png" alt="Partner 1" class="partner-logo1"/>
+        <img src="/assets/interplan.png" alt="Partner 3" class="partner-logo"/>
       </div>
     </div>
 
@@ -180,9 +180,9 @@
             <div class="fade-up delay-2">
               <q-btn
                 flat
-                label="About Us"
+                label="View Past Developments"
                 class="about-btn"
-                to="/about-miracle-land"
+                to="/developments#past-developments"
               />
             </div>
           </div>
@@ -1018,7 +1018,7 @@ font-size: 21.5vw;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10%; /* Space between logos */
+  gap: 5%; /* Space between logos */
   width: 100%; /* Full width */
   padding-left: 5%;
   padding-right: 5%;
@@ -1030,18 +1030,18 @@ font-size: 21.5vw;
 }
 
 .partner-logo {
-  width: 100px;
+  width: 80px;
   height: auto;
   transition: transform 0.5s ease-in-out;
 }
 
 .partner-logo1 {
   width: auto;
-  height: 100px;
+  height: 80px;
   transition: transform 0.5s ease-in-out;
 }
 
-.partner-logo:hover, .partner-logo1:hover {
+.partner-logo:hover, .partner-logo1:hover{
   transform: scale(1.1);
 }
 
