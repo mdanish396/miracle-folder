@@ -268,7 +268,7 @@ export const nearbyAmenities = {
       ]
     }
   },
-  'Dynaton Izona (Phase 1, 2, 3, 3b)': {
+  'Dynaton Izona': {
     amenities: {
       education: [
         { name: '3Q MRC Mentakab', distance: '2.4km' },

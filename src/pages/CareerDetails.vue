@@ -14,13 +14,12 @@
           <h2 class="text-above fade-up delay-1">Careers</h2>
           <p class="text-below fade-up delay-2">
             Explore our current job opportunities.
-            <i class="fa fa-bullhorn" style="font-size:larger; color: beige;"></i>
           </p>
         </div>
 
         <!-- Image Section -->
         <div class="career-image-container">
-          <img src="/assets/currentproject/house1.jpg" class="top-image" />
+          <img src="/assets/contact.jpg" class="top-image" />
         </div>
       </div>
     </div>
@@ -60,7 +59,7 @@
           <p>Send your resume</p>
           <a href="mailto:hmnrs.md3@gmail.com" class="info">
             <i class="fa fa-envelope icons"></i>
-            hmnrs.md3@gmail.com
+            hr@miracleland.co
           </a>
         </div>
         <div class="contact-info">
@@ -456,6 +455,7 @@ const moveFab = (ev) => {
 .top-image {
   width: 65vw;
   height: 71vh;
+  object-position:bottom;
   object-fit: cover;
 }
 

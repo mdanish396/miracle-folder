@@ -444,35 +444,31 @@
               </div>
             </div>
             <p class="fade-up delay-3">Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
-            <form
-              action="https://formspree.io/f/myzkjkew"
-              method="POST"
-              class="register-form fade-up delay-4">
+            <q-form @submit.prevent="submitForm" class="register-form fade-up delay-4">
               <!-- Name Field -->
-              <input type="text" name="name" placeholder="Name*" required>
+              <q-input v-model="form.name" label="Name*" outlined required />
 
               <!-- Email Field -->
-              <input type="email" name="email" placeholder="Email*" required>
+              <q-input v-model="form.email" label="Email*" type="email"     :rules="[(val) => validateEmail(val) || 'Must be a valid email']" outlined required />
 
               <!-- Telephone Field -->
-              <input type="tel" name="telephone" placeholder="Telephone*" required>
+              <q-input v-model="form.telephone" label="Telephone*" type="tel" outlined required />
 
               <!-- Enquiry Type Dropdown -->
-              <select name="enquiryType" required>
-                <option disabled selected>Select enquiry type</option>
-                <option value="General">General</option>
-                <option value="Interested Project">Interested Project</option>
-                <option value="Consultation">Consultation</option>
-                <option value="Business">Business</option>
-                <option value="Contractor">Contractor</option>
-              </select>
+              <q-select
+                v-model="form.enquiryType"
+                label="Select enquiry type*"
+                outlined
+                :options="['General', 'Interested Project', 'Consultation', 'Business', 'Contractor']"
+                required
+              />
 
               <!-- Message Field -->
-              <textarea name="message" placeholder="Questions/Comments*" required></textarea>
+              <q-input v-model="form.message" label="Questions/Comments*" type="textarea" outlined required />
 
               <!-- Submit Button -->
-              <button type="submit" class="submit-btn">SEND</button>
-            </form>
+              <q-btn type="submit" label="SEND" class="submit-btn" :loading="isSubmitting" :disable="isSubmitting" />
+            </q-form>
             <div class="career">
               <h2 class="fade-up delay-1">Career Opportunities</h2>
               <div class="register-line-holder fade-up delay-2">
@@ -576,6 +572,8 @@ import { nearbyAmenities } from 'src/components/Properties/CurrentProperties/Cur
 import { useQuasar } from 'quasar'
 import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 import { useHead } from '@vueuse/head'
+import axios from 'axios'
+import qs from 'qs'
 
 // Assuming you have a store or an API to fetch properties
 const route = useRoute()
@@ -599,6 +597,71 @@ const visibleCount = ref(3)
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+
+const form = ref({
+  name: '',
+  email: '',
+  telephone: '',
+  enquiryType: '',
+  message: ''
+})
+
+const isSubmitting = ref(false) // Track submission state
+
+const validateEmail = (email) => {
+  if (!email) {
+    return true
+  }
+  const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+  return emailRegex.test(email)
+}
+
+const submitForm = async () => {
+  if (isSubmitting.value) return // Prevent multiple clicks
+  isSubmitting.value = true
+
+  try {
+    const response = await axios.post('http://localhost:8080/api/sendemail', qs.stringify(form.value), {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    })
+
+    console.log('Server Response:', response)
+
+    if (response.status === 200 && response.data.status === 'success') {
+      // Show success popup
+      $q.dialog({
+        title: 'Success ✅',
+        message: 'Your email has been sent successfully!',
+        ok: true
+      })
+      // Reset form fields after successful submission
+      form.value = {
+        name: '',
+        email: '',
+        telephone: '',
+        enquiryType: '',
+        message: ''
+      }
+    } else {
+      // Show warning popup if email fails
+      // $q.dialog({
+      //   title: 'Warning ⚠️',
+      //   message: response.data.message || 'Unable to send email. Please try again.',
+      //   ok: true
+      // })
+    }
+  } catch (error) {
+    console.error('Error sending email:', error.response?.data || error.message)
+    // Show error popup
+    // $q.dialog({
+    //   title: 'Error ❌',
+    //   message: error.response?.data?.message || 'Failed to send email. Please try again.',
+    //   ok: true
+    // })
+  } finally {
+    isSubmitting.value = false // Reset submission state
+  }
+}
 
 useHead({
   title: property.value.name + ' | Miracle Land',
@@ -2013,7 +2076,7 @@ max-height: 536px;
   .amenities-child {
     font-size: 16px;
     line-height: 24px;
-    font-family: 'TitilliumWebSemiRegular';
+    font-family: 'TitilliumWebSemiBold';
     cursor: default;
   }
 

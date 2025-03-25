@@ -27,7 +27,7 @@ export const properties = {
     status: 'New Launch',
     price: 'RM 865k*',
     image: '/assets/Development/Miracle Sentral/miracle_sentral_06.png',
-    features: ['Low Investment, High Return (ROI) Up to 8%', 'Walking Distance to UiTM University Jengka', 'Located in the Centre of Jengka, the Fastest-Growing Economy in Pahang '],
+    features: ['Low Investment, High Return (ROI) Up to 8%*', 'Walking Distance to UiTM University Jengka', 'Located in the Centre of Jengka, the Fastest-Growing Economy in Pahang '],
     description: 'This modern two-storey shop office features a sleek, contemporary shopfront with large glass windows for optimal visibility. The second storey houses a spacious, professional office, designed with modern finishes and ample natural light. The design seamlessly blends retail and office spaces, creating a functional and aesthetic environment.',
     gallery: [
       '/assets/Development/Miracle Sentral/miracle_sentral_07.png',
@@ -54,7 +54,7 @@ export const properties = {
     status: 'New Launch',
     price: 'RM 699k*',
     image: '/assets/Development/Miracle Sentral/miracle_sentral_08.png',
-    features: ['Low Investment, High Return (ROI) Up to 8%', 'Walking Distance to UiTM University Jengka', 'Located in the Centre of Jengka, the Fastest-Growing Economy in Pahang'],
+    features: ['Low Investment, High Return (ROI) Up to 8%*', 'Walking Distance to UiTM University Jengka', 'Located in the Centre of Jengka, the Fastest-Growing Economy in Pahang'],
     description: 'This two-storey shop lot features an open frontage on both levels, offering excellent visibility for retail and F&B purposes. The layout is designed for flexibility, creating an inviting atmosphere across both storeys. With a public-facing presence on each floor, it enhances the flow of foot traffic and customer engagement.',
     gallery: [
       '/assets/Development/Miracle Sentral/miracle_sentral_07.png',
@@ -139,7 +139,6 @@ export const properties = {
       '/assets/Development/Casa Hill/casa_hill_07.jpg'
     ],
     builtup: '55’ x 87’',
-    vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.4411082928295!2d102.33912939999999!3d3.4847702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba1bc23fa6b7%3A0xfe72a6be37126111!2sDynaton%20Casa%20Hill!5e0!3m2!1sen!2smy!4v1737941338360!5m2!1sen!2smy',
     area: '55’ x 87’', // 4349 – 9838 sqft
     bedroom: 5 + 2,
@@ -176,7 +175,6 @@ export const properties = {
       '/assets/Development/Casa Hill/casa_hill_07.jpg'
     ],
     builtup: '50’/55’ x 80’/87’',
-    vr: 'https://momento360.com/e/u/9dc075c498c542bdbd38b11d8e5d7bca?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.4411082928295!2d102.33912939999999!3d3.4847702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba1bc23fa6b7%3A0xfe72a6be37126111!2sDynaton%20Casa%20Hill!5e0!3m2!1sen!2smy!4v1737941338360!5m2!1sen!2smy',
     area: '50’/55’ x 80’/87’', // 4,004 - 9,375 sqft
     bedroom: 4 + 2,

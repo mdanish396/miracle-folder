@@ -29,7 +29,7 @@ export const developments = [
     price: 'RM 699k*',
     status: 'New Launch',
     image: '/assets/Development/Miracle Sentral/miracle_sentral_02.png',
-    features: ['Low Investment, High Return (ROI) Up to 8%', 'Walking Distance to UiTM University Jengka', 'Located in the Centre of Jengka, the Fastest-Growing Economy in Pahang'],
+    features: ['Low Investment, High Return (ROI) Up to 8%*', 'Walking Distance to UiTM University Jengka', 'Located in the Centre of Jengka, the Fastest-Growing Economy in Pahang'],
     description: 'The biggest commercial centre in Jengka Town.',
     size: '20 x 75 sqft',
     gallerydevelopment: [ // 3 image only no less no more

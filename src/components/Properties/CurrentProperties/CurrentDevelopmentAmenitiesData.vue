@@ -8,13 +8,16 @@ export const nearbyAmenities = {
   'Miracle Sentral': {
     amenities: {
       education: [
-        { name: 'SMK Jengka Pusat', distance: '1.5km' },
-        { name: 'SMK Desa Jaya', distance: '1.5km ' },
-        { name: 'SMK Jengka Pusat 2', distance: '1.5km' },
-        { name: 'SK Jengka Pusat 2', distance: '1.5km' },
-        { name: 'SK Bandar Pusat Jengka', distance: '1.5km' },
+        { name: 'Uitm Jengka', distance: '0.6km' },
+        { name: 'SMK Jengka Pusat', distance: '1.4km' },
+        { name: 'SMK Desa Jaya', distance: '1.2km ' },
+        { name: 'SMK Jengka Pusat 2', distance: '1.2km' },
+        { name: 'SK Jengka Pusat 2', distance: '0.5km' },
+        { name: 'SK Bandar Pusat Jengka', distance: '1.2km' },
         { name: 'SK Desa Jaya', distance: '1.5km' },
-        { name: 'Maahad As-Sultan Ahmad Shah Addini', distance: '1.5km' }
+        { name: 'Maahad As-Sultan Ahmad Shah Addini', distance: '0.7km' },
+        { name: 'Seri Tahfiz Al Bana', distance: '2.6km' },
+        { name: 'SK Felda Jengka 11', distance: '4.5km' }
       ],
       healthcare: [
         { name: 'Hospital Jengka', distance: '1.1km' }
@@ -45,7 +48,7 @@ export const nearbyAmenities = {
         { name: 'Bandar Mentakab', distance: '1.0km' }
       ],
       recreation: [
-        { name: 'Taman Tasok Chatin', distance: '1.9km' }
+        { name: 'Taman Tasik Chatin', distance: '1.9km' }
       ],
       transportation: [
         { name: 'KTM Mentakab, link to ECRL', distance: '0.7km' }

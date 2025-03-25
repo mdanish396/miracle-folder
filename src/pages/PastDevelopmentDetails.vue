@@ -702,6 +702,7 @@ const capitalizeFirstLetter = (string) => {
   width: 130px;
   background-color: white;
   height: 130px;
+  overflow: hidden;
   margin-top: -50px;
   border-radius: 100px;
   border: 1px solid rgba(0, 0, 0, 0.1);

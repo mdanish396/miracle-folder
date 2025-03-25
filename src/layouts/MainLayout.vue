@@ -329,13 +329,13 @@ useHead({
   title: 'Miracle Land | Property Development in Malaysia', // English title for clarity
   meta: [
     // English Metadata
-    { name: 'description', content: 'Miracle Land is a premier property development company in Malaysia. Buy houses and shops in Pahang, including Mentakab & Bukit Bendera.' },
-    { name: 'keywords', content: 'property development, real estate, Malaysia, buy house, buy shop, Pahang, Mentakab, Bukit Bendera' },
+    { name: 'description', content: 'Miracle Land is a premier property development company in Pahang. Buy houses and shops in Pahang, including Jengka and Temerloh.' },
+    { name: 'keywords', content: 'property development, real estate, Malaysia, buy house, buy shop, Pahang, Jengka, Temerloh' },
     { name: 'author', content: 'Miracle Land Holdings Berhad' },
 
     // Malay Metadata
     { name: 'description', content: 'Miracle Land adalah syarikat pembangunan hartanah terkemuka di Malaysia. Beli rumah dan kedai di Pahang, termasuk Mentakab & Bukit Bendera.' },
-    { name: 'keywords', content: 'hartanah, pembangunan hartanah, beli rumah, beli kedai, Malaysia, Pahang, Mentakab, Bukit Bendera' },
+    { name: 'keywords', content: 'hartanah, pembangunan hartanah, beli rumah, beli kedai, Malaysia,  Pahang, Jengka, Temerloh' },
 
     // Open Graph (OG) - Facebook Sharing
     { property: 'og:title', content: 'Miracle Land | Pembangunan Hartanah' },
@@ -483,7 +483,7 @@ const openInstagram = () => {
 // }
 
 const openTiktok = () => {
-  window.open('https://www.tiktok.com/@dynaton.property', '_blank')
+  window.open('https://www.tiktok.com/@miraclesentraljengka', '_blank')
 }
 
 // Mount/unmount lifecycle hooks

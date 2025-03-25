@@ -16,7 +16,7 @@
 
         <!-- Image Section -->
         <div class="contact-image-container">
-          <img src="/assets/currentproject/house1.jpg" class="top-image" />
+          <img src="/assets/Development/Miracle Sentral/miracle_sentral_07.png" class="top-image" />
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
               <a class="email-address" href="mailto:kevin@interplandesigns.com">
-                kevin@interplandesigns.com
+                info@miracleland.co <!-- kevin@interplandesigns.com -->
               </a>
             </div>
             <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
@@ -69,7 +69,7 @@
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
               <a class="email-address" href="mailto:hmnrs.md3@gmail.com">
-                hmnrs.md3@gmail.com
+                hr@miracleland.co <!-- hmnrs.md3@gmail.com -->
               </a>
               <div>
                 <i class="fa fa-phone phone-icon"></i>
@@ -78,19 +78,19 @@
                 </a>
               </div>
             </div>
-            <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
+            <!-- <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
               <a class="email-address" href="mailto:kevin@interplandesigns.com">
                 kevin@interplandesigns.com
               </a>
-            </div>
+            </div> -->
             <h5 class="business-title fade-up delay-2">Business Hours</h5>
             <div class="fade-up delay-3">
               <i class="fas fa-business-time calendar-icon"></i>
               <span class="business-hours">
-                Mon - Sat , 9am - 5pm
+                Mon - Sat , 9am - 6pm
               </span>
             </div>
           </div>
@@ -212,20 +212,20 @@ const submitForm = async () => {
       }
     } else {
       // Show warning popup if email fails
-      $q.dialog({
-        title: 'Warning ⚠️',
-        message: response.data.message || 'Unable to send email. Please try again.',
-        ok: true
-      })
+      // $q.dialog({
+      //   title: 'Warning ⚠️',
+      //   message: response.data.message || 'Unable to send email. Please try again.',
+      //   ok: true
+      // })
     }
   } catch (error) {
     console.error('Error sending email:', error.response?.data || error.message)
     // Show error popup
-    $q.dialog({
-      title: 'Error ❌',
-      message: error.response?.data?.message || 'Failed to send email. Please try again.',
-      ok: true
-    })
+    // $q.dialog({
+    //   title: 'Error ❌',
+    //   message: error.response?.data?.message || 'Failed to send email. Please try again.',
+    //   ok: true
+    // })
   } finally {
     isSubmitting.value = false // Reset submission state
   }

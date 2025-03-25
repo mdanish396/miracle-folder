@@ -219,12 +219,12 @@ useHead({
   meta: [
     // English Meta Tags
     { name: 'description', content: 'Discover high-quality property developments by Miracle Land Holdings Berhad. Explore our latest projects in Pahang, Malaysia, including houses and shops for sale.' },
-    { name: 'keywords', content: 'property development, real estate, buy house, buy shop, Malaysia, Pahang, Miracle Land, Mentakab, Bukit Bendera, Jengka' },
+    { name: 'keywords', content: 'property development, real estate, buy house, buy shop, rent shop, Malaysia, Pahang, Miracle Land, Temerloh, Jengka' },
     { name: 'author', content: 'Miracle Land Holdings Berhad' },
 
     // Malay Meta Tags
     { name: 'description', content: 'Temui pembangunan hartanah berkualiti tinggi oleh Miracle Land. Dapatkan rumah dan kedai untuk dijual di Pahang, Malaysia.' },
-    { name: 'keywords', content: 'hartanah, beli rumah, beli kedai, pembangunan hartanah, Malaysia, Pahang, Miracle Land, Mentakab, Bukit Bendera, Jengka' },
+    { name: 'keywords', content: 'hartanah, beli rumah, beli kedai, sewa kedai, pembangunan hartanah, Malaysia, Pahang, Miracle Land, Temerloh, Jengka' },
 
     // Open Graph (OG) - Facebook & Social Media
     { property: 'og:title', content: 'Miracle Land | Pembangunan Hartanah di Malaysia' },

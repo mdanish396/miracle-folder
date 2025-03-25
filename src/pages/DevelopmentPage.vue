@@ -138,8 +138,8 @@
             <h4>Type</h4>
             <p>{{ pastdevelopments.type }}</p>
           </div>
-          <q-separator />
-          <q-toolbar class="development-toolbar">
+          <!-- <q-separator /> -->
+          <!-- <q-toolbar class="development-toolbar">
             <div class="development-item">
               <h4>From</h4>
               <p>-</p>
@@ -148,10 +148,10 @@
               <h4>Up to</h4>
               <p>{{ pastdevelopments.size }}</p>
             </div>
-          </q-toolbar>
-          <q-separator />
+          </q-toolbar> -->
+          <!-- <q-separator /> -->
         </div>
-        <div class="development-feature-list">
+        <!-- <div class="development-feature-list">
           <div
             v-for="feature in pastdevelopments.features"
             :key="feature"
@@ -159,7 +159,7 @@
             <i class="far fa-dot-circle icon1"></i>
             <span class="development-feature">{{ feature }}</span>
           </div>
-        </div>
+        </div> -->
         <div class="actions">
           <q-btn flat class="action-btn" @click="navigateToPastDevelopmentDetails(pastdevelopments.slug)">
             <q-icon name="fas fa-arrow-right" class="arrow-icon" />
@@ -194,7 +194,7 @@ useHead({
   title: 'Our Developments | Miracle Land',
   meta: [
     { name: 'description', content: 'Explore our current and past developments to find your dream property in Malaysia.' },
-    { name: 'keywords', content: 'property for sale, Malaysia real estate, new developments, past projects' },
+    { name: 'keywords', content: 'property for sale, shop, house, rent, buy, Malaysia real estate, Pahang, Jengka, Temerloh new developments, past projects' },
     { name: 'robots', content: 'index, follow' },
     { property: 'og:title', content: 'Our Developments | Miracle Land' },
     { property: 'og:description', content: 'Explore our current and past developments to find your dream property in Malaysia.' },
@@ -652,6 +652,10 @@ padding-inline: 20px;
   flex-grow: 1;
   height: 830px;
   margin: 20px 0; /* Center align */
+}
+
+.past-developments-section .development-card {
+  height: 520px; /* Set a different height for past developments */
 }
 
 @media (max-width: 1440px) {

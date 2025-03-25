@@ -18,7 +18,7 @@ function generateSlug (text) {
 export const pastdevelopments = [
   {
     id: 1,
-    name: 'Dynaton Bukit Angin',
+    name: 'Bukit Angin',
     slug: generateSlug('Dynaton Bukit Angin'),
     bannerimage: '/assets/Development/Dynaton Bukit Angin/bukit_angin_05.jpg',
     logo: '/assets/Development/Dynaton Bukit Angin/logo.svg',
@@ -284,7 +284,7 @@ export const pastdevelopments = [
   },
   {
     id: 8,
-    name: 'Dynaton Saujana',
+    name: 'Saujana Temerloh',
     slug: generateSlug('Dynaton Saujana'),
     bannerimage: '/assets/Development/Dynaton Saujana/saujana-01.jpg',
     logo: '/assets/Development/Dynaton Saujana/logo.svg',
@@ -321,7 +321,7 @@ export const pastdevelopments = [
   },
   {
     id: 9,
-    name: 'Dynaton Izona',
+    name: 'Izona Mentakab',
     slug: generateSlug('Dynaton Izona'),
     bannerimage: '/assets/Development/Dynaton Izona/izona_01.jpg',
     logo: '/assets/Development/Dynaton Izona/logo.svg',
