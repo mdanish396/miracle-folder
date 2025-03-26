@@ -52,7 +52,7 @@
             <h5 class="contact-title fade-up delay-2">Contact Number</h5>
             <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
-              <a class="contact-no" href="tel:+60192966666">
+              <a class="contact-no" href="tel:+60929608888">
                 +609 2960 8888
               </a>
             </div>
