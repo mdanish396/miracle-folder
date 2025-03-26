@@ -98,7 +98,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -1439,10 +1438,11 @@ max-height: 536px;
 .description-section {
   margin: 30px 0;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 0;
 }
 
 .description-section h2{
+  padding-top: 8px;
   font-size: 48px;
   line-height: 56px;
   font-family: 'TitilliumWebBold';
@@ -1541,7 +1541,7 @@ max-height: 536px;
 
 .gallery-grid {
   display: flex;
-  padding-bottom: 120px;
+  padding-bottom: 20px;
   padding-top: 10px;
   gap: 10px;
   justify-content: center;
@@ -1727,8 +1727,8 @@ max-height: 536px;
 
  /*Floorplan Section */
 .floorplan-section {
-  margin-top: 60px;
   padding: 20px 10%;
+  padding-top: 0;
   text-align: center;
   background-color:#fff;
   align-items: center;
