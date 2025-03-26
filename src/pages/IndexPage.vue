@@ -1037,7 +1037,7 @@ font-size: 21.5vw;
 
 .partner-logo1 {
   width: auto;
-  height: 80px;
+  height: 60px;
   transition: transform 0.5s ease-in-out;
 }
 

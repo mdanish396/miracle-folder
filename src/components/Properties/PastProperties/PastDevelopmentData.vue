@@ -19,7 +19,7 @@ export const pastdevelopments = [
   {
     id: 1,
     name: 'Bukit Angin',
-    slug: generateSlug('Dynaton Bukit Angin'),
+    slug: generateSlug('Bukit Angin'),
     bannerimage: '/assets/Development/Dynaton Bukit Angin/bukit_angin_05.jpg',
     logo: '/assets/Development/Dynaton Bukit Angin/logo.svg',
     location: 'Temerloh, Pahang',
@@ -285,7 +285,7 @@ export const pastdevelopments = [
   {
     id: 8,
     name: 'Saujana Temerloh',
-    slug: generateSlug('Dynaton Saujana'),
+    slug: generateSlug('Saujana Temerloh'),
     bannerimage: '/assets/Development/Dynaton Saujana/saujana-01.jpg',
     logo: '/assets/Development/Dynaton Saujana/logo.svg',
     location: 'Temerloh, Pahang',
@@ -322,7 +322,7 @@ export const pastdevelopments = [
   {
     id: 9,
     name: 'Izona Mentakab',
-    slug: generateSlug('Dynaton Izona'),
+    slug: generateSlug('Izona Mentakab'),
     bannerimage: '/assets/Development/Dynaton Izona/izona_01.jpg',
     logo: '/assets/Development/Dynaton Izona/logo.svg',
     location: 'Mentakab, Pahang',

@@ -5,7 +5,7 @@
 
 <script>
 export const nearbyAmenities = {
-  'Dynaton Bukit Angin': {
+  'Bukit Angin': {
     amenities: {
       education: [
         { name: ' SK Bandar Temerloh', distance: '1.8km' },
@@ -236,7 +236,7 @@ export const nearbyAmenities = {
       ]
     }
   },
-  'Dynaton Saujana': {
+  'Saujana Temerloh': {
     amenities: {
       education: [
         { name: 'SK Bandar Temerloh', distance: '3.5km' },
@@ -268,7 +268,7 @@ export const nearbyAmenities = {
       ]
     }
   },
-  'Dynaton Izona': {
+  'Izona Mentakab': {
     amenities: {
       education: [
         { name: '3Q MRC Mentakab', distance: '2.4km' },

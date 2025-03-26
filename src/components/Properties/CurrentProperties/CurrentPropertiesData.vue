@@ -42,7 +42,7 @@ export const properties = {
     ],
     area: '20 X 75 sqft',
     plan: '/assets/Development/Miracle Sentral/Floor Plan_Miracle Sentral.png',
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
+    map: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3981.1899270081403!2d102.5470679!3d3.7688108!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31c931adceacfb6d%3A0x9141d767665ffa22!2sMiracle%20Sentral%20Sales%20Gallery%20%40%20Jengka!5e0!3m2!1sen!2smy!4v1741226657416!5m2!1sen!2smy'
   },
   {
     id: 2,
@@ -69,7 +69,7 @@ export const properties = {
     ],
     area: '15 X 60 sqft',
     plan: '/assets/Development/Miracle Sentral/Floor Plan_Miracle Sentral.png',
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.204467936385!2d102.33761262954054!3d3.482833823535699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba19442459ed%3A0x6741cc23f71eada3!2sDynaton%20Casa%20Hill%2C%2028400%20Mentakab%2C%20Pahang!5e0!3m2!1sen!2smy!4v1733993061093!5m2!1sen!2smy&map_action=map&streetview=on'
+    map: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3981.1899270081403!2d102.5470679!3d3.7688108!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31c931adceacfb6d%3A0x9141d767665ffa22!2sMiracle%20Sentral%20Sales%20Gallery%20%40%20Jengka!5e0!3m2!1sen!2smy!4v1741226657416!5m2!1sen!2smy'
   }
   ],
   'Casa Hill': [{

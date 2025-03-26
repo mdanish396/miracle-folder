@@ -52,15 +52,15 @@
             <h5 class="contact-title fade-up delay-2">Contact Number</h5>
             <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
-              <a class="contact-no" href="tel:+60929608888">
-                +609 2960 8888
+              <a class="contact-no" href="tel:+6092960888">
+                +609 2960 888
               </a>
             </div>
             <h5 class="email-title fade-up delay-2">General Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <a class="email-address" href="mailto:kevin@interplandesigns.com">
+              <a class="email-address" href="mailto:info@miracleland.co">
                 info@miracleland.co <!-- kevin@interplandesigns.com -->
               </a>
             </div>
@@ -68,7 +68,7 @@
             <p class="email-subtitle fade-up delay-2">We're always on the lookout for talented people - please send us <br> your CV and portfolio (no larger than 5MB) to</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <a class="email-address" href="mailto:hmnrs.md3@gmail.com">
+              <a class="email-address" href="mailto:hr@miracleland.co">
                 hr@miracleland.co <!-- hmnrs.md3@gmail.com -->
               </a>
               <div>
