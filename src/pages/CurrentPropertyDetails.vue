@@ -1051,7 +1051,8 @@ const loadMore = () => {
 
 .property-hero {
   padding: 20px 5%;
-  min-height: 100vh;
+  height: 100%;
+  min-height: fit-content;
   background: linear-gradient(to top, #fefefe 50%, #08463c 50%);
 }
 

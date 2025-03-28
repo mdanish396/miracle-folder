@@ -10,7 +10,30 @@
 
     <!-- Hero Section -->
     <div class="hero-section">
-      <img src="/assets/index.jpg" alt="Hero Image" class="hero-video"/>
+      <q-carousel
+      v-model="slide"
+      swipeable
+      animated
+      infinite
+      navigation
+      autoplay
+      arrows
+      transition-prev="fade"
+      transition-next="fade"
+      class="hero-carousel"
+    >
+      <q-carousel-slide name="first" img-src="/assets/index.jpg">
+        <div class="video-text-overlay">
+          <h1>MIRACLE</h1>
+          <h2>FOR YOU FOREVER</h2>
+        </div>
+      </q-carousel-slide>
+      <q-carousel-slide name="second" img-src="/assets/careers.jpg" />
+      <q-carousel-slide name="third" img-src="/assets/development.jpg" />
+      <q-carousel-slide name="fourth" img-src="/assets/contact.jpg" />
+
+    </q-carousel>
+      <!-- <img src="/assets/index.jpg" alt="Hero Image" class="hero-video"/> -->
       <!-- <video
         autoplay
         loop
@@ -23,21 +46,19 @@
       </video> -->
 
       <!-- Text Overlay in Video (centered) -->
-      <div class="video-text-overlay">
+      <!-- <div class="video-text-overlay">
         <h1>MIRACLE</h1>
-        <h2>FOR YOU FOREVER</h2>
+        <h2>FOR YOU FOREVER</h2> -->
         <!-- <h1>MIRACLES MADE FOR YOU <br> - FOREVER</h1> -->
-      </div>
+      <!-- </div> -->
 
       <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
-      <div class="scroll-indicator">
+      <!-- <div class="scroll-indicator">
         <video autoplay loop muted class="mouse-animation" playsinline>
           <source src="/assets/mouse.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
-      </div>
-      <!-- Vertical Branding -->
-      <!-- <div class="vertical-branding">MIRACLE LAND</div> -->
+      </div> -->
     </div>
 
     <!-- Current Developments Section -->
@@ -213,6 +234,8 @@ const showAllDevelopments = ref(false)
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+
+const slide = ref('first')
 
 useHead({
   title: 'Miracle Land | Premier Property Development in Malaysia',
@@ -441,7 +464,7 @@ const navigateToDevelopmentDetails = (slug) => {
   overflow: hidden;
 }
 
-.hero-video {
+.hero-carousel {
   width: 100%;
   height: 100%;
   object-position: top;
@@ -456,7 +479,6 @@ const navigateToDevelopmentDetails = (slug) => {
   transform: translate(-50%, -50%);
   color: rgb(238, 238, 238);
   text-align: center;
-  z-index: 1;
   cursor: default;
   display: flex;
   flex-direction: column;
