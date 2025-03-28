@@ -33,7 +33,7 @@
       <h2>SIFAT INFORMASI PERIBADI</h2>
       <p>
         Informasi Peribadi tersebut mungkin tertakluk kepada undang-undang perlindungan data, privasi dan undang-undang serupa yang lain yang terpakai
-        dan mungkin merangkumi informasi seperti nama, nombor kad pengenalan, nombor paspot, alamat, jantina dan informasi-informasi yang dianggap perlu.
+        dan mungkin merangkumi informasi seperti nama, nombor kad pengenalan, nombor pasport, alamat, jantina dan informasi-informasi yang dianggap perlu.
       </p>
 
       <h2>3. OBJECTIVES OF COLLECTING PERSONAL INFORMATION</h2>
@@ -149,8 +149,14 @@
         </ol>
       </div>
 
-      <p></p>
+      <p>8.2 The department to whom written requests can be made for access to Personal Information or correction and/or deletion of Personal Information or for information regarding policies and procedures and types of Personal Information handled by us is:</p>
 
+      <h3>Miracle Land Holdings Berhad </h3>
+      <div class="contact">
+        <p>Contact No. : <a href="tel:+6092960888" class="phone-link">(609) 2960 888</a></p>
+        <p>Email Address : <a href="info@miracleland.co" class="phone-link">info@miracleland.co</a></p>
+        <p>Address: No. 1, Tingkat Basement, Jalan Dagang 2, Kg Bukit Angin, 28000 Temerloh, Pahang</p>
+      </div>
     </div>
   </div>
 </template>
@@ -172,6 +178,11 @@
 @font-face {
   font-family: 'AlmaraiBold';
   src: url('/assets/fonts/Almarai/Almarai-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AlmaraiExtraBold';
+  src: url('/assets/fonts/Almarai/Almarai-ExtraBold.ttf') format('truetype');
 }
 
 .personal-data {
@@ -216,6 +227,13 @@
   color: #231f20;
 }
 
+.content h3 {
+  font-size: 16px;
+  font-family: 'AlmaraiExtraBold';
+  padding-top: 2px;
+  line-height: 24px;
+}
+
 .alpha-list-container {
   max-width: 100%;
   overflow-wrap: break-word;
@@ -236,6 +254,26 @@
   line-height: 24px; /* Improve readability */
   margin-bottom: 8px; /* Add spacing */
   text-align: justify;
+}
+
+.contact {
+  padding-bottom: 32px;
+}
+
+.contact p {
+  font-family: 'AlmaraiRegular';
+  font-size: 16px;
+  line-height: 24px;
+  text-align: justify;
+  font-weight: 400;
+  color: #231f20;
+  margin-bottom: 0;
+}
+
+.phone-link {
+  font-family: 'AlmaraiBold';
+  color: #231f20;
+  text-decoration: none; /* Remove underline */
 }
 
 @media (max-width: 768px) {
