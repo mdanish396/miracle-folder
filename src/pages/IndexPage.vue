@@ -11,28 +11,122 @@
     <!-- Hero Section -->
     <div class="hero-section">
       <q-carousel
-      v-model="slide"
-      swipeable
-      animated
-      infinite
-      navigation
-      autoplay
-      arrows
-      transition-prev="fade"
-      transition-next="fade"
-      class="hero-carousel"
-    >
-      <q-carousel-slide name="first" img-src="/assets/index.jpg">
-        <div class="video-text-overlay">
-          <h1>MIRACLE</h1>
-          <h2>FOR YOU FOREVER</h2>
-        </div>
-      </q-carousel-slide>
-      <q-carousel-slide name="second" img-src="/assets/careers.jpg" />
-      <q-carousel-slide name="third" img-src="/assets/development.jpg" />
-      <q-carousel-slide name="fourth" img-src="/assets/contact.jpg" />
+        v-model="slide"
+        swipeable
+        animated
+        infinite
+        navigation
+        autoplay
+        arrows
+        transition-prev="fade"
+        transition-next="fade"
+        class="hero-carousel"
+      >
+        <q-carousel-slide name="first" img-src="/assets/index.jpg">
+          <div class="video-text-overlay">
+            <h1>MIRACLE</h1>
+            <h2>FOR YOU FOREVER</h2>
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide
+          name="second"
+          :img-src="$q.screen.width < 1028 ? '/assets/6.jpg' : '/assets/1.png'"
+          :style="{
+            /* Shared styles */
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            width: '100%',
+            backgroundColor: '#2C2E67',
+            overflow: 'hidden',
 
-    </q-carousel>
+            /* Desktop (≥1028px) - For 5.png (5000×2295) */
+            ...($q.screen.width >= 1028 ? {
+              backgroundSize: 'contain',
+              minHeight: 'calc(98vw * 0.459)' /* 2295/5000 = 0.459 aspect ratio */
+            } :
+            /* Mobile (<1028px) - For 6.jpg (1080×1080) */
+            {
+              backgroundSize: 'contain',
+              maxHeight: '110vh',
+              aspectRatio: '1/1',
+              /* Optional: add decorative borders */
+              border: '2px solid #3A3D8F',
+              boxSizing: 'border-box'
+            })
+          }"
+        />
+        <q-carousel-slide name="third"
+        :img-src="$q.screen.width < 1028 ? '/assets/7.jpg' : '/assets/2.png'"
+          :style="{
+            /* Shared styles */
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            width: '100%',
+            backgroundColor: '#0D3A57',
+            overflow: 'hidden',
+
+            /* Desktop (≥1028px) - For 2.png (5000×2295) */
+            ...($q.screen.width >= 1028 ? {
+              backgroundSize: 'contain',
+              minHeight: 'calc(98vw * 0.459)' /* 2295/5000 = 0.459 aspect ratio */
+            } :
+            /* Mobile (<1028px) - For 7.jpg (1080×1080) */
+            {
+              backgroundSize: 'contain',
+              maxHeight: '110vh',
+              aspectRatio: '1/1',
+              /* Optional: add decorative borders */
+              border: '2px solid #3A3D8F',
+              boxSizing: 'border-box'
+            })
+          }"
+        />
+        <q-carousel-slide
+        v-if="$q.screen.width < 1028"
+          name="third-second"
+          img-src="/assets/8.jpg"
+          :style="{
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              width: '100%',
+              backgroundColor: '#0D3A57',
+              overflow: 'hidden',
+              backgroundSize: 'contain',
+              maxHeight: '110vh',
+              aspectRatio: '1/1',
+              /* Optional: add decorative borders */
+              border: '2px solid #3A3D8F',
+              boxSizing: 'border-box'
+          }"
+        />
+        <q-carousel-slide name="fourth"
+        :img-src="$q.screen.width < 1028 ? '/assets/9.jpg' : '/assets/3.png'"
+          :style="{
+            /* Shared styles */
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            width: '100%',
+            backgroundColor: '#0D3A57',
+            overflow: 'hidden',
+
+            /* Desktop (≥1028px) - For 2.png (5000×2295) */
+            ...($q.screen.width >= 1028 ? {
+              backgroundSize: 'contain',
+              minHeight: 'calc(98vw * 0.459)' /* 2295/5000 = 0.459 aspect ratio */
+            } :
+            /* Mobile (<1028px) - For 7.jpg (1080×1080) */
+            {
+              backgroundSize: 'contain',
+              maxHeight: '110vh',
+              aspectRatio: '1/1',
+              /* Optional: add decorative borders */
+              border: '2px solid #3A3D8F',
+              boxSizing: 'border-box'
+            })
+          }"
+        />
+
+      </q-carousel>
       <!-- <img src="/assets/index.jpg" alt="Hero Image" class="hero-video"/> -->
       <!-- <video
         autoplay
@@ -469,6 +563,22 @@ const navigateToDevelopmentDetails = (slug) => {
   height: 100%;
   object-position: top;
   object-fit: cover; /* Ensures the video covers the entire hero section */
+}
+
+/* Default styles for all screens */
+.responsive-slide {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+/* Adjustments for screens 1028px and above */
+@media (min-width: 1028px) {
+  .responsive-slide {
+    min-height: 700px; /* Adjust this value as needed */
+    /* You can also add other adjustments here */
+  }
 }
 
 /* Text Overlay in Video */
