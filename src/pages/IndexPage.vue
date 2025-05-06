@@ -10,7 +10,7 @@
 
     <!-- Hero Section -->
     <div class="hero-section">
-      <q-carousel
+      <!-- <q-carousel
         v-model="slide"
         swipeable
         animated
@@ -126,8 +126,8 @@
           }"
         />
 
-      </q-carousel>
-      <!-- <img src="/assets/index.jpg" alt="Hero Image" class="hero-video"/> -->
+      </q-carousel> -->
+      <img src="/assets/index.jpg" alt="Hero Image" class="hero-video"/>
       <!-- <video
         autoplay
         loop
@@ -140,19 +140,19 @@
       </video> -->
 
       <!-- Text Overlay in Video (centered) -->
-      <!-- <div class="video-text-overlay">
+      <div class="video-text-overlay">
         <h1>MIRACLE</h1>
-        <h2>FOR YOU FOREVER</h2> -->
+        <h2>FOR YOU FOREVER</h2>
         <!-- <h1>MIRACLES MADE FOR YOU <br> - FOREVER</h1> -->
-      <!-- </div> -->
+      </div>
 
       <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
-      <!-- <div class="scroll-indicator">
+      <div class="scroll-indicator">
         <video autoplay loop muted class="mouse-animation" playsinline>
           <source src="/assets/mouse.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
-      </div> -->
+      </div>
     </div>
 
     <!-- Current Developments Section -->
@@ -271,8 +271,8 @@
         </div>
       </div>
       <div class="logo-container fade-up delay-2">
-        <img src="/assets/maybank.png" alt="Partner 2" class="partner-logo1"/>
-        <img src="/assets/cimb.png" alt="Partner 1" class="partner-logo1"/>
+        <!-- <img src="/assets/maybank.png" alt="Partner 2" class="partner-logo1"/> -->
+        <!-- <img src="/assets/dynaton.png" alt="Partner 1" class="partner-logo1"/> -->
         <img src="/assets/interplan.png" alt="Partner 3" class="partner-logo"/>
       </div>
     </div>
@@ -329,7 +329,7 @@ const sections = ref([])
 const fadeItems = ref([])
 let observer = null
 
-const slide = ref('first')
+// const slide = ref('first')
 
 useHead({
   title: 'Miracle Land | Premier Property Development in Malaysia',
@@ -556,6 +556,13 @@ const navigateToDevelopmentDetails = (slug) => {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-position: top;
+  object-fit: cover; /* Ensures the video covers the entire hero section */
 }
 
 .hero-carousel {
@@ -1169,7 +1176,7 @@ font-size: 21.5vw;
 
 .partner-logo1 {
   width: auto;
-  height: 60px;
+  height: 100px;
   transition: transform 0.5s ease-in-out;
 }
 
