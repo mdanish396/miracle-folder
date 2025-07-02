@@ -363,30 +363,49 @@ const selectedDevelopment = pastdevelopments.find(dev => dev.slug === route.para
 useHead({
   title: selectedDevelopment.name + ' | Miracle Land',
   meta: [
-    { name: 'description', content: selectedDevelopment.shortdescription },
-    { name: 'keywords', content: 'property for sale, ' + selectedDevelopment.location + ', ' + selectedDevelopment.type },
-    { name: 'geo.region', content: 'MY-' + selectedDevelopment.state }, // Geo-targeting for Malaysia
-    { name: 'geo.placename', content: selectedDevelopment.location }, // Geo-targeting for the specific place
-    { name: 'robots', content: 'index, follow' }, // Ensures search engines index the page
+    { name: 'description', content: selectedDevelopment.description },
+    {
+      name: 'keywords',
+      content: 'property for sale, ' + selectedDevelopment.location + ', ' + selectedDevelopment.type
+    },
+    {
+      name: 'geo.region',
+      content: 'MY-06' // make sure it's an ISO-3166-2 code, like '06' for Pahang
+    },
+    { name: 'geo.placename', content: selectedDevelopment.location },
+    { name: 'robots', content: 'index, follow' },
+
+    // Open Graph
     { property: 'og:title', content: selectedDevelopment.name },
-    { property: 'og:description', content: selectedDevelopment.shortdescription },
+    { property: 'og:description', content: selectedDevelopment.description },
     { property: 'og:image', content: selectedDevelopment.bannerimage },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://miracleland.co/past-developments/' + selectedDevelopment.slug },
+    {
+      property: 'og:url',
+      content: 'https://miracleland.co/past-developments/' + selectedDevelopment.slug
+    },
+
+    // Twitter
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: selectedDevelopment.name },
-    { name: 'twitter:description', content: selectedDevelopment.shortdescription },
-    { name: 'twitter:image', content: selectedDevelopment.bannerimage },
-    { rel: 'canonical', href: 'https://miracleland.co/past-developments/' + selectedDevelopment.slug } // Prevents duplicate content issues
+    { name: 'twitter:description', content: selectedDevelopment.description },
+    { name: 'twitter:image', content: selectedDevelopment.bannerimage }
+  ],
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://miracleland.co/past-developments/' + selectedDevelopment.slug
+    }
   ],
   script: [
     {
       type: 'application/ld+json',
       children: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'RealEstateAgent',
+        '@type': 'Residence',
         name: selectedDevelopment.name,
         image: selectedDevelopment.bannerimage,
+        description: selectedDevelopment.description,
         url: 'https://miracleland.co/past-developments/' + selectedDevelopment.slug,
         address: {
           '@type': 'PostalAddress',

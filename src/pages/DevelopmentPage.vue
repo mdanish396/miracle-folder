@@ -193,19 +193,41 @@ let observer = null
 useHead({
   title: 'Our Developments | Miracle Land',
   meta: [
-    { name: 'description', content: 'Explore our current and past developments to find your dream property in Malaysia.' },
-    { name: 'keywords', content: 'property for sale, shop, house, rent, buy, Malaysia real estate, Pahang, Jengka, Temerloh new developments, past projects' },
+    {
+      name: 'description',
+      content: 'Explore our current and past developments to find your dream property in Malaysia.'
+    },
+    {
+      name: 'keywords',
+      content: 'property for sale, shop, house, rent, buy, Malaysia real estate, Pahang, Jengka, Temerloh new developments, past projects'
+    },
     { name: 'robots', content: 'index, follow' },
+
+    // Open Graph
     { property: 'og:title', content: 'Our Developments | Miracle Land' },
-    { property: 'og:description', content: 'Explore our current and past developments to find your dream property in Malaysia.' },
+    {
+      property: 'og:description',
+      content: 'Explore our current and past developments to find your dream property in Malaysia.'
+    },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://miracleland.co/our-developments' },
-    { property: 'og:image', content: '/assets/currentproject/house1.jpg' },
+    {
+      property: 'og:url',
+      content: 'https://miracleland.co/our-developments'
+    },
+
+    // Twitter
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'Our Developments | Miracle Land' },
-    { name: 'twitter:description', content: 'Explore our current and past developments to find your dream property in Malaysia.' },
-    { name: 'twitter:image', content: '/assets/currentproject/house1.jpg' },
-    { rel: 'canonical', href: 'https://miracleland.co/our-developments' }
+    {
+      name: 'twitter:description',
+      content: 'Explore our current and past developments to find your dream property in Malaysia.'
+    },
+    { name: 'language', content: 'ms-MY' },
+    { name: 'geo.region', content: 'MY-06' }, // MY-06 = Pahang
+    { name: 'geo.placename', content: 'Pahang, Malaysia' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://miracleland.co/our-developments' } // ✅ Moved here
   ]
 })
 

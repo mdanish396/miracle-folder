@@ -356,33 +356,59 @@ const fadeItems = ref([])
 let observer = null
 const selectedDevelopment = developments.find(dev => dev.slug === route.params.slug) || developments[0]
 
+const stateCodeMap = {
+  Pahang: '06',
+  Selangor: '10',
+  Johor: '01',
+  'Kuala Lumpur': '14'
+  // add more if needed
+}
+
 useHead({
   title: selectedDevelopment.name + ' | Miracle Land',
   meta: [
-    { name: 'description', content: selectedDevelopment.shortdescription },
-    { name: 'keywords', content: 'property for sale, ' + selectedDevelopment.location + ', ' + selectedDevelopment.type },
-    { name: 'geo.region', content: 'MY-' + selectedDevelopment.state }, // Geo-targeting for Malaysia
-    { name: 'geo.placename', content: selectedDevelopment.location }, // Geo-targeting for the specific place
-    { name: 'robots', content: 'index, follow' }, // Ensures search engines index the page
+    { name: 'description', content: selectedDevelopment.description },
+    {
+      name: 'keywords',
+      content: 'property for sale, ' + selectedDevelopment.location + ', ' + selectedDevelopment.type
+    },
+    {
+      name: 'geo.region',
+      content: 'MY-' + stateCodeMap[selectedDevelopment.state] // ✅ ISO code format
+    },
+    { name: 'geo.placename', content: selectedDevelopment.location },
+    { name: 'robots', content: 'index, follow' },
+
+    // Open Graph
     { property: 'og:title', content: selectedDevelopment.name },
-    { property: 'og:description', content: selectedDevelopment.shortdescription },
+    { property: 'og:description', content: selectedDevelopment.description },
     { property: 'og:image', content: selectedDevelopment.bannerimage },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://miracleland.co/developments/' + selectedDevelopment.slug },
+    {
+      property: 'og:url',
+      content: 'https://miracleland.co/developments/' + selectedDevelopment.slug
+    },
+
+    // Twitter
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: selectedDevelopment.name },
-    { name: 'twitter:description', content: selectedDevelopment.shortdescription },
-    { name: 'twitter:image', content: selectedDevelopment.bannerimage },
-    { rel: 'canonical', href: 'https://miracleland.co/developments/' + selectedDevelopment.slug } // Prevents duplicate content issues
+    { name: 'twitter:description', content: selectedDevelopment.description },
+    { name: 'twitter:image', content: selectedDevelopment.bannerimage }
+  ],
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://miracleland.co/developments/' + selectedDevelopment.slug
+    }
   ],
   script: [
     {
       type: 'application/ld+json',
       children: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'RealEstateAgent',
+        '@type': 'Residence',
         name: selectedDevelopment.name,
-        image: selectedDevelopment.bannerimage,
+        image: [selectedDevelopment.bannerimage],
         url: 'https://miracleland.co/developments/' + selectedDevelopment.slug,
         address: {
           '@type': 'PostalAddress',
@@ -390,7 +416,13 @@ useHead({
           addressRegion: selectedDevelopment.state,
           addressCountry: 'Malaysia'
         },
-        priceRange: selectedDevelopment.price
+        description: selectedDevelopment.description,
+        offers: {
+          '@type': 'Offer',
+          priceCurrency: 'MYR',
+          price: selectedDevelopment.price,
+          availability: 'https://schema.org/InStock'
+        }
       })
     }
   ]

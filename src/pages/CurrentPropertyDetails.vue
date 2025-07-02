@@ -666,36 +666,54 @@ useHead({
   title: property.value.name + ' | Miracle Land',
   meta: [
     { name: 'description', content: property.value.description },
-    { name: 'keywords', content: 'property for sale, ' + property.value.location + ', ' + property.value.housetype },
-    { name: 'geo.region', content: 'MY-' }, // Geo-targeting for Malaysia
-    { name: 'geo.placename', content: property.value.location }, // Geo-targeting for the specific place
-    { name: 'robots', content: 'index, follow' }, // Ensures search engines index the page
+    {
+      name: 'keywords',
+      content: 'property for sale, ' + property.value.location + ', ' + property.value.housetype
+    },
+    { name: 'language', content: 'ms-MY' },
+    { name: 'geo.region', content: 'MY-06' }, // e.g., Pahang
+    { name: 'geo.placename', content: property.value.location },
+    { name: 'robots', content: 'index, follow' },
+
+    // Open Graph
     { property: 'og:title', content: property.value.name },
     { property: 'og:description', content: property.value.description },
     { property: 'og:image', content: property.value.image },
     { property: 'og:type', content: 'website' },
     { property: 'og:url', content: 'https://miracleland.co/developments/property/' + property.value.slug },
+
+    // Twitter
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: property.value.name },
     { name: 'twitter:description', content: property.value.description },
-    { name: 'twitter:image', content: property.value.image },
-    { rel: 'canonical', href: 'https://miracleland.co/developments/property/' + property.value.slug } // Prevents duplicate content issues
+    { name: 'twitter:image', content: property.value.image }
+  ],
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://miracleland.co/developments/property/' + property.value.slug
+    }
   ],
   script: [
     {
       type: 'application/ld+json',
       children: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'RealEstateAgent',
+        '@type': 'Product',
         name: property.value.name,
-        image: property.value.image,
+        image: [property.value.image],
+        description: property.value.description,
         url: 'https://miracleland.co/developments/property/' + property.value.slug,
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: property.value.location,
-          addressCountry: 'Malaysia'
+        offers: {
+          '@type': 'Offer',
+          priceCurrency: 'MYR',
+          price: property.value.price,
+          availability: 'https://schema.org/InStock'
         },
-        priceRange: property.value.price
+        areaServed: {
+          '@type': 'Place',
+          name: property.value.location
+        }
       })
     }
   ]

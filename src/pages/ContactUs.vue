@@ -251,20 +251,31 @@ useHead({
       content: 'Reach out to Miracle Land Holding Berhad for inquiries about property development, career opportunities, and business partnerships in Malaysia.'
     },
     {
-      property: 'og:image',
-      content: 'https://www.miracleland.co/assets/contact-us-banner.jpg' // Replace with actual image URL
-    },
-    {
       property: 'og:url',
       content: 'https://www.miracleland.co/contact'
     },
     {
       name: 'robots',
       content: 'index, follow'
+    },
+    {
+      name: 'language',
+      content: 'ms-MY'
+    },
+    {
+      name: 'geo.region',
+      content: 'MY'
+    },
+    {
+      name: 'geo.placename',
+      content: 'Temerloh, Pahang, Malaysia'
     }
   ],
   link: [
-    { rel: 'canonical', href: 'https://www.miracleland.co/contact' }
+    {
+      rel: 'canonical',
+      href: 'https://www.miracleland.co/contact'
+    }
   ]
 })
 

@@ -255,7 +255,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useHead } from '@vueuse/head'
-import { useRoute } from 'vue-router'
 import axios from 'axios'
 import { useQuasar } from 'quasar'
 import qs from 'qs'
@@ -263,7 +262,6 @@ import qs from 'qs'
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
-const route = useRoute()
 const $q = useQuasar()
 
 const form = ref({
@@ -334,24 +332,27 @@ const submitForm = async () => {
 useHead({
   title: 'About Miracle Land - Trusted Property Developer in Malaysia',
   meta: [
-    { name: 'description', content: 'Learn about Miracle Land Holdings Berhad (MLHB), a leading real estate developer in Malaysia. Explore our projects, mission, and vision for sustainable property development.' },
+    {
+      name: 'description',
+      content: 'Learn about Miracle Land Holdings Berhad (MLHB), a leading real estate developer in Malaysia. Explore our projects, mission, and vision for sustainable property development.'
+    },
     { property: 'og:title', content: 'About Miracle Land - Trusted Property Developer' },
-    { property: 'og:description', content: 'Miracle Land Holdings Berhad is a reputable property developer in Malaysia. Discover our vision, mission, and projects in Pahang and beyond.' },
-    { property: 'og:image', content: 'https://www.miracleland.com/assets/about-thumbnail.jpg' },
-    { property: 'og:url', content: 'https://www.miracleland.com/about-miracle-land' },
-    { name: 'keywords', content: 'property developer Pahang, Malaysia, real estate Pahang, Temerloh, Jengka, housing development, commercial properties' },
+    {
+      property: 'og:description',
+      content: 'Miracle Land Holdings Berhad is a reputable property developer in Malaysia. Discover our vision, mission, and projects in Pahang and beyond.'
+    },
+    { property: 'og:url', content: 'https://miracleland.co/about-miracle-land' },
+    {
+      name: 'keywords',
+      content: 'property developer Pahang, Malaysia, real estate Pahang, Temerloh, Jengka, housing development, commercial properties'
+    },
     { name: 'robots', content: 'index, follow' },
-
-    // Geo & Language Targeting
-    { name: 'language', content: 'ms-MY' }, // Malay (Malaysia)
-    { name: 'geo.region', content: 'MY' }, // Malaysia
-    { name: 'geo.placename', content: 'Pahang, Malaysia' },
-
-    // Canonical URL (Prevents duplicate content issues)
-    { rel: 'canonical', href: `https://miracleland.co${route.fullPath}` }
+    { name: 'language', content: 'ms-MY' },
+    { name: 'geo.region', content: 'MY' },
+    { name: 'geo.placename', content: 'Pahang, Malaysia' }
   ],
   link: [
-    { rel: 'canonical', href: 'https://www.miracleland.com/about-miracle-land' }
+    { rel: 'canonical', href: 'https://miracleland.co/about-miracle-land' }
   ]
 })
 
