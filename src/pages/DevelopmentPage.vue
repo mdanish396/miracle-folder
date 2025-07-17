@@ -175,20 +175,34 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
-import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
+import axios from 'axios'
 import { pastdevelopments } from 'src/components/Properties/PastProperties/PastDevelopmentData.vue'
 import { useHead } from '@vueuse/head'
 
-const allDevelopments = ref(developments /* .filter((d) => d.status === 'New Launch') */)
+const allDevelopments = ref([])
 // const visibleCount = ref(4)
 const allPastDevelopments = ref(pastdevelopments /* .filter((d) => d.status === 'Completed') */)
-const displayedDevelopments = ref(allDevelopments.value /* .slice(0, visibleCount.value) */)
+const displayedDevelopments = ref([])
 const displayedPastDevelopments = ref(allPastDevelopments.value /* .slice(0, visibleCount.value) */)
 // const showAllDevelopments = ref(false)
 // const showAllPastDevelopments = ref(false)
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+
+const fetchDevelopments = async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/developments')
+    // Filter only required statuses
+    allDevelopments.value = response.data.filter(
+      d => d.status === 'New Launch' || d.status === 'Under Development'
+    )
+    displayedDevelopments.value = allDevelopments.value
+    console.log('Fetched developments:', allDevelopments.value) // ✅ DEBUG
+  } catch (error) {
+    console.error('Error fetching developments:', error)
+  }
+}
 
 useHead({
   title: 'Our Developments | Miracle Land',
@@ -227,11 +241,12 @@ useHead({
     { name: 'geo.placename', content: 'Pahang, Malaysia' }
   ],
   link: [
-    { rel: 'canonical', href: 'https://miracleland.co/our-developments' } // ✅ Moved here
+    { rel: 'canonical', href: 'https://miracleland.co/developments' } // ✅ Moved here
   ]
 })
 
 onMounted(() => {
+  fetchDevelopments()
   // Initialize Intersection Observer
   observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

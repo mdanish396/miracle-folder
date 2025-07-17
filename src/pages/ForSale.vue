@@ -61,14 +61,15 @@
           <p class="sub-heading fade-up delay-2">{{ development.description }}</p>
         </div>
       </div>
-      <!-- Highlight Section -->
-      <div class="card-section">
-        <div class="card-grid">
-          <div class="card" v-for="(image, index) in development.gallerydevelopment" :key="index">
-            <img :src="image.url" class="card-image fade-up" alt="Gallery Image">
-            <div class="card-title fade-up delay-1">
-              <p>{{ image.description }}</p>
-            </div>
+    </div>
+
+    <!-- Highlight Section -->
+    <div class="card-section">
+      <div class="card-grid">
+        <div class="card" v-for="(img, i) in development.gallerydevelopment" :key="i">
+          <img :src="img.url" class="card-image fade-up" alt="Gallery Image">
+          <div class="card-title fade-up delay-1">
+            <p>{{ img.description }}</p>
           </div>
         </div>
       </div>
@@ -175,7 +176,7 @@
 
           <!-- Left image -->
           <div class="gallery-item"
-            v-if="development.galleryImages[0]"
+            v-if="development.galleryImages?.[0]"
             :key="idx">
             <img
               :src="development.galleryImages[0]"
@@ -188,7 +189,7 @@
 
           <!-- Center Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages[1]"
+            v-if="development.galleryImages?.[1]"
             :key="idx">
             <img
               :src="development.galleryImages[1]"
@@ -205,7 +206,7 @@
 
           <!-- Center Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages[2]"
+            v-if="development.galleryImages?.[2]"
             :key="idx">
             <img
               :src="development.galleryImages[2]"
@@ -222,7 +223,7 @@
 
           <!-- Right Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages[3]"
+            v-if="development.galleryImages?.[3]"
             :key="idx">
             <img
               :src="development.galleryImages[3]"
@@ -338,23 +339,96 @@
 </template>
 
 <script setup>
-import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
-import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
-import { properties } from 'src/components/Properties/CurrentProperties/CurrentPropertiesData.vue'
-import { nearbyAmenities } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentAmenitiesData.vue'
+import { ref, computed, onMounted, onBeforeUnmount, nextTick, watchEffect } from 'vue'
+import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
+import axios from 'axios'
 import { useHead } from '@unhead/vue'
 
 const route = useRoute()
-const developmentSlug = route.params.slug
-const development = ref(developments.find(item => item.slug === developmentSlug) || null)
+// const GalleryItem = {
+//   url: '',
+//   description: ''
+// }
+
+const development = ref({
+  name: '',
+  bannerimage: '',
+  logo: '',
+  type: '',
+  location: '',
+  status: '',
+  description: '',
+  gallerydevelopment: [],
+  galleryImages: [],
+  map: '',
+  slug: '',
+  state: '',
+  price: ''
+})
+const allproperties = ref([])
+const visibleProperties = ref([])
 const visibleCount = ref(3)
 const isPopupOpen = ref(false)
 const currentImage = ref(0)
 const sections = ref([])
 const fadeItems = ref([])
+const nearbyAmenities = ref({})
 let observer = null
-const selectedDevelopment = developments.find(dev => dev.slug === route.params.slug) || developments[0]
+
+const fetchDevelopmentBySlug = async (slug) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/developments/${slug}`)
+    development.value = response.data
+
+    console.log('Gallery Development:', development.value.gallerydevelopment)
+    console.log('Gallery Images:', development.value.galleryImages)
+
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (error) {
+    console.error('Error fetching development:', error)
+    development.value = null
+  }
+}
+
+const fetchPropertiesBySlug = async (slug) => {
+  try {
+    const res = await axios.get(`http://localhost:8080/developments/properties/${slug}`)
+    allproperties.value = res.data
+    visibleProperties.value = allproperties.value.slice(0, visibleCount.value)
+  } catch (err) {
+    console.error('Error fetching properties:', err)
+    allproperties.value = []
+  }
+}
+
+const fetchAmenitiesBySlug = async (slug) => {
+  try {
+    // Assuming development data is already fetched and stored in `development.value`
+    const res = await axios.get(`http://localhost:8080/amenities/${slug}`)
+    nearbyAmenities.value = res.data
+    console.log('Nearby Amenities:', nearbyAmenities.value)
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (err) {
+    console.error('Amenity fetch error:', err)
+    nearbyAmenities.value = {} // fallback
+  }
+}
+
+onMounted(() => {
+  fetchDevelopmentBySlug(route.params.slug)
+  fetchPropertiesBySlug(route.params.slug)
+  fetchAmenitiesBySlug(route.params.slug)
+})
 
 const stateCodeMap = {
   Pahang: '06',
@@ -364,72 +438,75 @@ const stateCodeMap = {
   // add more if needed
 }
 
-useHead({
-  title: selectedDevelopment.name + ' | Miracle Land',
-  meta: [
-    { name: 'description', content: selectedDevelopment.description },
-    {
-      name: 'keywords',
-      content: 'property for sale, ' + selectedDevelopment.location + ', ' + selectedDevelopment.type
-    },
-    {
-      name: 'geo.region',
-      content: 'MY-' + stateCodeMap[selectedDevelopment.state] // ✅ ISO code format
-    },
-    { name: 'geo.placename', content: selectedDevelopment.location },
-    { name: 'robots', content: 'index, follow' },
+watchEffect(() => {
+  if (!development.value?.name) return
 
-    // Open Graph
-    { property: 'og:title', content: selectedDevelopment.name },
-    { property: 'og:description', content: selectedDevelopment.description },
-    { property: 'og:image', content: selectedDevelopment.bannerimage },
-    { property: 'og:type', content: 'website' },
-    {
-      property: 'og:url',
-      content: 'https://miracleland.co/developments/' + selectedDevelopment.slug
-    },
+  useHead({
+    title: development.value.name + ' | Miracle Land',
+    meta: [
+      { name: 'description', content: development.value.description },
+      {
+        name: 'keywords',
+        content: 'property for sale, ' + development.value.location + ', ' + development.value.type
+      },
+      {
+        name: 'geo.region',
+        content: 'MY-' + stateCodeMap[development.value.state] // ✅ ISO code format
+      },
+      { name: 'geo.placename', content: development.value.location },
+      { name: 'robots', content: 'index, follow' },
 
-    // Twitter
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: selectedDevelopment.name },
-    { name: 'twitter:description', content: selectedDevelopment.description },
-    { name: 'twitter:image', content: selectedDevelopment.bannerimage }
-  ],
-  link: [
-    {
-      rel: 'canonical',
-      href: 'https://miracleland.co/developments/' + selectedDevelopment.slug
-    }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Residence',
-        name: selectedDevelopment.name,
-        image: [selectedDevelopment.bannerimage],
-        url: 'https://miracleland.co/developments/' + selectedDevelopment.slug,
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: selectedDevelopment.location,
-          addressRegion: selectedDevelopment.state,
-          addressCountry: 'Malaysia'
-        },
-        description: selectedDevelopment.description,
-        offers: {
-          '@type': 'Offer',
-          priceCurrency: 'MYR',
-          price: selectedDevelopment.price,
-          availability: 'https://schema.org/InStock'
-        }
-      })
-    }
-  ]
+      // Open Graph
+      { property: 'og:title', content: development.value.name },
+      { property: 'og:description', content: development.value.description },
+      { property: 'og:image', content: development.value.bannerimage },
+      { property: 'og:type', content: 'website' },
+      {
+        property: 'og:url',
+        content: 'https://miracleland.co/developments/' + development.value.slug
+      },
+
+      // Twitter
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: development.value.name },
+      { name: 'twitter:description', content: development.value.description },
+      { name: 'twitter:image', content: development.value.bannerimage }
+    ],
+    link: [
+      {
+        rel: 'canonical',
+        href: 'https://miracleland.co/developments/' + development.value.slug
+      }
+    ],
+    script: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Residence',
+          name: development.value.name,
+          image: [development.value.bannerimage],
+          url: 'https://miracleland.co/developments/' + development.value.slug,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: development.value.location,
+            addressRegion: development.value.state,
+            addressCountry: 'Malaysia'
+          },
+          description: development.value.description,
+          offers: {
+            '@type': 'Offer',
+            priceCurrency: 'MYR',
+            price: development.value.price,
+            availability: 'https://schema.org/InStock'
+          }
+        })
+      }
+    ]
+  })
 })
 
 onMounted(() => {
-  // Initialize Intersection Observer
   observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -439,24 +516,18 @@ onMounted(() => {
       }
     })
   })
-
-  // Observe all sections
-  sections.value = Array.from(document.querySelectorAll('.section'))
-  fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
-
-  sections.value.forEach((section) => observer.observe(section))
-  fadeItems.value.forEach((item) => observer.observe(item))
 })
+
+// Observe all sections
+sections.value = Array.from(document.querySelectorAll('.section'))
+fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+
+sections.value.forEach((section) => observer.observe(section))
+fadeItems.value.forEach((item) => observer.observe(item))
 
 onBeforeUnmount(() => {
   // Clean up observer
   if (observer) observer.disconnect()
-})
-
-onBeforeRouteUpdate((to, from, next) => {
-  const newSlug = to.params.slug
-  development.value = developments.find(item => item.slug === newSlug) || null
-  next()
 })
 
 const updateLayout = () => {
@@ -486,12 +557,8 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', updateLayout)
 })
 
-const visibleProperties = computed(() => {
-  return filteredProperties.value.slice(0, visibleCount.value)
-})
-
 const filteredProperties = computed(() => {
-  return properties[development.value.name] || []
+  return allproperties.value
 })
 
 const router = useRouter()
@@ -535,6 +602,16 @@ onMounted(() => {
   })
 })
 
+onBeforeRouteUpdate((to, from, next) => {
+  if (to.params.slug !== from.params.slug) {
+    fetchDevelopmentBySlug(to.params.slug)
+    fetchPropertiesBySlug(to.params.slug)
+    fetchAmenitiesBySlug(to.params.slug)
+    window.scrollTo(0, 0) // Optional: scroll to top
+  }
+  next()
+})
+
 // const prevImage = () => {
 //   const galleryImages = development.value.galleryImages
 //   currentImage.value = (currentImage.value - 1 + galleryImages.length) % galleryImages.length
@@ -547,11 +624,7 @@ onMounted(() => {
 // }
 
 const filteredAmenities = computed(() => {
-  // Get the location of the current development
-  const name = development.value?.name
-
-  // Return amenities for the location if it exists or an empty array otherwise
-  return nearbyAmenities[name]?.amenities || {}
+  return nearbyAmenities?.value || {}
 })
 
 const getCategoryIcon = (category) => {
@@ -918,12 +991,10 @@ const capitalizeFirstLetter = (string) => {
 
 .card-grid {
   display: flex;
-  grid-template-columns: (3, 1fr);
+  flex-wrap: wrap;
   gap: 30px;
-  align-items: center;
-  padding-left: 5%;
-  padding-right: 5%;
   justify-content: center;
+  padding: 0 5%;
 }
 
 .card {

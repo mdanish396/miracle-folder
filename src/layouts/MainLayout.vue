@@ -313,10 +313,10 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
-import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
+import axios from 'axios'
 // import { leasedevelopments } from 'src/components/Lease/LeaseData.vue'
 
-const displayedDevelopments = ref(developments)
+const displayedDevelopments = ref([])
 const selectedDistrict = ref('')
 // const displayedLeaseDevelopments = ref(leasedevelopments)
 // const selectedLeaseDistrict = ref('')
@@ -336,8 +336,21 @@ onUnmounted(() => {
   document.removeEventListener('toggle-header', toggleHeader)
 })
 
+const fetchDevelopments = async () => {
+  try {
+    const res = await axios.get('http://localhost:8080/developments')
+    displayedDevelopments.value = res.data
+  } catch (err) {
+    console.error('Error fetching developments:', err)
+  }
+}
+
+onMounted(() => {
+  fetchDevelopments()
+})
+
 const groupedDevelopments = computed(() => {
-  return developments.reduce((acc, dev) => {
+  return displayedDevelopments.value.reduce((acc, dev) => {
     if (!acc[dev.state]) {
       acc[dev.state] = []
     }
@@ -393,7 +406,6 @@ const navigateToSlug = (slug) => {
 
 const $q = useQuasar() // Get the $q object
 const router = useRouter()
-
 const activeDropdown = ref(null)
 const drawerVisible = ref(false)
 const screenBelow1105px = ref(false) // Screen width state

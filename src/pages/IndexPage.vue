@@ -315,19 +315,40 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
+import axios from 'axios'
 import { useHead } from '@vueuse/head'
 
 const showLoader = ref(true)
 const router = useRouter()
 const route = useRoute()
-const allDevelopments = ref(developments.filter((d) => d.status === 'New Launch' || d.status === 'Under Development'))
-const visibleCount = ref(4)
-const displayedDevelopments = ref(allDevelopments.value.slice(0, visibleCount.value))
-const showAllDevelopments = ref(false)
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+const allDevelopments = ref([])
+const displayedDevelopments = ref([])
+const visibleCount = ref(4)
+const showAllDevelopments = ref(false)
+
+const fetchDevelopments = async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/developments')
+    // Filter only required statuses
+    allDevelopments.value = response.data.filter(
+      d => d.status === 'New Launch' || d.status === 'Under Development'
+    )
+    displayedDevelopments.value = allDevelopments.value.slice(0, visibleCount.value)
+    console.log('Fetched developments:', allDevelopments.value) // ✅ DEBUG
+  } catch (error) {
+    console.error('Error fetching developments:', error)
+  }
+}
+
+onMounted(() => {
+  fetchDevelopments()
+  setTimeout(() => {
+    showLoader.value = true
+  }, 3500)
+})
 
 // const slide = ref('first')
 
@@ -374,12 +395,6 @@ useHead({
       href: `https://miracleland.co${route.fullPath}`
     }
   ]
-})
-
-onMounted(() => {
-  setTimeout(() => {
-    showLoader.value = true
-  }, 3500)
 })
 
 onMounted(() => {
