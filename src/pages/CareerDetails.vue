@@ -77,21 +77,19 @@
         <!-- Department Selector -->
         <q-select
           v-model="selectedDepartment"
-          :options="['All Departments', ...departments.map(dept => dept.department)]" outlined
-          dense
-          emit-value
-          map-options
+          :options="['All Departments', ...departments.map(d => d.department)]"
+          label="Department"
+          outlined dense emit-value map-options
           class="select"
           @update:model-value="filterJobs"
         />
         <!-- Location Selector -->
         <q-select
           v-model="selectedLocation"
-          :options="['All Locations', ...locations.map(loc => loc.location)]" outlined
-          dense
+          :options="['All Locations', ...locations.map(l => l.location)]"
+          label="Location"
+          outlined dense emit-value map-options
           class="select"
-          emit-value
-          map-options
           @update:model-value="filterJobs"
         />
       </div>
@@ -162,55 +160,53 @@
 </template>
 
 <script setup>
-import { departments, locations, jobposition } from 'src/components/CareerData.vue'
+import axios from 'axios'
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import { useHead } from '@vueuse/head'
 
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+const jobs = ref([])
+const departments = ref([])
+const locations = ref([])
+
 const selectedDepartment = ref('All Departments')
 const selectedLocation = ref('All Locations')
 
+const fetchJobs = async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/api/jobs')
+    jobs.value = response.data
+
+    // Extract unique departments and locations for filters
+    departments.value = [...new Map(response.data.map(job => [job.department_id, {
+      id: job.department_id,
+      department: job.department
+    }])).values()]
+
+    locations.value = [...new Map(response.data.map(job => [job.location_id, {
+      id: job.location_id,
+      location: job.location
+    }])).values()]
+  } catch (err) {
+    console.error('Error fetching jobs:', err)
+  }
+}
+
+onMounted(() => {
+  fetchJobs()
+})
+
 // Filtered jobs based on selected department and location
 const filteredJobs = computed(() => {
-  const jobs = []
-  const deptFilter = selectedDepartment.value === 'All Departments' ? '' : selectedDepartment.value
-  const locFilter = selectedLocation.value === 'All Locations' ? '' : selectedLocation.value
-
-  if (!deptFilter && !locFilter) {
-    for (const dept in jobposition) {
-      for (const locData of jobposition[dept]) {
-        for (const loc in locData) {
-          jobs.push(...locData[loc].map((job) => ({ ...job, location: loc, department: dept })))
-        }
-      }
-    }
-  } else if (deptFilter && !locFilter) {
-    const deptJobs = jobposition[deptFilter]
-    for (const locData of deptJobs) {
-      for (const loc in locData) {
-        jobs.push(...locData[loc].map((job) => ({ ...job, location: loc, department: deptFilter })))
-      }
-    }
-  } else if (locFilter && !deptFilter) {
-    for (const dept in jobposition) {
-      for (const locData of jobposition[dept]) {
-        if (locData[locFilter]) {
-          jobs.push(...locData[locFilter].map((job) => ({ ...job, location: locFilter, department: dept })))
-        }
-      }
-    }
-  } else {
-    const deptJobs = jobposition[deptFilter]
-    for (const locData of deptJobs) {
-      if (locData[locFilter]) {
-        jobs.push(...locData[locFilter].map((job) => ({ ...job, location: locFilter, department: deptFilter })))
-      }
-    }
-  }
-
-  return jobs.sort((a, b) => a.position.localeCompare(b.position, undefined, { numeric: true }))
+  return jobs.value.filter(job => {
+    const matchDept = selectedDepartment.value === 'All Departments' || job.department === selectedDepartment.value
+    const matchLoc = selectedLocation.value === 'All Locations' || job.location === selectedLocation.value
+    return matchDept && matchLoc
+  }).sort((a, b) =>
+    a.position.localeCompare(b.position, undefined, { numeric: true })
+  )
 })
 
 useHead({

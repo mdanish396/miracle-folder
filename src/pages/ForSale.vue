@@ -99,7 +99,7 @@
                   {{ property.location }}
                 </span>
               </div>
-              <q-separator/>
+              <q-separator style="margin: 0 -15px;"/>
               <q-toolbar class="product-toolbar">
                 <div class="product-item">
                   <h4>Type</h4>
@@ -110,14 +110,14 @@
                   </p>
                 </div>
 
-                <q-separator vertical/>
+                <q-separator vertical style="margin: 7px 0; margin-top: 0px;"/>
                 <div class="product-item-1">
                   <h4>From</h4>
                   <p>{{ property.price }}</p>
                 </div>
               </q-toolbar>
 
-              <q-separator/>
+              <q-separator style="margin: 0 -15px;"/>
               <div class="product-feature-list">
                 <div
                   v-for="feature in property.features"
@@ -131,7 +131,7 @@
               </div>
 
               <q-space/>
-              <q-separator/>
+              <q-separator style="margin: 0 -15px;"/>
               <div class="btn-more">
                 <q-btn flat label="Learn More" class="learn-more-btn" @click="navigateToPropertyDetails(property.slug)"/>
               </div>
@@ -1174,10 +1174,6 @@ line-height: 20px;
   font-size: 16px;
   line-height: 24px;
   color: #000;
-}
-
-.q-separator {
-  margin: 0 -15px; /* Extend beyond the padding */
 }
 
 .product-toolbar {

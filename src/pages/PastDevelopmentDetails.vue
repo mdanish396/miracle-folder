@@ -177,7 +177,7 @@
 
           <!-- Left image -->
           <div class="gallery-item"
-            v-if="development.galleryImages[0]"
+            v-if="development.galleryImages?.[0]"
             :key="idx">
             <img
               :src="development.galleryImages[0]"
@@ -190,7 +190,7 @@
 
           <!-- Center Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages[1]"
+            v-if="development.galleryImages?.[1]"
             :key="idx">
             <img
               :src="development.galleryImages[1]"
@@ -207,7 +207,7 @@
 
           <!-- Center Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages[2]"
+            v-if="development.galleryImages?.[2]"
             :key="idx">
             <img
               :src="development.galleryImages[2]"
@@ -224,7 +224,7 @@
 
           <!-- Right Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages[3]"
+            v-if="development.galleryImages?.[3]"
             :key="idx">
             <img
               :src="development.galleryImages[3]"
@@ -340,82 +340,128 @@
 </template>
 
 <script setup>
-import { pastdevelopments } from 'src/components/Properties/PastProperties/PastDevelopmentData.vue'
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watchEffect, nextTick } from 'vue'
 import { onBeforeRouteUpdate, useRoute /* , useRouter */ } from 'vue-router'
-// import { pastproperties } from 'src/components/Properties/PastPropertiesData.vue'
-import { nearbyAmenities } from 'src/components/Properties/PastProperties/PastDevelopmentAmenitiesData.vue'
+import axios from 'axios'
 import { useHead } from '@unhead/vue'
 import { useQuasar } from 'quasar'
 
-const route = useRoute()
 const $q = useQuasar()
-const developmentSlug = route.params.slug
-const development = ref(pastdevelopments.find(item => item.slug === developmentSlug) || null)
+const development = ref([])
+const nearbyAmenities = ref({})
 // const visibleCount = ref(3)
 const isPopupOpen = ref(false)
 const currentImage = ref(0)
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
-const selectedDevelopment = pastdevelopments.find(dev => dev.slug === route.params.slug) || pastdevelopments[0]
+const route = useRoute()
 
-useHead({
-  title: selectedDevelopment.name + ' | Miracle Land',
-  meta: [
-    { name: 'description', content: selectedDevelopment.description },
-    {
-      name: 'keywords',
-      content: 'property for sale, ' + selectedDevelopment.location + ', ' + selectedDevelopment.type
-    },
-    {
-      name: 'geo.region',
-      content: 'MY-06' // make sure it's an ISO-3166-2 code, like '06' for Pahang
-    },
-    { name: 'geo.placename', content: selectedDevelopment.location },
-    { name: 'robots', content: 'index, follow' },
+const fetchPastDevelopmentBySlug = async (slug) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/past-developments/${slug}`)
+    development.value = response.data
 
-    // Open Graph
-    { property: 'og:title', content: selectedDevelopment.name },
-    { property: 'og:description', content: selectedDevelopment.description },
-    { property: 'og:image', content: selectedDevelopment.bannerimage },
-    { property: 'og:type', content: 'website' },
-    {
-      property: 'og:url',
-      content: 'https://miracleland.co/past-developments/' + selectedDevelopment.slug
-    },
+    console.log('Development Data:', development.value)
 
-    // Twitter
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: selectedDevelopment.name },
-    { name: 'twitter:description', content: selectedDevelopment.description },
-    { name: 'twitter:image', content: selectedDevelopment.bannerimage }
-  ],
-  link: [
-    {
-      rel: 'canonical',
-      href: 'https://miracleland.co/past-developments/' + selectedDevelopment.slug
-    }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Residence',
-        name: selectedDevelopment.name,
-        image: selectedDevelopment.bannerimage,
-        description: selectedDevelopment.description,
-        url: 'https://miracleland.co/past-developments/' + selectedDevelopment.slug,
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: selectedDevelopment.location,
-          addressRegion: selectedDevelopment.state,
-          addressCountry: 'Malaysia'
-        }
-      })
-    }
-  ]
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (error) {
+    console.error('Error fetching development:', error)
+    development.value = null
+  }
+}
+
+const fetchPastAmenitiesBySlug = async (slug) => {
+  try {
+    // Assuming development data is already fetched and stored in `development.value`
+    const res = await axios.get(`http://localhost:8080/past-developments/${slug}/past-amenities`)
+    nearbyAmenities.value = res.data
+    console.log('Nearby Amenities:', nearbyAmenities.value)
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (err) {
+    console.error('Amenity fetch error:', err)
+    nearbyAmenities.value = {} // fallback
+  }
+}
+
+onMounted(async () => {
+  const slug = route.params.slug
+
+  await fetchPastDevelopmentBySlug(slug) // Wait until development is fetched
+
+  await fetchPastAmenitiesBySlug(slug) // Then use same slug to fetch amenities
+})
+
+watchEffect(() => {
+  if (!development.value?.name) return
+
+  useHead({
+    title: development.value.name + ' | Miracle Land',
+    meta: [
+      { name: 'description', content: development.value.description },
+      {
+        name: 'keywords',
+        content: 'property for sale, ' + development.value.location + ', ' + development.value.type
+      },
+      {
+        name: 'geo.region',
+        content: 'MY-06' // make sure it's an ISO-3166-2 code, like '06' for Pahang
+      },
+      { name: 'geo.placename', content: development.value.location },
+      { name: 'robots', content: 'index, follow' },
+
+      // Open Graph
+      { property: 'og:title', content: development.value.name },
+      { property: 'og:description', content: development.value.description },
+      { property: 'og:image', content: development.value.bannerimage },
+      { property: 'og:type', content: 'website' },
+      {
+        property: 'og:url',
+        content: 'https://miracleland.co/past-developments/' + development.value.slug
+      },
+
+      // Twitter
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: development.value.name },
+      { name: 'twitter:description', content: development.value.description },
+      { name: 'twitter:image', content: development.value.bannerimage }
+    ],
+    link: [
+      {
+        rel: 'canonical',
+        href: 'https://miracleland.co/past-developments/' + development.value.slug
+      }
+    ],
+    script: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Residence',
+          name: development.value.name,
+          image: development.value.bannerimage,
+          description: development.value.description,
+          url: 'https://miracleland.co/past-developments/' + development.value.slug,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: development.value.location,
+            addressRegion: development.value.state,
+            addressCountry: 'Malaysia'
+          }
+        })
+      }
+    ]
+  })
 })
 
 const truncateLabel = (text, length = 20) => {
@@ -448,8 +494,11 @@ onBeforeUnmount(() => {
 })
 
 onBeforeRouteUpdate((to, from, next) => {
-  const newSlug = to.params.slug
-  development.value = pastdevelopments.find(item => item.slug === newSlug) || null
+  if (to.params.slug !== from.params.slug) {
+    fetchPastDevelopmentBySlug(to.params.slug)
+    // fetchAmenitiesBySlug(to.params.slug)
+    window.scrollTo(0, 0) // Optional: scroll to top
+  }
   next()
 })
 
@@ -514,11 +563,8 @@ onMounted(() => {
 // }
 
 const filteredAmenities = computed(() => {
-  // Get the location of the current development
-  const name = development.value?.name
-
   // Return amenities for the location if it exists or an empty array otherwise
-  return nearbyAmenities[name]?.amenities || {}
+  return nearbyAmenities?.value || {}
 })
 
 const getCategoryIcon = (category) => {

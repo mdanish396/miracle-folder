@@ -21,7 +21,7 @@
             </div>
             <div class="property-hero-content">
               <div class="property-hero-info">
-                <h3 class="property-name fade-up">{{ property.name }}</h3>
+                <h3 class="property-name fade-up">{{ property?.name }}</h3>
                 <div class="property-location fade-up">
                    <i class="fas fa-map-marker-alt icon"></i>
                     <span class="text-property-location">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="property-item">
                       <h4>From</h4>
-                      <p >{{ formatPrice(property.price) }}</p>
+                      <p>{{ property?.price ? formatPrice(property.price) : 'RM 0' }}</p>
                     </div>
                     <div class="property-item">
                       <h4>Status</h4>
@@ -101,7 +101,7 @@
         </div>
       </div>
 
-      <div class="description-section">
+      <div class="description-section" v-if="property">
         <h2 class="fade-up">{{ property.name }}</h2>
         <p class="fade-up delay-1">{{ property.description }}</p>
       </div>
@@ -120,7 +120,7 @@
 
           <!-- Left image -->
           <div
-            v-if="property.gallery[0]"
+            v-if="property.gallery?.[0]"
             :key="0"
             class="gallery-item">
             <img
@@ -134,7 +134,7 @@
 
           <!-- Center Image -->
           <div
-            v-if="property.gallery[1]"
+            v-if="property.gallery?.[1]"
             :key="1"
             class="gallery-item">
             <img
@@ -150,7 +150,7 @@
 
           <!-- Center Image -->
           <div
-            v-if="property.gallery[2]"
+            v-if="property.gallery?.[2]"
             :key="2"
             class="gallery-item">
             <img
@@ -166,7 +166,7 @@
 
           <!-- Right Image -->
           <div
-            v-if="property.gallery[3]"
+            v-if="property.gallery?.[3]"
             :key="2"
             class="gallery-item">
             <img
@@ -443,7 +443,7 @@
               </div>
             </div>
             <p class="fade-up delay-3">Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
-            <q-form @submit.prevent="submitForm" class="register-form fade-up delay-4">
+            <q-form class="register-form fade-up delay-4">
               <!-- Name Field -->
               <q-input v-model="form.name" label="Name*" outlined required />
 
@@ -466,7 +466,7 @@
               <q-input v-model="form.message" label="Questions/Comments*" type="textarea" outlined required />
 
               <!-- Submit Button -->
-              <q-btn type="submit" label="SEND" class="submit-btn" :loading="isSubmitting" :disable="isSubmitting" />
+              <q-btn type="submit" label="SEND" class="submit-btn" />
             </q-form>
             <div class="career">
               <h2 class="fade-up delay-1">Career Opportunities</h2>
@@ -512,7 +512,7 @@
                   {{ property.location }}
                 </span>
               </div>
-              <q-separator/>
+              <q-separator style="margin: 0 -15px;"/>
               <q-toolbar class="product-toolbar">
                 <div class="product-item">
                   <h4>Type</h4>
@@ -523,14 +523,14 @@
                   </p>
                 </div>
 
-                  <q-separator vertical/>
+                  <q-separator vertical style="margin: 7px 0; margin-top: 0px;"/>
                 <div class="product-item-1">
                   <h4>From</h4>
                   <p>{{ property.price }}</p>
                 </div>
               </q-toolbar>
 
-              <q-separator/>
+              <q-separator style="margin: 0 -15px;"/>
               <div class="product-feature-list">
                 <div
                   v-for="feature in property.features"
@@ -544,7 +544,7 @@
               </div>
 
               <q-space/>
-              <q-separator/>
+              <q-separator style="margin: 0 -15px;"/>
               <div class="btn-more">
                 <q-btn flat label="Learn More" class="learn-more-btn" @click="navigateToPropertyDetails(property.slug)"/>
               </div>
@@ -564,23 +564,20 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref, onBeforeUnmount, computed } from 'vue'
+import { onMounted, onUnmounted, ref, onBeforeUnmount, computed, nextTick, watchEffect } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
-import { properties } from 'src/components/Properties/CurrentProperties/CurrentPropertiesData.vue'
-import { nearbyAmenities } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentAmenitiesData.vue'
 import { useQuasar } from 'quasar'
-import { developments } from 'src/components/Properties/CurrentProperties/CurrentDevelopmentData.vue'
 import { useHead } from '@vueuse/head'
 import axios from 'axios'
-import qs from 'qs'
 
 // Assuming you have a store or an API to fetch properties
 const route = useRoute()
 const $q = useQuasar()
 const router = useRouter()
-const propertySlug = route.params.slug
-const flattenedProperties = Object.values(properties).flat()
-const property = ref(flattenedProperties.find(item => item.slug === propertySlug))
+const property = ref({})
+const developments = ref([])
+const allProperties = ref([])
+const flattenedProperties = computed(() => allProperties.value)
 const screenBelow540px = ref(window.innerWidth < 540)
 const isPopupOpen = ref(false)
 const currentImage = ref(0)
@@ -595,132 +592,153 @@ const lastMouseY = ref(0)
 const visibleCount = ref(3)
 const sections = ref([])
 const fadeItems = ref([])
+const nearbyAmenities = ref({})
 let observer = null
 
-const form = ref({
-  name: '',
-  email: '',
-  telephone: '',
-  enquiryType: '',
-  message: ''
+const developmentSlug = computed(() => {
+  if (!property.value || !property.value.place) return ''
+  const dev = developments.value.find(d => d.name === property.value.place)
+  return dev ? dev.slug : ''
 })
 
-const isSubmitting = ref(false) // Track submission state
-
-const validateEmail = (email) => {
-  if (!email) {
-    return true
-  }
-  const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
-  return emailRegex.test(email)
-}
-
-const submitForm = async () => {
-  if (isSubmitting.value) return // Prevent multiple clicks
-  isSubmitting.value = true
-
+const fetchDevelopmentBySlug = async (slug) => {
   try {
-    const response = await axios.post('http://localhost:8080/api/sendemail', qs.stringify(form.value), {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    })
+    const response = await axios.get(`http://localhost:8080/developments/${slug}`)
+    developments.value = response.data
 
-    console.log('Server Response:', response)
+    // Wait for DOM to render new content before observing
+    await nextTick()
 
-    if (response.status === 200 && response.data.status === 'success') {
-      // Show success popup
-      $q.dialog({
-        title: 'Success ✅',
-        message: 'Your email has been sent successfully!',
-        ok: true
-      })
-      // Reset form fields after successful submission
-      form.value = {
-        name: '',
-        email: '',
-        telephone: '',
-        enquiryType: '',
-        message: ''
-      }
-    } else {
-      // Show warning popup if email fails
-      // $q.dialog({
-      //   title: 'Warning ⚠️',
-      //   message: response.data.message || 'Unable to send email. Please try again.',
-      //   ok: true
-      // })
-    }
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
   } catch (error) {
-    console.error('Error sending email:', error.response?.data || error.message)
-    // Show error popup
-    // $q.dialog({
-    //   title: 'Error ❌',
-    //   message: error.response?.data?.message || 'Failed to send email. Please try again.',
-    //   ok: true
-    // })
-  } finally {
-    isSubmitting.value = false // Reset submission state
+    console.error('Error fetching development:', error)
+    developments.value = []
   }
 }
 
-useHead({
-  title: property.value.name + ' | Miracle Land',
-  meta: [
-    { name: 'description', content: property.value.description },
-    {
-      name: 'keywords',
-      content: 'property for sale, ' + property.value.location + ', ' + property.value.housetype
-    },
-    { name: 'language', content: 'ms-MY' },
-    { name: 'geo.region', content: 'MY-06' }, // e.g., Pahang
-    { name: 'geo.placename', content: property.value.location },
-    { name: 'robots', content: 'index, follow' },
+const fetchPropertyBySlug = async () => {
+  try {
+    const slug = route.params.slug
+    const response = await axios.get(`http://localhost:8080/properties/${slug}`)
+    property.value = response.data
+    await nextTick()
 
-    // Open Graph
-    { property: 'og:title', content: property.value.name },
-    { property: 'og:description', content: property.value.description },
-    { property: 'og:image', content: property.value.image },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://miracleland.co/developments/property/' + property.value.slug },
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+    console.log('Fetched Property:', property.value)
+    console.log('Gallery Images:', property.value.gallery)
+  } catch (error) {
+    console.error('Error fetching property:', error)
+    console.error('Error fetching gallery:', error)
+    property.value = null
+  }
+}
 
-    // Twitter
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: property.value.name },
-    { name: 'twitter:description', content: property.value.description },
-    { name: 'twitter:image', content: property.value.image }
-  ],
-  link: [
-    {
-      rel: 'canonical',
-      href: 'https://miracleland.co/developments/property/' + property.value.slug
-    }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Product',
-        name: property.value.name,
-        image: [property.value.image],
-        description: property.value.description,
-        url: 'https://miracleland.co/developments/property/' + property.value.slug,
-        offers: {
-          '@type': 'Offer',
-          priceCurrency: 'MYR',
-          price: property.value.price,
-          availability: 'https://schema.org/InStock'
-        },
-        areaServed: {
-          '@type': 'Place',
-          name: property.value.location
-        }
-      })
-    }
-  ]
+const fetchAllProperties = async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/properties')
+    allProperties.value = response.data
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (error) {
+    console.error('Error fetching all properties:', error)
+  }
+}
+
+const fetchAmenitiesBySlug = async (slug) => {
+  try {
+    // Assuming development data is already fetched and stored in `development.value`
+    const res = await axios.get(`http://localhost:8080/properties/${route.params.slug}/amenities`)
+    nearbyAmenities.value = res.data
+    console.log('Nearby Amenities:', nearbyAmenities.value)
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (err) {
+    console.error('Amenity fetch error:', err)
+    nearbyAmenities.value = {} // fallback
+  }
+}
+
+onMounted(() => {
+  fetchDevelopmentBySlug(developmentSlug.value)
+  fetchPropertyBySlug()
+  fetchAllProperties()
+  fetchAmenitiesBySlug(route.params.slug)
 })
 
+watchEffect(() => {
+  if (!property.value?.name) return
+
+  useHead({
+    title: property.value.name + ' | Miracle Land',
+    meta: [
+      { name: 'description', content: property.value.description },
+      {
+        name: 'keywords',
+        content: 'property for sale, ' + property.value.location + ', ' + property.value.housetype
+      },
+      { name: 'language', content: 'ms-MY' },
+      { name: 'geo.region', content: 'MY-06' }, // e.g., Pahang
+      { name: 'geo.placename', content: property.value.location },
+      { name: 'robots', content: 'index, follow' },
+
+      // Open Graph
+      { property: 'og:title', content: property.value.name },
+      { property: 'og:description', content: property.value.description },
+      { property: 'og:image', content: property.value.image },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://miracleland.co/developments/property/' + property.value.slug },
+
+      // Twitter
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: property.value.name },
+      { name: 'twitter:description', content: property.value.description },
+      { name: 'twitter:image', content: property.value.image }
+    ],
+    link: [
+      {
+        rel: 'canonical',
+        href: 'https://miracleland.co/developments/property/' + property.value.slug
+      }
+    ],
+    script: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: property.value.name,
+          image: [property.value.image],
+          description: property.value.description,
+          url: 'https://miracleland.co/developments/property/' + property.value.slug,
+          offers: {
+            '@type': 'Offer',
+            priceCurrency: 'MYR',
+            price: property.value.price,
+            availability: 'https://schema.org/InStock'
+          },
+          areaServed: {
+            '@type': 'Place',
+            name: property.value.location
+          }
+        })
+      }
+    ]
+  })
+})
 function formatPrice (price) {
-  return price.replace(/RM ([\d,]+)k\*/, (match, p1) => `RM ${p1},000*`)
+  if (!price) return 'RM 0'
+  return String(price).replace(/RM ([\d,]+)k\*/, (match, p1) => `RM ${p1},000*`)
 }
 
 onMounted(() => {
@@ -744,14 +762,11 @@ onMounted(() => {
 })
 
 const truncateLabel = (text, length = 20) => {
-  return $q.screen.lt.sm && text.length > length ? text.substring(0, length) + '...' : text
+  if (typeof text !== 'string') return ''
+  return $q.screen.lt.sm && text.length > length
+    ? text.substring(0, length) + '...'
+    : text
 }
-
-// Find the matching development slug from the developments array
-const developmentSlug = computed(() => {
-  const development = developments.find(dev => dev.name === property.value.place)
-  return development ? development.slug : ''
-})
 
 onBeforeUnmount(() => {
   // Clean up observer
@@ -949,10 +964,22 @@ const nextImage = () => {
   currentImage.value = (currentImage.value + 1) % gallery.length
 }
 
-const computedNearbyAmenities = computed(() => {
-  const name = property.value?.place
-  return nearbyAmenities[name]?.amenities || {}
+// Form state for the register form
+const form = ref({
+  name: '',
+  email: '',
+  telephone: '',
+  enquiryType: '',
+  message: ''
 })
+
+// // Dummy nearbyAmenities object for demonstration; replace with your actual data or import as needed
+// const nearbyAmenities = {}
+
+const computedNearbyAmenities = computed(() => {
+  return nearbyAmenities.value || {}
+})
+
 const getCategoryIcon = (category) => {
   const icons = {
     education: 'fas fa-graduation-cap',
@@ -970,7 +997,7 @@ const capitalizeFirstLetter = (string) => {
 }
 
 const similarProperties = computed(() => {
-  return flattenedProperties.filter(
+  return flattenedProperties.value.filter(
     (item) =>
       item.place === property.value?.place && item.id !== property.value?.id
   )
@@ -986,7 +1013,7 @@ const navigateToPropertyDetails = (slug) => {
 
 onBeforeRouteUpdate((to, from, next) => {
   const newSlug = to.params.slug
-  const newProperty = flattenedProperties.find(item => item.slug === newSlug) || null
+  const newProperty = flattenedProperties.value.find(item => item.slug === newSlug) || null
   if (newProperty) {
     property.value = newProperty
   } else {
@@ -2677,14 +2704,6 @@ justify-content: center;
   font-size: 16px;
   line-height: 24px;
   color: #000;
-}
-
-.q-separator {
-  margin: 0 -15px; /* Extend beyond the padding */
-}
-
-q-separator.vertical {
-  height: 90%;
 }
 
 .product-toolbar {

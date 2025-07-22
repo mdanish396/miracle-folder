@@ -176,14 +176,13 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
-import { pastdevelopments } from 'src/components/Properties/PastProperties/PastDevelopmentData.vue'
 import { useHead } from '@vueuse/head'
 
 const allDevelopments = ref([])
 // const visibleCount = ref(4)
-const allPastDevelopments = ref(pastdevelopments /* .filter((d) => d.status === 'Completed') */)
+const allPastDevelopments = ref([])
 const displayedDevelopments = ref([])
-const displayedPastDevelopments = ref(allPastDevelopments.value /* .slice(0, visibleCount.value) */)
+const displayedPastDevelopments = ref([])
 // const showAllDevelopments = ref(false)
 // const showAllPastDevelopments = ref(false)
 const sections = ref([])
@@ -201,6 +200,18 @@ const fetchDevelopments = async () => {
     console.log('Fetched developments:', allDevelopments.value) // ✅ DEBUG
   } catch (error) {
     console.error('Error fetching developments:', error)
+  }
+}
+
+const fetchPastDevelopments = async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/past-developments')
+    // Filter only required statuses
+    allPastDevelopments.value = response.data
+    displayedPastDevelopments.value = allPastDevelopments.value
+    console.log('Fetched past developments:', allPastDevelopments.value) // ✅ DEBUG
+  } catch (error) {
+    console.error('Error fetching past developments:', error)
   }
 }
 
@@ -247,6 +258,7 @@ useHead({
 
 onMounted(() => {
   fetchDevelopments()
+  fetchPastDevelopments()
   // Initialize Intersection Observer
   observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

@@ -107,7 +107,7 @@ export const properties = {
     bedroom: 4 + 2, // 4004 - 5769 sqft
     bathroom: 5,
     plan: '/assets/Development/Casa Hill/plan-a.jpg',
-    brochure: '/assets/reports/BILL GATES AND MICROSOFT.pdf'
+    brochure: ''
   },
   {
     id: 2,
