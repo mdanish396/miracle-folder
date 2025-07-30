@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <div class="about-section">
+    <div class="about-section" v-if="about">
       <div class="content-container">
         <!-- Text Content Section -->
         <div class="text-content">
@@ -10,14 +10,14 @@
             </div>
           </div>
           <div class="text fade-up delay-1">
-            <h2 class="text-above">About</h2>
-            <h2 class="text-below">Miracle Land</h2>
+            <h2 class="text-above">{{ about.title }}</h2>
+            <h2 class="text-below">{{ about.subtitle }}</h2>
           </div>
         </div>
 
         <!-- Image Section -->
         <div class="about-image-container">
-          <img src="/assets/Development/Miracle Sentral/miracle_sentral_06.png" class="about-image" />
+          <img :src="about.image" class="about-image" />
         </div>
       </div>
     </div>
@@ -28,98 +28,45 @@
     </q-breadcrumbs> -->
 
     <!-- Company Background Section -->
-    <section class="company-background">
+    <section class="company-background" v-if="company">
       <div class="container">
-        <h2 class="fade-up">Company Background</h2>
+        <h2 class="fade-up">{{ company.title }}</h2>
         <div class="para-text fade-up delay-1">
-          <p>
-            MLHB was incorporated in October 2014 as the holding company of various
-            subsidiaries for upcoming development projects of the group. The company
-            aspire to provide quality homes and valuable commercials in the country’s
-            second and third tiered cities by creating townships with well-planned and
-            integrated developments.
-          </p>
-          <p>
-            The group’s initial focus would be on the high potential areas across Pahang
-            and eventually progressing to the other parts of the country. The group has
-            secured several development projects and it is actively seeking out to acquire
-            new land banks to ensure continuing growth.
-          </p>
-          <p>
-            MLHB’s core team has substantial experience in the property development industry
-            which had completed to date numerous development projects covering Residential and
-            Commercial as well as Light Industrial, under Dynaton Group - a series of ISO
-            accredited property development and construction companies.
-          </p>
-          <p>
-            With a team of experienced and dedicated workforce, MLHB is confident to further
-            grow its capabilities while generating sustainable value for its stakeholders.
+          <p v-for="(paragraph, index) in formattedContent" :key="index">
+            {{ paragraph }}
           </p>
         </div>
       </div>
     </section>
 
     <!-- Vision Section -->
-    <section class="vision-section">
+    <section class="vision-section" v-if="vision"
+    :style="{
+    backgroundImage: `url(${vision.image})`}">
       <div class="container">
         <div class="content-wrapper">
           <div class="vision-text">
-            <h2 class="fade-up">Vision</h2>
-            <p class="fade-up delay-1">
-              To be one of the most trusted and<br/>
-              leading developer in the country.
-            </p>
+            <h2 class="fade-up">{{ vision.title }}</h2>
+            <p class="fade-up delay-1" v-html="vision.content"></p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Mission Section -->
-    <section class="mission-section">
+    <section class="mission-section" v-if="mission">
       <div class="container">
-          <h2 class="fade-up">Mission</h2>
+          <h2 class="fade-up">{{ mission.title }}</h2>
         <div class="mission-wrapper fade-up delay-1">
           <ul>
-            <li>
+            <li v-for="(content, index) in mission.content" :key="index">
               <i class="fas fa-check-circle icon"></i>
-              <span>
-                To strive for best planning and design for all our development projects ensuring each and every one is a masterpiece.
-              </span>
-            </li>
-            <li>
-              <i class="fas fa-check-circle icon"></i>
-              <span>
-                To give customer peace of mind by ensuring quality material and workmanship and completion on time.
-              </span>
-            </li>
-            <li>
-              <i class="fas fa-check-circle icon"></i>
-              <span>
-                To enhance the social and economic aspect of local community through our development projects.
-              </span>
-            </li>
-            <li>
-              <i class="fas fa-check-circle icon"></i>
-              <span>
-                To maximize the value of each project land while maintaining the conducive living environment.
-              </span>
-            </li>
-            <li>
-              <i class="fas fa-check-circle icon"></i>
-              <span>
-                To deliver sustainable return to our shareholders.
-              </span>
-            </li>
-            <li>
-              <i class="fas fa-check-circle icon"></i>
-              <span>
-                To develop and reward our employees.
-              </span>
+              <span>{{ content }}</span>
             </li>
           </ul>
 
           <div class="mission-image-container">
-            <img src="/assets/development.jpg" class="mission-image" />
+            <img :src="mission.image" class="mission-image" />
           </div>
         </div>
       </div>
@@ -253,7 +200,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick, computed } from 'vue'
 import { useHead } from '@vueuse/head'
 import axios from 'axios'
 import { useQuasar } from 'quasar'
@@ -262,6 +209,19 @@ import qs from 'qs'
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+const about = ref({})
+const vision = ref({
+  title: '',
+  content: '',
+  image: ''
+})
+const mission = ref({
+  title: '',
+  content: [],
+  image: ''
+})
+const company = ref({})
+
 const $q = useQuasar()
 
 const form = ref({
@@ -270,6 +230,44 @@ const form = ref({
   telephone: '',
   enquiryType: '',
   message: ''
+})
+
+onMounted(async () => {
+  try {
+    const res = await axios.get('http://localhost:8080/about')
+    about.value = res.data[0]
+    console.log('Fetched About:', about.value) // ✅ DEBUG
+    // Wait for DOM to render new content before observing
+
+    const response = await axios.get('http://localhost:8080/company-background')
+    company.value = response.data[0]
+    console.log('Fetched Company Background:', company.value) // ✅ DEBUG
+    // Wait for DOM to render new content before observing
+
+    const respo = await axios.get('http://localhost:8080/vision')
+    vision.value = respo.data[0]
+    console.log('Fetched Mission:', vision.value) // ✅ DEBUG
+    // Wait for DOM to render new content before observing
+
+    const resp = await axios.get('http://localhost:8080/mission')
+    mission.value = resp.data[0]
+    console.log('Fetched Mission:', mission.value) // ✅ DEBUG
+    // Wait for DOM to render new content before observing
+
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (e) {
+    console.error('Failed to load homepage media:', e)
+  }
+})
+
+const formattedContent = computed(() => {
+  return company.value.content
+    ? company.value.content.split('\n').map(p => p.trim()).filter(p => p.length > 0)
+    : []
 })
 
 const isSubmitting = ref(false) // Track submission state
@@ -679,7 +677,6 @@ padding-inline: 20px;
 /* Vision Section */
 .vision-section {
   background-color: rgba(255, 255, 255, 0.4); /* Background color */
-  background-image: url('/assets/career3.jpg'); /* Background image */
   background-blend-mode: overlay;  /* Background image */
   background-size: cover; /* Ensure the image covers the section */
   background-position: center; /* Center the image */

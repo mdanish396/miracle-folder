@@ -2,7 +2,7 @@
   <q-page>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Hero Image -->
-    <div class="new-hero">
+    <div class="new-hero" v-if="career">
       <div class="new-container">
         <!-- Text Content Section -->
         <div class="text-content">
@@ -11,15 +11,15 @@
               <div class="line-hero-1"></div>
             </div>
           </div>
-          <h2 class="text-above fade-up delay-1">Careers</h2>
+          <h2 class="text-above fade-up delay-1">{{ career.title }}</h2>
           <p class="text-below fade-up delay-2">
-            Explore our current job opportunities.
+            {{ career.subtitle }}
           </p>
         </div>
 
         <!-- Image Section -->
         <div class="career-image-container">
-          <img src="/assets/contact.jpg" class="top-image" />
+          <img :src="career.image" class="top-image" />
         </div>
       </div>
     </div>
@@ -29,26 +29,14 @@
       <q-breadcrumbs-el label="Careers" />
     </q-breadcrumbs> -->
 
-    <div class="contact">
+    <div class="contact" v-if="career">
       <div class="contact-offer">
-        <h2 class="fade-up">What We Offer</h2>
+        <h2 class="fade-up">{{ career.bigtitle }}</h2>
         <div class="fade-up delay-1">
-          <div class="text-list">
-            <img src="/assets/handshake.png" class="icon-image"/>
+          <div v-for="offer in career.offer" :key="offer" class="text-list">
+            <img :src="career.offericon" class="icon-image"/>
             <span class="offer-text">
-              Competitive pay
-            </span>
-          </div>
-          <div class="text-list">
-            <img src="/assets/handshake.png" class="icon-image"/>
-            <span class="offer-text">
-              Comprehensive training
-            </span>
-          </div>
-          <div class="text-list">
-            <img src="/assets/handshake.png" class="icon-image"/>
-            <span class="offer-text">
-              Friendly and supportive work environment
+              {{ offer }}
             </span>
           </div>
         </div>
@@ -57,16 +45,16 @@
       <div class="contact-apply fade-up delay-2">
         <div class="contact-info">
           <p>Send your resume</p>
-          <a href="mailto:hmnrs.md3@gmail.com" class="info">
+          <a :href="'mailto:' + career.email" class="info">
             <i class="fa fa-envelope icons"></i>
-            hr@miracleland.co
+            {{ career.email }}
           </a>
         </div>
         <div class="contact-info">
           <p>Contact us</p>
-          <a href="tel:+601169999888" class="info">
+          <a :href="'tel:' + career.phone" class="info">
             <i class="fas fa-phone-alt icons"></i>
-            +60 116 9999 888
+            {{ career.phone }}
           </a>
         </div>
       </div>
@@ -112,27 +100,16 @@
       </div>
     </div>
 
-    <div class="careers-text">
+    <div class="careers-text" v-if="career">
       <div class="career-first">
-        <h2 class="fade-up">Can't find any job vacancies?</h2>
-        <p class="fade-up delay-1">The Miracle Land Company has a strong presence in Pahang,
-          with offices in Temerloh, Kuantan, and Jengka. If you haven't
-          found the job vacancy on our site today, you can submit your
-          details prospectively with us and one of our team will get in touch with you.
+        <h2 class="fade-up">{{ career.question }}</h2>
+        <p class="fade-up delay-1">{{ career.career }}
         </p>
       </div>
       <div class="career-link fade-up delay-2">
-        <q-btn flat label="Submit your details prospectively" class="btn" @click="navigateToForm"/>
+        <q-btn flat :label="career.button" class="btn" @click="navigateToForm"/>
       </div>
-      <div class="career-second fade-up delay-3">
-        <strong>Be fraud aware:</strong> Fraudulent job advertisements can circulate online and falsely
-          claim to be associated with The Miracle Land Company. Genuine
-          correspondence from The Miracle Land Company will always come
-          from the official website <a class="second-web" href="https://www.miracleland.co" target="_blank">www.miracleland.co</a>. We will never
-          request sensitive or personal financial information during the
-          recruitment process. If you suspect that you have been contacted
-          by someone misrepresenting The Miracle Land Company, please
-          contact us at <a class="second-mail" href="mailto:hmnrs.md3@gmail.com">hmnrs.md3@gmail.com</a>.
+      <div class="career-second fade-up delay-3" v-html="career.careerssecond">
       </div>
     </div>
 
@@ -152,7 +129,7 @@
         </template>
 
         <q-fab-action @click="onClick" color="white" style="border-radius: 1%;" >
-          <img src="/assets/qr-career.png" alt="QR Code" class="qr-img"/>
+          <img :src="career.qr" alt="QR Code" class="qr-img"/>
         </q-fab-action>
       </q-fab>
     </q-page-sticky>
@@ -161,7 +138,7 @@
 
 <script setup>
 import axios from 'axios'
-import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed, nextTick } from 'vue'
 import { useHead } from '@vueuse/head'
 
 const sections = ref([])
@@ -170,13 +147,31 @@ let observer = null
 const jobs = ref([])
 const departments = ref([])
 const locations = ref([])
+const career = ref({})
 
 const selectedDepartment = ref('All Departments')
 const selectedLocation = ref('All Locations')
 
+onMounted(async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/career')
+    career.value = response.data[0] // Example: [{ type: 'image', filename: 'hero.jpg' }, ...]
+    console.log('Fetched career:', career.value) // ✅ DEBUG
+
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (e) {
+    console.error('Failed to load homepage media:', e)
+  }
+})
+
 const fetchJobs = async () => {
   try {
-    const response = await axios.get('http://localhost:8080/api/jobs')
+    const response = await axios.get('http://localhost:8080/jobs')
     jobs.value = response.data
 
     // Extract unique departments and locations for filters
@@ -234,8 +229,14 @@ const filterJobs = () => {
 
 }
 
+function onClick () {
+  console.log('FAB action clicked!')
+}
+
 const navigateToForm = () => {
-  window.open('https://forms.monday.com/forms/af05330b16c06a3f98c8e8e0efdf767f?r=use1&s=6', '_blank')
+  if (career.value.buttonlink) {
+    window.open(career.value.buttonlink, '_blank')
+  }
 }
 
 onMounted(() => {
@@ -724,21 +725,25 @@ padding-right: 10px;
   font-family: 'TitilliumWebSemiBold';
 }
 
-.second-web {
+:deep(.fraud-bold) {
+  font-family: 'TitilliumWebSemiBold';
+}
+
+:deep(.second-web) {
   text-decoration: none;
   color: inherit;
 }
 
-.second-web:hover {
+:deep(.second-web:hover) {
   color: #a39f1a;
 }
 
-.second-mail {
+:deep(.second-mail) {
   text-decoration: none;
   color: inherit;
 }
 
-.second-mail:hover {
+:deep(.second-mail:hover) {
   color: #a39f1a;
 }
 

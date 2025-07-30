@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <div class="development-section">
+    <div class="development-section" v-if="media">
       <div class="content-container">
         <!-- Text Content Section -->
         <div class="text-content">
@@ -10,14 +10,14 @@
             </div>
           </div>
           <div class="text-content-holder fade-up delay-1">
-            <h2 class="text-above">Our</h2>
-            <h2 class="text-below">Development</h2>
+            <h2 class="text-above">{{ media.title }}</h2>
+            <h2 class="text-below">{{ media.subtitle }}</h2>
           </div>
         </div>
 
         <!-- Image Section -->
         <div class="development-image-container">
-          <img src="/assets/development.jpg" class="top-image" />
+          <img :src="media.image" class="top-image" />
         </div>
       </div>
     </div>
@@ -28,8 +28,8 @@
     </q-breadcrumbs> -->
 
     <!-- Current Developments Section -->
-    <div class="developments-section">
-      <h2 class="fade-up">Current Developments</h2>
+    <div class="developments-section" v-if="media">
+      <h2 class="fade-up">{{ media.currenttitle }}</h2>
       <div class="line-holder fade-up delay-1">
         <div class="line">
           <div class="line-1">
@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <p class="fade-up delay-2">Explore our current developments and find your dream home or shop.</p>
+      <p class="fade-up delay-2">{{ media.description }}</p>
       <div class="fade-up delay-3">
         <div :class="['developments-container', displayedDevelopments.length >= 3 ? 'grid-layout' : 'flex-layout']">
             <!-- Scrollable Development Card -->
@@ -102,8 +102,8 @@
     </div>
 
     <!-- Past Developments Section -->
-    <div id="past-developments" class="past-developments-section">
-  <h2 class="fade-up">Past Developments</h2>
+    <div id="past-developments" class="past-developments-section" v-if="media">
+  <h2 class="fade-up">{{ media.pasttitle }}</h2>
   <div class="line-holder fade-up delay-1">
     <div class="line">
       <div class="line-1">
@@ -111,7 +111,7 @@
       </div>
     </div>
   </div>
-  <p class="fade-up delay-2">Explore our past developments and build your confidence.</p>
+  <p class="fade-up delay-2">{{ media.pastdescription }}</p>
   <div class="fade-up delay-3">
     <div :class="['developments-container', displayedPastDevelopments.length >= 3 ? 'grid-layout' : 'flex-layout']">
       <div
@@ -173,11 +173,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { useHead } from '@vueuse/head'
 
+defineEmits(['toggleHeader'])
 const allDevelopments = ref([])
 // const visibleCount = ref(4)
 const allPastDevelopments = ref([])
@@ -186,8 +187,26 @@ const displayedPastDevelopments = ref([])
 // const showAllDevelopments = ref(false)
 // const showAllPastDevelopments = ref(false)
 const sections = ref([])
+const media = ref({})
 const fadeItems = ref([])
 let observer = null
+
+onMounted(async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/page-development')
+    media.value = response.data[0] // Example: [{ type: 'image', filename: 'hero.jpg' }, ...]
+    console.log('Fetched page development:', media.value) // ✅ DEBUG
+
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (e) {
+    console.error('Failed to load homepage media:', e)
+  }
+})
 
 const fetchDevelopments = async () => {
   try {

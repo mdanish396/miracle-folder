@@ -3,14 +3,40 @@
     <!-- Startup Animation Overlay -->
     <div v-if="showLoader" class="startup-overlay">
       <div>
-        <img src="/assets/logotext-white.png" class="startup-image">
+        <img src="/assets/logotext-white.png" class="startup-image" loading="eager">
       </div>
       <!-- <h4>MIRACLE LAND</h4> -->
     </div>
 
     <!-- Hero Section -->
     <div class="hero-section">
-      <!-- <q-carousel
+
+      <!-- 🎥 VIDEO -->
+      <video
+        v-if="mediaType === 'video'"
+        autoplay
+        loop
+        muted
+        playsinline
+        class="hero-video"
+        loading="eager"
+      >
+        <source :src="media[0].filename" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- 🖼️ SINGLE IMAGE -->
+      <q-img
+        v-else-if="mediaType === 'image' && media && media.length && media[0].filename"
+        :src="media[0].filename"
+        class="hero-video"
+        :style="{ objectFit: 'cover', maxHeight: '100vh' }"
+        loading="eager"
+      />
+
+      <!-- 🖼️ IMAGE CAROUSEL -->
+      <q-carousel
+        v-else-if="mediaType === 'carousel'"
         v-model="slide"
         swipeable
         animated
@@ -21,129 +47,26 @@
         transition-prev="fade"
         transition-next="fade"
         class="hero-carousel"
+        loading="eager"
       >
-        <q-carousel-slide name="first" img-src="/assets/index.jpg">
-          <div class="video-text-overlay">
-            <h1>MIRACLE</h1>
-            <h2>FOR YOU FOREVER</h2>
-          </div>
-        </q-carousel-slide>
         <q-carousel-slide
-          name="second"
-          :img-src="$q.screen.width < 1028 ? '/assets/6.jpg' : '/assets/1.png'"
-          :style="{
-            /* Shared styles */
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            width: '100%',
-            backgroundColor: '#2C2E67',
-            overflow: 'hidden',
-
-            /* Desktop (≥1028px) - For 5.png (5000×2295) */
-            ...($q.screen.width >= 1028 ? {
-              backgroundSize: 'contain',
-              minHeight: 'calc(98vw * 0.459)' /* 2295/5000 = 0.459 aspect ratio */
-            } :
-            /* Mobile (<1028px) - For 6.jpg (1080×1080) */
-            {
-              backgroundSize: 'contain',
-              maxHeight: '110vh',
-              aspectRatio: '1/1',
-              /* Optional: add decorative borders */
-              border: '2px solid #3A3D8F',
-              boxSizing: 'border-box'
-            })
-          }"
+          v-for="(img, index) in media"
+          :key="index"
+          :name="index"
+          :img-src="img.filename"
+          loading="eager"
         />
-        <q-carousel-slide name="third"
-        :img-src="$q.screen.width < 1028 ? '/assets/7.jpg' : '/assets/2.png'"
-          :style="{
-            /* Shared styles */
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            width: '100%',
-            backgroundColor: '#0D3A57',
-            overflow: 'hidden',
-
-            /* Desktop (≥1028px) - For 2.png (5000×2295) */
-            ...($q.screen.width >= 1028 ? {
-              backgroundSize: 'contain',
-              minHeight: 'calc(98vw * 0.459)' /* 2295/5000 = 0.459 aspect ratio */
-            } :
-            /* Mobile (<1028px) - For 7.jpg (1080×1080) */
-            {
-              backgroundSize: 'contain',
-              maxHeight: '110vh',
-              aspectRatio: '1/1',
-              /* Optional: add decorative borders */
-              border: '2px solid #3A3D8F',
-              boxSizing: 'border-box'
-            })
-          }"
-        />
-        <q-carousel-slide
-        v-if="$q.screen.width < 1028"
-          name="third-second"
-          img-src="/assets/8.jpg"
-          :style="{
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              width: '100%',
-              backgroundColor: '#0D3A57',
-              overflow: 'hidden',
-              backgroundSize: 'contain',
-              maxHeight: '110vh',
-              aspectRatio: '1/1',
-              /* Optional: add decorative borders */
-              border: '2px solid #3A3D8F',
-              boxSizing: 'border-box'
-          }"
-        />
-        <q-carousel-slide name="fourth"
-        :img-src="$q.screen.width < 1028 ? '/assets/9.jpg' : '/assets/3.png'"
-          :style="{
-            /* Shared styles */
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            width: '100%',
-            backgroundColor: '#0D3A57',
-            overflow: 'hidden',
-
-            /* Desktop (≥1028px) - For 2.png (5000×2295) */
-            ...($q.screen.width >= 1028 ? {
-              backgroundSize: 'contain',
-              minHeight: 'calc(98vw * 0.459)' /* 2295/5000 = 0.459 aspect ratio */
-            } :
-            /* Mobile (<1028px) - For 7.jpg (1080×1080) */
-            {
-              backgroundSize: 'contain',
-              maxHeight: '110vh',
-              aspectRatio: '1/1',
-              /* Optional: add decorative borders */
-              border: '2px solid #3A3D8F',
-              boxSizing: 'border-box'
-            })
-          }"
-        />
-
-      </q-carousel> -->
-      <img src="/assets/index.jpg" alt="Hero Image" class="hero-video"/>
-      <!-- <video
-        autoplay
-        loop
-        muted
-        class="hero-video"
-        playsinline
-        preload="auto">
-        <source src="/assets/landscape3.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video> -->
+      </q-carousel>
 
       <!-- Text Overlay in Video (centered) -->
-      <div class="video-text-overlay">
+      <div class="video-text-overlay" v-if="mediaType === 'image' && media && media.length && media[0].filename">
         <h1>MIRACLE</h1>
         <h2>FOR YOU FOREVER</h2>
         <!-- <h1>MIRACLES MADE FOR YOU <br> - FOREVER</h1> -->
+      </div>
+
+      <div class="video-text-overlay" v-if="mediaType === 'video'">
+        <h1>MIRACLE</h1>
       </div>
 
       <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
@@ -271,19 +194,23 @@
         </div>
       </div>
       <div class="logo-container fade-up delay-2">
-        <!-- <img src="/assets/maybank.png" alt="Partner 2" class="partner-logo1"/> -->
-        <!-- <img src="/assets/dynaton.png" alt="Partner 1" class="partner-logo1"/> -->
-        <img src="/assets/interplan.png" alt="Partner 3" class="partner-logo"/>
+        <img
+          v-for="(logo, index) in partnerLogos"
+          :key="index"
+          :src="logo.image"
+          :alt="logo.alt_text"
+          class="partner-logo"
+        />
       </div>
     </div>
 
     <!-- About Section -->
-    <div class="about-section">
+    <div class="about-section" v-if="past">
       <div class="content-container">
         <!-- Text Content Section -->
         <div class="text-content">
           <div class="text fade-up delay-1">
-            <h2 class="text-above">Our Track Record</h2>
+            <h2 class="text-above">{{ past.title }}</h2>
             <div class="line-holders fade-up">
               <div class="line-3">
                 <div class="line-4">
@@ -291,13 +218,13 @@
                 </div>
               </div>
             </div>
-            <p class="text-below">From a family’s dream home to an entrepreneur’s aspiration, we strive to build sustainable communities through creativity and dedication at heart.</p>
+            <p class="text-below">{{ past.description }}</p>
             <div class="fade-up delay-2">
               <q-btn
                 flat
-                label="View Past Developments"
+                :label="past.button"
                 class="about-btn"
-                to="/developments#past-developments"
+                :to="past.link"
               />
             </div>
           </div>
@@ -305,7 +232,7 @@
 
         <!-- Image Section -->
         <div class="about-image-container fade-up">
-          <img src="/assets/Development/Miracle Sentral/miracle_sentral_06.png" class="about-image"/>
+          <img :src="past.image" class="about-image"/>
         </div>
       </div>
     </div>
@@ -313,21 +240,54 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import axios from 'axios'
 import { useHead } from '@vueuse/head'
 
 const showLoader = ref(true)
+const slide = ref(0)
+const media = ref([])
+const mediaType = ref('image') // image, video, or carousel
 const router = useRouter()
 const route = useRoute()
 const sections = ref([])
+const past = ref({})
 const fadeItems = ref([])
 let observer = null
 const allDevelopments = ref([])
 const displayedDevelopments = ref([])
 const visibleCount = ref(4)
 const showAllDevelopments = ref(false)
+
+onMounted(async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/homepage-media')
+    media.value = response.data // Example: [{ type: 'image', filename: 'hero.jpg' }, ...]
+    console.log('Fetched homepage media:', media.value) // ✅ DEBUG
+
+    if (media.value.length === 1 && media.value[0].type === 'video') {
+      mediaType.value = 'video'
+    } else if (media.value.length === 1) {
+      mediaType.value = 'image'
+    } else if (media.value.length > 1) {
+      mediaType.value = 'carousel'
+    }
+
+    const res = await axios.get('http://localhost:8080/past-sectionhome')
+    past.value = res.data[0] // Example: [{ type: 'image', filename: 'hero.jpg' }, ...]
+    console.log('Fetched PastSectionHome:', past.value) // ✅ DEBUG
+
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (e) {
+    console.error('Failed to load homepage media:', e)
+  }
+})
 
 const fetchDevelopments = async () => {
   try {
@@ -348,6 +308,17 @@ onMounted(() => {
   setTimeout(() => {
     showLoader.value = true
   }, 3500)
+})
+
+const partnerLogos = ref([])
+
+onMounted(async () => {
+  try {
+    const res = await axios.get('http://localhost:8080/partner-logos')
+    partnerLogos.value = res.data
+  } catch (e) {
+    console.error('Failed to load partner logos:', e)
+  }
 })
 
 // const slide = ref('first')

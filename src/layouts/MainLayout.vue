@@ -443,7 +443,7 @@ const toggleDrawer = () => {
 
 // Logo click handler
 const handleLogoClick = () => {
-  this.$router.push('/') // Redirect to IndexPage.vue
+  router.push('/') // Redirect to IndexPage.vue
 }
 
 // Social media handlers

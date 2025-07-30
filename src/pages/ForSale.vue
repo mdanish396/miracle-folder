@@ -176,8 +176,7 @@
 
           <!-- Left image -->
           <div class="gallery-item"
-            v-if="development.galleryImages?.[0]"
-            :key="idx">
+            v-if="development.galleryImages?.[0]">
             <img
               :src="development.galleryImages[0]"
               @click="openPopup(0)"
@@ -189,8 +188,7 @@
 
           <!-- Center Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages?.[1]"
-            :key="idx">
+            v-if="development.galleryImages?.[1]">
             <img
               :src="development.galleryImages[1]"
               @click="openPopup(1)"
@@ -206,8 +204,7 @@
 
           <!-- Center Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages?.[2]"
-            :key="idx">
+            v-if="development.galleryImages?.[2]">
             <img
               :src="development.galleryImages[2]"
               @click="openPopup(2)"
@@ -223,8 +220,7 @@
 
           <!-- Right Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages?.[3]"
-            :key="idx">
+            v-if="development.galleryImages?.[3]">
             <img
               :src="development.galleryImages[3]"
               @click="openPopup(3)"
@@ -344,6 +340,8 @@ import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import axios from 'axios'
 import { useHead } from '@unhead/vue'
 
+defineEmits(['toggleHeader'])
+
 const route = useRoute()
 // const GalleryItem = {
 //   url: '',
@@ -400,6 +398,8 @@ const fetchPropertiesBySlug = async (slug) => {
     const res = await axios.get(`http://localhost:8080/developments/properties/${slug}`)
     allproperties.value = res.data
     visibleProperties.value = allproperties.value.slice(0, visibleCount.value)
+    // Wait for DOM to render new content before observing
+    await nextTick()
   } catch (err) {
     console.error('Error fetching properties:', err)
     allproperties.value = []

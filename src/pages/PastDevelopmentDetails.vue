@@ -177,8 +177,7 @@
 
           <!-- Left image -->
           <div class="gallery-item"
-            v-if="development.galleryImages?.[0]"
-            :key="idx">
+            v-if="development.galleryImages?.[0]">
             <img
               :src="development.galleryImages[0]"
               @click="openPopup(0)"
@@ -190,8 +189,7 @@
 
           <!-- Center Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages?.[1]"
-            :key="idx">
+            v-if="development.galleryImages?.[1]">
             <img
               :src="development.galleryImages[1]"
               @click="openPopup(1)"
@@ -207,8 +205,7 @@
 
           <!-- Center Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages?.[2]"
-            :key="idx">
+            v-if="development.galleryImages?.[2]">
             <img
               :src="development.galleryImages[2]"
               @click="openPopup(2)"
@@ -224,8 +221,7 @@
 
           <!-- Right Image -->
           <div class="gallery-item"
-            v-if="development.galleryImages?.[3]"
-            :key="idx">
+            v-if="development.galleryImages?.[3]">
             <img
               :src="development.galleryImages[3]"
               @click="openPopup(3)"
@@ -346,6 +342,7 @@ import axios from 'axios'
 import { useHead } from '@unhead/vue'
 import { useQuasar } from 'quasar'
 
+defineEmits(['toggleHeader'])
 const $q = useQuasar()
 const development = ref([])
 const nearbyAmenities = ref({})
@@ -465,7 +462,9 @@ watchEffect(() => {
 })
 
 const truncateLabel = (text, length = 20) => {
-  return $q.screen.lt.sm && text.length > length ? text.substring(0, length) + '...' : text
+  return $q.screen.lt.sm && (text?.length ?? 0) > length
+    ? text?.substring(0, length) + '...'
+    : text ?? ''
 }
 
 onMounted(() => {

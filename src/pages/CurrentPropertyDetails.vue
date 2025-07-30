@@ -17,7 +17,7 @@
           </q-breadcrumbs>
           <div class="property-hero-container">
             <div class="property-hero-image">
-              <img :src="property.image" alt="Property Image" class="hero-image fade-up" />
+              <img :src="property.image" alt="Property Image" class="hero-image fade-up" loading="eager"/>
             </div>
             <div class="property-hero-content">
               <div class="property-hero-info">
@@ -167,7 +167,7 @@
           <!-- Right Image -->
           <div
             v-if="property.gallery?.[3]"
-            :key="2"
+            :key="3"
             class="gallery-item">
             <img
               :src="property.gallery[3]"
@@ -349,8 +349,8 @@
               <!-- Content inside the expansion item -->
               <div class="q-pa-md">
                 <q-item
-                  v-for="(location, idx) in locations"
-                  :key="idx"
+                  v-for="(location, category) in locations"
+                  :key="category"
                   class="amenities-child">
                   <q-item-section class="amenities-location">
                     <span class="amenities-name">{{ location.name }}</span>
@@ -570,6 +570,7 @@ import { useQuasar } from 'quasar'
 import { useHead } from '@vueuse/head'
 import axios from 'axios'
 
+defineEmits(['toggleHeader'])
 // Assuming you have a store or an API to fetch properties
 const route = useRoute()
 const $q = useQuasar()
@@ -623,6 +624,7 @@ const fetchPropertyBySlug = async () => {
     const slug = route.params.slug
     const response = await axios.get(`http://localhost:8080/properties/${slug}`)
     property.value = response.data
+    console.log('Duplicate Features:', property.value.features.filter((f, i, arr) => arr.indexOf(f) !== i))
     await nextTick()
 
     // Re-observe .fade-up elements AFTER DOM updates

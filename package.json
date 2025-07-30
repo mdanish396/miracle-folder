@@ -19,6 +19,7 @@
     "@quasar/extras": "^1.16.12",
     "@sideway/address": "^5.0.0",
     "@sideway/formula": "^3.0.1",
+    "@unhead/vue": "^2.0.12",
     "@vueuse/head": "^2.0.0",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
