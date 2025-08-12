@@ -1,5 +1,5 @@
 <template>
-  <q-page class="contact-page">
+  <q-page class="contact-page" v-if="contact">
     <!-- Hero Section -->
     <div class="contact-hero">
       <div class="contact-container">
@@ -10,100 +10,85 @@
               <div class="line-hero-1"></div>
             </div>
           </div>
-          <h2 class="text-above fade-up delay-1">Contact</h2>
-          <h2 class="text-below fade-up delay-1">Miracle Land</h2>
+          <h2 class="text-above fade-up delay-1">{{ contact.title }}</h2>
+          <h2 class="text-below fade-up delay-1">{{ contact.subtitle }}</h2>
         </div>
 
         <!-- Image Section -->
         <div class="contact-image-container">
-          <img src="/assets/Development/Miracle Sentral/miracle_sentral_07.png" class="top-image" />
+          <img :src="contact.image" class="top-image" />
         </div>
       </div>
     </div>
-
-    <!-- <q-breadcrumbs class="breadcrumbs">
-      <q-breadcrumbs-el label="Home" to="/" />
-      <q-breadcrumbs-el label="Contact Miracle Land" />
-    </q-breadcrumbs> -->
 
     <div class="register" id="section-contact">
       <div class="register-container">
         <div class="register-wrapper">
           <!-- Left Section -->
           <div class="register-left">
-            <h2 class="register-title fade-up">Contact Details</h2>
+            <h2 class="register-title fade-up">{{ contact.contacttitle }}</h2>
             <div class="register-line-holder fade-up delay-1">
               <div class="register-line">
                 <div class="register-line-1"></div>
               </div>
             </div>
-            <h5 class="address-title fade-up delay-2">Address</h5>
-            <address class="fade-up delay-3">
-              No. 1, Tingkat Basement, Jalan Dagang 2,<br>
-              Kampung Bukit Angin, 28000 Temerloh, Pahang<br>
+            <h5 class="address-title fade-up delay-2">{{ contact.textaddress }}</h5>
+            <address class="fade-up delay-3" v-html="contact.address">
             </address>
 
             <div class="map-button fade-up delay-2">
               <button @click="gotofullmap" class="btn view-full-map-btn">
                 <img src="/assets/brochure.svg" alt="Download" />
-                  View Full Map
+                  {{ contact.mapbutton }}
               </button>
             </div>
-            <h5 class="contact-title fade-up delay-2">Contact Number</h5>
+            <h5 class="contact-title fade-up delay-2">{{ contact.textcontact }}</h5>
             <div class="fade-up delay-3">
               <i class="fa fa-phone phone-icon"></i>
-              <a class="contact-no" href="tel:+6092960888">
-                +609 2960 888
+              <a class="contact-no" :href="'tel:' + contact.contactno">
+               {{ contact.contactno }}
               </a>
             </div>
-            <h5 class="email-title fade-up delay-2">General Enquiries</h5>
-            <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
+            <h5 class="email-title fade-up delay-2">{{ contact.enquiry }}</h5>
+            <p class="email-subtitle fade-up delay-2">{{ contact.enquirydesc }}</p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <a class="email-address" href="mailto:info@miracleland.co">
-                info@miracleland.co <!-- kevin@interplandesigns.com -->
+              <a class="email-address" :href="'mailto:' + contact.email">
+                {{ contact.email }}
               </a>
             </div>
-            <h5 class="email-title fade-up delay-2">Job Application & Internship</h5>
-            <p class="email-subtitle fade-up delay-2">We're always on the lookout for talented people - please send us <br> your CV and portfolio (no larger than 5MB) to</p>
+            <h5 class="email-title fade-up delay-2">{{ contact.job }}</h5>
+            <p class="email-subtitle fade-up delay-2" v-html="contact.jobdesc"></p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
-              <a class="email-address" href="mailto:hr@miracleland.co">
-                hr@miracleland.co <!-- hmnrs.md3@gmail.com -->
+              <a class="email-address" :href="'mailto:' + contact.jobemail">
+                {{ contact.jobemail }}
               </a>
               <div>
                 <i class="fa fa-phone phone-icon"></i>
-                <a class="contact-no" href="tel:+601169999888">
-                  +60 116 9999 888
+                <a class="contact-no" :href="'tel:' + contact.jobcontact">
+                  {{ contact.jobcontact }}
                 </a>
               </div>
             </div>
-            <!-- <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
-            <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
-            <div class="fade-up delay-3">
-              <i class="fa fa-envelope email-icon"></i>
-              <a class="email-address" href="mailto:kevin@interplandesigns.com">
-                kevin@interplandesigns.com
-              </a>
-            </div> -->
-            <h5 class="business-title fade-up delay-2">Business Hours</h5>
+            <h5 class="business-title fade-up delay-2">{{ contact.business }}</h5>
             <div class="fade-up delay-3">
               <i class="fas fa-business-time calendar-icon"></i>
               <span class="business-hours">
-                Mon - Sat , 9am - 6pm
+                {{ contact.hours }}
               </span>
             </div>
           </div>
 
           <!-- Right Section -->
           <div class="register-right">
-            <h2 class="fade-up delay-1">Got A Question?</h2>
+            <h2 class="fade-up delay-1">{{ contact.questiontitle }}</h2>
             <div class="register-line-holder fade-up delay-2">
               <div class="register-line">
                 <div class="register-line-1"></div>
               </div>
             </div>
-            <p class="fade-up delay-3">Just send us your details, and our Miracle Land Relationship Associates will get back to you!</p>
+            <p class="fade-up delay-3">{{ contact.questiondesc }}</p>
             <q-form @submit.prevent="submitForm" class="register-form fade-up delay-4">
               <!-- Name Field -->
               <q-input v-model="form.name" label="Name*" outlined required />
@@ -131,19 +116,19 @@
             </q-form>
 
             <div class="career">
-              <h2 class="fade-up delay-1">Career Opportunities</h2>
+              <h2 class="fade-up delay-1">{{ contact.careertitle }}</h2>
               <div class="register-line-holder fade-up delay-2">
                 <div class="register-line">
                   <div class="register-line-1"></div>
                 </div>
               </div>
-              <p class="fade-up delay-3">We are hiring talented, responsible, and hardworking individuals to join our dynamic team. Explore our career opportunities and grow with us!</p>
+              <p class="fade-up delay-3">{{ contact.careerdesc }}</p>
               <div class="fade-up delay-2">
                 <q-btn
                   flat
-                  label="APPLY NOW"
+                  :label="contact.careerbutton"
                   class="career-btn"
-                  to="/careers"
+                  :to="contact.careerlink"
                 />
               </div>
             </div>
@@ -155,7 +140,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useHead } from '@vueuse/head'
 import axios from 'axios'
 import { useQuasar } from 'quasar'
@@ -164,6 +149,7 @@ import qs from 'qs'
 const sections = ref([])
 const fadeItems = ref([])
 let observer = null
+const contact = ref({})
 const $q = useQuasar()
 
 const form = ref({
@@ -172,6 +158,23 @@ const form = ref({
   telephone: '',
   enquiryType: '',
   message: ''
+})
+
+onMounted(async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/contact')
+    contact.value = response.data[0] // Example: [{ type: 'image', filename: 'hero.jpg' }, ...]
+    console.log('Contact:', contact.value) // ✅ DEBUG
+
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (e) {
+    console.error('Failed to load homepage media:', e)
+  }
 })
 
 const isSubmitting = ref(false) // Track submission state
@@ -280,7 +283,9 @@ useHead({
 })
 
 const gotofullmap = () => {
-  window.open('https://maps.app.goo.gl/XcCFgR9Lg8vpdLfh7', '_blank')
+  if (contact.value.maplink) {
+    window.open(contact.value.maplink, '_blank')
+  }
 }
 
 onMounted(() => {
