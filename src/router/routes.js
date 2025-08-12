@@ -10,7 +10,7 @@ const routes = [
       // { path: '/investor-centre', component: () => import('src/pages/InvestorCentrePage.vue') },
       // { path: '/reports', component: () => import('src/pages/ReportsPage.vue') },
       // { path: '/news', component: () => import('src/pages/NewsPage.vue') },
-      { path: '/career', component: () => import('src/pages/CareerPage.vue') },
+      // { path: '/career', component: () => import('src/pages/CareerPage.vue') },
       { path: '/careers', component: () => import('src/pages/CareerDetails.vue') },
       // { path: '/news-details/:slug', name: 'NewsDetails', component: () => import('src/pages/NewsDetails.vue') },
       { path: '/contact', component: () => import('src/pages/ContactUs.vue') },
@@ -21,9 +21,9 @@ const routes = [
       { path: '/developments/property/:slug', name: 'CurrentPropertyDetails', component: () => import('src/pages/CurrentPropertyDetails.vue') },
       { path: '/past-property/:slug', name: 'PastPropertyDetails', component: () => import('src/pages/PastPropertyDetails.vue') },
       // { path: '/lease-property/:slug', name: 'LeasePropertyDetails', component: () => import('src/pages/LeasePropertyDetails.vue') },
-      { path: '/500', component: () => import('pages/ServerError.vue') },
-      { path: '/personal-data-protection-policy', component: () => import('src/pages/PersonalData.vue') },
-      { path: '/terms-of-use', component: () => import('src/pages/TermofUse.vue') }
+      { path: '/500', component: () => import('pages/ServerError.vue') }
+      // { path: '/personal-data-protection-policy', component: () => import('src/pages/PersonalData.vue') },
+      // { path: '/terms-of-use', component: () => import('src/pages/TermofUse.vue') }
     ]
   },
   {

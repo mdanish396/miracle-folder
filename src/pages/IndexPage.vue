@@ -36,7 +36,7 @@
 
       <!-- 🖼️ IMAGE CAROUSEL -->
       <q-carousel
-        v-else-if="mediaType === 'carousel'"
+        v-else-if="mediaType === 'carousel(images)'"
         v-model="slide"
         swipeable
         animated
@@ -60,13 +60,14 @@
 
       <!-- Text Overlay in Video (centered) -->
       <div class="video-text-overlay" v-if="mediaType === 'image' && media && media.length && media[0].filename">
-        <h1>MIRACLE</h1>
-        <h2>FOR YOU FOREVER</h2>
+        <h1>{{ media[0].title }}</h1>
+        <h2>{{ media[0].subtitle }}</h2>
         <!-- <h1>MIRACLES MADE FOR YOU <br> - FOREVER</h1> -->
       </div>
 
       <div class="video-text-overlay" v-if="mediaType === 'video'">
-        <h1>MIRACLE</h1>
+        <h1>{{ media.title }}</h1>
+        <h2>{{ media.subtitle }}</h2>
       </div>
 
       <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
@@ -79,8 +80,8 @@
     </div>
 
     <!-- Current Developments Section -->
-    <div class="developments-section">
-      <h2 class="fade-up">Current Developments</h2>
+    <div class="developments-section" v-if="pd">
+      <h2 class="fade-up">{{ pd.currenttitle }}</h2>
       <div class="line-holder fade-up delay-1">
         <div class="line">
           <div class="line-1">
@@ -88,7 +89,7 @@
          </div>
         </div>
       </div>
-      <p class="fade-up delay-2">Explore our current developments and find your dream home or shop.</p>
+      <p class="fade-up delay-2">{{ pd.description }}</p>
       <div class="container fade-up delay-3">
         <div :class="['developments-container', displayedDevelopments.length >= 3 ? 'grid-layout' : 'flex-layout']">
           <!-- Scrollable Development Card -->
@@ -318,6 +319,24 @@ onMounted(async () => {
     partnerLogos.value = res.data
   } catch (e) {
     console.error('Failed to load partner logos:', e)
+  }
+})
+
+const pd = ref({})
+onMounted(async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/page-development')
+    pd.value = response.data[0] // Example: [{ type: 'image', filename: 'hero.jpg' }, ...]
+    console.log('Fetched page development:', pd.value) // ✅ DEBUG
+
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
+  } catch (e) {
+    console.error('Failed to load homepage media:', e)
   }
 })
 
