@@ -78,7 +78,7 @@
       </div>
     </div>
     <div class="btn fade-up delay-1">
-      <q-btn flat label="Career Opportunities" class="btn-story" to='/career-opportunities'/>
+      <q-btn flat label="Career Opportunities" class="btn-story" to='/careers'/>
     </div>
   </q-page>
 </template>
