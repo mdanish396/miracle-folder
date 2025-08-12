@@ -44,14 +44,14 @@
 
       <div class="contact-apply fade-up delay-2">
         <div class="contact-info">
-          <p>Send your resume</p>
+          <p>{{ career.textemail }}</p>
           <a :href="'mailto:' + career.email" class="info">
             <i class="fa fa-envelope icons"></i>
             {{ career.email }}
           </a>
         </div>
         <div class="contact-info">
-          <p>Contact us</p>
+          <p>{{ career.textphone }}</p>
           <a :href="'tel:' + career.phone" class="info">
             <i class="fas fa-phone-alt icons"></i>
             {{ career.phone }}
