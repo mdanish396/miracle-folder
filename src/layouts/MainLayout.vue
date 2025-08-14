@@ -265,7 +265,7 @@
 
     <footer class="footer">
       <!-- Footer Content -->
-      <div class="footer-content">
+      <div class="footer-content" v-if="footer">
         <!-- Left Section -->
         <div class="footer-left">
           <div class="logo-container">
@@ -273,8 +273,7 @@
             <!-- <span class="footer-logo-text">MIRACLE LAND</span> -->
           </div>
           <div class="footer-address">
-            <p>No. 1, Tingkat Basement, Jalan Dagang 2,<br>
-            Kg Bukit Angin, 28000 <br>Temerloh, Pahang.</p>
+            <p v-html="footer.address"></p>
           </div>
         </div>
 
@@ -302,7 +301,7 @@
           </div>
         </div>
         <div class="footer-copyright">
-          <p>© 2025 Miracle Land Holdings Berhad (1111981-P). All rights reserved.</p>
+          <p>© {{ year }} Miracle Land Holdings Berhad (1111981-P). All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -310,7 +309,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
@@ -321,6 +320,7 @@ const selectedDistrict = ref('')
 // const displayedLeaseDevelopments = ref(leasedevelopments)
 // const selectedLeaseDistrict = ref('')
 const showHeader = ref(true)
+const year = new Date().getFullYear()
 
 const toggleHeader = (value) => {
   showHeader.value = value
@@ -334,6 +334,21 @@ onMounted(() => {
 
 onUnmounted(() => {
   document.removeEventListener('toggle-header', toggleHeader)
+})
+
+const footer = ref([])
+
+onMounted(async () => {
+  try {
+    const res = await axios.get('http://localhost:8080/footer')
+    footer.value = res.data
+    console.log('Footer:', footer.value) // ✅ DEBUG
+    // Wait for DOM to render new content before observing
+
+    await nextTick()
+  } catch (e) {
+    console.error('Failed to load partner logos:', e)
+  }
 })
 
 const fetchDevelopments = async () => {

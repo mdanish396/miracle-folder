@@ -181,7 +181,6 @@ import { useHead } from '@vueuse/head'
 defineEmits(['toggleHeader'])
 const allDevelopments = ref([])
 // const visibleCount = ref(4)
-const allPastDevelopments = ref([])
 const displayedDevelopments = ref([])
 const displayedPastDevelopments = ref([])
 // const showAllDevelopments = ref(false)
@@ -226,9 +225,15 @@ const fetchPastDevelopments = async () => {
   try {
     const response = await axios.get('http://localhost:8080/past-developments')
     // Filter only required statuses
-    allPastDevelopments.value = response.data
-    displayedPastDevelopments.value = allPastDevelopments.value
-    console.log('Fetched past developments:', allPastDevelopments.value) // ✅ DEBUG
+    displayedPastDevelopments.value = response.data
+    console.log('Fetched past developments:', displayedPastDevelopments.value) // ✅ DEBUG
+
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
   } catch (error) {
     console.error('Error fetching past developments:', error)
   }
