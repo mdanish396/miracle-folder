@@ -530,13 +530,38 @@ const openPopup = (index) => {
   isPopupOpen.value = true
   document.body.style.overflow = 'hidden'
   emitToggleHeader(false) // Hide the header
+  // Push a new state so browser back can close it
+  window.history.pushState({ galleryOpen: true }, '')
 }
 
 const closePopup = () => {
   isPopupOpen.value = false
   document.body.style.overflow = 'auto'
   emitToggleHeader(true)
+
+  // Only go back if the last state was popup
+  if (window.history.state?.galleryOpen) {
+    window.history.back()
+  }
 }
+
+// Handle browser back/forward
+const handlePopState = (event) => {
+  if (!event.state?.galleryOpen) {
+    // Popup should be closed
+    isPopupOpen.value = false
+    document.body.style.overflow = 'auto'
+    emitToggleHeader(true)
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('popstate', handlePopState)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('popstate', handlePopState)
+})
 
 const emitToggleHeader = (value) => {
   // Emit the toggle-header event to the parent component

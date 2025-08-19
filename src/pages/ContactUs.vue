@@ -49,6 +49,13 @@
                {{ contact.contactno }}
               </a>
             </div>
+            <h5 class="business-title fade-up delay-2">{{ contact.business }}</h5>
+            <div class="fade-up delay-3">
+              <i class="fas fa-business-time calendar-icon"></i>
+              <span class="business-hours">
+                {{ contact.hours }}
+              </span>
+            </div>
             <h5 class="email-title fade-up delay-2">{{ contact.enquiry }}</h5>
             <p class="email-subtitle fade-up delay-2">{{ contact.enquirydesc }}</p>
             <div class="fade-up delay-3">
@@ -64,19 +71,12 @@
               <a class="email-address" :href="'mailto:' + contact.jobemail">
                 {{ contact.jobemail }}
               </a>
-              <div>
+              <!-- <div>
                 <i class="fa fa-phone phone-icon"></i>
                 <a class="contact-no" :href="'tel:' + contact.jobcontact">
                   {{ contact.jobcontact }}
                 </a>
-              </div>
-            </div>
-            <h5 class="business-title fade-up delay-2">{{ contact.business }}</h5>
-            <div class="fade-up delay-3">
-              <i class="fas fa-business-time calendar-icon"></i>
-              <span class="business-hours">
-                {{ contact.hours }}
-              </span>
+              </div> -->
             </div>
           </div>
 
