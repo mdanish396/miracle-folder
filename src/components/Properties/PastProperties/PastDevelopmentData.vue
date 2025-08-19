@@ -20,14 +20,14 @@ export const pastdevelopments = [
     id: 1,
     name: 'Bukit Angin',
     slug: generateSlug('Bukit Angin'),
-    bannerimage: '/assets/Development/Dynaton Bukit Angin/bukit_angin_05.jpg',
+    bannerimage: '/assets/Development/Dynaton Bukit Angin/bukit_angin_05.JPG',
     logo: '/assets/Development/Dynaton Bukit Angin/logo.svg',
     location: 'Temerloh, Pahang',
     districts: 'Temerloh',
     state: 'Pahang',
     type: 'Commercial',
     status: 'Completed',
-    image: '/assets/Development/Dynaton Bukit Angin/bukit_angin_01.jpg',
+    image: '/assets/Development/Dynaton Bukit Angin/bukit_angin_01.JPG',
     features: [],
     description: '',
     size: '-',
@@ -35,7 +35,7 @@ export const pastdevelopments = [
     builtup: '2,110 - 2,497 sqft',
     gallerydevelopment: [
       {
-        url: '/assets/Development/Dynaton Bukit Angin/bukit_angin_03.jpg',
+        url: '/assets/Development/Dynaton Bukit Angin/bukit_angin_03.JPG',
         description: ''
       },
       {
@@ -43,17 +43,17 @@ export const pastdevelopments = [
         description: ''
       },
       {
-        url: '/assets/Development/Dynaton Bukit Angin/bukit_angin_02.jpg',
+        url: '/assets/Development/Dynaton Bukit Angin/bukit_angin_02.JPG',
         description: ''
       }
     ],
     galleryImages: [
-      '/assets/Development/Dynaton Bukit Angin/bukit_angin_01.jpg',
+      '/assets/Development/Dynaton Bukit Angin/bukit_angin_01.JPG',
       '/assets/Development/Dynaton Bukit Angin/bukit_angin_06.png',
-      '/assets/Development/Dynaton Bukit Angin/bukit_angin_05.jpg',
-      '/assets/Development/Dynaton Bukit Angin/bukit_angin_07.jpg',
-      '/assets/Development/Dynaton Bukit Angin/bukit_angin_03.jpg',
-      '/assets/Development/Dynaton Bukit Angin/bukit_angin_02.jpg',
+      '/assets/Development/Dynaton Bukit Angin/bukit_angin_05.JPG',
+      '/assets/Development/Dynaton Bukit Angin/bukit_angin_07.JPG',
+      '/assets/Development/Dynaton Bukit Angin/bukit_angin_03.JPG',
+      '/assets/Development/Dynaton Bukit Angin/bukit_angin_02.JPG',
       '/assets/Development/Dynaton Bukit Angin/bukit_angin_08.png'
     ],
     map: 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3982.6261178882855!2d102.41706707438674!3d3.4407829965336987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwMjYnMjYuOCJOIDEwMsKwMjUnMTAuNyJF!5e0!3m2!1sen!2smy!4v1737527338884!5m2!1sen!2smy'
@@ -62,14 +62,14 @@ export const pastdevelopments = [
     id: 2,
     name: 'Kawasan Industri Seberang Temerloh',
     slug: generateSlug('Kawasan Industri Seberang Temerloh'),
-    bannerimage: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.jpg',
+    bannerimage: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.JPG',
     logo: '/assets/Development/Kawasan Industri Seberang Temerloh/logo.svg',
     location: 'Seberang Temerloh, Pahang',
     districts: 'Temerloh',
     state: 'Pahang',
     type: 'Light Industrial',
     status: 'Completed',
-    image: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.jpg',
+    image: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.JPG',
     features: [],
     description: '',
     size: '-',
@@ -77,17 +77,17 @@ export const pastdevelopments = [
     builtup: '2,110 - 2,497 sqft',
     gallerydevelopment: [
       {
-        url: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.jpg',
+        url: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.JPG',
         description: ''
       },
       {
-        url: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_01.jpg',
+        url: '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_01.JPG',
         description: ''
       }
     ],
     galleryImages: [
-      '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.jpg',
-      '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_01.jpg',
+      '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_02.JPG',
+      '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_01.JPG',
       '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_04.png',
       '/assets/Development/Kawasan Industri Seberang Temerloh/industri_seberang_temerloh_03.png'
     ],
@@ -97,14 +97,14 @@ export const pastdevelopments = [
     id: 3,
     name: 'Pusat Perniagaan Chengal',
     slug: generateSlug('Pusat Perniagaan Chengal'),
-    bannerimage: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.jpg',
+    bannerimage: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.JPG',
     logo: '/assets/Development/Pusat Perniagaan Chengal/logo.svg',
     location: 'Jalan Temerloh-Mentakab, Pahang',
     districts: 'Temerloh',
     state: 'Pahang',
     type: 'Commercial',
     status: 'Completed',
-    image: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.jpg',
+    image: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.JPG',
     features: [],
     description: '',
     size: '-',
@@ -112,11 +112,11 @@ export const pastdevelopments = [
     builtup: '2,450 - 3,497 sqft',
     gallerydevelopment: [
       {
-        url: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.jpg',
+        url: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.JPG',
         description: ''
       },
       {
-        url: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-02.jpg',
+        url: '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-02.JPG',
         description: ''
       },
       {
@@ -125,8 +125,8 @@ export const pastdevelopments = [
       }
     ],
     galleryImages: [
-      '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.jpg',
-      '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-02.jpg',
+      '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-01.JPG',
+      '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-02.JPG',
       '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-03.jpg',
       '/assets/Development/Pusat Perniagaan Chengal/pusat_perniagaan_chengal-04.jpg'
     ],
@@ -136,14 +136,14 @@ export const pastdevelopments = [
     id: 4,
     name: 'Pusat Perniagaan Chengal 1',
     slug: generateSlug('Pusat Perniagaan Chengal 1'),
-    bannerimage: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.jpg',
+    bannerimage: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.JPG',
     logo: '/assets/Development/Pusat Perniagaan Chengal 1/logo.svg',
     location: 'Jalan Temerloh-Mentakab, Pahang',
     districts: 'Temerloh',
     state: 'Pahang',
     type: 'Commercial',
     status: 'Completed',
-    image: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.jpg',
+    image: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.JPG',
     features: [],
     description: '',
     size: '-',
@@ -155,15 +155,15 @@ export const pastdevelopments = [
         description: ''
       },
       {
-        url: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.jpg',
+        url: '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.JPG',
         description: ''
       }
     ],
     galleryImages: [
-      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.jpg',
-      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.jpg',
-      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.jpg',
-      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.jpg'
+      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.JPG',
+      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.JPG',
+      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_02.JPG',
+      '/assets/Development/Pusat Perniagaan Chengal 1/perniagaan_chengal_01.JPG'
     ],
     map: 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3982.5456970083414!2d102.3982028744327!3d3.459972196514456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwMjcnMzUuOSJOIDEwMsKwMjQnMDIuOCJF!5e0!3m2!1sen!2smy!4v1737442338896!5m2!1sen!2smy'
   },

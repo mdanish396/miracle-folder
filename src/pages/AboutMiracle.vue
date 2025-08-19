@@ -155,6 +155,13 @@
                 +609 2960 888
               </a>
             </div>
+            <h5 class="business-title fade-up delay-2">Business Hours</h5>
+            <div class="fade-up delay-3">
+              <i class="fas fa-business-time calendar-icon"></i>
+              <span class="business-hours">
+                Mon - Sat , 9am - 6pm
+              </span>
+            </div>
             <h5 class="email-title fade-up delay-2">General Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For general questions, please write to</p>
             <div class="fade-up delay-3">
@@ -170,12 +177,12 @@
               <a class="email-address" href="mailto:hr@miracleland.co">
                 hr@miracleland.co <!-- hmnrs.md3@gmail.com -->
               </a>
-              <div>
+              <!-- <div>
                 <i class="fa fa-phone phone-icon"></i>
                 <a class="contact-no" href="tel:+601169999888">
                   +60 116 9999 888
                 </a>
-              </div>
+              </div> -->
             </div>
             <!-- <h5 class="email-title fade-up delay-2">Business Enquiries</h5>
             <p class="email-subtitle fade-up delay-2">For any new business enquiries, please write to</p>
@@ -185,13 +192,6 @@
                 kevin@interplandesigns.com
               </a>
             </div> -->
-            <h5 class="business-title fade-up delay-2">Business Hours</h5>
-            <div class="fade-up delay-3">
-              <i class="fas fa-business-time calendar-icon"></i>
-              <span class="business-hours">
-                Mon - Sat , 9am - 6pm
-              </span>
-            </div>
           </div>
 
           <!-- Right Section -->
