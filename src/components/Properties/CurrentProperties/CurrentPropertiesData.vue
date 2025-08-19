@@ -154,7 +154,7 @@ export const properties = {
     housetype: '2-Storey Bungalow',
     status: 'New Launch',
     price: 'RM 1,100k*',
-    image: '/assets/Development/Casa Hill/type_c_01.jpg',
+    image: '/assets/Development/Casa Hill/type_c_01.JPG',
     features: ['Luxury Contemporary Villa Design', 'Large and Spacious Interiors', 'Exclusive Access to Clubhouse'],
     description: `Luxurious modern bungalows in a low-density, gated community, just 2 minutes
     from town. Enjoy impressive facilities, lush gardens, and top-tier security for
@@ -166,7 +166,7 @@ export const properties = {
       '/assets/Development/Casa Hill/casa_hill_15.jpg',
       '/assets/Development/Casa Hill/casa_hill_16.jpg',
       '/assets/Development/Casa Hill/casa_hill_17.jpg',
-      '/assets/Development/Casa Hill/type_c_01.jpg',
+      '/assets/Development/Casa Hill/type_c_01.JPG',
       '/assets/Development/Casa Hill/casa_hill_12.png',
       '/assets/Development/Casa Hill/casa_hill_08.jpg',
       '/assets/Development/Casa Hill/casa_hill_06.JPG',
