@@ -854,12 +854,20 @@ const openImage = (plan) => {
   }, 50)
   document.body.style.overflow = 'hidden'
   emitToggleHeader(false) // Hide the header
+
+  // Push state so browser back can close it
+  window.history.pushState({ floorplanOpen: true }, '')
 }
 
 const CloseImage = () => {
   showPopup.value = false
   document.body.style.overflow = 'auto'
   emitToggleHeader(true)
+
+  // Go back if last state was popup
+  if (window.history.state?.floorplanOpen) {
+    window.history.back()
+  }
 }
 
 const resetImagePosition = () => {
@@ -944,13 +952,48 @@ const openPopup = (index) => {
   isPopupOpen.value = true
   document.body.style.overflow = 'hidden'
   emitToggleHeader(false) // Hide the header
+
+  // Push a new state so browser back can close it
+  window.history.pushState({ galleryOpen: true }, '')
 }
 
 const closePopup = () => {
   isPopupOpen.value = false
   document.body.style.overflow = 'auto'
   emitToggleHeader(true)
+
+  // Only go back if the last state was popup
+  if (window.history.state?.galleryOpen) {
+    window.history.back()
+  }
 }
+
+// Handle browser back/forward
+const handlePopState = (event) => {
+  const state = event.state || {}
+
+  // Floorplan popup
+  if (!state.floorplanOpen && showPopup.value) {
+    showPopup.value = false
+    document.body.style.overflow = 'auto'
+    emitToggleHeader(true)
+  }
+
+  // Gallery popup
+  if (!state.galleryOpen && isPopupOpen.value) {
+    isPopupOpen.value = false
+    document.body.style.overflow = 'auto'
+    emitToggleHeader(true)
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('popstate', handlePopState)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('popstate', handlePopState)
+})
 
 const emitToggleHeader = (value) => {
   // Emit the toggle-header event to the parent component
