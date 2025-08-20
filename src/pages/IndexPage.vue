@@ -13,7 +13,7 @@
 
       <!-- 🎥 VIDEO -->
       <video
-        v-if="mediaType === 'video'"
+        v-if="mediaType === 'video' && media.length"
         autoplay
         loop
         muted
@@ -27,7 +27,7 @@
 
       <!-- 🖼️ SINGLE IMAGE -->
       <q-img
-        v-else-if="mediaType === 'image' && media && media.length && media[0].filename"
+        v-else-if="mediaType === 'image' && media.length"
         :src="media[0].filename"
         class="hero-video"
         :style="{ objectFit: 'cover', maxHeight: '100vh' }"
@@ -36,7 +36,7 @@
 
       <!-- 🖼️ IMAGE CAROUSEL -->
       <q-carousel
-        v-else-if="mediaType === 'carousel(images)'"
+        v-else-if="mediaType === 'carousel'"
         v-model="slide"
         swipeable
         animated
@@ -47,30 +47,32 @@
         transition-prev="fade"
         transition-next="fade"
         class="hero-carousel"
-        loading="eager"
       >
         <q-carousel-slide
-          v-for="(img, index) in media"
+          v-for="(img, index) in media.media"
           :key="index"
           :name="index"
           :img-src="img.filename"
-          loading="eager"
-        />
+        >
+          <div class="video-text-overlay">
+            <h1>{{ img.title }}</h1>
+            <h2>{{ img.subtitle }}</h2>
+          </div>
+        </q-carousel-slide>
       </q-carousel>
 
-      <!-- Text Overlay in Video (centered) -->
-      <div class="video-text-overlay" v-if="mediaType === 'image' && media && media.length && media[0].filename">
+      <!-- TEXT OVERLAY -->
+      <div class="video-text-overlay" v-if="mediaType === 'image' && media.length">
         <h1>{{ media[0].title }}</h1>
         <h2>{{ media[0].subtitle }}</h2>
-        <!-- <h1>MIRACLES MADE FOR YOU <br> - FOREVER</h1> -->
       </div>
 
-      <div class="video-text-overlay" v-if="mediaType === 'video'">
-        <h1>{{ media.title }}</h1>
-        <h2>{{ media.subtitle }}</h2>
+      <div class="video-text-overlay" v-if="mediaType === 'video' && media.length">
+        <h1>{{ media[0].title }}</h1>
+        <h2>{{ media[0].subtitle }}</h2>
       </div>
 
-      <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
+      <!-- Scroll Indicator -->
       <div class="scroll-indicator">
         <video autoplay loop muted class="mouse-animation" playsinline>
           <source src="/assets/mouse.webm" type="video/webm" />
