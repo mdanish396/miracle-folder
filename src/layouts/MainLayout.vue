@@ -283,7 +283,7 @@
             <router-link to="/contact" class="footer-link">Contact Us</router-link>
             <!-- <router-link to="/career" class="footer-link">Careers</router-link> -->
             <router-link to="/careers" class="footer-link">Careers</router-link>
-            <p class="footer-time">Mon - Sat, 9AM - 6PM</p>
+            <p class="footer-time">{{ footer.time }}</p>
           </div>
           <div class="social-icons">
             <button class="social-btn facebook" aria-label="Facebook" @click="openFacebook">
@@ -301,7 +301,7 @@
           </div>
         </div>
         <div class="footer-copyright">
-          <p>© {{ year }} Miracle Land Holdings Berhad (1111981-P). All rights reserved.</p>
+          <p>© {{ new Date().getFullYear() }} {{ footer.copyright }} </p>
         </div>
       </div>
     </footer>
@@ -320,7 +320,6 @@ const selectedDistrict = ref('')
 // const displayedLeaseDevelopments = ref(leasedevelopments)
 // const selectedLeaseDistrict = ref('')
 const showHeader = ref(true)
-const year = new Date().getFullYear()
 
 const toggleHeader = (value) => {
   showHeader.value = value
@@ -336,18 +335,18 @@ onUnmounted(() => {
   document.removeEventListener('toggle-header', toggleHeader)
 })
 
-const footer = ref([])
+const footer = ref({})
 
 onMounted(async () => {
   try {
-    const res = await axios.get('http://localhost:8080/footer')
-    footer.value = res.data
+    const resp = await axios.get('http://localhost:8080/footer')
+    footer.value = resp.data[0]
     console.log('Footer:', footer.value) // ✅ DEBUG
     // Wait for DOM to render new content before observing
 
     await nextTick()
   } catch (e) {
-    console.error('Failed to load partner logos:', e)
+    console.error('Failed to load footer:', e)
   }
 })
 
@@ -463,11 +462,15 @@ const handleLogoClick = () => {
 
 // Social media handlers
 const openFacebook = () => {
-  window.open('https://www.facebook.com/miraclelandholdingsberhad/', '_blank')
+  if (footer.value.facebook_link) {
+    window.open(footer.value.facebook_link, '_blank')
+  }
 }
 
 const openInstagram = () => {
-  window.open('https://www.instagram.com/miraclelandofficial/', '_blank')
+  if (footer.value.instagram_link) {
+    window.open(footer.value.instagram_link, '_blank')
+  }
 }
 
 // const openYoutube = () => {
@@ -475,7 +478,9 @@ const openInstagram = () => {
 // }
 
 const openTiktok = () => {
-  window.open('https://www.tiktok.com/@miraclesentraljengka', '_blank')
+  if (footer.value.tiktok_link) {
+    window.open(footer.value.tiktok_link, '_blank')
+  }
 }
 
 // Mount/unmount lifecycle hooks
