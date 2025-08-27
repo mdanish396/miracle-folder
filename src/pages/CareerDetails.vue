@@ -62,13 +62,13 @@
             hr@miracleland.co
           </a>
         </div>
-        <div class="contact-info">
+        <!-- <div class="contact-info">
           <p>Contact us</p>
           <a href="tel:+601169999888" class="info">
             <i class="fas fa-phone-alt icons"></i>
             +60 116 9999 888
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
 
