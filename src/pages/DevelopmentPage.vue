@@ -216,6 +216,13 @@ const fetchDevelopments = async () => {
     )
     displayedDevelopments.value = allDevelopments.value
     console.log('Fetched developments:', allDevelopments.value) // ✅ DEBUG
+
+    // Wait for DOM to render new content before observing
+    await nextTick()
+
+    // Re-observe .fade-up elements AFTER DOM updates
+    fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
+    fadeItems.value.forEach((item) => observer.observe(item))
   } catch (error) {
     console.error('Error fetching developments:', error)
   }
