@@ -38,10 +38,10 @@
                         <q-tooltip>{{ property.housetype }}</q-tooltip>
                       </p>
                     </div>
-                    <div class="property-item">
+                    <!-- <div class="property-item">
                       <h4>From</h4>
                       <p >{{ formatPrice(property.price) }}</p>
-                    </div>
+                    </div> -->
                     <div class="property-item">
                       <h4>Status</h4>
                       <p class="space">{{ property.status }}</p>
@@ -226,9 +226,9 @@
           <div class="plan-select fade-up delay-2">
             {{ property.name }}
           </div>
-          <div class="plan-price fade-up delay-2">
+          <!-- <div class="plan-price fade-up delay-2">
             Price From <span class="price">{{ property.price }}</span>
-          </div>
+          </div> -->
         </div>
 
         <!-- Floorplan Details Section -->
@@ -523,11 +523,11 @@
                   </p>
                 </div>
 
-                  <q-separator vertical/>
+                  <!-- <q-separator vertical/>
                 <div class="product-item-1">
                   <h4>From</h4>
                   <p>{{ property.price }}</p>
-                </div>
+                </div> -->
               </q-toolbar>
 
               <q-separator/>
@@ -719,9 +719,9 @@ useHead({
   ]
 })
 
-function formatPrice (price) {
-  return price.replace(/RM ([\d,]+)k\*/, (match, p1) => `RM ${p1},000*`)
-}
+// function formatPrice (price) {
+//   return price.replace(/RM ([\d,]+)k\*/, (match, p1) => `RM ${p1},000*`)
+// }
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -1195,40 +1195,38 @@ const loadMore = () => {
 
 .property-toolbar {
   display: flex;
-  align-items: center; /* Centers content vertically */
-  gap: 15px;
-  justify-content: center;
+  align-items:flex-start; /* Centers content vertically */
+  gap: 120px;
   flex-wrap: nowrap;
-  max-height: 120px;
   height: 95px;
   padding: 0; /* Optional: Adjust padding to create space around */
 }
 
 .property-item {
   align-items: center;
-  justify-content: center;
+  justify-content:space-evenly;
   width: 280px;
-  min-width: 140px;
+  min-width: 170px;
 }
-/* Ensure price does not wrap */
+/* Ensure price does not wrap
 .property-item:nth-child(2) p {
   white-space: nowrap;
   overflow: visible;
-}
+} */
 
-.property-item:last-child {
+/* .property-item:last-child {
   width: 200px;
 }
 
 /* Allow status to wrap */
-.property-item:last-child p {
+/* .property-item:last-child p {
   white-space: normal;
   word-wrap: break-word;
   overflow: visible;
   white-space: wrap;
   display: block;
   max-width: 100%;
-}
+} */
 
 .truncated-text {
   white-space: nowrap;
@@ -1390,8 +1388,9 @@ const loadMore = () => {
   }
 
   .property-toolbar {
-  max-height: 180px;
+  padding-top: 25px;
   height: 120px;
+  gap: 60px;
 }
 
   .property-item {
@@ -1443,6 +1442,11 @@ max-height: 536px;
   .property-hero-image {
     height:310px;
   }
+
+  .property-toolbar {
+  padding-top: 15px;
+}
+
   .property-image {
     height: 310px;
   }
