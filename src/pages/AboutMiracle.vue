@@ -10,6 +10,8 @@
             </div>
           </div>
           <div class="text fade-up delay-1">
+            <!-- ✅ Hidden semantic H1 for SEO -->
+            <h1 class="visually-hidden">About Miracle Land</h1>
             <h2 class="text-above">About</h2>
             <h2 class="text-below">Miracle Land</h2>
           </div>
@@ -624,6 +626,15 @@ padding-inline: 20px;
   padding: 40px 5%;
   padding-bottom: 80px;
   text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .company-background h2 {
