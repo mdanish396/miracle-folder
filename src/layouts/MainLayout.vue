@@ -161,6 +161,8 @@
         <q-btn
           flat
           icon="menu"
+          aria-hidden="true"
+          aria-label=""
           class="q-ml-md"
           style="color: black;"
           @click="toggleDrawer"

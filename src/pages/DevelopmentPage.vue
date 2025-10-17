@@ -213,7 +213,7 @@ useHead({
     { property: 'og:type', content: 'website' },
     {
       property: 'og:url',
-      content: 'https://miracleland.co/our-developments'
+      content: 'https://miracleland.co/developments'
     },
 
     // Twitter
