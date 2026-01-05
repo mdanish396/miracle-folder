@@ -1234,7 +1234,7 @@ const loadMore = () => {
 
 .property-toolbar {
   display: flex;
-  align-items: flex-start;
+  align-items:flex-start; /* Centers content vertically */
   gap: 120px;
   flex-wrap: nowrap;
   height: 95px;
@@ -1243,29 +1243,29 @@ const loadMore = () => {
 
 .property-item {
   align-items: center;
-  justify-content: space-evenly;
+  justify-content:space-evenly;
   width: 280px;
   min-width: 170px;
 }
-/* Ensure price does not wrap */
+/* Ensure price does not wrap
 .property-item:nth-child(2) p {
   white-space: nowrap;
   overflow: visible;
-}
+} */
 
-.property-item:last-child {
+/* .property-item:last-child {
   width: 200px;
 }
 
 /* Allow status to wrap */
-.property-item:last-child p {
+/* .property-item:last-child p {
   white-space: normal;
   word-wrap: break-word;
   overflow: visible;
   white-space: wrap;
   display: block;
   max-width: 100%;
-}
+} */
 
 .truncated-text {
   white-space: nowrap;
@@ -1427,8 +1427,9 @@ const loadMore = () => {
   }
 
   .property-toolbar {
-  max-height: 180px;
+  padding-top: 25px;
   height: 120px;
+  gap: 60px;
 }
 
   .property-item {
@@ -1480,6 +1481,11 @@ max-height: 536px;
   .property-hero-image {
     height:310px;
   }
+
+  .property-toolbar {
+  padding-top: 15px;
+}
+
   .property-image {
     height: 310px;
   }
