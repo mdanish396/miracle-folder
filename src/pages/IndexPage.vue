@@ -227,7 +227,7 @@
                 flat
                 :label="past.button"
                 class="about-btn"
-                :to="past.link"
+                to="/developments#past-developments"
               />
             </div>
           </div>

@@ -344,7 +344,22 @@ import { useQuasar } from 'quasar'
 
 defineEmits(['toggleHeader'])
 const $q = useQuasar()
-const development = ref([])
+const development = ref({
+  name: '',
+  bannerimage: '',
+  logo: '',
+  type: '',
+  location: '',
+  status: '',
+  statusbuyer: '',
+  description: '',
+  gallerydevelopment: [],
+  galleryImages: [],
+  map: '',
+  slug: '',
+  state: '',
+  price: ''
+})
 const nearbyAmenities = ref({})
 // const visibleCount = ref(3)
 const isPopupOpen = ref(false)
@@ -493,6 +508,7 @@ onBeforeUnmount(() => {
 })
 
 onBeforeRouteUpdate((to, from, next) => {
+  console.log('Route update - slug:', to.params.slug)
   if (to.params.slug !== from.params.slug) {
     fetchPastDevelopmentBySlug(to.params.slug)
     // fetchAmenitiesBySlug(to.params.slug)
