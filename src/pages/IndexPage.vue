@@ -117,12 +117,18 @@
                 </span>
               </div>
               <q-separator/>
+              <q-toolbar class="development-toolbar">
               <div class="development-item">
                 <h4>Type</h4>
                 <p>{{ development.type }}</p>
               </div>
+              <div class="development-item-1">
+                  <h4>Up to</h4>
+                  <p>{{ development.size }}</p>
+                </div>
+                </q-toolbar>
               <q-separator/>
-              <q-toolbar class="development-toolbar">
+              <!-- <q-toolbar class="development-toolbar">
                 <div class="development-item">
                   <h4>From</h4>
                   <p>{{ development.price }}</p>
@@ -133,7 +139,7 @@
                   <p>{{ development.size }}</p>
                 </div>
               </q-toolbar>
-              <q-separator/>
+              <q-separator/> -->
             </div>
               <div class="development-feature-list">
                 <div

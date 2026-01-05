@@ -382,7 +382,7 @@
 
             <div class="map-button fade-up delay-2">
               <button @click="gotofullmap" class="btn view-full-map-btn">
-                <img src="/assets/brochure.svg" alt="Download" />
+                <img src="/assets/brochure.svg" alt="map button" />
                   {{ contact.mapbutton }}
               </button>
             </div>
@@ -409,7 +409,7 @@
               </a>
             </div>
             <h5 class="email-title fade-up delay-2">{{ contact.job }}</h5>
-            <p class="email-subtitle fade-up delay-2" v-html="contact.jobdesc"></p>
+            <p class="email-subtitle fade-up delay-2" v-html="formattedJobDesc"></p>
             <div class="fade-up delay-3">
               <i class="fa fa-envelope email-icon"></i>
               <a class="email-address" :href="'mailto:' + contact.jobemail">
@@ -438,7 +438,7 @@
               <q-input v-model="form.name" label="Name*" outlined required />
 
               <!-- Email Field -->
-              <q-input v-model="form.email" label="Email*" type="email"     :rules="[(val) => validateEmail(val) || 'Must be a valid email']" outlined required />
+              <q-input v-model="form.email" label="Email*" type="email" outlined required />
 
               <!-- Telephone Field -->
               <q-input v-model="form.telephone" label="Telephone*" type="tel" outlined required />
@@ -513,11 +513,11 @@
                   </p>
                 </div>
 
-                  <q-separator vertical style="margin: 7px 0; margin-top: 0px;"/>
+                  <!-- <q-separator vertical style="margin: 7px 0; margin-top: 0px;"/>
                 <div class="product-item-1">
                   <h4>From</h4>
                   <p>{{ property.price }}</p>
-                </div>
+                </div> -->
               </q-toolbar>
 
               <q-separator style="margin: 0 -15px;"/>
@@ -802,6 +802,15 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
+})
+
+const windowWidth = ref(window.innerWidth)
+
+const formattedJobDesc = computed(() => {
+  if (windowWidth.value < 1024) {
+    return contact.value.jobdesc?.replace(/<br\s*\/?>/gi, ' ') || ''
+  }
+  return contact.value.jobdesc
 })
 
 const open = (vr) => {
@@ -2486,7 +2495,7 @@ max-height: 536px;
 }
 
 .email-subtitle br {
-  display: none;
+  display: inline;
 }
 
 .business-title {
