@@ -14,7 +14,12 @@
         </div>
         <div class="overview-section">
           <!-- Banner Image -->
-          <img class="overview-image" :src="development.bannerimage" alt="Banner Image">
+          <img class="overview-image"
+          :src="development.bannerimage"
+          :alt="development.bannerimage"
+          format="webp"
+          loading="eager"
+          fetchpriority="high">
           <!-- <div class="gradient-overlay"></div> -->
         </div>
       </div>
@@ -335,10 +340,10 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, nextTick, watchEffect } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import axios from 'axios'
-import { useHead } from '@unhead/vue'
+import { useHead, useSeoMeta } from '@unhead/vue'
 
 defineEmits(['toggleHeader'])
 
@@ -372,6 +377,20 @@ const sections = ref([])
 const fadeItems = ref([])
 const nearbyAmenities = ref({})
 let observer = null
+
+// Preload hero image
+useHead({
+  link: computed(() =>
+    development.value?.bannerimage ? [
+      {
+        rel: 'preload',
+        as: 'image',
+        href: development.value.bannerimage,
+        fetchpriority: 'high'
+      }
+    ] : []
+  )
+})
 
 const fetchDevelopmentBySlug = async (slug) => {
   try {
@@ -438,47 +457,72 @@ const stateCodeMap = {
   // add more if needed
 }
 
-watchEffect(() => {
-  if (!development.value?.name) return
+// Use computed for dynamic SEO
+const seoTitle = computed(() =>
+  development.value?.name ? `${development.value.name} | Miracle Land` : 'Miracle Land'
+)
 
-  useHead({
-    title: development.value.name + ' | Miracle Land',
-    meta: [
-      { name: 'description', content: development.value.description },
-      {
-        name: 'keywords',
-        content: 'property for sale, ' + development.value.location + ', ' + development.value.type
-      },
-      {
-        name: 'geo.region',
-        content: 'MY-' + stateCodeMap[development.value.state] // ✅ ISO code format
-      },
-      { name: 'geo.placename', content: development.value.location },
-      { name: 'robots', content: 'index, follow' },
+const seoDescription = computed(() =>
+  development.value?.description || ''
+)
 
-      // Open Graph
-      { property: 'og:title', content: development.value.name },
-      { property: 'og:description', content: development.value.description },
-      { property: 'og:image', content: development.value.bannerimage },
-      { property: 'og:type', content: 'website' },
-      {
-        property: 'og:url',
-        content: 'https://miracleland.co/developments/' + development.value.slug
-      },
+const seoImage = computed(() =>
+  development.value?.bannerimage || ''
+)
 
-      // Twitter
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: development.value.name },
-      { name: 'twitter:description', content: development.value.description },
-      { name: 'twitter:image', content: development.value.bannerimage }
-    ],
-    link: [
-      {
-        rel: 'canonical',
-        href: 'https://miracleland.co/developments/' + development.value.slug
-      }
-    ],
-    script: [
+const canonicalUrl = computed(() =>
+  development.value?.slug
+    ? `https://miracleland.co/developments/${development.value.slug}`
+    : ''
+)
+
+// Set SEO meta tags
+useSeoMeta({
+  title: seoTitle,
+  description: seoDescription,
+  keywords: computed(() =>
+    development.value
+      ? `property for sale, ${development.value.location}, ${development.value.type}`
+      : ''
+  ),
+  robots: 'index, follow',
+
+  // Open Graph
+  ogTitle: seoTitle,
+  ogDescription: seoDescription,
+  ogImage: seoImage,
+  ogType: 'website',
+  ogUrl: canonicalUrl,
+
+  // Twitter
+  twitterCard: 'summary_large_image',
+  twitterTitle: seoTitle,
+  twitterDescription: seoDescription,
+  twitterImage: seoImage
+})
+
+// Set head separately for things useSeoMeta doesn't cover
+useHead({
+  meta: computed(() => [
+    {
+      name: 'geo.region',
+      content: development.value?.state
+        ? `MY-${stateCodeMap[development.value.state]}`
+        : ''
+    },
+    {
+      name: 'geo.placename',
+      content: development.value?.location || ''
+    }
+  ]),
+  link: computed(() => [
+    {
+      rel: 'canonical',
+      href: canonicalUrl.value
+    }
+  ]),
+  script: computed(() =>
+    development.value ? [
       {
         type: 'application/ld+json',
         children: JSON.stringify({
@@ -486,7 +530,7 @@ watchEffect(() => {
           '@type': 'Residence',
           name: development.value.name,
           image: [development.value.bannerimage],
-          url: 'https://miracleland.co/developments/' + development.value.slug,
+          url: `https://miracleland.co/developments/${development.value.slug}`,
           address: {
             '@type': 'PostalAddress',
             addressLocality: development.value.location,
@@ -502,8 +546,8 @@ watchEffect(() => {
           }
         })
       }
-    ]
-  })
+    ] : []
+  )
 })
 
 onMounted(() => {
@@ -784,6 +828,7 @@ const capitalizeFirstLetter = (string) => {
 .overview-image{
   height: 100%;
   width: 100%;
+  aspect-ratio: 16/9;
   object-fit: cover;
   object-position: center;
   position: absolute;
@@ -1358,10 +1403,12 @@ line-height: 20px;
   margin-top: 80px;
 }
 
+/* Gallery Section - CLS Prevention */
 .gallery-section {
   padding: 0px;
   text-align: center;
   background: linear-gradient(to bottom, transparent 54%, transparent 46%);
+  min-height: 700px; /* ✅ Reserve space to prevent shift */
 }
 
 .gallery-section h2 {
@@ -1380,15 +1427,20 @@ line-height: 20px;
   justify-content: center;
   align-items: center;
   position: relative;
+  min-height: 500px; /* ✅ Reserve space for images */
 }
 
 .gallery-item {
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease;
+  background: #f0f0f0; /* ✅ Placeholder background during load */
 }
 
 .gallery-item img {
+  position: absolute; /* ✅ Prevent layout shift */
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1438,6 +1490,7 @@ line-height: 20px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+
 .gallery-item:hover .gallery-overlay {
   opacity: 1;
 }
@@ -1470,31 +1523,38 @@ line-height: 20px;
 @media (max-width: 900px) {
   .gallery-grid .gallery-item:nth-child(1) {
     display: none;
-}
+  }
 
-.gallery-grid .gallery-item:nth-child(2) {
-  max-width: 550px;
-}
+  .gallery-grid .gallery-item:nth-child(2) {
+    max-width: 550px;
+  }
 
-.gallery-grid .gallery-item:nth-child(3) {
-  display: none;
-}
+  .gallery-grid .gallery-item:nth-child(3) {
+    display: none;
+  }
 
-.gallery-grid .gallery-item:nth-child(4) {
-  display: none;
-}
+  .gallery-grid .gallery-item:nth-child(4) {
+    display: none;
+  }
 
-.gallery-grid {
-  padding-left: 5%;
-  padding-right: 5%;
-}
+  .gallery-grid {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 }
 
 @media (max-width: 600px) {
-
   .gallery-grid .gallery-item:nth-child(2) {
-  height: 300px;
-}
+    height: 300px;
+  }
+
+  .gallery-section {
+    min-height: 450px; /* ✅ Adjust for mobile */
+  }
+
+  .gallery-grid {
+    min-height: 300px; /* ✅ Adjust for mobile */
+  }
 }
 
 .gallery-popup {
@@ -1555,22 +1615,24 @@ line-height: 20px;
 
   .carousel-image {
     width: 90vw;
-    height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensures the image is fully visible */
+    height: auto;
+    object-fit: contain;
     display: block;
-    margin: 0 auto; /* Center the image horizontally */
+    margin: 0 auto;
   }
 
   .popup-close {
-  top:5px;
-  right: 5px;
-}
+    top: 5px;
+    right: 5px;
+  }
 }
 
+/* Location Section - CLS Prevention */
 .location-section {
   padding: 20px;
   padding-bottom: 70px;
   background-color: #e3ddd3;
+  min-height: 650px; /* ✅ Reserve space to prevent shift */
 }
 
 .location-title {
@@ -1587,164 +1649,179 @@ line-height: 20px;
 
 .location-container {
   display: flex;
-  flex-direction: row; /* Arrange items in a row */
+  flex-direction: row;
   padding-top: 10px;
   padding-bottom: 40px;
   padding-left: 5%;
   padding-right: 5%;
+  min-height: 550px; /* ✅ Reserve space */
 }
 
-  .location-map iframe {
-    width: 100%; /* Ensure map adjusts within its parent container */
-    height: 550px; /* Adjust height for better visibility */
-  }
+.location-map {
+  width: 70%;
+  position: relative; /* ✅ For absolute positioning of iframe */
+}
 
-  .location-map {
-    width: 70%;
-  }
+.location-map iframe {
+  position: absolute; /* ✅ Prevent layout shift */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 550px;
+  border: 0;
+}
 
-  .amenities {
-    width: 30%;
-    background-color: #08463c;
-    color: #a7a4a4;
-    overflow-y: auto; /* Disable horizontal scroll for grid */
-    scrollbar-width: 1px;
-    scroll-snap-type: none;
-    height: 550px;
-  }
+.amenities {
+  width: 30%;
+  background-color: #08463c;
+  color: #a7a4a4;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scroll-snap-type: none;
+  height: 550px;
+  flex-shrink: 0; /* ✅ Prevent shrinking that causes shift */
+}
 
-  .amenities-section {
-    padding: 20px 15px;
-    text-align: center;
-    font-size: 24px;
-    line-height: 32px;
-    font-family: 'TitilliumWebBold';
-    cursor:default;
-  }
+.amenities-section {
+  padding: 20px 15px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 32px;
+  font-family: 'TitilliumWebBold';
+  cursor: default;
+}
 
-  .amenities-expand {
-    font-size: 16px;
-    color: white;
-    font-family: 'TitilliumWebSemiBold';
-    line-height: 24px;
-  }
+.amenities-expand {
+  font-size: 16px;
+  color: white;
+  font-family: 'TitilliumWebSemiBold';
+  line-height: 24px;
+}
 
-  .amenities-child {
-    font-size: 16px;
-    line-height: 24px;
-    color: antiquewhite;
-    font-family: 'TitilliumWebSemiBold';
-    cursor: default;
-  }
+.amenities-child {
+  font-size: 16px;
+  line-height: 24px;
+  color: antiquewhite;
+  font-family: 'TitilliumWebSemiBold';
+  cursor: default;
+}
 
-  .amenities-location {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; /* Push items to opposite ends */
-  /* border: 2px solid wheat; Border for the whole container */
+.amenities-location {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .amenities-name {
   display: flex;
-  text-align: start; /* Align the name at the start */
-  /* border: 2px solid #a7a4a4; */
+  text-align: start;
   max-width: 13vw;
   min-height: 40px;
   white-space: wrap;
 }
 
-  .amenities-km {
+.amenities-km {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+@media (max-width: 1024px) {
+  .location-container {
     display: flex;
-    flex-direction: row;
-    justify-content: end; /* Align km at the end */
-  /* border: 2px solid white; */
+    flex-direction: column;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    min-height: 500px; /* ✅ Adjust for tablet */
   }
 
-/* For screens larger than 768px */
-@media (max-width: 1024px) {
+  .location-map {
+    width: 100%;
+    position: relative;
+    height: 350px; /* ✅ Fixed height */
+  }
 
-  .location-container {
-  display: flex;
-  flex-direction: column; /* Arrange items in a row */
-  padding-top: 30px;
-  padding-bottom: 40px;
-}
+  .location-map iframe {
+    display: flex;
+    height: 350px;
+  }
 
-.location-map {
-  width: 100%;
-}
+  .q-list {
+    width: 100%;
+  }
 
-.location-map iframe {
-  display: flex;
-  height: 350px;
-}
+  .amenities {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    min-height: 200px; /* ✅ Reserve minimum space */
+    padding: 0;
+  }
 
-.q-list {
-  width: 100%;
-}
-
-.amenities {
-  display: flex;
-  width: 100%;
-  height: fit-content;
-  padding: 0;
-}
+  .location-section {
+    min-height: 600px; /* ✅ Adjust for tablet */
+  }
 }
 
 @media (max-width: 768px) {
+  .location-section h2 {
+    font-size: 40px;
+  }
 
-.location-section h2 {
-  font-size: 40px;
-}
+  .line {
+    padding-inline: 20px;
+  }
 
-.line {
-  padding-inline: 20px;
+  .line-1 {
+    padding-inline-end: 180px;
+    margin-inline-start: 20px;
+  }
 
-}
+  .line-2 {
+    width: 180px;
+    margin-inline-start: -260px;
+  }
 
-.line-1 {
-  padding-inline-end: 180px;
-  margin-inline-start: 20px;
-}
-
-.line-2 {
-  width: 180px;
-  margin-inline-start: -260px;
-}
-
-.amenities-section {
+  .amenities-section {
     font-size: 20px;
   }
 
   .location-container {
-  padding-left: 0px;
-  padding-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
 @media (max-width: 540px) {
-
   .gallery-section h2 {
     font-size: 32px;
   }
 
   .location-section h2 {
-  font-size: 32px;
+    font-size: 32px;
+  }
+
+  .line {
+    padding-inline: 15px;
+  }
+
+  .line-1 {
+    padding-inline-end: 140px;
+    margin-inline-start: 15px;
+  }
+
+  .line-2 {
+    width: 140px;
+    margin-inline-start: -200px;
+  }
+
+  .location-section {
+    min-height: 550px; /* ✅ Adjust for mobile */
+  }
+
+  .location-container {
+    min-height: 450px; /* ✅ Adjust for mobile */
+  }
 }
-
-.line {
-  padding-inline: 15px;
-
-}
-
-.line-1 {
-  padding-inline-end: 140px;
-  margin-inline-start: 15px;
-}
-
-.line-2 {
-  width: 140px;
-  margin-inline-start: -200px;
-}}
 
 </style>

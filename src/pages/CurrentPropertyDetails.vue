@@ -438,7 +438,7 @@
               <q-input v-model="form.name" label="Name*" outlined required />
 
               <!-- Email Field -->
-              <q-input v-model="form.email" label="Email*" type="email" outlined required />
+              <q-input v-model="form.email" label="Email*" type="email"    :rules="[(val) => validateEmail(val) || 'Must be a valid email']"  outlined required />
 
               <!-- Telephone Field -->
               <q-input v-model="form.telephone" label="Telephone*" type="tel" outlined required />
@@ -1035,6 +1035,14 @@ const form = ref({
   enquiryType: '',
   message: ''
 })
+
+const validateEmail = (email) => {
+  if (!email) {
+    return true
+  }
+  const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+  return emailRegex.test(email)
+}
 
 // // Dummy nearbyAmenities object for demonstration; replace with your actual data or import as needed
 // const nearbyAmenities = {}
