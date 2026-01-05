@@ -110,11 +110,11 @@
                   </p>
                 </div>
 
-                <q-separator vertical style="margin: 7px 0; margin-top: 0px;"/>
+                <!-- <q-separator vertical style="margin: 7px 0; margin-top: 0px;"/>
                 <div class="product-item-1">
                   <h4>From</h4>
                   <p>{{ property.price }}</p>
-                </div>
+                </div> -->
               </q-toolbar>
 
               <q-separator style="margin: 0 -15px;"/>

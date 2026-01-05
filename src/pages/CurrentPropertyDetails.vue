@@ -38,10 +38,10 @@
                         <q-tooltip>{{ property.housetype }}</q-tooltip>
                       </p>
                     </div>
-                    <div class="property-item">
+                    <!-- <div class="property-item">
                       <h4>From</h4>
                       <p>{{ property?.price ? formatPrice(property.price) : 'RM 0' }}</p>
-                    </div>
+                    </div> -->
                     <div class="property-item">
                       <h4>Status</h4>
                       <p class="space">{{ property.status }}</p>
@@ -746,10 +746,10 @@ watchEffect(() => {
     ]
   })
 })
-function formatPrice (price) {
-  if (!price) return 'RM 0'
-  return String(price).replace(/RM ([\d,]+)k\*/, (match, p1) => `RM ${p1},000*`)
-}
+// function formatPrice (price) {
+//   if (!price) return 'RM 0'
+//   return String(price).replace(/RM ([\d,]+)k\*/, (match, p1) => `RM ${p1},000*`)
+// }
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -1234,20 +1234,18 @@ const loadMore = () => {
 
 .property-toolbar {
   display: flex;
-  align-items: center; /* Centers content vertically */
-  gap: 15px;
-  justify-content: center;
+  align-items: flex-start;
+  gap: 120px;
   flex-wrap: nowrap;
-  max-height: 120px;
   height: 95px;
   padding: 0; /* Optional: Adjust padding to create space around */
 }
 
 .property-item {
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 280px;
-  min-width: 140px;
+  min-width: 170px;
 }
 /* Ensure price does not wrap */
 .property-item:nth-child(2) p {
