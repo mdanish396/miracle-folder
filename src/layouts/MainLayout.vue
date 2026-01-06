@@ -25,34 +25,36 @@
 
           <q-card
             class="nav-button flat-card"
-            @mouseover="showDropdown('sale')"
+            @mouseenter="showDropdown('sale')"
             @mouseleave="hideDropdown('sale')">
             <q-card-section class="nav-card-section">For Sale
               <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
             </q-card-section>
             <q-menu
-              v-if="activeDropdown === 'sale'"
+              v-model="isDropdownVisible"
               anchor="bottom middle"
               self="top middle"
               fit
-              @mouseover="showDropdown('sale')"
+              @mouseenter="showDropdown('sale')"
               @mouseleave="hideDropdown('sale')"
               class="dropdown-container">
               <div class="dropdown-content">
                 <!-- district list -->
-                <div v-for="(districts, state) in groupedDevelopments" :key="state" class="district-list">
-                  <h6>{{ state }}</h6>
-                  <ul>
-                    <li
-                      v-for="(district, index) in districts"
-                      :key="index"
-                      @mouseover="setSelectedDistrict(district)"
-                      @click="setSelectedDistrict(district)"
-                      class="district-item"
-                      default-opened>
-                      {{ district }}
-                    </li>
-                  </ul>
+                <div class="district-column">
+                  <div v-for="(districts, state) in groupedDevelopments" :key="state" class="district-list">
+                    <h6>{{ state }}</h6>
+                    <ul>
+                      <li
+                        v-for="(district, index) in districts"
+                        :key="index"
+                        @mouseenter="setSelectedDistrict(district)"
+                        @click="setSelectedDistrict(district)"
+                        class="district-item"
+                        default-opened>
+                        {{ district }}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
 
                 <!-- Images Grid -->
@@ -70,52 +72,6 @@
               </div>
             </q-menu>
           </q-card>
-
-          <!-- <q-card class="nav-button flat-card"
-            @mouseover="showDropdown('lease')"
-            @mouseleave="hideDropdown('lease')">
-            <q-card-section class="nav-card-section">For Lease
-              <q-icon :name="'arrow_drop_down'" class="dropdown-arrow" />
-            </q-card-section>
-            <q-menu
-              v-if="activeDropdown === 'lease'"
-              anchor="bottom middle"
-              self="top middle"
-              @mouseover="showDropdown('lease')"
-              @mouseleave="hideDropdown('lease')"
-              class="dropdown-container">
-              <div class="dropdown-content"> -->
-                <!-- district list
-                <div v-for="(districts, state) in groupedLeaseDevelopments" :key="state" class="district-list">
-                  <h6>{{ state }}</h6>
-                  <ul>
-                    <li
-                      v-for="(district, index) in districts"
-                      :key="index"
-                      @mouseover="setSelectedLeaseDistrict(district)"
-                      @click="setSelectedLeaseDistrict(district)"
-                      class="district-item"
-                      default-opened>
-                      {{ district }}
-                    </li>
-                  </ul>
-                </div> -->
-
-                <!-- Images Grid
-                <div class="image-grid">
-                  <div class="grid-item" v-for="(lease, index) in filteredLease" :key="index">
-                    <div class="image-container"
-                      @click="navigateToLeaseSlug(lease.slug)">
-                      <img :src="lease.image" alt="Lease Project Image" />
-                      <div class="overlay">
-                        <p>{{ lease.name }}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </q-menu>
-          </q-card> -->
 
           <q-card class="nav-button flat-card" clickable @click="$router.push('/contact')">
             <q-card-section class="nav-card-section">Contact Us</q-card-section>
@@ -187,25 +143,26 @@
           <q-expansion-item
             group="somegroup"
             label="For Sale"
-            class="drawer-item-expand"
-            v-for="(districts, state) in groupedDevelopments" :key="state">
-            <q-item class="drawer-item-child-1">
-              <q-item-section>{{ state }}</q-item-section>
-            </q-item>
-            <q-expansion-item
-              group="somegroup1"
-              class="drawer-item-expand-2"
-              v-for="(district, index) in districts"
-              :key="index"
-              @click="setSelectedDistrict(district)"
-              :label="district">
-              <q-item
-                v-for="(project, index) in filteredProjects" :key="index"
-                clickable :to="`/developments/${project.slug}`"
-                class="drawer-item-child-2">
-                <q-item-section>{{ project.name }}</q-item-section>
+            class="drawer-item-expand">
+            <div v-for="(districts, state) in groupedDevelopments" :key="state">
+              <q-item class="drawer-item-child-1">
+                <q-item-section>{{ state }}</q-item-section>
               </q-item>
-            </q-expansion-item>
+              <q-expansion-item
+                group="somegroup1"
+                class="drawer-item-expand-2"
+                v-for="(district, index) in districts"
+                :key="index"
+                @click="setSelectedDistrict(district)"
+                :label="district">
+                <q-item
+                  v-for="(project, index) in filteredProjects" :key="index"
+                  clickable :to="`/developments/${project.slug}`"
+                  class="drawer-item-child-2">
+                  <q-item-section>{{ project.name }}</q-item-section>
+                </q-item>
+              </q-expansion-item>
+            </div>
           </q-expansion-item>
 
           <!-- <q-expansion-item
@@ -384,7 +341,10 @@ const filteredProjects = computed(() => {
 )
 
 const setSelectedDistrict = (district) => {
-  selectedDistrict.value = district
+  selectedDistrict.value = null
+  setTimeout(() => {
+    selectedDistrict.value = district
+  }, 100) // Matches the collapse animation timing
 }
 
 const navigateToSlug = (slug) => {
@@ -421,6 +381,7 @@ const navigateToSlug = (slug) => {
 const $q = useQuasar() // Get the $q object
 const router = useRouter()
 const activeDropdown = ref(null)
+const isDropdownVisible = computed(() => activeDropdown.value === 'sale')
 const drawerVisible = ref(false)
 const screenBelow1105px = ref(false) // Screen width state
 
@@ -447,7 +408,7 @@ const hideDropdown = (key) => {
     if (activeDropdown.value === key) {
       activeDropdown.value = null // Clear the active dropdown
     }
-  }, 150) // Small delay to allow smooth transitions
+  }, 100) // Small delay to allow smooth transitions
 }
 
 // Drawer toggle
@@ -619,31 +580,44 @@ onUnmounted(() => {
   display: flex;
   flex-direction: row;
   padding: 10px;
+  gap: 20px;
+}
+
+.district-column {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+  padding-right: 20px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .district-list {
-  width: 30%;
-  border-right: 1px solid #ddd;
-  padding-right: 10px;
+  margin-bottom: 0px;
 }
 
 .district-list h6 {
   font-size: 14px;
   font-family: 'TitilliumWebBold';
-  margin-bottom: -15px;
+  margin-bottom: -7px;
+  margin-top: 0;
 }
 
 .district-list ul {
   list-style: none;
   font-family: 'TitilliumWebRegular';
   font-size: 14px;
-  padding-left: 20px;
+  padding-left: 0;
+  margin: 0;
 }
 
 .district-item {
-  padding: 5px 0;
+  padding: 2px 5px;
   cursor: pointer;
   font-size: 14px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
 }
 
 .district-item:hover {
@@ -657,9 +631,9 @@ onUnmounted(() => {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  padding-left: 10px;
   height:300px;
   overflow-y: auto;
+  align-content: start;
 }
 
 .grid-item {
@@ -735,7 +709,7 @@ color:#00B398;
 
 /* Style for drawer items */
 .drawer-item {
-  font-family: 'TitilliumWebRegular';
+  font-family: 'TitilliumWebBold';
   font-size: 18px;
   padding: 0px 15px;
   margin-bottom: -10px;
@@ -775,12 +749,12 @@ color:#00B398;
 
 .drawer-item-child-1 {
   padding: 0px 25px;
-  font-family: 'TitilliumWebRegular';
+  font-family: 'TitilliumWebSemiBold';
   font-size: 17px;
   cursor:default;
   margin-bottom: -10px;
   margin-top: -10px;
-  color: #3d3c3c;
+  color: #232323;
 }
 
 .drawer-item-expand-2 {
@@ -789,17 +763,17 @@ color:#00B398;
   font-weight: bold;
   padding-left: 20px;
   margin-bottom: -10px;
-  color: #494c52;
+  color: #626364;
 }
 
 .drawer-item-child-2 {
   padding: 0px 30px;
-  font-family: 'TitilliumWebSemiBold';
+  font-family: 'TitilliumWebRegular';
   font-size: 16px;
   font-weight: bold;
   margin-top: -10px;
   margin-bottom: -10px;
-  color: #58595B;
+  color: #86888c;
 }
 
 .drawer-item-child-2:hover {
