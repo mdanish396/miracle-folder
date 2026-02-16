@@ -307,7 +307,7 @@
           </div>
         </div>
         <div class="footer-copyright">
-          <p>© 2025 Miracle Land Holdings Berhad (1111981-P). All rights reserved.</p>
+          <p>© {{ currentYear }} Miracle Land Holdings Berhad (1111981-P). All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -326,6 +326,7 @@ const selectedDistrict = ref('')
 // const displayedLeaseDevelopments = ref(leasedevelopments)
 // const selectedLeaseDistrict = ref('')
 const showHeader = ref(true)
+const currentYear = new Date().getFullYear()
 
 const toggleHeader = (value) => {
   showHeader.value = value
