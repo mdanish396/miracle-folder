@@ -19,7 +19,7 @@
 
         <!-- Image Section -->
         <div class="career-image-container">
-          <img src="/assets/contact.jpg" class="top-image" />
+          <img src="/assets/careers.webp" class="top-image" />
         </div>
       </div>
     </div>
@@ -118,13 +118,13 @@
       <div class="career-first">
         <h2 class="fade-up">Can't find any job vacancies?</h2>
         <p class="fade-up delay-1">The Miracle Land Company has a strong presence in Pahang,
-          with offices in Temerloh, Kuantan, and Jengka. If you haven't
+          with offices in Temerloh. If you haven't
           found the job vacancy on our site today, you can submit your
           details prospectively with us and one of our team will get in touch with you.
         </p>
       </div>
       <div class="career-link fade-up delay-2">
-        <q-btn flat label="Submit your details prospectively" class="btn" @click="navigateToForm"/>
+        <q-btn flat label="Submit your details prospectively" class="btn" href="mailto:hmnrs.md2@gmail.com"/>
       </div>
       <div class="career-second fade-up delay-3">
         <strong>Be fraud aware:</strong> Fraudulent job advertisements can circulate online and falsely
@@ -134,12 +134,12 @@
           request sensitive or personal financial information during the
           recruitment process. If you suspect that you have been contacted
           by someone misrepresenting The Miracle Land Company, please
-          contact us at <a class="second-mail" href="mailto:hmnrs.md3@gmail.com">hmnrs.md3@gmail.com</a>.
+          contact us at <a class="second-mail" href="mailto:hmnrs.md2@gmail.com">hmnrs.md2@gmail.com</a>.
       </div>
     </div>
 
     <!-- Draggable FAB with QR Code -->
-    <q-page-sticky position="bottom-right" :offset="fabPos" style="z-index: 2;">
+    <!-- <q-page-sticky position="bottom-right" :offset="fabPos" style="z-index: 2;">
       <q-fab
         direction="up"
         color="dark grey"
@@ -157,7 +157,7 @@
           <img src="/assets/qr-career.png" alt="QR Code" class="qr-img"/>
         </q-fab-action>
       </q-fab>
-    </q-page-sticky>
+    </q-page-sticky> -->
   </q-page>
 </template>
 
@@ -238,9 +238,9 @@ const filterJobs = () => {
 
 }
 
-const navigateToForm = () => {
-  window.open('https://forms.monday.com/forms/af05330b16c06a3f98c8e8e0efdf767f?r=use1&s=6', '_blank')
-}
+// const navigateToForm = () => {
+//   window.open('https://forms.monday.com/forms/af05330b16c06a3f98c8e8e0efdf767f?r=use1&s=6', '_blank')
+// }
 
 onMounted(() => {
   // Initialize Intersection Observer
@@ -267,33 +267,33 @@ onBeforeUnmount(() => {
   if (observer) observer.disconnect()
 })
 
-const fabPos = ref([18, 18]) // Initial position (X, Y)
-const draggingFab = ref(false)
+// const fabPos = ref([18, 18]) // Initial position (X, Y)
+// const draggingFab = ref(false)
 
-const moveFab = (ev) => {
-  draggingFab.value = ev.isFirst !== true && ev.isFinal !== true
+// const moveFab = (ev) => {
+//   draggingFab.value = ev.isFirst !== true && ev.isFinal !== true
 
-  const screenWidth = window.innerWidth
-  const screenHeight = window.innerHeight
+//   const screenWidth = window.innerWidth
+//   const screenHeight = window.innerHeight
 
-  const fabWidth = 190
+//   const fabWidth = 190
 
-  // Define movement limits (adjust if needed)
-  const minX = 10
-  const maxX = screenWidth - fabWidth // Adjust FAB size
-  const minY = 10
-  const maxY = screenHeight - 135 // Adjust for bottom margin
+//   // Define movement limits (adjust if needed)
+//   const minX = 10
+//   const maxX = screenWidth - fabWidth // Adjust FAB size
+//   const minY = 10
+//   const maxY = screenHeight - 135 // Adjust for bottom margin
 
-  // Calculate new position
-  const newX = fabPos.value[0] - ev.delta.x
-  const newY = fabPos.value[1] - ev.delta.y
+//   // Calculate new position
+//   const newX = fabPos.value[0] - ev.delta.x
+//   const newY = fabPos.value[1] - ev.delta.y
 
-  // Apply limits
-  fabPos.value = [
-    Math.min(maxX, Math.max(minX, newX)),
-    Math.min(maxY, Math.max(minY, newY))
-  ]
-}
+//   // Apply limits
+//   fabPos.value = [
+//     Math.min(maxX, Math.max(minX, newX)),
+//     Math.min(maxY, Math.max(minY, newY))
+//   ]
+// }
 
 </script>
 
@@ -455,7 +455,7 @@ const moveFab = (ev) => {
 .top-image {
   width: 65vw;
   height: 71vh;
-  object-position:bottom;
+  object-position:center;
   object-fit: cover;
 }
 
