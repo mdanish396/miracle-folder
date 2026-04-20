@@ -359,6 +359,7 @@
                   </q-item-section>
                 </q-item>
               </div>
+              <q-separator color="white" />
             </q-expansion-item>
           </q-list>
         </div>
