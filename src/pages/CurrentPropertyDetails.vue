@@ -2121,6 +2121,11 @@ max-height: 536px;
     height: 550px;
   }
 
+  .amenities :deep( .q-separator) {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
   .amenities-section {
     padding: 20px 15px;
     text-align: center;
