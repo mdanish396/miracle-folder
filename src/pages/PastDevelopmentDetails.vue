@@ -314,7 +314,6 @@
                     <span>{{ capitalizeFirstLetter(category) }}</span>
                   </q-item-section>
                 </template>
-                <q-separator color="white"/>
 
                 <!-- Content inside the expansion item -->
                 <div class="q-pa-md">

@@ -141,9 +141,8 @@
 
       <!-- Text Overlay in Video (centered) -->
       <div class="video-text-overlay">
-        <h1>MIRACLE</h1>
+        <h1 ref="heroH1">MIRACLE</h1>
         <h2>FOR YOU FOREVER</h2>
-        <!-- <h1>MIRACLES MADE FOR YOU <br> - FOREVER</h1> -->
       </div>
 
       <!-- Scroll Indicator (mouse animation, visible from start and fixed inside the background video) -->
@@ -427,6 +426,32 @@ const showLessDevelopments = () => {
 const navigateToDevelopmentDetails = (slug) => {
   router.push({ path: `/developments/${slug}` })
 }
+
+const heroH1 = ref(null)
+const fitText = () => {
+  const h1 = heroH1.value
+  if (!h1) return
+
+  h1.style.fontSize = '100px'
+
+  // Get the actual rendered text width at 100px
+  const range = document.createRange()
+  range.selectNodeContents(h1)
+  const textWidth = range.getBoundingClientRect().width
+  const containerWidth = window.innerWidth
+
+  const ratio = containerWidth / textWidth
+  h1.style.fontSize = (100 * ratio) + 'px'
+}
+
+onMounted(() => {
+  fitText()
+  window.addEventListener('resize', fitText)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', fitText)
+})
 </script>
 
 <style scoped>
@@ -575,119 +600,114 @@ const navigateToDevelopmentDetails = (slug) => {
 }
 
 .hero-video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-position: top;
   object-fit: cover; /* Ensures the video covers the entire hero section */
 }
 
-.hero-carousel {
+/* .hero-carousel {
   width: 100%;
   height: 100%;
   object-position: top;
-  object-fit: cover; /* Ensures the video covers the entire hero section */
-}
+  object-fit: cover;
+} */
 
 /* Default styles for all screens */
-.responsive-slide {
+/* .responsive-slide {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-}
+} */
 
 /* Adjustments for screens 1028px and above */
-@media (min-width: 1028px) {
+/* @media (min-width: 1028px) {
   .responsive-slide {
-    min-height: 700px; /* Adjust this value as needed */
-    /* You can also add other adjustments here */
+    min-height: 700px;
   }
-}
+} */
 
 /* Text Overlay in Video */
 .video-text-overlay {
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   color: rgb(238, 238, 238);
-  text-align: center;
+  width: 100vw;
+  box-sizing: border-box;
   cursor: default;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Ensures both elements start at the same point */
+  align-items: flex-start;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
 }
 
-.video-text-overlay {
-  text-align: left; /* Aligns text to the left */
+/* .video-text-overlay {
+  text-align: left;
 }
 
 .video-text-overlay h1,
 .video-text-overlay h2 {
-  width: 100%; /* Makes sure both take up the same width */
+  width: 100%;
   text-align: left;
-}
+} */
 
 .video-text-overlay h1 {
-  font-size: 22VW; /* Adjust as needed */
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.4);
   font-family: 'PlusJakartaBold';
-  letter-spacing: 10px;
-  margin-bottom: 0%;
-}
-
-.video-text-overlay h2{
-  padding-top: 4%;
-  font-size: 3VW; /* Adjust as needed */
-  color: rgba(255, 255, 255);
-  font-family: 'PlusJakartaSemiBold';
-  padding-left: 10%;
-  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.2),
-  1px -1px 0 rgba(0, 0, 0, 0.2),
-  -1px 1px 0 rgba(0, 0, 0, 0.2),
-  1px 1px 0 rgba(0, 0, 0, 0.2);
-  white-space: none;
-}
-
-.vertical-branding {
-  position: absolute;
-  top: 55%;
-  right: 50px;
-  transform: translateY(-50%);
-  writing-mode: vertical-lr;
-  text-transform: uppercase;
-  font-size: 64px;
-  font-family: 'TitilliumWebBold';
-  color: rgba(255, 255, 255, 0.1);
-  z-index: 2;
+  letter-spacing: 0.08em;
+  width: 100%;
+  margin: 0;
+  line-height: 1;
   white-space: nowrap;
-  cursor: default;
+  text-align: center;
+  display: block;
+}
+
+.video-text-overlay h2 {
+  font-size: clamp(3rem, 2.5vw, 2rem);
+  color: rgba(255, 255, 255, 1);
+  font-family: 'PlusJakartaSemiBold';
+  width: 100%;
+  padding-left: 8%;
+  margin-top: 0.5rem;
+  text-align: left;
+  text-shadow:
+    -1px -1px 0 rgba(0, 0, 0, 0.2),
+     1px -1px 0 rgba(0, 0, 0, 0.2),
+    -1px  1px 0 rgba(0, 0, 0, 0.2),
+     1px  1px 0 rgba(0, 0, 0, 0.2);
+  white-space: normal;
 }
 
 /* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(rgb(0,0,0,0.05), rgb(0,0,0,0.5)); /* Dark semi-transparent background */
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.45) 100%); /* Dark semi-transparent background */
   align-items: center;
   justify-content: center;
-  text-align: center;
+  display: flex;
   width: 100%;
-  height: 80px;
+  height: 120px;
   z-index: 2; /* Ensures it's above the video but below the top bar */
 }
 
 .mouse-animation {
-  padding-top: 10px;
   width: 48px;
   height: auto;
   animation: bounce 3s infinite;
 }
 /* Animation for the scroll indicator */
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%, 100% {
     transform: translateY(0);
   }
   80% {
@@ -695,7 +715,7 @@ const navigateToDevelopmentDetails = (slug) => {
   }
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
 
 .video-text-overlay h1 {
 font-size: 21.5vw;
@@ -726,7 +746,7 @@ font-size: 21.5vw;
     color: rgba(255, 255, 255, 0.4);
     font-size: 19vw;
   }
-}
+} */
 /*
 @media (max-width: 1024px) {
   .video-text-overlay h1 {
