@@ -30,7 +30,6 @@
         v-else-if="mediaType === 'image' && media.length"
         :src="media[0].filename"
         class="hero-video"
-        :style="{ objectFit: 'cover', maxHeight: '100vh' }"
         loading="eager"
       />
 
@@ -55,7 +54,7 @@
           :img-src="img.filename"
         >
           <div class="video-text-overlay">
-            <h1>{{ img.title }}</h1>
+            <h1 ref="heroH1">{{ img.title }}</h1>
             <h2>{{ img.subtitle }}</h2>
           </div>
         </q-carousel-slide>
@@ -63,12 +62,12 @@
 
       <!-- TEXT OVERLAY -->
       <div class="video-text-overlay" v-if="mediaType === 'image' && media.length">
-        <h1>{{ media[0].title }}</h1>
+        <h1 ref="heroH1">{{ media[0].title }}</h1>
         <h2>{{ media[0].subtitle }}</h2>
       </div>
 
       <div class="video-text-overlay" v-if="mediaType === 'video' && media.length">
-        <h1>{{ media[0].title }}</h1>
+        <h1 ref="heroH1">{{ media[0].title }}</h1>
         <h2>{{ media[0].subtitle }}</h2>
       </div>
 
@@ -249,7 +248,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import axios from 'axios'
 import { useHead } from '@vueuse/head'
@@ -339,6 +338,9 @@ onMounted(async () => {
 
     // Wait for DOM to render new content before observing
     await nextTick()
+    fitText()
+
+    window.addEventListener('resize', fitText)
 
     // Re-observe .fade-up elements AFTER DOM updates
     fadeItems.value = Array.from(document.querySelectorAll('.fade-up'))
@@ -348,6 +350,10 @@ onMounted(async () => {
   }
 })
 
+watch(slide, async () => {
+  await nextTick()
+  fitText()
+})
 // const slide = ref('first')
 
 useHead({
@@ -434,6 +440,37 @@ const showLessDevelopments = () => {
 const navigateToDevelopmentDetails = (slug) => {
   router.push({ path: `/developments/${slug}` })
 }
+
+const heroH1 = ref([])
+
+const fitText = () => {
+  const elements = Array.isArray(heroH1.value)
+    ? heroH1.value
+    : [heroH1.value]
+
+  elements.forEach((h1) => {
+    if (!h1) return
+
+    h1.style.fontSize = '100px'
+
+    const range = document.createRange()
+    range.selectNodeContents(h1)
+    const textWidth = range.getBoundingClientRect().width
+    const containerWidth = window.innerWidth // 👈 give padding room
+
+    const ratio = containerWidth / textWidth
+    h1.style.fontSize = (100 * ratio) + 'px'
+  })
+}
+
+onMounted(() => {
+  fitText()
+  window.addEventListener('resize', fitText)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', fitText)
+})
 </script>
 
 <style scoped>
@@ -581,11 +618,23 @@ const navigateToDevelopmentDetails = (slug) => {
   overflow: hidden;
 }
 
+/* VIDEO */
 .hero-video {
+  position: absolute;
+  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-position: top;
-  object-fit: cover; /* Ensures the video covers the entire hero section */
+  object-fit: cover;
+}
+
+/* Q-IMG FIX */
+.hero-video :deep(img) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top !important;
 }
 
 .hero-carousel {
@@ -614,49 +663,59 @@ const navigateToDevelopmentDetails = (slug) => {
 /* Text Overlay in Video */
 .video-text-overlay {
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   color: rgb(238, 238, 238);
-  text-align: center;
+  width: 100vw;
+  box-sizing: border-box;
   cursor: default;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Ensures both elements start at the same point */
+  align-items: flex-start; /* Ensures both elements start at the same point */
+  z-index: 1;
+  padding: 0;
+  margin: 0;
 }
 
-.video-text-overlay {
-  text-align: left; /* Aligns text to the left */
+/* .video-text-overlay {
+  text-align: left;
 }
 
 .video-text-overlay h1,
 .video-text-overlay h2 {
-  width: 100%; /* Makes sure both take up the same width */
+  width: 100%;
   text-align: left;
-}
+} */
 
 .video-text-overlay h1 {
-  font-size: 22VW; /* Adjust as needed */
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.4);
   font-family: 'PlusJakartaBold';
-  letter-spacing: 10px;
-  margin-bottom: 0%;
+  letter-spacing: 0.08em;
+  width: 100%;
+  margin: 0%;
+  line-height: 1;
+  white-space: nowrap;
+  text-align: center;
+  display: block;
 }
 
 .video-text-overlay h2{
-  padding-top: 4%;
-  font-size: 3VW; /* Adjust as needed */
+  font-size: clamp(3rem, 2.5vw, 2rem); /* Adjust as needed */
   color: rgba(255, 255, 255);
   font-family: 'PlusJakartaSemiBold';
-  padding-left: 10%;
+  width: 100%;
+  padding-left: 8%;
+  margin-top: 0.5rem;
+  text-align: left;
   text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.2),
   1px -1px 0 rgba(0, 0, 0, 0.2),
   -1px 1px 0 rgba(0, 0, 0, 0.2),
   1px 1px 0 rgba(0, 0, 0, 0.2);
-  white-space: none;
+  white-space: normal;
 }
 
-.vertical-branding {
+/* .vertical-branding {
   position: absolute;
   top: 55%;
   right: 50px;
@@ -669,7 +728,7 @@ const navigateToDevelopmentDetails = (slug) => {
   z-index: 2;
   white-space: nowrap;
   cursor: default;
-}
+} */
 
 /* Scroll Indicator */
 .scroll-indicator {
@@ -677,24 +736,23 @@ const navigateToDevelopmentDetails = (slug) => {
   bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(rgb(0,0,0,0.05), rgb(0,0,0,0.5)); /* Dark semi-transparent background */
+  background: linear-gradient(to bottom, transparent 0%, rgb(0,0,0,0.45) 100%); /* Dark semi-transparent background */
   align-items: center;
   justify-content: center;
-  text-align: center;
+  display: flex;
   width: 100%;
-  height: 80px;
+  height: 120px;
   z-index: 2; /* Ensures it's above the video but below the top bar */
 }
 
 .mouse-animation {
-  padding-top: 10px;
   width: 48px;
   height: auto;
   animation: bounce 3s infinite;
 }
 /* Animation for the scroll indicator */
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%, 100% {
     transform: translateY(0);
   }
   80% {
@@ -702,7 +760,7 @@ const navigateToDevelopmentDetails = (slug) => {
   }
 }
 
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
 
 .video-text-overlay h1 {
 font-size: 21.5vw;
@@ -733,7 +791,7 @@ font-size: 21.5vw;
     color: rgba(255, 255, 255, 0.4);
     font-size: 19vw;
   }
-}
+} */
 /*
 @media (max-width: 1024px) {
   .video-text-overlay h1 {
@@ -869,7 +927,7 @@ font-size: 21.5vw;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 830px;
+  height: 760px;
   margin: 20px 0; /* Center align */
 }
 
