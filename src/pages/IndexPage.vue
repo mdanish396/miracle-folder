@@ -3,6 +3,7 @@
     <!-- Startup Animation Overlay -->
     <div v-if="showLoader" class="startup-overlay">
       <div>
+        <link rel="preload" as="image" href="/assets/logotext-white.png">
         <img src="/assets/logotext-white.png" class="startup-image">
       </div>
       <!-- <h4>MIRACLE LAND</h4> -->

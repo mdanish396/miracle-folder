@@ -62,7 +62,9 @@ export default configure(function (/* ctx */) {
 
       vueCompiler: true,
       chainWebpack (chain) {
-        chain.devtool('eval-source-map')
+        if (process.env.DEV) {
+          chain.devtool('eval-source-map')
+        }
       },
       // analyze: true,
       // env: {},
@@ -72,7 +74,27 @@ export default configure(function (/* ctx */) {
       // polyfillModulePreload: true,
       // distDir
 
-      // extendViteConf (viteConf) {},
+      extendViteConf (viteConf) {
+        viteConf.build = {
+          ...viteConf.build,
+          cssCodeSplit: true,
+          chunkSizeWarningLimit: 1000,
+
+          rollupOptions: {
+            output: {
+              manualChunks (id) {
+                if (id.includes('node_modules')) {
+                  return 'vendor'
+                }
+              }
+            }
+          }
+        }
+
+        viteConf.server = {
+          ...viteConf.server
+        }
+      },
       // viteVuePluginOptions: {},
 
       vitePlugins: [
@@ -80,7 +102,11 @@ export default configure(function (/* ctx */) {
           eslint: {
             lintCommand: 'eslint "./**/*.{js,mjs,cjs,vue}"'
           }
-        }, { server: false }]
+        }, { server: false }],
+        ['vite-plugin-compression', {
+          algorithm: 'gzip',
+          ext: '.gz'
+        }]
       ]
     },
 

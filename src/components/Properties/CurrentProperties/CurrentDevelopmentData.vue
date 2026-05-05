@@ -104,7 +104,7 @@ export const developments = [
       '/assets/Development/Casa Hill/casa_hill_03.jpg',
       '/assets/Development/Casa Hill/casa_hill_14.jpg',
       '/assets/Development/Casa Hill/casa_hill_15.jpg',
-      '/assets/Development/Casa Hill/casa_hill_10.jpg'
+      '/assets/Development/Casa Hill/casa_hill_10.png'
     ],
     map: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7000.384720493678!2d102.3365545!3d3.4847756!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31ceba1bc23fa6b7%3A0xfe72a6be37126111!2sDynaton%20Casa%20Hill!5e1!3m2!1sen!2smy!4v1742787546694!5m2!1sen!2smy'
   }
