@@ -279,7 +279,7 @@
       <div class="logo-container fade-up delay-2">
         <!-- <img src="/assets/maybank.png" alt="Partner 2" class="partner-logo1"/> -->
         <!-- <img src="/assets/dynaton.png" alt="Partner 1" class="partner-logo1"/> -->
-        <img src="/assets/interplan.png" alt="Partner 3" class="partner-logo"/>
+        <img src="/assets/interplan.jpg" alt="Partner 3" class="partner-logo"/>
       </div>
     </div>
 
